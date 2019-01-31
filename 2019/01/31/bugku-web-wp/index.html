@@ -90,6 +90,8 @@
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/cfc8604403adada81bd5023bf8806cf9.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/82eb3dd9df065c251c06916fdd8a1e2c.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/02e5573c4a106b1d46586dd690573e35.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/7e5454ae397b5e05538f6be5a043578f.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/7304488b2914e6457ae380b019443433.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/82eb3dd9df065c251c06916fdd8a1e2c.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/82eb3dd9df065c251c06916fdd8a1e2c.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/82eb3dd9df065c251c06916fdd8a1e2c.png">
@@ -99,9 +101,7 @@
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/82eb3dd9df065c251c06916fdd8a1e2c.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/82eb3dd9df065c251c06916fdd8a1e2c.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/82eb3dd9df065c251c06916fdd8a1e2c.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/82eb3dd9df065c251c06916fdd8a1e2c.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/82eb3dd9df065c251c06916fdd8a1e2c.png">
-<meta property="og:updated_time" content="2019-01-31T15:58:47.310Z">
+<meta property="og:updated_time" content="2019-01-31T16:08:50.655Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="bugku web wp">
 <meta name="twitter:description" content="这是半年前打的bugku的wp了，记录一下我的摸鱼之路 _(:з」∠)_">
@@ -321,8 +321,13 @@
 <p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/cfc8604403adada81bd5023bf8806cf9.png" alt=""></p>
 <h2 id="web基础-GET"><a href="#web基础-GET" class="headerlink" title="web基础$_GET"></a>web基础$_GET</h2><p>读代码可知在url后加?what=flag即可</p>
 <p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/82eb3dd9df065c251c06916fdd8a1e2c.png" alt=""></p>
-<h2 id="计算器"><a href="#计算器" class="headerlink" title="计算器"></a>计算器</h2><p>读代码可知在url后加?what=flag即可</p>
+<h2 id="计算器"><a href="#计算器" class="headerlink" title="计算器"></a>计算器</h2><p>F12，把maxlength改成2就行</p>
 <p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/02e5573c4a106b1d46586dd690573e35.png" alt=""></p>
+<h2 id="web基础-POST"><a href="#web基础-POST" class="headerlink" title="web基础$_POST"></a>web基础$_POST</h2><p>在hackbar里进行post what=flag即可</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/7e5454ae397b5e05538f6be5a043578f.png" alt=""></p>
+<h2 id="矛盾"><a href="#矛盾" class="headerlink" title="矛盾"></a>矛盾</h2><p>审计代码，可知要利用php弱类型比较漏洞，在url后加入?num=1d</p>
+<p>当is_num()判断时会返回false，当与1进行比较时，num的值会被转成int类型即1</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/7304488b2914e6457ae380b019443433.png" alt=""></p>
 <h2 id="web基础-GET-1"><a href="#web基础-GET-1" class="headerlink" title="web基础$_GET"></a>web基础$_GET</h2><p>读代码可知在url后加?what=flag即可</p>
 <p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/82eb3dd9df065c251c06916fdd8a1e2c.png" alt=""></p>
 <h2 id="web基础-GET-2"><a href="#web基础-GET-2" class="headerlink" title="web基础$_GET"></a>web基础$_GET</h2><p>读代码可知在url后加?what=flag即可</p>
@@ -340,10 +345,6 @@
 <h2 id="web基础-GET-8"><a href="#web基础-GET-8" class="headerlink" title="web基础$_GET"></a>web基础$_GET</h2><p>读代码可知在url后加?what=flag即可</p>
 <p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/82eb3dd9df065c251c06916fdd8a1e2c.png" alt=""></p>
 <h2 id="web基础-GET-9"><a href="#web基础-GET-9" class="headerlink" title="web基础$_GET"></a>web基础$_GET</h2><p>读代码可知在url后加?what=flag即可</p>
-<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/82eb3dd9df065c251c06916fdd8a1e2c.png" alt=""></p>
-<h2 id="web基础-GET-10"><a href="#web基础-GET-10" class="headerlink" title="web基础$_GET"></a>web基础$_GET</h2><p>读代码可知在url后加?what=flag即可</p>
-<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/82eb3dd9df065c251c06916fdd8a1e2c.png" alt=""></p>
-<h2 id="web基础-GET-11"><a href="#web基础-GET-11" class="headerlink" title="web基础$_GET"></a>web基础$_GET</h2><p>读代码可知在url后加?what=flag即可</p>
 <p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/82eb3dd9df065c251c06916fdd8a1e2c.png" alt=""></p>
 
       
@@ -510,7 +511,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#web2"><span class="nav-number">1.</span> <span class="nav-text">web2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET"><span class="nav-number">2.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算器"><span class="nav-number">3.</span> <span class="nav-text">计算器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET-1"><span class="nav-number">4.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET-2"><span class="nav-number">5.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET-3"><span class="nav-number">6.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET-4"><span class="nav-number">7.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET-5"><span class="nav-number">8.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET-6"><span class="nav-number">9.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET-7"><span class="nav-number">10.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET-8"><span class="nav-number">11.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET-9"><span class="nav-number">12.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET-10"><span class="nav-number">13.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET-11"><span class="nav-number">14.</span> <span class="nav-text">web基础$_GET</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#web2"><span class="nav-number">1.</span> <span class="nav-text">web2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET"><span class="nav-number">2.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算器"><span class="nav-number">3.</span> <span class="nav-text">计算器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-POST"><span class="nav-number">4.</span> <span class="nav-text">web基础$_POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矛盾"><span class="nav-number">5.</span> <span class="nav-text">矛盾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET-1"><span class="nav-number">6.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET-2"><span class="nav-number">7.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET-3"><span class="nav-number">8.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET-4"><span class="nav-number">9.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET-5"><span class="nav-number">10.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET-6"><span class="nav-number">11.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET-7"><span class="nav-number">12.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET-8"><span class="nav-number">13.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET-9"><span class="nav-number">14.</span> <span class="nav-text">web基础$_GET</span></a></li></ol></div>
             
 
           </div>
