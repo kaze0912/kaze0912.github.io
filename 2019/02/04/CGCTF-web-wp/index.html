@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ctf,web,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="南邮的wp，这也是半年前打的。">
+<meta name="keywords" content="ctf,web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CGCTF web wp">
+<meta property="og:url" content="http://yoursite.com/2019/02/04/CGCTF-web-wp/index.html">
+<meta property="og:site_name" content="shifeng_kazeの家">
+<meta property="og:description" content="南邮的wp，这也是半年前打的。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/47dc531e3e4ccb998fc2503ac5700137.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/0abdc3f575b3251e35344c7acee37738.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/8a9cc979ba0c544cdc287920968a4db4.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/9021af7eb58f6536eeaa9a76801ad22e.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/9bb5647332eebcd9d70102ad05edf49e.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/b1c6f80b1628fd6784472b8ec8fbb932.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/43f08184cbce3cc0d932498ea987ed52.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/3ff511a0443018686ba46609950bd327.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/a7637ba08a726fc2b7d77ef1a6be8978.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/19c7f2dee1e8bc494bba4c91f3cbaf29.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/dc933c3b1d3217767cc8b5da2112b98b.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/d96c1f27009ac994913960002895fc44.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/f6c45677197bdfb23638b615b8e7b7c5.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/cdefc32ab6f859e6152385e13de3374f.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/fa1dd2ca881aaabb00b3e4bebae5efb8.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/0744ffcacdf35a8280476968c368aa74.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/3be4bda2ff4e59b30e695565b5af8ee9.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/78daa9ec8d9ae2d87ce51834888690c6.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/45a2ea8e6a16cbc51a5ba334e2b49f56.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/5236d8c6826057df782f6deb530bf9cc.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/d1955b0e91d1c5ced2eb3f5c7138c650.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/f466ee5aed9339dd9ffc3bf72ddcfe46.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/91c2c5a274b464e9b10a032538afd9ab.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/7d890be9ed7c0b5f2ddd69a7de9e37a9.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/715b074268d66d078e6bc0b5ecf89965.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/a0157b31d65850caaeb4537872742ad1.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/272958884187e41241f03a28eaa9883f.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/1ca2776373f02c207cae778acbd2ccb5.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/7a25aed3fc9ef7b8b5bd572d57383e80.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/6501d6c10d82bc4e8360431dafe9d717.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/16b7b4d56af7b42191f85204907a629c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/c307365441677c97e65e029f450f41ec.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/5ce270ae19c884e00d48716f85d02170.png">
+<meta property="og:updated_time" content="2019-02-04T02:38:31.461Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CGCTF web wp">
+<meta name="twitter:description" content="南邮的wp，这也是半年前打的。">
+<meta name="twitter:image" content="http://shifeng-kaze.cn/blog/CGCTF_web_wp/47dc531e3e4ccb998fc2503ac5700137.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/04/CGCTF-web-wp/">
+
+
+
+
+
+  <title>CGCTF web wp | shifeng_kazeの家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shifeng_kazeの家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/04/CGCTF-web-wp/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shifeng_kaze">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://shifeng-kaze.cn/blog/head/kotori.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shifeng_kazeの家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CGCTF web wp</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-04T10:38:09+08:00">
+                2019-02-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>南邮的wp，这也是半年前打的。</p>
+<a id="more"></a>
+<h2 id="签到题"><a href="#签到题" class="headerlink" title="签到题"></a>签到题</h2><p>水题，F12就有</p>
+<h2 id="md5-collision"><a href="#md5-collision" class="headerlink" title="md5 collision"></a>md5 collision</h2><p>又是md5的比较，还是加密后成科学计数法的绕过<br>payload： <code>?a=240610708</code></p>
+<h2 id="签到2"><a href="#签到2" class="headerlink" title="签到2"></a>签到2</h2><p>这题看了一会才发现是限制了字数，窒息<br>直接拿burpsuit来post就行</p>
+<h2 id="这题不是WEB"><a href="#这题不是WEB" class="headerlink" title="这题不是WEB"></a>这题不是WEB</h2><p>看了一会没什么好弄，就觉得一个要搞这张图片，换txt和zip格式都不行。于是用010editor打开，查nctf成功找到</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/47dc531e3e4ccb998fc2503ac5700137.png" alt=""></p>
+<h2 id="层层递进"><a href="#层层递进" class="headerlink" title="层层递进"></a>层层递进</h2><p>这题是真的秀，服了，全部展开后发现有一块迷之注释掉的js链接，然后仔细看发现flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/0abdc3f575b3251e35344c7acee37738.png" alt=""></p>
+<h2 id="AAencode"><a href="#AAencode" class="headerlink" title="AAencode"></a>AAencode</h2><p>这题看感觉和之前做的jother挺像，但一开始看起来完全是乱码，用火狐 更多-&gt;文字编码-&gt;unicode 更换编码后得到一堆颜文字，然后放到console里回车一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/8a9cc979ba0c544cdc287920968a4db4.png" alt=""></p>
+<h2 id="单身二十年"><a href="#单身二十年" class="headerlink" title="单身二十年"></a>单身二十年</h2><p>点进去有个转跳的链接，再点一下可以看到明显有转跳，然后原网址F12发现href和转跳后的url不同，于是burpsuit抓包</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/9021af7eb58f6536eeaa9a76801ad22e.png" alt=""></p>
+<h2 id="php-decode"><a href="#php-decode" class="headerlink" title="php decode"></a>php decode</h2><p>这题看了一圈，是道解密题但不知道怎么下手，于是去查了一下gzinflate()这个函数，说是解压编码。然后再看一遍，感觉运行了就行。但跑了一次eval()报错，既让eval()只是运行不会输出，那就改成echo看看，成功出flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/9bb5647332eebcd9d70102ad05edf49e.png" alt=""></p>
+<h2 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h2><p>一看就是之前做过的题，file这个应该是用了include()才能读取，于是构造payload： <code>php://filter/read=convert.base64-encode/resource=index.php</code> ，然后base64解码</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/b1c6f80b1628fd6784472b8ec8fbb932.png" alt=""></p>
+<h2 id="单身一百年也没用"><a href="#单身一百年也没用" class="headerlink" title="单身一百年也没用"></a>单身一百年也没用</h2><p>应该是用burpsuit抓包，抓了后看了一下，发现头里有flag</p>
+<h2 id="Download"><a href="#Download" class="headerlink" title="Download~!"></a>Download~!</h2><p>炸了~</p>
+<h2 id="COOKIE"><a href="#COOKIE" class="headerlink" title="COOKIE"></a>COOKIE</h2><p>既然是cookie就直接抓包，发现有login=0。题目里又提示了0==not，那就改成1出flag</p>
+<h2 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h2><p>这题提示查robots.txt，这个是给爬虫当索引的，于是可能暴露些东西。进去查到一段php，并提示sql.php</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/43f08184cbce3cc0d932498ea987ed52.png" alt=""></p>
+<p>要int后是1024，但不是1024。弱类型对比导致不能用加字母绕过。这里想了一会，用各种方法都没出来，看了wp后感觉自己就是个zz，用浮点数就行：1024.1</p>
+<h2 id="GBK-Injection"><a href="#GBK-Injection" class="headerlink" title="GBK Injection"></a>GBK Injection</h2><p>题目都说得怎么清楚的，一看就是宽字节注入。这个是利用unicode编码，当前一个字符ascii值大于7f时，会自动认为是双字节的字符，于是会把后面一个字节也吃了，使得用来转义的/消失</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/3ff511a0443018686ba46609950bd327.png" alt=""></p>
+<p>payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?id=0%df%27%20union%20select%201,group_concat(table_name)%20from%20information_schema.tables%20where%20table_schema=database()%23</span><br><span class="line">?id=0%df%27%20union%20select%201,group_concat(column_name)%20from%20information_schema.columns%20where%20table_name=0x63746634%23</span><br><span class="line">?id=0%df%27%20union%20select%201,group_concat(flag)%20from%20ctf4%23</span><br></pre></td></tr></table></figure>
+<h2 id="x00"><a href="#x00" class="headerlink" title="/x00"></a>/x00</h2><p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/a7637ba08a726fc2b7d77ef1a6be8978.png" alt=""></p>
+<p>审计一下，又是很熟悉的ereg()和strops()<br>题目说有多种方法，暂时就想到两种<br><code>?nctf[]=1</code><br><code>?nctf=1%00%23biubiubiu</code></p>
+<h2 id="bypass-again"><a href="#bypass-again" class="headerlink" title="bypass again"></a>bypass again</h2><p>md5的绕过，payload： <code>?a[]=1&amp;b[]=2</code> 就行了，或者用md5后科学计数法绕过</p>
+<h2 id="变量覆盖"><a href="#变量覆盖" class="headerlink" title="变量覆盖"></a>变量覆盖</h2><p>进去发现有个source.php的链接，点开找到php部分</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/19c7f2dee1e8bc494bba4c91f3cbaf29.png" alt=""></p>
+<p>既然是extract()变量覆盖，就直接post个pass=1&amp;thepassword_123=1即可</p>
+<h2 id="PHP是世界上最好的语言"><a href="#PHP是世界上最好的语言" class="headerlink" title="PHP是世界上最好的语言"></a>PHP是世界上最好的语言</h2><p>炸了</p>
+<h2 id="伪装者"><a href="#伪装者" class="headerlink" title="伪装者"></a>伪装者</h2><p>要我们伪装成本地进入，于是用X-Forwarded-For: 127.0.0.1。但burpsuit迷之卡住了</p>
+<h2 id="Header"><a href="#Header" class="headerlink" title="Header"></a>Header</h2><p>估计是flag放在HTTP头了，但炸了</p>
+<h2 id="上传绕过"><a href="#上传绕过" class="headerlink" title="上传绕过"></a>上传绕过</h2><p>这题分别上传jpg和php后给出了不同提示，感觉要到burpsuit上搞比较好<br>先分别filename=1.jpg和filename=1.php</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/dc933c3b1d3217767cc8b5da2112b98b.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/d96c1f27009ac994913960002895fc44.png" alt=""></p>
+<p>然后在filename=1.jpg的uploads/后加1.php</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/f6c45677197bdfb23638b615b8e7b7c5.png" alt=""></p>
+<p>这下就很清楚了，是通过filename的后缀来判断是php还是jpg，于是用%00截断<br>这里在hex里修改，然后建议在1.php加个空格以便寻找</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/cdefc32ab6f859e6152385e13de3374f.png" alt=""></p>
+<p>出flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/fa1dd2ca881aaabb00b3e4bebae5efb8.png" alt=""></p>
+<h2 id="SQL注入1"><a href="#SQL注入1" class="headerlink" title="SQL注入1"></a>SQL注入1</h2><p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/0744ffcacdf35a8280476968c368aa74.png" alt=""></p>
+<p>进去看到源码，读一下，user是admin就出flag。本来想着要用md5的ffifdyop，不过不知道怎么不行。于是只用usr来做，usr=admin’)#出flag</p>
+<h2 id="pass-check"><a href="#pass-check" class="headerlink" title="pass check"></a>pass check</h2><p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/3be4bda2ff4e59b30e695565b5af8ee9.png" alt=""></p>
+<p>审计一下，就是个strcmp()绕过，用strcmp()字符串和数组比较返回0搞定<br><code>pass[]=1</code></p>
+<h2 id="起名字真难"><a href="#起名字真难" class="headerlink" title="起名字真难"></a>起名字真难</h2><p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/78daa9ec8d9ae2d87ce51834888690c6.png" alt=""></p>
+<p>之前碰到一样的题，转成16进制正好不是1~9得flag</p>
+<h2 id="密码重置"><a href="#密码重置" class="headerlink" title="密码重置"></a>密码重置</h2><p>直接该账号不行，试着去改url参数也不行。然后F12直接改前端代码，成功</p>
+<h2 id="php-反序列化"><a href="#php-反序列化" class="headerlink" title="php 反序列化"></a>php 反序列化</h2><p>做不了，过</p>
+<h2 id="SQL-Injection"><a href="#SQL-Injection" class="headerlink" title="SQL Injection"></a>SQL Injection</h2><p>F12发现源码</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/45a2ea8e6a16cbc51a5ba334e2b49f56.png" alt=""></p>
+<p>看一看一开始不觉得难，但发现好像不是这样<br>htmlentities()这个函数在第二个参数设为ENT_QUOTES时会把单引和双引编码，get_magic_quotes_gpc()会判断magic_quotes_gpc是否为on，为on就用stripslashes()删去反斜号，这里就猜magic_quotes_gpc为off<br>这样问题就是怎么让单引闭合逃出来，这里观察一下，可以使username=\让$username后的’转义，name后的’与pass后的’闭合，然后password=%20or%201%23，让语句变成<br><code>SELECT * FROM users WHERE name=&#39;\&#39; AND pass=&#39; or 1#</code> 得flag</p>
+<h2 id="综合题"><a href="#综合题" class="headerlink" title="综合题"></a>综合题</h2><p>这题绕了好几圈，一打开是jother编码，拿console进行解码</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/5236d8c6826057df782f6deb530bf9cc.png" alt=""></p>
+<p>解码出提示另一个php，于是进去<br>然后提示在头部</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/d1955b0e91d1c5ced2eb3f5c7138c650.png" alt=""></p>
+<p>然后提示着history of bash<br>这里不太懂就百度一下，大概就是有个.bash_history的文件用来存用过的命令行用的，然后在url里寻找这个文件</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/f466ee5aed9339dd9ffc3bf72ddcfe46.png" alt=""></p>
+<p>然后把flagbak.zip输入到url中下载下来，解压得flag</p>
+<h2 id="system"><a href="#system" class="headerlink" title="system"></a>system</h2><p>做不了，过</p>
+<h2 id="SQL注入2"><a href="#SQL注入2" class="headerlink" title="SQL注入2"></a>SQL注入2</h2><p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/91c2c5a274b464e9b10a032538afd9ab.png" alt=""></p>
+<p>看源码，是分离式登录，要求pass和查到的相同，同时pass用了md5()加密。既然提示用union就联合查询绕过<br>语句：’ union select md(5)#<br>好像里面是有admin这个用户的，搞得一开始一直得不到flag</p>
+<h2 id="综合题2"><a href="#综合题2" class="headerlink" title="综合题2"></a>综合题2</h2><p>这题确实综合</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/7d890be9ed7c0b5f2ddd69a7de9e37a9.png" alt=""></p>
+<p>看到这里应该是什么编码但没搞出来，然后说别用工具扫，那当然要先扫一下再说<br>然后继续看看，读一下源码，发现了so.php和cms说明</p>
+<p>打开so.php没什么，然后看看cms说明</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/715b074268d66d078e6bc0b5ecf89965.png" alt=""></p>
+<p>把几个重要的文件的功能都解释了一下，还给了admin表的结构，应该是sql注入了。于是修改file后的参数，把几个php都读一下</p>
+<p>Index，passencode，say暂时都没什么用，so和about这两个php里，about.php给出了个地址，进去发现是后台登录页面</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/a0157b31d65850caaeb4537872742ad1.png" alt=""></p>
+<p>而so.php发现了注入点</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/272958884187e41241f03a28eaa9883f.png" alt=""></p>
+<p>antiinject.php和antixss.php读一下可以知道都是用于过滤，一个过滤sql一个过滤xss<br>虽然把’，空格，select，union都过滤了但这里没用要单引号闭合，于是可以直接注入<br>payload： <code>soid=-1.Uniunionon(SelSelectect(1),(2),(3),(4))</code><br>Mysql本地能跑过，不知道为什么这里不行(也许是.的问题？</p>
+<h2 id="密码重置2"><a href="#密码重置2" class="headerlink" title="密码重置2"></a>密码重置2</h2><p>这题给了挺多提示的了<br>现在源码里找到admin的邮箱，同时也发现了 submit.php</p>
+<p>然后既然提示了linux中vim异常退出时留下的备份文件，那就试试看.submit.php.swp。本来以为又要开linux，没想到直接给了源码</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/1ca2776373f02c207cae778acbd2ccb5.png" alt=""></p>
+<p>就一个很简单的绕过，要token长度为10并等于str类型的0。于是email用admin的，token=0.00000000就得flag</p>
+<h2 id="file-get-contents"><a href="#file-get-contents" class="headerlink" title="file_get_contents"></a>file_get_contents</h2><p>这题F12找到源码</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/7a25aed3fc9ef7b8b5bd572d57383e80.png" alt=""></p>
+<p>读一下，用php伪协议就能绕过</p>
+<h2 id="变量覆盖-1"><a href="#变量覆盖-1" class="headerlink" title="变量覆盖"></a>变量覆盖</h2><p>这题依旧F12得到源码</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/6501d6c10d82bc4e8360431dafe9d717.png" alt=""></p>
+<p>$$key是个可变变量，可以让键名成为变量名，并获得值<br>构造语payload： <code>?name=meizijiu233</code> 得flag</p>
+<h2 id="注意！！"><a href="#注意！！" class="headerlink" title="注意！！"></a>注意！！</h2><p>签到题，复制粘贴就行</p>
+<h2 id="HateIT"><a href="#HateIT" class="headerlink" title="HateIT"></a>HateIT</h2><h2 id="Anonymous"><a href="#Anonymous" class="headerlink" title="Anonymous"></a>Anonymous</h2><p>进去就是一堆代码，读一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/16b7b4d56af7b42191f85204907a629c.png" alt=""></p>
+<p>一开始以为很容易，以为?func_name=SUCTF_$hash就搞定了。然后发现不行再认真读了一下，才发现$hash是个随机数，这就让人头大了。我以为是要找openssl_random_pseudo_bytes()的漏洞，查了一下发现原来是搞create_function()的漏洞</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/c307365441677c97e65e029f450f41ec.png" alt=""></p>
+<p>看create_function()的源码可知，虽然这个函数虽然是能声明函数名，但它还有一个匿名函数为\x00lambda_%d。这个%d会一直递增到最大长度然后结束，于是我们可以通过不停发请求使Apache的Pre-fore模式启动，然后启动新线程，使得%d为1。通过这里使函数名可知<br>于是用burpsuit大量发送请求攻击获得flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/CGCTF_web_wp/5ce270ae19c884e00d48716f85d02170.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/03/bugku-代码审计-wp/" rel="next" title="bugku 代码审计 wp">
+                <i class="fa fa-chevron-left"></i> bugku 代码审计 wp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://shifeng-kaze.cn/blog/head/kotori.jpg" alt="shifeng_kaze">
+            
+              <p class="site-author-name" itemprop="name">shifeng_kaze</p>
+              <p class="site-description motion-element" itemprop="description">～いらっしゃいません～</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#签到题"><span class="nav-number">1.</span> <span class="nav-text">签到题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#md5-collision"><span class="nav-number">2.</span> <span class="nav-text">md5 collision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#签到2"><span class="nav-number">3.</span> <span class="nav-text">签到2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这题不是WEB"><span class="nav-number">4.</span> <span class="nav-text">这题不是WEB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#层层递进"><span class="nav-number">5.</span> <span class="nav-text">层层递进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AAencode"><span class="nav-number">6.</span> <span class="nav-text">AAencode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单身二十年"><span class="nav-number">7.</span> <span class="nav-text">单身二十年</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#php-decode"><span class="nav-number">8.</span> <span class="nav-text">php decode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件包含"><span class="nav-number">9.</span> <span class="nav-text">文件包含</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单身一百年也没用"><span class="nav-number">10.</span> <span class="nav-text">单身一百年也没用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Download"><span class="nav-number">11.</span> <span class="nav-text">Download~!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#COOKIE"><span class="nav-number">12.</span> <span class="nav-text">COOKIE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MYSQL"><span class="nav-number">13.</span> <span class="nav-text">MYSQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GBK-Injection"><span class="nav-number">14.</span> <span class="nav-text">GBK Injection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#x00"><span class="nav-number">15.</span> <span class="nav-text">/x00</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bypass-again"><span class="nav-number">16.</span> <span class="nav-text">bypass again</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量覆盖"><span class="nav-number">17.</span> <span class="nav-text">变量覆盖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP是世界上最好的语言"><span class="nav-number">18.</span> <span class="nav-text">PHP是世界上最好的语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪装者"><span class="nav-number">19.</span> <span class="nav-text">伪装者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Header"><span class="nav-number">20.</span> <span class="nav-text">Header</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上传绕过"><span class="nav-number">21.</span> <span class="nav-text">上传绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL注入1"><span class="nav-number">22.</span> <span class="nav-text">SQL注入1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pass-check"><span class="nav-number">23.</span> <span class="nav-text">pass check</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#起名字真难"><span class="nav-number">24.</span> <span class="nav-text">起名字真难</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#密码重置"><span class="nav-number">25.</span> <span class="nav-text">密码重置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#php-反序列化"><span class="nav-number">26.</span> <span class="nav-text">php 反序列化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-Injection"><span class="nav-number">27.</span> <span class="nav-text">SQL Injection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综合题"><span class="nav-number">28.</span> <span class="nav-text">综合题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#system"><span class="nav-number">29.</span> <span class="nav-text">system</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL注入2"><span class="nav-number">30.</span> <span class="nav-text">SQL注入2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综合题2"><span class="nav-number">31.</span> <span class="nav-text">综合题2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#密码重置2"><span class="nav-number">32.</span> <span class="nav-text">密码重置2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#file-get-contents"><span class="nav-number">33.</span> <span class="nav-text">file_get_contents</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量覆盖-1"><span class="nav-number">34.</span> <span class="nav-text">变量覆盖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意！！"><span class="nav-number">35.</span> <span class="nav-text">注意！！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HateIT"><span class="nav-number">36.</span> <span class="nav-text">HateIT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Anonymous"><span class="nav-number">37.</span> <span class="nav-text">Anonymous</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shifeng_kaze</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+</body>
+</html>
