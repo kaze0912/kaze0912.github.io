@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="shifeng_kazeの家">
 <meta property="og:description" content="3月下腾讯的比赛，还是打不动。只能赛后看看大佬的wp学学姿势rz">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-03T12:29:16.390Z">
+<meta property="og:updated_time" content="2019-04-03T12:37:24.551Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCTF2019 web wp">
 <meta name="twitter:description" content="3月下腾讯的比赛，还是打不动。只能赛后看看大佬的wp学学姿势rz">
@@ -307,7 +307,7 @@
 <p>然后可以看<a href="https://www.veracode.com/blog/research/exploiting-spring-boot-actuators" target="_blank" rel="noopener">Exploiting Spring Boot Actuators</a>这篇文章，讲了通过<code>/jolokia/exec</code>可以调用<code>/jolokia/list</code>中出现的类的方法。感觉有点像SSTI 2333</p>
 <p>然后大多java web都带有webconsle，karaf同样也有。直接访问<code>/system/console</code>提示404未安装，那我们可以尝试用exec来装一个。</p>
 <p><a href="http://karaf.apache.org/manual/latest/#_mbeans" target="_blank" rel="noopener">4.18.3. MBeans</a><br>这里给了MBeans的一些用法，这题主要是用这个<br><code>org.apache.karaf:type=feature,name=*</code>。这条MBeans可以管理feature</p>
-<p>然后这是大佬的payload:<br><code>/jolokia/exec/org.apache.karaf:name=root,type=feature/installFeature(java.lang.String)/webconsole</code><br>大概是调用了里面的方法来安装新feature，<code>java.lang.String</code>是传入参数的类型，webconsole 是值。然后就安装了webconsole这个feature</p>
+<p>然后这是大佬的payload:<br><code>/jolokia/exec/org.apache.karaf:name=root,type=feature/installFeature(java.lang.String)/webconsole</code><br>大概是调用了里面的方法来安装新feature，<code>java.lang.String</code>是传入参数的类型，webconsole是值。然后就安装了webconsole这个feature</p>
 <p>安装完后访问/system/console进入webconsole页面，然后main-&gt;goto进入命令行界面。这里好像和linux有些命令不同，ls出来的不是目录，而是不知道什么东西。试着尝试一下cat flag获得flag</p>
 
       
