@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/mongoDB/28de5fb7caf9869bd92b6ccaa25ef832.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/mongoDB/43b2ed8a3fd265f882b8945fb70a1571.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/mongoDB/b170e0c90dbd4ce7a2d012761829cdbd.jpg'">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/mongoDB/b170e0c90dbd4ce7a2d012761829cdbd.jpg">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/mongoDB/9000071f1e6fca3e1ff17504402b33c2.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/mongoDB/36a97a9ccf009724fd3bcb7b900b3199.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/mongoDB/6825bf60a4a9b847f33b4ea8511a1ae0.png">
@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/mongoDB/481e8a7f4c7951bbe610a49744307374.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/mongoDB/924111be3c73705bfd318a3862f03abb.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/mongoDB/2e41086c4647578fbb2c43c840a3491a.png">
-<meta property="og:updated_time" content="2019-04-06T06:55:29.076Z">
+<meta property="og:updated_time" content="2019-04-06T06:59:47.170Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mongoDB注入">
 <meta name="twitter:description" content="最近看了些关于mongoDB注入的东西，试着复现一下做个笔记">
@@ -328,7 +328,7 @@
 <p><img src="http://shifeng-kaze.cn/blog/mongoDB/43b2ed8a3fd265f882b8945fb70a1571.png" alt=""></p>
 <p>然后给出的信息只有登录成功与失败两种，那我们可以尝试盲注<br>在mongoDB中，我们可以用<code>$regex</code>这个标识符来对要查询的值进行正则匹配</p>
 <p>这题我们就可以构造<br><code>user=admin&amp;psw[$regex]=^a</code><br>这样来进行盲注</p>
-<p><img src="http://shifeng-kaze.cn/blog/mongoDB/b170e0c90dbd4ce7a2d012761829cdbd.jpg&#39;" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/mongoDB/b170e0c90dbd4ce7a2d012761829cdbd.jpg" alt=""></p>
 <p><img src="http://shifeng-kaze.cn/blog/mongoDB/9000071f1e6fca3e1ff17504402b33c2.png" alt=""></p>
 <h2 id="回显爆表、列、值"><a href="#回显爆表、列、值" class="headerlink" title="回显爆表、列、值"></a>回显爆表、列、值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;form action=&apos;&apos; method=&apos;post&apos;&gt;</span><br><span class="line">			&lt;input type=&apos;text&apos; name=&apos;user&apos;&gt;</span><br><span class="line">			&lt;input type=&quot;submit&quot;&gt;</span><br><span class="line">		&lt;/form&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">$user = $_POST[&apos;user&apos;];</span><br><span class="line"></span><br><span class="line">$query = &quot;var data = db.age.findOne(&#123;user:&apos;$user&apos;&#125;);return data;&quot;;</span><br><span class="line">$mongo = new mongoclient();</span><br><span class="line">$db = $mongo-&gt;age;</span><br><span class="line">$data = $db-&gt;execute($query);</span><br><span class="line"></span><br><span class="line">if ($data[&apos;ok&apos;] == 1) &#123;</span><br><span class="line">    if ($data[&apos;retval&apos;]!=NULL) &#123;</span><br><span class="line">        echo &apos;psw:&apos;.$data[&apos;retval&apos;][&apos;psw&apos;].&quot;&lt;/br&gt;&quot;;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        echo &apos;未找到&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    echo $data[&apos;errmsg&apos;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 <p>这份源码简单来说就是通过拼接字符串来进行sql查询。由于低版本的excute()函数能够使用<code>//</code>注释，导致了我们可以利用注入【由于我用的是高版本这里就没有示例，写一下思路和一些推测</p>
