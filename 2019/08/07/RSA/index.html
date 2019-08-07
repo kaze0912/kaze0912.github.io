@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="shifeng_kazeの家">
 <meta property="og:description" content="这段时间在Xman学习，前几天讲了密码学就想复习一下RSA，然后发现之前理解的全忘了。找了好久才找到篇好的讲解，趁还没忘赶紧记一下">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-07T02:15:07.210Z">
+<meta property="og:updated_time" content="2019-08-07T02:39:06.177Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="神奇的RSA">
 <meta name="twitter:description" content="这段时间在Xman学习，前几天讲了密码学就想复习一下RSA，然后发现之前理解的全忘了。找了好久才找到篇好的讲解，趁还没忘赶紧记一下">
@@ -309,7 +309,11 @@
 <p>通过互质的定义，我们可以推出以下几个关系</p>
 <ol>
 <li>任意两个质数互质<br>这个很好理解，毕竟质数除自身外只有1个因数，因此两个质数间也就只有1这个公因数</li>
-<li>dsadas</li>
+<li>一个数是质数，另一个数只要不是前者的倍数，两者就构成互质关系<br>这个另一个数为质数时，同1理。为合数时既然不为质数的倍数，那自然也就只有1为公因数</li>
+<li>如果两个数之中，较大的那个数是质数，则两者构成互质关系<br>既然较大的是质数，就说明较小的那个数的倍数不会是质数，那依旧只会有1为公因数</li>
+<li>1和任意一个自然数是都是互质关系<br>定义易证</li>
+<li>p是大于1的整数，则p和p-1构成互质关系<br>在p和p-1中，必定分别数奇数与偶数。而假设k为奇数，k=pq，p与q都必定是奇数。当p&gt;1，q&gt;1时，k-p≤k-3&lt;k-1&lt;k&lt;k+1&lt;k+3≤k+p，因此k-1与k+1中都不会与k有1之外的的公因数</li>
+<li>p是大于1的奇数，则p和p-2构成互质关系<br>同5理k-p≤k-3&lt;k-2&lt;k&lt;k+2&lt;k+3≤k+p，得证</li>
 </ol>
 
       
