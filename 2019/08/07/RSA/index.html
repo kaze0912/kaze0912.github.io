@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="shifeng_kazeの家">
 <meta property="og:description" content="这段时间在Xman学习，前几天讲了密码学就想复习一下RSA，然后发现之前理解的全忘了。找了好久才找到篇好的讲解，趁还没忘赶紧记一下">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-07T14:00:36.351Z">
+<meta property="og:updated_time" content="2019-08-07T14:43:32.049Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="神奇的RSA">
 <meta name="twitter:description" content="这段时间在Xman学习，前几天讲了密码学就想复习一下RSA，然后发现之前理解的全忘了。找了好久才找到篇好的讲解，趁还没忘赶紧记一下">
@@ -333,7 +333,7 @@
 <h2 id="模反元素"><a href="#模反元素" class="headerlink" title="模反元素"></a>模反元素</h2><p>先上一个式子</p>
 <p><code>ab ≡ 1(mod n)</code></p>
 <p>一眼看下去，这个式子和上面的欧拉定理很像<br>只要稍加推导就能得到</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ab = a^φ(n)</span><br><span class="line">b = a^(φ(n)-1)</span><br></pre></td></tr></table></figure>
+<p><code>ab = a^φ(n)</code><br><code>b = a^(φ(n)-1)</code></p>
 <p>而此处的这个b，就是a的模反元素</p>
 <h2 id="密钥的生成"><a href="#密钥的生成" class="headerlink" title="密钥的生成"></a>密钥的生成</h2><p>写了这么多数论的东西，终于可以开始写RSA了</p>
 <p>首先生成密钥需要两个不相等的质数p和q，由于都为质数，p和q互质<br>接着通过获得n=pq，再计算φ(n)。由于pq互质，且又为质数，因此φ(n)=φ(p)φ(q)=(p-1)(q-1)<br>然后选一个整数e(1&lt;e&lt;φ(n),且e与φ(n)互质)，继而通过计算获得e对于φ(n)的模反元素d</p>
@@ -350,6 +350,43 @@
 <h2 id="解密证明"><a href="#解密证明" class="headerlink" title="解密证明"></a>解密证明</h2><p>单纯看上面的式子，要直接看得出加密过程是正确的还是比较难的，这里证明一下</p>
 <p>先从加解密的式子开始</p>
 <p><code>m^e ≡ c(mod n)</code><br><code>c^d ≡ m(mod n)</code></p>
+<p>处理一下加密式</p>
+<p><code>c = m^e - kn</code></p>
+<p>代入解密式</p>
+<p><code>(m^e-kn)^d ≡ m(mod n)</code></p>
+<p>由于(m^e-kn)^d进行展开后，除了m^ed以外，其他的部分都是n的倍数，(mod n)直接为0，于是上式可以简化成</p>
+<p><code>m^ed ≡ m(mod n)</code></p>
+<p>从密钥的生成可知</p>
+<p><code>ed ≡ 1(mod φ(n))</code></p>
+<p>可得</p>
+<p><code>ed = hφ(n)+1</code></p>
+<p>再代入简化后的式子</p>
+<p><code>m^(hφ(n)+1) ≡ m(mod n)</code></p>
+<p>接下来就要进行分类讨论了</p>
+<ol>
+<li>当m与n互质时<br>由于m与n互质，m^k与n互质<br>然后再由由欧拉定理得到</li>
+</ol>
+<p><code>m^hφ(n) ≡ 1(mod n)</code></p>
+<p>同乘m得</p>
+<p><code>m^(hφ(n)+1) ≡ m(mod n)</code></p>
+<p>原式得证</p>
+<ol start="2">
+<li>当m与n不互质<br>由于m，n不互质，且n为质数p与q的乘积，因此m必有p或q其中一个因子。因此设m=kp，由于m&lt;n，因此k&lt;p。而p又是质数，因此k与p互质，m与p也互质。因此(kp)^x与q互质，由此可得下式</li>
+</ol>
+<p><code>[(kp)^h(q-1)]^(p-1) ≡ 1(mod q)</code></p>
+<p>进而</p>
+<p><code>(kp)^(h(q-1)(p-1)+1) ≡ kp(mod q)</code></p>
+<p>由于ed = kφ(n)+1 = h(q-1)(p-1)+1，可得</p>
+<p><code>(kp)^ed ≡ kp(mod q)</code></p>
+<p>式子右边变换一下</p>
+<p><code>(kp)^ed = tq+kp</code></p>
+<p>左边可以看作nkp，即p的倍数，因此右边也是p的倍数。由于q≠p，因此t为p的倍数，于是设t=dp，则</p>
+<p><code>(kp)^ed = dqp+kp</code></p>
+<p>由于m=kp，n=pq，因此</p>
+<p><code>m^ed ≡ dn+m</code></p>
+<p>也就是</p>
+<p><code>m^(hφ(n)+1) ≡ m(mod n)</code></p>
+<p>证明完成</p>
 
       
     </div>
