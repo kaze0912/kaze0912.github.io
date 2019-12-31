@@ -141,7 +141,7 @@
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/190885bc76197813cda74cc78cecb6bb.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/d58d0cec71c6b8b0374b3311c6d3998a.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/98804055f70a843d728d292e1192492e.png">
-<meta property="og:updated_time" content="2019-11-29T16:00:56.222Z">
+<meta property="og:updated_time" content="2019-11-29T16:10:01.986Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="De1CTF2019 web wp">
 <meta name="twitter:description" content="之前各种比赛还有开发拖了一堆时间，鸽到了现在才写完OrzXman期间的一场国际赛，有自己学校大佬出的题于是去做了一波，感觉好多原题。但我还是要说一句BUUCTF牛逼！">
@@ -408,7 +408,7 @@
 <p>绕过这里需要利用mongoDB对bson反序列化时的一个特性<br><a href="https://github.com/mongodb/js-bson/blob/master/lib/parser/serializer.js#L756" target="_blank" rel="noopener">js-bson/lib/parser/serializer.js </a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">else if (value[&apos;_bsontype&apos;] === &apos;Binary&apos;) &#123;</span><br><span class="line">	index = serializeBinary(buffer, key, value, index, true);</span><br><span class="line">&#125; else if (value[&apos;_bsontype&apos;] === &apos;Symbol&apos;) &#123;</span><br><span class="line">	index = serializeSymbol(buffer, key, value, index, true);</span><br><span class="line">&#125; else if (value[&apos;_bsontype&apos;] === &apos;DBRef&apos;) &#123;</span><br><span class="line">	index = serializeDBRef(buffer, key, value, index, depth, serializeFunctions, true);</span><br><span class="line">&#125; else if (value[&apos;_bsontype&apos;] === &apos;BSONRegExp&apos;) &#123;</span><br><span class="line">	index = serializeBSONRegExp(buffer, key, value, index, true);</span><br><span class="line">&#125; else if (value[&apos;_bsontype&apos;] === &apos;Int32&apos;) &#123;</span><br><span class="line">	index = serializeInt32(buffer, key, value, index, true);</span><br><span class="line">&#125; else if (value[&apos;_bsontype&apos;] === &apos;MinKey&apos; || value[&apos;_bsontype&apos;] === &apos;MaxKey&apos;) &#123;</span><br><span class="line">	index = serializeMinMax(buffer, key, value, index, true);</span><br><span class="line">&#125; else if (typeof value[&apos;_bsontype&apos;] !== &apos;undefined&apos;) &#123;</span><br><span class="line">	throw new TypeError(&apos;Unrecognized or invalid _bsontype: &apos; + value[&apos;_bsontype&apos;]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>读源码可以看出在bson数据在进行反序列化时，会根据对象中_bsontype的值，将对象的value转化为对应的类型</p>
-<p>特就是，假如一个bson序列化字符串为<br>{‘a’:{‘value’:’xxx’,’_bsontype’:’Binary’}}<br>那么在反序列化后，a就会被强制转为二进制类型，值依旧为xxx</p>
+<p>假如一个bson序列化字符串为<br><code>{&#39;a&#39;:{&#39;value&#39;:&#39;xxx&#39;,&#39;_bsontype&#39;:&#39;Binary&#39;}}</code><br>那么在反序列化后，a就会被强制转为二进制类型，值依旧为xxx</p>
 <p>利用这点进行测试，会发现当类型为Symbol时能够绕过，于是利用构造payload</p>
 <p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/487c3902ca6c5fda7ea6ef2b928623dd.png" alt=""></p>
 <p>payload很巧妙的利用了php，python和nodejs在单行和多行注释上的不同，大佬们实在tql</p>
@@ -417,7 +417,7 @@
 <p>php和nodejs由于注释恒为1，python由于//为除号继续运行，根据读出的值条件是否正确返回1或false。为1时显示正常，false则报错，以此盲注</p>
 <p>打php</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">len(&apos;1&apos;) + 0//5 or &apos;&apos;&apos;\n//?&gt;\n1;function len()&#123;return 1&#125;/*&lt;?php\nfunction len($a)&#123;echo MongoDB\\BSON\\fromPHP([&apos;ret&apos; =&gt; file_get_contents(&apos;/flag&apos;)[0] == &apos;0&apos; ? &quot;1&quot; : &quot;2&quot;]);exit;&#125;?&gt;*///&apos;&apos;&apos;</span><br></pre></td></tr></table></figure>
-<p>在python中，由于’’’为多行注释，于是无视\n的分行，直接注释到结尾，只剩下<code>len(&#39;1&#39;) + 0//5 or</code>部分，结果恒为1（不知道为啥不跟后面的注释就会报错，但跟上的后面的注释就能成功的输出1，这也在大佬们的计算中吗！</p>
+<p>在python中，由于<code>&#39;&#39;&#39;</code>为多行注释，于是无视\n的分行，直接注释到结尾，只剩下<code>len(&#39;1&#39;) + 0//5 or</code>部分，结果恒为1（不知道为啥不跟后面的注释就会报错，但跟上的后面的注释就能成功的输出1，这也在大佬们的计算中吗！</p>
 <p>在nodejs中，//为单行注释，于是\n后的部分便不再注释范围内。而/**/为多行注释于是执行的代码就只剩下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">len(&apos;1&apos;) + 0</span><br><span class="line">1;function len()&#123;return 1&#125;</span><br></pre></td></tr></table></figure>
 <p>执行结果恒为1</p>
@@ -426,7 +426,7 @@
 <p>由于是结尾，于是可以不使用;。然后定义了len函数读取比较，当值相等时返回1，否则返回2，于是与python盲注同理<br>这里其实觉得不用bson序列化也行，毕竟后面还有一个序列化再输出的</p>
 <p>打nodejs</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 + 0//5 or &apos;&apos;&apos;\n//?&gt;\nrequire(&apos;fs&apos;).readFileSync(&apos;/flag&apos;,&apos;utf-8&apos;)[0] == &apos;0&apos; ? 1 : 2;//&apos;&apos;&apos;</span><br></pre></td></tr></table></figure>
-<p>这条不是官方的payload，不过我觉得没必要再给php专门写个open()，有点多余<br>在python下<code>1 + 0//5 or</code>直接输出1，在php下<code>1 + 0也</code>是输出1</p>
+<p>这条不是官方的payload，不过我觉得没必要再给php专门写个open()，有点多余<br>在python下<code>1 + 0//5 or</code>直接输出1，在php下<code>1 + 0</code>也是输出1</p>
 <p>在nodejs下，这剩下的代码为</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 + 0</span><br><span class="line">require(&apos;fs&apos;).readFileSync(&apos;/flag&apos;,&apos;utf-8&apos;)[0] == &apos;0&apos; ? 1 : 2;</span><br></pre></td></tr></table></figure>
 <p>总觉得这个会返回前面的恒为1，而不是后面那个，感觉不太靠谱的亚子</p>
@@ -502,7 +502,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$sandbox = &apos;/var/sandbox/&apos; . md5(&quot;prefix&quot; . $_SERVER[&apos;REMOTE_ADDR&apos;]);</span><br><span class="line">@mkdir($sandbox);</span><br><span class="line">@chdir($sandbox);</span><br><span class="line"></span><br><span class="line">if($_FILES[&apos;file&apos;][&apos;name&apos;])&#123;</span><br><span class="line">    $filename = !empty($_POST[&apos;file&apos;]) ? $_POST[&apos;file&apos;] : $_FILES[&apos;file&apos;][&apos;name&apos;];</span><br><span class="line">    if (!is_array($filename)) &#123;</span><br><span class="line">        $filename = explode(&apos;.&apos;, $filename);</span><br><span class="line">    &#125;</span><br><span class="line">    $ext = end($filename);</span><br><span class="line">    if($ext==$filename[count($filename) - 1])&#123;</span><br><span class="line">        die(&quot;try again!!!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    $new_name = (string)rand(100,999).&quot;.&quot;.$ext;</span><br><span class="line">    move_uploaded_file($_FILES[&apos;file&apos;][&apos;tmp_name&apos;],$new_name);</span><br><span class="line">    $_ = $_POST[&apos;hello&apos;];</span><br><span class="line">    if(@substr(file($_)[0],0,6)===&apos;@&lt;?php&apos;)&#123;</span><br><span class="line">        if(strpos($_,$new_name)===false) &#123;</span><br><span class="line">            include($_);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            echo &quot;you can do it!&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    unlink($new_name);</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">    highlight_file(__FILE__);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>要上传文件首先要先绕过这里。这里当filename非数组时，以.将filename分割，然后取数组最后一个与下标为长度减一的值比较，相等直接die<br>我们知道，当一个数组为关联数组时，<code>count(array)-1</code>获得的下标是无法得到有效的值的。这里也是利用这点，我们处理一下报文，让文件名为一个关联数组，就能让<code>$filename[count($filename) - 1]</code>的值无效，而<code>end($filename)</code>依旧会取到最后一个数据，从而绕过这里</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-----------------------------1290214079214</span><br><span class="line">Content-Disposition: form-data; name=&quot;file[b]&quot;</span><br><span class="line"></span><br><span class="line">xx</span><br><span class="line">-----------------------------1290214079214</span><br><span class="line">Content-Disposition: form-data; name=&quot;file[a]&quot;</span><br><span class="line"></span><br><span class="line">xxxx</span><br><span class="line">-----------------------------1290214079214--</span><br></pre></td></tr></table></figure>
-<p>大概像这样<br>还有一种解法是php并不是按数字排序的，所以也可以传一个[‘1’=&gt;’xxx’,’0’=&gt;’xx’]进行绕过</p>
+<p>大概像这样<br>还有一种解法是php并不是按数字排序的，所以也可以传一个<code>[&#39;1&#39;=&gt;&#39;xxx&#39;,&#39;0&#39;=&gt;&#39;xx&#39;]</code>进行绕过</p>
 <p>然后是下半部分，要想办法阻止unlink<br>这里有几种解法</p>
 <p>利用php7的文件包含漏洞，当<code>include(&#39;php://filter/string.strip_tags/resource=/etc/passwd&#39;)</code>时，php就会崩溃，继而不执行unlink</p>
 <p>利用<code>include(&#39;index.php&#39;)</code>包含自身，让php死循环崩溃。这样就能让文件保留在服务器上，然后再去跑new_name的值就行</p>
@@ -515,7 +515,7 @@
 <p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/3901abb2497395f9f1a8852cf20fd1bd.png" alt=""></p>
 <p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/949b8b4e604a1f5f12555b95e8b2eee6.png" alt=""></p>
 <p>【我也想用find，然而会超时</p>
-<h2 id="Giftbox"><a href="#Giftbox" class="headerlink" title="Giftbox"></a>Giftbox</h2><p>这题当时打开没什么想法就放弃了，现在想想至少也要做到sql注入哪里才对</p>
+<h2 id="Giftbox"><a href="#Giftbox" class="headerlink" title="Giftbox"></a>Giftbox</h2><p>这题当时打开没什么想法就放弃了，现在想想至少也要做到sql注入那里才对</p>
 <p>打开是个很漂亮的前端页面，等了一下后提示输入help<br><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/03aee1198226ff7f4e30fce1e25b3df3.png" alt=""></p>
 <p>提示了这几个命令，于是ls一下</p>
 <p><img src="http://shifeng-kaze.cn/blog/De1CTF2019_web_wp/ebeb5da38590ab2a2c353744befcdec1.png" alt=""></p>
@@ -700,6 +700,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/12/11/SUCTF2019-web-wp/" rel="prev" title="SUCTF2019-web-wp">
+                SUCTF2019-web-wp <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -777,7 +781,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

