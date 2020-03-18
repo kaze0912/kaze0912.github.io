@@ -106,7 +106,7 @@
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/e6bc880bdbf6c588b1eb913dd40c0242.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/753a0667c74005c21b7dfc3df7b72150.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/25e34ee86507f1c45fe390137e899312.png">
-<meta property="og:updated_time" content="2020-03-13T14:15:39.166Z">
+<meta property="og:updated_time" content="2020-03-13T14:28:24.134Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="byteCTF2019-web-wp">
 <meta name="twitter:description" content="九月初的比赛，当时划水了一天半，第二天后面才做了一道题">
@@ -357,7 +357,7 @@
 <p>没买域名就改成了localhost</p>
 <h2 id="EzCMS"><a href="#EzCMS" class="headerlink" title="EzCMS"></a>EzCMS</h2><p>登录进去，可以看到目录下有个<code>.htaccess</code>，传个图片试试，提示需要admin</p>
 <p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/284626ee56b4c7db3fbdce20f6c9397a.png" alt=""></p>
-<p>于是用admin作为用户名登录进去，但上传还是提示非admin。于是搜集一下信息发现<a href="http://www.zip给了源码，读一波" target="_blank" rel="noopener">www.zip给了源码，读一波</a></p>
+<p>于是用admin作为用户名登录进去，但上传还是提示非admin。于是搜集一下信息发现<code>www.zip</code>给了源码，读一波</p>
 <p><code>index.php</code>中限制了psw不能为admin</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if ($password === &quot;admin&quot;)&#123;</span><br><span class="line">       die(&quot;u r not admin !!!&quot;);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <p>然后去看一下<code>config.php</code>中的<code>login()</code></p>
@@ -606,7 +606,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
