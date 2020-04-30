@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="各校大佬锤爆我Orz easy_trick_gzmtu查看源码&amp;lt;!--?time=Y或者?time=2020--&amp;gt;提示了date(&amp;#39;Y&amp;#39;)=2020，而在date()中，可以通过\转义字符防止被解释于是在每个字符前加一个\，简单回显注即可 然后通过file://localhost/进行SSRF读取本地文件flag无法直接读，通过file://localhost/var/">
+<meta name="description" content="各校大佬锤爆我Orz">
 <meta name="keywords" content="web,ctf">
 <meta property="og:type" content="article">
 <meta property="og:title" content="高校战疫 web 复现">
 <meta property="og:url" content="http://yoursite.com/2020/03/14/高校战疫-web-wp/index.html">
 <meta property="og:site_name" content="k0t0r1の家">
-<meta property="og:description" content="各校大佬锤爆我Orz easy_trick_gzmtu查看源码&amp;lt;!--?time=Y或者?time=2020--&amp;gt;提示了date(&amp;#39;Y&amp;#39;)=2020，而在date()中，可以通过\转义字符防止被解释于是在每个字符前加一个\，简单回显注即可 然后通过file://localhost/进行SSRF读取本地文件flag无法直接读，通过file://localhost/var/">
+<meta property="og:description" content="各校大佬锤爆我Orz">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/GXZY_web_wp/fd5f5da0167c9d14c17d50233da480cc.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/GXZY_web_wp/4c4fce5b82f9c782d46c9aa5cfcf1df8.png">
@@ -93,10 +93,10 @@
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/GXZY_web_wp/8daac8b98a6d8c5e144a48d1d212ec1f.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/GXZY_web_wp/9e6c90288d2ad5430481d605dd749127.png">
 <meta property="og:image" content="http://shifeng-kaze.cn/blog/GXZY_web_wp/45bf8633e06e759fe9943acfb71c3fbf.png">
-<meta property="og:updated_time" content="2020-04-15T11:26:46.253Z">
+<meta property="og:updated_time" content="2020-04-30T10:31:17.688Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高校战疫 web 复现">
-<meta name="twitter:description" content="各校大佬锤爆我Orz easy_trick_gzmtu查看源码&amp;lt;!--?time=Y或者?time=2020--&amp;gt;提示了date(&amp;#39;Y&amp;#39;)=2020，而在date()中，可以通过\转义字符防止被解释于是在每个字符前加一个\，简单回显注即可 然后通过file://localhost/进行SSRF读取本地文件flag无法直接读，通过file://localhost/var/">
+<meta name="twitter:description" content="各校大佬锤爆我Orz">
 <meta name="twitter:image" content="http://shifeng-kaze.cn/blog/GXZY_web_wp/fd5f5da0167c9d14c17d50233da480cc.png">
 
 
@@ -308,6 +308,7 @@
 
       
         <p>各校大佬锤爆我Orz</p>
+<a id="more"></a>
 <h2 id="easy-trick-gzmtu"><a href="#easy-trick-gzmtu" class="headerlink" title="easy_trick_gzmtu"></a>easy_trick_gzmtu</h2><p>查看源码<br><code>&lt;!--?time=Y或者?time=2020--&gt;</code><br>提示了<code>date(&#39;Y&#39;)=2020</code>，而在<code>date()</code>中，可以通过<code>\</code>转义字符防止被解释<br>于是在每个字符前加一个<code>\</code>，简单回显注即可</p>
 <p>然后通过<code>file://localhost/</code>进行SSRF读取本地文件<br>flag无法直接读，通过<br><code>file://localhost/var/www/html/eGlhb2xldW5n/eGlhb2xldW5nLnBocA==.php</code><br>获得一段源码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">class trick&#123;</span><br><span class="line">    public $gf;</span><br><span class="line">    public function content_to_file($content)&#123;  </span><br><span class="line">        $passwd = $_GET[&apos;pass&apos;];</span><br><span class="line">        if(preg_match(&apos;/^[a-z]+\.passwd$/m&apos;,$passwd)) </span><br><span class="line">        &#123;   </span><br><span class="line">            if(strpos($passwd,&quot;20200202&quot;))&#123;</span><br><span class="line">                echo file_get_contents(&quot;/&quot;.$content);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">    public function aiisc_to_chr($number)&#123;</span><br><span class="line">        if(strlen($number)&gt;2)&#123;</span><br><span class="line">            $str = &quot;&quot;;</span><br><span class="line">            $number = str_split($number,2);</span><br><span class="line">            foreach ($number as $num ) &#123;</span><br><span class="line">                $str = $str .chr($num);</span><br><span class="line">            &#125;</span><br><span class="line">            return strtolower($str);</span><br><span class="line">        &#125;</span><br><span class="line">        return chr($number);</span><br><span class="line">    &#125;</span><br><span class="line">    public function calc()&#123;</span><br><span class="line">        $gf=$this-&gt;gf;</span><br><span class="line">        if(!preg_match(&apos;/[a-zA-z0-9]|\&amp;|\^|#|\$|%/&apos;, $gf))&#123;</span><br><span class="line">            eval(&apos;$content=&apos;.$gf.&apos;;&apos;);</span><br><span class="line">            $content =  $this-&gt;aiisc_to_chr($content); </span><br><span class="line">            return $content;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public function __destruct()&#123;</span><br><span class="line">        $this-&gt;content_to_file($this-&gt;calc());</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">unserialize((base64_decode($_GET[&apos;code&apos;])));</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
