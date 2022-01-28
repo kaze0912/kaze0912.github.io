@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="crypto,RSA,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这段时间在Xman学习，前几天讲了密码学就想复习一下RSA，然后发现之前理解的全忘了。找了好久才找到篇好的讲解，趁还没忘赶紧记一下">
+<meta name="keywords" content="crypto,RSA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="神奇的RSA">
+<meta property="og:url" content="http://yoursite.com/2019/08/07/RSA/index.html">
+<meta property="og:site_name" content="k0t0r1の家">
+<meta property="og:description" content="这段时间在Xman学习，前几天讲了密码学就想复习一下RSA，然后发现之前理解的全忘了。找了好久才找到篇好的讲解，趁还没忘赶紧记一下">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-07T14:43:32.049Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="神奇的RSA">
+<meta name="twitter:description" content="这段时间在Xman学习，前几天讲了密码学就想复习一下RSA，然后发现之前理解的全忘了。找了好久才找到篇好的讲解，趁还没忘赶紧记一下">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/07/RSA/">
+
+
+
+
+
+  <title>神奇的RSA | k0t0r1の家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">k0t0r1の家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/07/RSA/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="k0t0r1">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://shifeng-kaze.cn/blog/head/kotori.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="k0t0r1の家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">神奇的RSA</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T09:27:23+09:00">
+                2019-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这段时间在Xman学习，前几天讲了密码学就想复习一下RSA，然后发现之前理解的全忘了。找了好久才找到篇好的讲解，趁还没忘赶紧记一下</p>
+<a id="more"></a>
+<h2 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h2><p>RSA是一种非对称加密算法，说到非对称加密首先就要说一下对称加密。简单的像异或，到有些复杂的AES,DES这些都是对称加密算法。加密方与解密方都拥有同样的密钥，通过这个密钥进行加密解密<br>对称加密有着一个巨大的缺点，就是如何将密钥安全地递交给解密方。为了解决这个问题，非对称加密算法便应运而生了</p>
+<p>最早的出现的非对称加密算法是Diffie-Hellman密钥交换算法，通过某种数学关系生成公钥与私钥。加密方使用公钥加密，解密方使用私钥解密<br>在进行数据传输时，解密方会先将公钥传给加密方，加密方用公钥加密密文，再将数据传给解密方，如何解密方再利用私钥解密，就能够获得加密方发送过来的信息<br>同时由于私钥是极难以通过公钥推导得到的，即使在传输过程中公钥泄露了，也依旧能够保证密文的安全性<br>RSA算法便是基于这样想法，而在这里要讨论的就是究竟是通过什么样的数学关系获得公钥和私钥，为什么不同的密钥却可以解出原来的信息</p>
+<p>为了讨论这个，先要知道一点数论知识</p>
+<h2 id="互质关系"><a href="#互质关系" class="headerlink" title="互质关系"></a>互质关系</h2><p>互质关系很简单，真正的小学生都知道的关系。两个数之间除了1以外没有其他公因数，则这两个数互质</p>
+<p>通过互质的定义，我们可以推出以下几个关系</p>
+<ol>
+<li>任意两个质数互质<br>这个很好理解，毕竟质数除自身外只有1个因数，因此两个质数间也就只有1这个公因数</li>
+<li>一个数是质数，另一个数只要不是前者的倍数，两者就构成互质关系<br>这个另一个数为质数时，同1理。为合数时既然不为质数的倍数，那自然也就只有1为公因数</li>
+<li>如果两个数之中，较大的那个数是质数，则两者构成互质关系<br>既然较大的是质数，就说明较小的那个数的倍数不会是质数，那依旧只会有1为公因数</li>
+<li>1和任意一个自然数是都是互质关系<br>定义易证</li>
+<li>p是大于1的整数，则p和p-1构成互质关系<br>在p和p-1中，必定分别数奇数与偶数。而假设k为奇数，k=pq，p与q都必定是奇数。当p&gt;1，q&gt;1时，k-p≤k-3&lt;k-1&lt;k&lt;k+1&lt;k+3≤k+p，k-1和k+1都不会是p的倍数，因此k-1与k+1中都不会与k有1之外的的公因数</li>
+<li>p是大于1的奇数，则p和p-2构成互质关系<br>同5理k-p≤k-3&lt;k-2&lt;k&lt;k+2&lt;k+3≤k+p，得证</li>
+</ol>
+<h2 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h2><p>欧拉函数是用于计算对于任意一个自然数，比该自然数小且与该自然数互质的数的个数，记作φ(n)</p>
+<p>欧拉函数有以下这几种情况</p>
+<ul>
+<li>n = 1<br>自然φ(n)=1</li>
+<li>n为质数<br>既然n为质数，那n自然与小于自身的所有自然数互质，因此φ(n)=n-1</li>
+<li>n = m^k(m为质数，k为自然数)<br>由于m为质数，因此不与n互质的数必定有因数m。由于n=m^k=m*m^(k-1),所以一共就有m^(k-1)个数不与n互质，因此φ(n)=m^k-m^(k-1)=m^k(1-1/m)</li>
+<li>n = pq(p,q为互质数)<br>由于p，q互质，那么p与q就不会有除1之外相同的公因数。<br>剩下的不会证，没学数论真的理解不动orz</li>
+<li>n=(p1^k1)(p2^k2)(p3^k3)…(pn^kn)(均为质数)<br>由于所有质数本身就是质数，而所有合数通过分解最终都会分解成质数的乘积，因此这个情况实际上是针对除了1以外所有正整数<br>由n=pq的情况，我们可以易得，φ(n)=φ(p1^k1)φ(p2^k2)φ(p3^k3)…φ(pn^kn)<br>然后再由n=m^k的情况，的得到φ(n)=(p1^k1)(p2^k2)(p3^k3)…(pn^kn)(1-1/p1)(1-1/p2)(1-1/p3)…(1-1/pn)=n(1-1/p1)(1-1/p2)(1-1/p3)…(1-1/p4)</li>
+</ul>
+<h2 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h2><p>当正整数a与n互质时，有这么一个定理</p>
+<p><code>a^φ(n) ≡ 1(mod n)</code></p>
+<p>也就是a的φ(n)除n的余数为1</p>
+<p>同时有着这么一个特殊情况，当n为质数时，则</p>
+<p><code>a^φ(n-1) ≡ 1(mod n)</code></p>
+<p>这也是所谓的费马小定理</p>
+<h2 id="模反元素"><a href="#模反元素" class="headerlink" title="模反元素"></a>模反元素</h2><p>先上一个式子</p>
+<p><code>ab ≡ 1(mod n)</code></p>
+<p>一眼看下去，这个式子和上面的欧拉定理很像<br>只要稍加推导就能得到</p>
+<p><code>ab = a^φ(n)</code><br><code>b = a^(φ(n)-1)</code></p>
+<p>而此处的这个b，就是a的模反元素</p>
+<h2 id="密钥的生成"><a href="#密钥的生成" class="headerlink" title="密钥的生成"></a>密钥的生成</h2><p>写了这么多数论的东西，终于可以开始写RSA了</p>
+<p>首先生成密钥需要两个不相等的质数p和q，由于都为质数，p和q互质<br>接着通过获得n=pq，再计算φ(n)。由于pq互质，且又为质数，因此φ(n)=φ(p)φ(q)=(p-1)(q-1)<br>然后选一个整数e(1&lt;e&lt;φ(n),且e与φ(n)互质)，继而通过计算获得e对于φ(n)的模反元素d</p>
+<p>此时就获得了n,e,d，这里的(n,e)就会作为公钥，(n,d)作为私钥</p>
+<h2 id="RSA的可靠性"><a href="#RSA的可靠性" class="headerlink" title="RSA的可靠性"></a>RSA的可靠性</h2><p>我们知道RSA通过将密钥分成公钥和私钥，攻击者就算截取了数据，也只能得到公钥无法解密。那么公钥是否能够推得私钥？</p>
+<p>看密钥的生成过程，我们得知ed≡1(mod φ(n)),只有知道e和φ(n)，才有可能解得私钥d。而φ(n)=(p-1)(q-1)，n=pq。也就是说，只要能将n因式分解，就能够破解得到私钥<br>因此，RSA的可靠性取决于p和q的大小，越大越难以分解，到达一定长度就可以认为是无法破解的</p>
+<h2 id="加密与解密"><a href="#加密与解密" class="headerlink" title="加密与解密"></a>加密与解密</h2><p>知道公钥与私钥的来源，接下来就是加密与解密的方式</p>
+<p>加密是使用公钥去进行加密，但要注意的是，m必须为整数同时还要小于n。因此通常情况下会将字符串用unicode编码后再进行加密<br>加密如下式</p>
+<p><code>m^e ≡ c(mod n)</code></p>
+<p>c就是加密后的密文</p>
+<p>然后解密就是</p>
+<p><code>c^d ≡ m(mod n)</code></p>
+<p>通过这条式子就能够获得原文m</p>
+<h2 id="解密证明"><a href="#解密证明" class="headerlink" title="解密证明"></a>解密证明</h2><p>单纯看上面的式子，要直接看得出加密过程是正确的还是比较难的，这里证明一下</p>
+<p>先从加解密的式子开始</p>
+<p><code>m^e ≡ c(mod n)</code><br><code>c^d ≡ m(mod n)</code></p>
+<p>处理一下加密式</p>
+<p><code>c = m^e - kn</code></p>
+<p>代入解密式</p>
+<p><code>(m^e-kn)^d ≡ m(mod n)</code></p>
+<p>由于(m^e-kn)^d进行展开后，除了m^ed以外，其他的部分都是n的倍数，(mod n)直接为0，于是上式可以简化成</p>
+<p><code>m^ed ≡ m(mod n)</code></p>
+<p>从密钥的生成可知</p>
+<p><code>ed ≡ 1(mod φ(n))</code></p>
+<p>可得</p>
+<p><code>ed = hφ(n)+1</code></p>
+<p>再代入简化后的式子</p>
+<p><code>m^(hφ(n)+1) ≡ m(mod n)</code></p>
+<p>接下来就要进行分类讨论了</p>
+<ol>
+<li>当m与n互质时<br>由于m与n互质，m^k与n互质<br>然后再由由欧拉定理得到</li>
+</ol>
+<p><code>m^hφ(n) ≡ 1(mod n)</code></p>
+<p>同乘m得</p>
+<p><code>m^(hφ(n)+1) ≡ m(mod n)</code></p>
+<p>原式得证</p>
+<ol start="2">
+<li>当m与n不互质<br>由于m，n不互质，且n为质数p与q的乘积，因此m必有p或q其中一个因子。因此设m=kp，由于m&lt;n，因此k&lt;p。而p又是质数，因此k与p互质，m与p也互质。因此(kp)^x与q互质，由此可得下式</li>
+</ol>
+<p><code>[(kp)^h(q-1)]^(p-1) ≡ 1(mod q)</code></p>
+<p>进而</p>
+<p><code>(kp)^(h(q-1)(p-1)+1) ≡ kp(mod q)</code></p>
+<p>由于ed = kφ(n)+1 = h(q-1)(p-1)+1，可得</p>
+<p><code>(kp)^ed ≡ kp(mod q)</code></p>
+<p>式子右边变换一下</p>
+<p><code>(kp)^ed = tq+kp</code></p>
+<p>左边可以看作nkp，即p的倍数，因此右边也是p的倍数。由于q≠p，因此t为p的倍数，于是设t=dp，则</p>
+<p><code>(kp)^ed = dqp+kp</code></p>
+<p>由于m=kp，n=pq，因此</p>
+<p><code>m^ed ≡ dn+m</code></p>
+<p>也就是</p>
+<p><code>m^(hφ(n)+1) ≡ m(mod n)</code></p>
+<p>证明完成</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/crypto/" rel="tag"># crypto</a>
+          
+            <a href="/tags/RSA/" rel="tag"># RSA</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/20/RCTF2019-web-wp/" rel="next" title="RCTF2019 web 复现">
+                <i class="fa fa-chevron-left"></i> RCTF2019 web 复现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/30/De1CTF2019-web-wp/" rel="prev" title="De1CTF2019 web 复现">
+                De1CTF2019 web 复现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://shifeng-kaze.cn/blog/head/kotori.jpg" alt="k0t0r1">
+            
+              <p class="site-author-name" itemprop="name">k0t0r1</p>
+              <p class="site-description motion-element" itemprop="description">～いらっしゃいません～</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://shifeng-kaze.cn/" title="shifeng-kaze" target="_blank">shifeng-kaze</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io" title="Aluvion" target="_blank">Aluvion</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#RSA"><span class="nav-number">1.</span> <span class="nav-text">RSA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#互质关系"><span class="nav-number">2.</span> <span class="nav-text">互质关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欧拉函数"><span class="nav-number">3.</span> <span class="nav-text">欧拉函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欧拉定理"><span class="nav-number">4.</span> <span class="nav-text">欧拉定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模反元素"><span class="nav-number">5.</span> <span class="nav-text">模反元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#密钥的生成"><span class="nav-number">6.</span> <span class="nav-text">密钥的生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RSA的可靠性"><span class="nav-number">7.</span> <span class="nav-text">RSA的可靠性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加密与解密"><span class="nav-number">8.</span> <span class="nav-text">加密与解密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解密证明"><span class="nav-number">9.</span> <span class="nav-text">解密证明</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">k0t0r1</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+</body>
+</html>

@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="安全,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="最近导师丢给了我一篇被Usenix Security 2021收录的的关于邮箱安全的论文《Weak Links in Authentication Chains: A Large-scaleAnalysis of Email Sender Spoofing Attacks》，这里总结分析一下">
+<meta name="keywords" content="安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="身份验证链上的弱点:针对电子邮件发件人欺骗攻击的大规模分析">
+<meta property="og:url" content="http://yoursite.com/2021/12/22/sec21-shen-kaiwen/index.html">
+<meta property="og:site_name" content="k0t0r1の家">
+<meta property="og:description" content="最近导师丢给了我一篇被Usenix Security 2021收录的的关于邮箱安全的论文《Weak Links in Authentication Chains: A Large-scaleAnalysis of Email Sender Spoofing Attacks》，这里总结分析一下">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/a54e2723ebcf671f4b52d09ecf485f99.jpg">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/cce29e16deff1b53e8361b7af895fd7e.jpg">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/0e968142d96554f4ce7e6cbc3c42bb65.jpg">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/273cad573cb5b45fd0c6632cdf55849d.jpg">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/6db417ebd181e982a29029f5cce3847e.jpg">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/1f9cd04227e887b0015358b0416345d4.jpg">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/87a6c2ad9b29b07b9d10e28700cadef0.jpg">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/18a8752b1ce4a132617975f455748ab7.jpg">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/a5738c0e04b3417b7a466fe6d2009760.jpg">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/b7c02917678f7bc9baee9c7a78d535e8.jpg">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/9aff033c2e07f7fd3be20a31513238f2.jpg">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/ad688320872f77c2f4d06f3b391606b5.jpg">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/35ddc7836a865abc84bda8df479c1155.jpg">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/32a3996767844460b5759b98891b857c.jpg">
+<meta property="og:updated_time" content="2022-01-04T14:06:19.798Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="身份验证链上的弱点:针对电子邮件发件人欺骗攻击的大规模分析">
+<meta name="twitter:description" content="最近导师丢给了我一篇被Usenix Security 2021收录的的关于邮箱安全的论文《Weak Links in Authentication Chains: A Large-scaleAnalysis of Email Sender Spoofing Attacks》，这里总结分析一下">
+<meta name="twitter:image" content="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/a54e2723ebcf671f4b52d09ecf485f99.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/12/22/sec21-shen-kaiwen/">
+
+
+
+
+
+  <title>身份验证链上的弱点:针对电子邮件发件人欺骗攻击的大规模分析 | k0t0r1の家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">k0t0r1の家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/12/22/sec21-shen-kaiwen/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="k0t0r1">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://shifeng-kaze.cn/blog/head/kotori.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="k0t0r1の家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">身份验证链上的弱点:针对电子邮件发件人欺骗攻击的大规模分析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-12-22T14:43:01+09:00">
+                2021-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近导师丢给了我一篇被Usenix Security 2021收录的的关于邮箱安全的论文《Weak Links in Authentication Chains: A Large-scale<br>Analysis of Email Sender Spoofing Attacks》，这里总结分析一下</p>
+<a id="more"></a>
+<h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p>这篇文章主要针对的是电子邮箱的身份验证链上的发件人欺骗进行研究，提出了14种能绕过单个SPF、DKIM、DMARC协议或UI界面上的发件人不一致检测的攻击方法，以及将这些方法组合起来绕过以上这些防御措施的组合。然后对30个邮件服务和23个邮件客户端进行了测试，并将得到的结果提交给了这些服务提供商</p>
+<h2 id="邮件的传输与验证"><a href="#邮件的传输与验证" class="headerlink" title="邮件的传输与验证"></a>邮件的传输与验证</h2><p>在讨论发件人欺骗前，我们需要知道一个电子邮件是如何在两方中传输的。</p>
+<p><img src="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/a54e2723ebcf671f4b52d09ecf485f99.jpg" alt=""></p>
+<p>如上图所示,一封邮件的发送首先通过SMTP和HTTP协议由发送者的邮件用户代理(MUA)发送到邮件传输代理(MTA),接着会通过SMTP协议从发送者的MTA传输到接收者的MTA上，最后通过POP3、IMAP、HTTP协议传输到接收者的MUA上。这便是一个最基础的传输过程<br>但有时候使用许多电子邮件服务时，我们会希望能够集中到一个服务中去查看而不是逐个查看每个邮箱服务，此时就需要用到邮箱转发。邮箱转发相对基础的邮件传输过程多了一个邮箱转发服务，发送者发送邮件时的接收者地址指向的是邮件转发服务，继而发送者的MTA会将通过SMTP协议将邮件发送给邮箱转发服务。邮箱转发根据服务上的转发条目，修改接收者的地址，再将邮件发送给接收者的MTA，达到转发的目的</p>
+<p>在邮件传输的过程中，发送者的信息保存在以下四个字段中：<br><code>Auth username</code>:在客户端登录验证时使用的用户名<br><code>MAIL From</code>:电子信封上的发件人，在投递过程（发送给发送者MTA时）中进行验证的身份<br><code>From</code>：邮件正文的发件人，在邮件客户端会显示给用户<br><code>Sender</code>:在<code>From</code>中有多个地址时提供真正的发件人<br>发件人欺骗攻击的原因就是由于这些字段允许不一致所导致的</p>
+<p>而整一个邮件传输过程中，在以下四处进行了身份验证</p>
+<h3 id="邮件发送认证"><a href="#邮件发送认证" class="headerlink" title="邮件发送认证"></a>邮件发送认证</h3><p>在MUA通过SMTP协议发送邮件时，需要发送者输入用户名和密码进行身份验证。而发送方的MTA收到邮件时，不仅会验证用户的身份，还会去确认<code>Auth username</code>与<code>MAIL From</code>字段是否相等</p>
+<h3 id="邮件接收验证"><a href="#邮件接收验证" class="headerlink" title="邮件接收验证"></a>邮件接收验证</h3><p>接收方的MTA接收到邮件后，会通过SPF、DKIM和DMARC协议对邮件进行验证，这几个协议的详细在后文描述</p>
+<h3 id="邮件转发验证"><a href="#邮件转发验证" class="headerlink" title="邮件转发验证"></a>邮件转发验证</h3><p>当邮件转发方要转发邮件时，会验证发送方的地址。若启用的DKIM签名，则DKIM的验证状态是<code>pass</code>时，才会添加新的DKIM签名。若部署了ARC协议，ARC验证链也会进行验证</p>
+<h3 id="邮件UI渲染"><a href="#邮件UI渲染" class="headerlink" title="邮件UI渲染"></a>邮件UI渲染</h3><p>这里指的是各个邮箱服务通过UI渲染呈现给用户的信息，但不少邮件客户端并没有将真实性检查结果显示给用户，仅仅只是显示了电子信封上的信息。<br>而攻击者还可以通过不同的编码或是特殊字符使得发送人信息在UI界面上显示起来并没有问题，导致用户被伪装的攻击者所欺骗。UI渲染是身份验证的最后一关，也是至关重要的一关，但却很容易被忽略</p>
+<h2 id="邮件保护措施"><a href="#邮件保护措施" class="headerlink" title="邮件保护措施"></a>邮件保护措施</h2><p>在电子邮件中，最基础的协议就是SMTP协议，其全称是Simple Mail Transfer Protocol，即简单邮件传输协议。与字面一致，该协议十分简单，目的也仅仅只是为了使邮件能有规则地传输。在其设计中发件人的邮箱地址是可以由发件方随意声明的，这就导致了极大的安全问题。为了保障邮件传输的安全，出现了以下几种防御措施</p>
+<h3 id="SPF"><a href="#SPF" class="headerlink" title="SPF"></a>SPF</h3><p>Sender Policy Framework，即发件人策略框架</p>
+<p>当邮件服务器接收到一封邮件时，会获得发件主机IP<code>x.x.x.x</code>和发件人邮箱<a href="mailto:`xxx@xx.com" target="_blank" rel="noopener">`xxx@xx.com</a><code>。接着服务器会去查询邮箱</code>xx.com<code>的SPF记录，若该域的SPF记录允许IP</code>x.x.x.x`主机发送邮件，则认为该邮件合法，否则处理为非法邮件</p>
+<p>SPF记录本质上是DNS记录<br><code>v=spf1 a mx ip4:x.x.x.x -all</code>，这是一个常见的SPF记录<br><code>v=spf1</code>代表使用的时SPF 1版本<br><code>a mx ip4:x.x.x.x</code>为主体内容。<code>ip4</code>指IPv4地址或地址段，当没有给出前缀长度时，默认为<code>/32</code>;<code>ip6</code>指IPv6地址或地址段，默认前缀长度是<code>/128</code>;<code>a</code>和<code>mx</code>指的都是相应域名对应的A/MX记录中包含的IP地址段，当没有指出域名时，则使用当年记录的域名;<code>include</code>的格式为<code>include:&lt;domain&gt;</code>，代表引入<code>&lt;domain&gt;</code>下的SPF记录，若不存在记录则会导致<code>PermError</code>;<code>exists</code>的格式为<code>exists:&lt;domain&gt;</code>，当<code>&lt;domain&gt;</code>的A查询存在返回时，则不论发件人IP如何，此SPF记录生效;<code>ptr</code>格式为<code>ptr</code>或者<code>ptr:&lt;domain&gt;</code>，由于ptr机制会带来大量的DNS查询开销，因此官方并不推荐使用<br><code>-all</code>代表查询到后的结果。<code>+</code>表示通过(PASS)，<code>-</code>表示拒绝(FAIL)，<code>~</code>表示软拒绝(Soft Fail)，<code>?</code>表示中立(Neutral)。除了以上这四种结果外，还有其它三种结果，其含义与标准处理方式是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Pass		发件IP是合法的						接受来信</span><br><span class="line">Fail		发件IP是非法的						退信</span><br><span class="line">Soft Fail	发件IP非法，但是不采取强硬措施			接受来信，但是做标记</span><br><span class="line">Neutral	SPF 记录中没有关于发件IP是否合法的信息		接受来信</span><br><span class="line">None		服务器没有设定SPF记录					接受来信</span><br><span class="line">PermError	发生了严重错误（例如SPF记录语法错误）	没有规定</span><br><span class="line">TempError	发生了临时错误（例如DNS查询失败）		接受或拒绝</span><br></pre></td></tr></table></figure></p>
+<p>SPF记录中还允许两种可选的修饰符，一种修饰符只能出现一次。<code>redirect</code>，格式为<code>redirect=&lt;domain&gt;</code>，将用<code>&lt;domain&gt;</code>的SPF记录替换当前记录。<code>exp</code>，格式为<code>exp=&lt;domain&gt;</code>，但邮件被拒绝时可以给出一个消息，至于消息的内容取决于<code>&lt;domain&gt;</code>的TXT记录，具体细节不太清楚</p>
+<h3 id="DKIM"><a href="#DKIM" class="headerlink" title="DKIM"></a>DKIM</h3><p>DomainKeys Identified Mail，即域名密钥识别邮件</p>
+<p>在发送邮件时，发件方的MTA在确认发送人的身份后，用私钥对邮件进行签名并将DKIM-Signature添加到电子邮件的标头中。接收方的MTA则通过DNS查询获得发送方域名下的公钥，使用该公钥验证签名，检测邮件是否被篡改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v=1; a=rsa-sha256; d=example.com; s=sl10527； c=relaxed/relaxed； q=dns/txt; t=1117574938； x=1118006938； h=from:to:subject:date; bh=pPl7／locF0uYQkxg4me09HwV+PIcXkeWmQAZSqEt7xM=;b=14m8NwVZFQxlWxDi7f4dtDsaf0u03dmuByy4XshoTRTyVuLCtLXF+UzTY6+yb2O0WailYOHb41SkcpLZfpLhJJCeYIoBhkvnhqU5Q+B7GnNpH5wIKCcIP0X0LDmlKRN4a19N6Kwl0x5PqLYU+1421YEwyvRZTxZxCwva／WmSRQ=</span><br></pre></td></tr></table></figure>
+<p>以上是一个基本的DKIM-Signature<br><code>v</code>为DKIM版本;<code>a</code>为签名算法，可选rsa-sha1;<code>d</code>为发送方的域名;<code>s</code>为选择器，使得同一域名有多个公钥，通过选择器选择公钥使用;<code>c</code>为标准化方法，第一个为邮件头的，第二个是内容的。simple标准不允许修改邮件的每一字节，relaxed标准允许少量修改一些空格;<code>q</code>为默认的查询方式;<code>t</code>为时间戳;<code>x</code>为过期时间;<code>h</code>为表示对头部的哪些字段进行签名;<code>bh</code>为正文哈希;<code>b</code>为标头的签名，将h字段的值取出，外加DKIM-Signature（除了b字段）进行hash，最后用a中的算法进行签名</p>
+<h3 id="DMARC"><a href="#DMARC" class="headerlink" title="DMARC"></a>DMARC</h3><p>Domain-based Message Authentication, Reporting and Conformance，翻译不来，反正是一种邮件验证及报告协议</p>
+<p>该协议至少需要启用DKIM和SPF协议其中一个协议才能够使用，它将From中的身份信息与SPF或DKIM的认证标识符相关联。当MTA接收到一封邮件时，查询DNS获取其域的DMARC记录，若无则忽略校验。然后校验SPF或DKIM，再通过DMARC上的策略对结果进行处理，在一段时间后将时间段内的结果集成报告发送给已设置的邮箱</p>
+<p><code>v=DMARC1; p=none; ri=3600; rua=mailto:5b06a240321f1@ag.dmarcly.com; ruf=mailto:5b06a240321f1@fo.dmarcly.com; sp=none; adkim=s; aspf=s; fo=0:1:d:s;</code><br>以上是一个典型的DMARC记录<br><code>v</code>为DMARC版本;<code>p</code>为用于告知接收方检测到邮件存在伪造时，应进行什么处理：none不做任何处理、quarantine为将邮件标记为垃圾邮件、reject为拒绝该邮件;<code>ri</code>是以秒为单位的报告发送间隔;<code>rua</code>为用于接收方检测后，将一段时间的汇总报告发送到哪个邮箱地址;<code>ruf</code>为用于检测到伪造邮件时，收件方须将该伪造信息的报告发送到哪个邮箱地址;<code>sp</code>是子域名策略，若无设置则将p的策略应用于子域名;<code>adkim</code>制定DKIM的对齐策略，r为宽松验证，s为严格验证，默认为r;<code>aspf</code>制定SPF的对齐策略，同adkim;<code>fo</code>是故障报告选项，以冒号分隔的列表，如果没有指定<code>ruf</code>，那么该标签的内容将被忽略。0：如果所有身份验证机制都不能产生<code>pass</code>结果，那么生成一份DMARC故障报告、1：如果任一身份验证机制产生<code>pass</code>以外的结果，那么生成一份DMARC故障报告、d：如果消息的签名验证失败，那么生成一份DKIM故障报告、s：如果消息的SPF验证失败，那么生成一份SPF故障报告</p>
+<h3 id="ARC"><a href="#ARC" class="headerlink" title="ARC"></a>ARC</h3><p>Authenticated Received Chain，即已认证接收链，在2019年才成为RFC上的协议</p>
+<p>在DMARC介绍中也提到了，DMARC允许设置宽松或严格验证。但当设置为严格验证时，由于转发会修改邮件，比如当添加主题内容此时就会导致DKIM签名失效，又比如转发方没修改来源地址，又或是与邮件列表域对齐而不是邮件作者的域对其，最终就会导致验证不通过<br>ARC的目的就是为了解决这样的一个问题，即使转发后SPF和DKIM验证失败，接收服务也可以选择相信ARC链。当ARC链中表明原始邮件通过了SPF和DKIM检测，并且仅由接收方信任的转发方对其进行了修改，则接收该邮件。只有当接收者信任ARC签名方时，验证ARC链才有意义，一定程度上防止了ARC链的伪造</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ARC-Seal: </span><br><span class="line">	i=1; a=rsa-sha256; cv=none; d=lists.example.org; s=dk-lists; t=12345; b=TlCCKzgk3TrAa+G77gYYO8Fxk4q/Ml0biqduZJeOYh6+0zhwQ8u/lHxLi21pxu347isLSuNtvIagIvAQna9a5A==  </span><br><span class="line">ARC-Message-Signature: </span><br><span class="line">	i=1; a=rsa-sha256; c=relaxed/relaxed; d=lists.example.org; h=message-id:date:from:to:subject; s=dk-lists; t=12345; bh=KWSe46TZKCcDbH4klJPo+tjk5LWJnVRlP5pvjXFZYLQ=; b=DsoD3n3hiwlrN1ma8IZQFgZx8EDO7Wah3hUjIEsYKuShRKYB4LwGUiKD5YyHgcIwGHhSc/4+ewYqHMWDnuFxiQ==  </span><br><span class="line">ARC-Authentication-Results: </span><br><span class="line">	i=1; lists.example.org; </span><br><span class="line">	spf=pass smtp.mfrom=jqd@d1.example; </span><br><span class="line">	dkim=pass (512-bit key) header.i=@d1.example; </span><br><span class="line">	dmarc=pass</span><br></pre></td></tr></table></figure>
+<p>以上是一个常见的ARC Set。ARC Set分为三个部分，ARC-Authentication-Results(AAR)、ARC-Message-Signature(AMS)和ARC-Seal(AS)<br>AAR用于记录在转发器上所进行的DMARC验证的结果，以及在先前每一组ARC Set的验证结果;AMS用于保留原始信件的header和DKIM-Signature，以及新增或是更改的header;AS会对已记录的ARC Set和新添加的AAR和AMS进行签名，作为最新一次的检验<br>在ARC Set可以看到，三个header中i都是1，这里并非是版本而是说明这是第几次ARC验证，因为是第一次转发所以都是1。AMS和DKIM-Signature基本相同，AS也类似但只签名ARC Set因此没有h和bh。在AS中的cv代表该链此次的验证结果，若cv的值为fail，则后续的转发器不会对邮件在进行验证，该链不被信任。这里cv是none是由于这是链头因此没有做其它的验证</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">ARC-Seal: </span><br><span class="line">	i=3; a=rsa-sha256; cv=pass; d=clochette.example.org; s=clochette; t=12345;b=CU87XzXlNlk5X/yW4l73UvPUcP9ivwYWxyBWcVrRs7+HPx3K05nJhny2fvymbReAmOA9GTH/y+k9kEc59hAKVg==  </span><br><span class="line">ARC-Message-Signature: </span><br><span class="line">	i=3; a=rsa-sha256; c=relaxed/relaxed; d=clochette.example.org; h=message-id:date:from:to:subject; s=clochette; t=12345;bh=KWSe46TZKCcDbH4klJPo+tjk5LWJnVRlP5pvjXFZYLQ=;b=o71vwyLsK+Wm4cOSlirXoRwzEvi0vqIjd/2/GkYFYlSd/GGfKzkAgPqxfK7ccBMP7Zjb/mpeggswHjEMS8x5NQ==  </span><br><span class="line">ARC-Authentication-Results: </span><br><span class="line">	i=3; clochette.example.org; </span><br><span class="line">	spf=fail smtp.from=jqd@d1.example; </span><br><span class="line">	dkim=fail (512-bit key) header.i=@d1.example; </span><br><span class="line">	dmarc=fail; </span><br><span class="line">    arc=pass (as.2.gmail.example=pass, ams.2.gmail.example=pass, as.1.lists.example.org=pass, ams.1.lists.example.org=fail (message has been altered))  </span><br><span class="line">Authentication-Results: </span><br><span class="line">	clochette.example.org; </span><br><span class="line">	spf=fail smtp.from=jqd@d1.example; </span><br><span class="line">	dkim=fail (512-bit key) header.i=@d1.example; </span><br><span class="line">	dmarc=fail; </span><br><span class="line">    arc=pass (as.2.gmail.example=pass,ams.2.gmail.example=pass, as.1.lists.example.org=pass, ams.1.lists.example.org=fail (message has been altered))  </span><br><span class="line">ARC-Seal: </span><br><span class="line">	i=2; a=rsa-sha256; cv=pass; d=gmail.example; s=20120806; t=12345; b=Zpukh/kJL4Q7Kv391FKwTepgS56dgHIcdhhJZjsalhqkFIQQAJ4T9BE8jjLXWpRNuh81yqnT1/jHn086RwezGw==  </span><br><span class="line">ARC-Message-Signature: </span><br><span class="line">	i=2; a=rsa-sha256; c=relaxed/relaxed; d=gmail.example; h=message-id:date:from:to:subject;s=20120806; t=12345; bh=KWSe46TZKCcDbH4klJPo+tjk5LWJnVRlP5pvjXFZYLQ=; b=CVoG44cVZvoSs2mMig2wwqPaJ4OZS5XGMCegWqQs1wvRZJS894tJM0xO1  </span><br><span class="line">    RJLgCPsBOxdA59WSqI9s9DfyKDfWg==  </span><br><span class="line">ARC-Authentication-Results: </span><br><span class="line">	i=2; gmail.example; </span><br><span class="line">	spf=fail smtp.from=jqd@d1.example; </span><br><span class="line">	dkim=fail (512-bit key) header.i=@example.org; </span><br><span class="line">	dmarc=fail; </span><br><span class="line">    arc=pass (as.1.lists.example.org=pass, ams.1.lists.example.org=pass)  </span><br><span class="line">ARC-Seal: </span><br><span class="line">	i=1; a=rsa-sha256; cv=none; d=lists.example.org; s=dk-lists; t=12345; b=TlCCKzgk3TrAa+G77gYYO8Fxk4q/Ml0biqduZJeOYh6+0zhwQ8u/lHxLi21pxu347isLSuNtvIagIvAQna9a5A==  </span><br><span class="line">ARC-Message-Signature: </span><br><span class="line">	i=1; a=rsa-sha256; c=relaxed/relaxed; d=lists.example.org; h=message-id:date:from:to:subject; s=dk-lists; t=12345; bh=KWSe46TZKCcDbH4klJPo+tjk5LWJnVRlP5pvjXFZYLQ=; b=DsoD3n3hiwlrN1ma8IZQFgZx8EDO7Wah3hUjIEsYKuShRKYB4LwGUiKD5YyHgcIwGHhSc/4+ewYqHMWDnuFxiQ==  </span><br><span class="line">ARC-Authentication-Results: </span><br><span class="line">	i=1; lists.example.org; </span><br><span class="line">	spf=pass smtp.mfrom=jqd@d1.example; </span><br><span class="line">	dkim=pass (512-bit key) header.i=@d1.example; </span><br><span class="line">	dmarc=pass</span><br></pre></td></tr></table></figure>
+<p>这是三次ARC验证后的ARC Set，可以看到第二、三次对比第一次，spf、dkim和dmarc都是fail，但cv的值依旧是pass。这是因为AAR中的arc的值是pass，我们可以看到详细的验证内容，对于二、三次AEC验证，第一、二次的AS和AMS校验都pass。这说明第二、三次校验过程中，并没有被篡改，因此cv是pass</p>
+<h3 id="SIC"><a href="#SIC" class="headerlink" title="SIC"></a>SIC</h3><p>Sender Inconsistency Checks，即发件人不一致检查<br>SIC并不是一个标准，因为无论是转发还是订阅，都有可能使得发件人不同，并不能因发件人不同而直接丢弃邮件。虽然各个邮件服务有各自的实现方式，但都是对发件人的一致性进行检查，在检查出不一致时在UI界面上提醒用户</p>
+<h2 id="攻击模型"><a href="#攻击模型" class="headerlink" title="攻击模型"></a>攻击模型</h2><p>发件人身份验证绕过可能发生在四个阶段：发送认证、接收认证、转发验证和UI渲染。在论文中，将邮件攻击模型分为以下三种</p>
+<p><img src="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/cce29e16deff1b53e8361b7af895fd7e.jpg" alt=""></p>
+<h3 id="共享MTA攻击"><a href="#共享MTA攻击" class="headerlink" title="共享MTA攻击"></a>共享MTA攻击</h3><p>由图中的a攻击可以看到，共享MTA攻击是攻击者Oscar拥有一个<a href="mailto:`Oscar@a.com" target="_blank" rel="noopener">`Oscar@a.com</a><code>账号，通过修改</code>Mail From/From/Auth username header<code>伪装成为</code><a href="mailto:Alice@a.com" target="_blank" rel="noopener">Alice@a.com</a><code>，从</code>a.com<code>的MTA发送欺骗电子邮件。通过</code>a.com<code>的MTA发送的IP自然在</code>a.com<code>的SPF范围内，</code>a.com<code>还可能会为Oscar的邮件自动进行DKIM签名，从而绕过SPF/DKIM/DMARC。同时由于发件人的MTA IP的信用是判断是否垃圾邮件的重要因素，而此例中</code>a.com<code>是一个信用较好的MTA，因此不会被视为垃圾邮件，最终成功伪装为</code><a href="mailto:Alice@a.com" target="_blank" rel="noopener">Alice@a.com</a>`进入到Bob的邮箱中</p>
+<h3 id="直接MTA攻击"><a href="#直接MTA攻击" class="headerlink" title="直接MTA攻击"></a>直接MTA攻击</h3><p>由图中的b攻击可以看到，Oscar通过自己的电子邮件服务器直接发送欺骗电子邮件。在发送方和接收方的MTA间没有任何验证机制，因此Oscar可以设置任意<code>Mail From</code>和<code>From header</code>伪装为<a href="mailto:`Alice@a.com" target="_blank" rel="noopener">`Alice@a.com</a>`。这种攻击优势在于不会受到发件方MTA的发送检查，但接收方可能会不信任Oscar的电子邮件服务器</p>
+<h3 id="转发MTA攻击"><a href="#转发MTA攻击" class="headerlink" title="转发MTA攻击"></a>转发MTA攻击</h3><p>由图中的c攻击可以看到，Oscar将欺骗邮件发送到<a href="mailto:`Oscar@a.com" target="_blank" rel="noopener">`Oscar@a.com</a><code>，同时Oscar在该服务器上为</code><a href="mailto:Oscar@a.com" target="_blank" rel="noopener">Oscar@a.com</a><code>配置了转发服务，自动将邮件转发给了</code><a href="mailto:Bob@b.com" target="_blank" rel="noopener">Bob@b.com</a><code>。此攻击由三个优势，一是于共享MTA攻击一样都为同一域上的MTA，二是可以绕过发件方MTA的发送检查（比如</code>Mail From<code>和</code>From header`不一致），三是转发服务还可以为转发的电子邮件提供更高的安全性认证（比如添加不该的DKIM签名）</p>
+<h2 id="实验设计"><a href="#实验设计" class="headerlink" title="实验设计"></a>实验设计</h2><h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>22个流行的电子邮件服务，其用户总数超过10亿，选择其能够代表大多个人人用户所面临的邮箱安全问题<br>5个流行的企业电子邮箱服务，以测试对企业级用户的威胁程度<br>对于托管电子邮件系统，构建\部署和维护3个著名的电子邮件系统（即Zimbra，EwoMail，Roundcube）进行测试<br>针对不同桌面和移动操作系统中23个广泛使用的电子邮件客户端的攻击，以评估对UI呈现的影响</p>
+<h3 id="分析方法"><a href="#分析方法" class="headerlink" title="分析方法"></a>分析方法</h3><p>首先系统地分析电子邮件标准规范。在语法方面提取ABNF规则，重点关注与身份验证相关的header（如Mail From/From/Helo/Sender）。在语义方面关注RFC中每个阶段的电子邮件身份验证<br>其次收集合法的电子邮件样本，并根据ABNF语法生成带有认证相关header的样本。同时要注意通常的邮件服务会拒绝接收header高度变形的电子邮件，因此需要对header的值进行限制。比如domain的值限制为几个常用的电子邮件域名<br>再者利用协议的模糊化引入一些常见的绕过方法，比如header重复、插入空格、插入Unicode字符、header编码和大小写变化<br>然后再使用生成的样本在检验的四个阶段中测试目标电子邮件服务<br>最后分析总结成功攻击的方法</p>
+<h3 id="成功标准"><a href="#成功标准" class="headerlink" title="成功标准"></a>成功标准</h3><p>符合以下标准都认为是攻击成功<br>在邮件发送验证阶段，攻击者可以任意修改标识符（如Auth username/MAIL From/From）<br>在邮件接收验证阶段，不论欺骗的域名是否部署了严格的SPF/DKIM/DMARC策略，接收方的MTA依旧给出了<code>none/pass</code>的验证结果。是否通过验证可以通过查看电子邮件是否已进入收件箱来判断。若邮件被直接放入垃圾箱，则认为攻击失败，因为此时MTA已检测到是欺骗邮件。为避免偶然与意外，每次攻击都将重复三次且都起效才被视为攻击成功<br>在邮件转发验证阶段，转发方会为转发邮件提供更高信任度，即其它邮件服务会因转发方的信用度选择相信该邮件。若攻击者无需任何身份验证就可以将转发的电子邮件自由配置到任意账户，则攻击也被认为是成功的<br>在邮件UI呈现阶段，现实的电子邮件地址与真实电子邮件地址不一致。在这一阶段，由于目的是检查UI渲染的结果而不是绕过垃圾邮件检测机制，因此使用IMAP的<code>APPEND</code>命令直接将邮件放入邮箱中</p>
+<h3 id="测量偏差最小化"><a href="#测量偏差最小化" class="headerlink" title="测量偏差最小化"></a>测量偏差最小化</h3><p>首先，避免被检测为垃圾邮件，使用合法且不敏感的内容，使其不被视为垃圾邮件<br>其次，所有欺骗邮件都从15个不同地区的IP地址发送，期间间隔10分钟。还为攻击方的域名和IP地址部署MX/TXT/PTR记录<br>最后，为了测试接收方的MTA是如何处理带有SPF/DMARC验证结果为<code>fail</code>的邮件，我们测试了目标的30个电子邮件服务，发现其中由23个拒绝带有SPF/DMARC验证结果为<code>fail</code>的邮件，其余的则记为垃圾邮件</p>
+<h2 id="发件人欺骗攻击"><a href="#发件人欺骗攻击" class="headerlink" title="发件人欺骗攻击"></a>发件人欺骗攻击</h2><h3 id="攻击邮件发送认证"><a href="#攻击邮件发送认证" class="headerlink" title="攻击邮件发送认证"></a>攻击邮件发送认证</h3><p>邮件发送认证是确认邮件身份的重要步骤。对邮件发送认证的攻击会滥用知名邮箱服务的IP信誉，甚至能够绕过SPF/DKIM/DMARC验证。这些攻击主要用于共享MTA攻击模型<br>在邮件发送阶段，有三个发送人标识符：<code>Auth username</code>、<code>Mail From</code>、<code>From</code>。因此只要能在发送阶段能够任意地控制这三个标识符，攻击就被认为是成功的</p>
+<h4 id="头字段Auth-username和Mail-From的不一致-A1"><a href="#头字段Auth-username和Mail-From的不一致-A1" class="headerlink" title="头字段Auth username和Mail From的不一致(A1)"></a>头字段Auth username和Mail From的不一致(A1)</h4><p><img src="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/0e968142d96554f4ce7e6cbc3c42bb65.jpg" alt=""></p>
+<p>如上图所示，攻击者在发送验证阶段发送<code>Auth username</code>和<code>Mail From</code>不一致的欺骗电子邮件，以伪装成当前域下的任意用户。而由于SMTP协议并没有确认<code>Auth username</code>和<code>Mail From header</code>的一致性的功能，因此对该攻击的防御需要开发人员额外去实现<br>在实验中大多邮件服务都注意到了这个问题，且禁止用户发送与原始身份不一致的邮件。但在开源的邮件服务系统比如Zimbra、EwoMail，在默认配置下容易受到该攻击，邮箱开发者应更新安全配置以防御该攻击</p>
+<h4 id="头字段Mail-From和From的不一致-A2"><a href="#头字段Mail-From和From的不一致-A2" class="headerlink" title="头字段Mail From和From的不一致(A2)"></a>头字段Mail From和From的不一致(A2)</h4><p><img src="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/273cad573cb5b45fd0c6632cdf55849d.jpg" alt=""></p>
+<p>如上图所示，攻击者可以发送<code>Mail From</code>和<code>From</code>不一致的欺骗邮件伪装成其他用户。虽然邮箱服务允许某些用户使用别名发送<code>Mail From</code>与<code>From</code>不同的邮件，但不应允许修改为任意值（如admin），应只允许在合法的范围内设置别名<br>对于许多电子邮件服务和第三方电子邮件客户端，仅显示<code>From</code>不显示<code>Mail From</code>，用户无法判断是否是一封欺骗邮件</p>
+<p>而头字段<code>PCPT To</code>和<code>To</code>也存在类似的不一致，在进行邮件转发或是密件抄送时都会出现这样的不一致。这样的灵活性扩展了发件人欺骗的攻击面，引入了新的安全风险。比如，即使<code>To</code>字段非受害者的地址，但攻击者仍然能够将邮件发送给受害者。在这种情况下，攻击者可以使用该方法获得通常无法获得的DKIM签名（比如在转发时由于验证不足，给欺骗邮件添加了DKIM签名）。单独使用时也许起不了多少效果，但与其它技术结合，可以达到出色的攻击效果</p>
+<p>实验中有14家电子邮件服务容易受到此类攻击，此外还有某些电子邮件服务，会拒绝Mail From和From的不一致的邮件，但仍可以与A4、A5攻击结合来绕过这些防御。例如发送<code>Mail From</code>为<code>&lt;Oscar@a.com&gt;</code>和<code>From</code>为<code>&lt;Alice@a.com, Oscar@a.com&gt;</code>的欺骗邮件可以绕过Yahoo的验证</p>
+<h3 id="攻击邮件接收验证"><a href="#攻击邮件接收验证" class="headerlink" title="攻击邮件接收验证"></a>攻击邮件接收验证</h3><p>SPF、DKIM和DMARC是常用的抵抗邮件欺骗攻击的机制，这种攻击能够见于提及的所有攻击模型。攻击是否成功依据接收者的MTA是否给出了错误的<code>none/pass</code>验证结果</p>
+<h4 id="空Mail-From攻击-A3"><a href="#空Mail-From攻击-A3" class="headerlink" title="空Mail From攻击(A3)"></a>空Mail From攻击(A3)</h4><p>在RFC 5321 3.6.3中提到，当邮件服务器受到转发邮件但因目标地址不正确或邮件由于其它原因无法转发到，此时需要构造一个“无法投递邮件”的通知消息发送给发件人。但这样的错误通知回传可能会因转发链上某个回传失败又产生错误通知回传。为了减少这样的流量浪费，标准中要求回传的<code>Mail From</code>的值必须为空，不再产生更多的错误通知回传。而这样一个特性，能够被利用来构造发送欺骗邮件</p>
+<p><img src="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/6db417ebd181e982a29029f5cce3847e.jpg" alt=""></p>
+<p>如上图所示，将<code>Mail From</code>置为空，同时将<code>From</code>置为目标伪装邮箱。在SPF协议中规定了，当<code>Mail From</code>为空时，应从<code>Helo</code>获取SPF的验证域。而由于<code>Helo</code>字段的滥用，一些邮箱服务违反标准并采用了更加宽松的验证措施。当接收方的MTA处理这些电子邮件时，由于无法基于<code>Helo</code>完成SPF的验证，因此直接返回<code>none</code>。这就使得攻击者能够将SPF的结果从<code>fail</code>转变为<code>none</code><br>实验中有13家电子邮件服务会受到该攻击的影响，而有17家解决了此类问题，其中有5个将<code>Mail From</code>为空的邮件视为垃圾邮件</p>
+<h4 id="多个From字段-A4"><a href="#多个From字段-A4" class="headerlink" title="多个From字段(A4)"></a>多个From字段(A4)</h4><p><code>From</code>字段存在多种变形，例如在From前后添加空格、大小写转换或插入不可视字符</p>
+<p><img src="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/1f9cd04227e887b0015358b0416345d4.jpg" alt=""></p>
+<p>如上图所示，攻击者可以构造多个<code>From</code>来绕过安全策略。RFC 5322中要求通常应拒绝具有多个<code>From</code>字段的电子邮件，但仍有邮件服务不遵循协议，接受带有<code>From</code>的邮件。从上图中可以看到，当存在多个<code>From</code>字段时，UI界面会显示最后的一个<code>From</code>字段，但DMARC验证会根据第一个<code>From</code>字段进行检验。这就导致了攻击者能够通过第一个<code>From</code>字段控制DMARC的检验，并用最后一个<code>From</code>字段欺骗受害者<br>实验中仅有四个邮件服务拒绝多个From字段的邮件，有6个服务选择显示最后一个<code>From</code>，7家供应商已针对此类攻击制定了特定的安全法规，例如同时显示两个发件人地址或置为垃圾邮件</p>
+<h4 id="多邮件地址-A5"><a href="#多邮件地址-A5" class="headerlink" title="多邮件地址(A5)"></a>多邮件地址(A5)</h4><p>多邮件地址也是一种绕过协议验证的方式。多邮件地址最初在RFC 2822中提出，而知道RFC 5332仍被允许。多邮件地址是为了适应以下这种情况:由多个作者共同编写的邮件。这时<code>Sender</code>字段为实际发件人</p>
+<p><img src="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/87a6c2ad9b29b07b9d10e28700cadef0.jpg" alt=""></p>
+<p>如上图所示，攻击者可以使用多个电子邮件地址绕过DMARC验证，DMARC会根据后一个邮件地址进行检验。还可以对这些地址进行基于规则的更改，例如<code>[Alice@ a.com],\&lt; Oscar@attack.com&gt;</code><br>实验中15个邮件服务接受此类邮件，4个服务直接拒绝，5个服务置为垃圾邮件，6个服务显示所有地址</p>
+<h4 id="解析不一致攻击-A6"><a href="#解析不一致攻击-A6" class="headerlink" title="解析不一致攻击(A6)"></a>解析不一致攻击(A6)</h4><p><code>Mail From</code>和<code>From</code>是富文本字段且具有非常复杂的语法格式，如何正确地解析显示名称与真实地址是避免此攻击的关键，这些不一致使得攻击者能够绕过验证并欺骗目标邮箱客户端</p>
+<p><img src="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/18a8752b1ce4a132617975f455748ab7.jpg" alt=""></p>
+<p>上图显示了<code>Mail From</code>中的三种解析不一致，可以看到其目的都是让SPF协议认为尾部的<code>attack.com</code>是该发件人的验证域<br>在RFC 2822 4.4中提到了一种过时但因兼容保留下来的地址形式，这种邮箱地址形式有着三个不同之处：一、当邮箱地址包含在<code>&lt;&gt;</code>中时，<code>:</code>前面的部分会被解析为路由，各个路由被<code>,</code>分隔，以<code>@</code>开头，而<code>:</code>后面的部分会被解析为真实发件人地址；二、用于分隔本地部分和域的<code>.</code>允许使用注释代替其作用；三、允许邮箱和地址列表由“空”成员，也就是允许连续的两个或多个逗号<br>利用这种过时的地址，在上图中可以看到，在第一个的<code>Mail From</code>中，在解析后会认为<a href="mailto:`Alice@attack.com" target="_blank" rel="noopener">`Alice@attack.com</a><code>是发件人地址，于是对</code>attack.com<code>域进行SPF验证；第二个使用了null成员，在解析后会认为</code><a href="mailto:a@attack.com" target="_blank" rel="noopener">a@attack.com</a><code>是发件人地址，对其进行SPF验证（这个说实话不太明白）；第三个使用了注释代替点分隔本地部分与域名，解析后会认为</code>attack.com`是SPF的验证域</p>
+<p><img src="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/a5738c0e04b3417b7a466fe6d2009760.jpg" alt=""></p>
+<p>上图显示了在<code>From</code>中，可以利用一些特殊字符对字符串进行截断，使得只显示字符串被截断的前半部分。比如用<code>NULL \x00</code>这种在C中的字符串种植字符，或是不可见的Unicode字符<code>\uff00-\uffff \x81-\xff</code>，再或是语义字符，例如<code>[ ] { } \t \r \n ;</code>。使用这些字符会使得UI显示不一致，但在解析时，仍然会以整个字符串末尾的域进行DMARC验证，这样就绕过了DMARC<br>实现测试得到由13个邮件服务在UI显示存在这样的问题</p>
+<h4 id="基于编码的攻击-A7"><a href="#基于编码的攻击-A7" class="headerlink" title="基于编码的攻击(A7)"></a>基于编码的攻击(A7)</h4><p>RFC 2047中描述了一种MIME（多用途电子邮件扩展）的非ASCII文本的消息头扩展，其形式是<code>=?charset?encoding?encoded-text?=</code>，<code>charset</code>是未编码文本的字符集；<code>encoding</code>是编码，<code>b</code>是base64，<code>q</code>是可见编码；<code>encoded-text</code>是被编码的内容</p>
+<p><img src="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/b7c02917678f7bc9baee9c7a78d535e8.jpg" alt=""></p>
+<p>上图中可以看到，在进行DMARC验证时，不会解码<code>=?utf-8?b?QWxpY2VAYS5jb20=?=</code>，直接以该字符串为域进行DMARC验证，结果自然是<code>none</code>成功绕过，而UI上会解析显示为<a href="mailto:`Alice@a.com" target="_blank" rel="noopener">`Alice@a.com</a><code>但结合截断字符的攻击没看懂，</code>b64(<a href="mailto:Alice@a.com" target="_blank" rel="noopener">Alice@a.com</a>&gt;b64(\uffff)@attack.com<code>这条字符串用</code>\uffff<code>进行了截断，而DMARC并不会解析为截断，结果就是认为</code>attack.com<code>为验证域。但UI界面显示</code><a href="mailto:Alice@a.com" target="_blank" rel="noopener">Alice@a.com</a><code>的原因没看懂，b64是编码的话就不应显示</code><a href="mailto:Alice@a.com" target="_blank" rel="noopener">Alice@a.com</a><code>，解码的话应该是解</code><a href="mailto:Alice@a.com" target="_blank" rel="noopener">Alice@a.com</a>`的base64编码值才对，以后实现测试看看<br>在实验测试得到由7个邮件服务受到该问题影响</p>
+<h4 id="子域名攻击-A8"><a href="#子域名攻击-A8" class="headerlink" title="子域名攻击(A8)"></a>子域名攻击(A8)</h4><p>攻击者可以将邮件的发送域设置为知名邮件服务中没有MX记录的子域，无MX记录的子域没有相应的SPF记录，因此验证结果是none。就算父域配置了严格的电子邮件策略，依旧能够通过这种方式攻击。而许多公司通过子域发送业务订阅邮件，使得用户倾向于信任此类邮件<br>除此之外，RFC 7208中并不鼓励使用通配符记录来发布SPF记录（也就是不能直接<code>*.xxx.xxx</code>，因此少有管理员会配置通配符SPF记录。虽然收件方的MTA通常可以拒绝来自没有MX记录的域的电子邮件，但RFC 2821提到当域没有MX记录时，SMTP会认为有A记录已足够，这使得有A记录的域名都会被视为有效的电子邮件域。而许多网站都会使用通配符配置DNS A记录，这使得这种攻击难以被检测<br>在实验中发现，有13个邮件服务容易被攻击，而只有一个邮件服务为SPF记录配置了通配符DNS条目。默认情况下，为组织域设置的DMARC策略应适用于任何子域，除非已为特定子域配置了DMARC记录。但实验结果表明，即使接收方的MTA进行了DMARC验证，攻击仍然有效</p>
+<h3 id="攻击邮件转发验证"><a href="#攻击邮件转发验证" class="headerlink" title="攻击邮件转发验证"></a>攻击邮件转发验证</h3><p>当共享MTA攻击无法成功时，攻击者可以尝试使用转发服务发送欺骗邮件。而通过转发服务邮件会得到更高级的安全认证</p>
+<h4 id="未授权转发攻击-A9"><a href="#未授权转发攻击-A9" class="headerlink" title="未授权转发攻击(A9)"></a>未授权转发攻击(A9)</h4><p>若邮件服务在不进行任何身份验证的情况下，将转发的电子邮件任意配置到任何账户，那么攻击者可以在邮件转发服务上创建一个合法账号，通过该账号转发来自攻击者服务器的欺骗邮件。由于该转发服务是主流的邮件服务，因此接收方的MTA通常会接受该邮件，同时通过转发服务能够绕过SPF和DMAARC验证</p>
+<p><img src="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/9aff033c2e07f7fd3be20a31513238f2.jpg" alt=""></p>
+<p>从上图可以看到，从攻击者服务器发送的邮件<code>Mail From</code>为空，转发后<code>Mail From</code>被改为<a href="mailto:`Oscar@a.com" target="_blank" rel="noopener">`Oscar@a.com</a><code>，由于是从</code>a.com<code>域发送的，因此通过了SPF和DMARC验证
+这里其实不太明白为什么最初的</code>RCPT TO<code>并不是</code><a href="mailto:Oscar.@a.com" target="_blank" rel="noopener">Oscar.@a.com</a><code>，但却能发送到这个账户或者是</code>a.com<code>的转发服务器上。可能是这个邮件是直接被投递到转发服务器上，同时该服务器上配置了</code>From<code>为</code><a href="mailto:Alice@a.com" target="_blank" rel="noopener">Alice@a.com</a><code>的邮件通过</code><a href="mailto:Oscar@a.com" target="_blank" rel="noopener">Oscar@a.com</a><code>转发给</code><a href="mailto:Bob@b.com" target="_blank" rel="noopener">Bob@b.com</a>`的条目</p>
+<p>实验中有12个邮箱服务有该问题，7个邮箱服务不提供转发</p>
+<h4 id="DKIM签名欺骗攻击-A10"><a href="#DKIM签名欺骗攻击-A10" class="headerlink" title="DKIM签名欺骗攻击(A10)"></a>DKIM签名欺骗攻击(A10)</h4><p>由于RFC 6376和RFC 6377均建议转发服务将其签名添加到转发的电子邮件中，因此许多转发服务都会为转发的邮件添加DKIM签名。攻击者能够利用这点，将没有DKIM签名的邮件发送给转发服务，获得DKIM签名以提高可信任度。实际上对于转发的邮件，转发服务器应检测是否有DKIM签名或之前是否未通DKIM验证，再选择是否添加DKIM签名</p>
+<p>上图可以看到对该攻击的利用，攻击者在<code>a.com</code>的邮箱服务下创建账号<a href="mailto:`Oscar@a.com" target="_blank" rel="noopener">`Oscar@a.com</a><code>，并配置将接收的电子邮件发送给另一个攻击者的邮箱账号</code><a href="mailto:Oscar@c.com" target="_blank" rel="noopener">Oscar@c.com</a><code>。接着发送</code>From<code>为</code><a href="mailto:Alice@a.com" target="_blank" rel="noopener">Alice@a.com</a><code>和</code>To<code>为</code><a href="mailto:Bob@b.com" target="_blank" rel="noopener">Bob@b.com</a><code>的邮件给</code><a href="mailto:Oscar@a.com" target="_blank" rel="noopener">Oscar@a.com</a><code>再转发到</code><a href="mailto:Oscar@c.com" target="_blank" rel="noopener">Oscar@c.com</a><code>。通过这一过程，攻击者就获得了</code>a.com<code>域对其邮件的DKIM签名，然后将</code>Mail From<code>置空，发送给Bob。由于没有将</code>Mail From`计入DKIM签名的范围，因此修改也不会使DKIM验证失败。最终这封邮件通过接收方MTA的DKIM验证进入了Bob的邮箱</p>
+<h4 id="ARC问题-A11"><a href="#ARC问题-A11" class="headerlink" title="ARC问题(A11)"></a>ARC问题(A11)</h4><p>ARC协议仅有Gmail、Office 365和Zoho对其进行了部署，实验发现Office 365和Zoho在ARC协议上都存在问题，且除了攻击A10外，无法防御其它攻击<br>对于Zoho，如果邮件未通过发件人不一致检查，它将为用户显示警报。但Zoho的ARC实施存在错误，当通过Gmail自动将欺骗性电子邮件转发到Zoho邮箱时，Zoho添加的ARC-Authentication-Results(AAR)显示了错误的DMARC验证结果<code>pass</code>,而且这种错误的ARC实现还有可能绕过发送方不一致检查，不对用户显示警报<br>Office 365在ARC的实现中也有错误。它在AAR中传递了错误的SPF、DKIM和DMARC验证结果。这将破坏ARC信任链，引入更多的安全风险</p>
+<h3 id="攻击邮件UI界面"><a href="#攻击邮件UI界面" class="headerlink" title="攻击邮件UI界面"></a>攻击邮件UI界面</h3><p>邮件的发件人显示是抵御发件人欺骗的最后一道防线，许多邮件服务都会对发件人的一致性进行检测并在UI界面上警告用户。该部分不讨论如何绕过邮件安全协议，只针对绕过发件人一致性检测并显示出来的地址能欺骗用户的方法进行讨论</p>
+<h4 id="IDN同形异义词攻击-A12"><a href="#IDN同形异义词攻击-A12" class="headerlink" title="IDN同形异义词攻击(A12)"></a>IDN同形异义词攻击(A12)</h4><p>IDN全称Internationalized Domain Names，即国际化域名。其允许使用<code>Punycode</code>这种特殊编码，这种编码能将无法用ASCII显示的单词转为Unicode编码，该编码出现的目的是为了使DNS服务器支持中文域名，中文域名在解析时需要转化为编码</p>
+<p><img src="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/ad688320872f77c2f4d06f3b391606b5.jpg" alt=""></p>
+<p>如上图所示，可以看到真实的地址是<code>admin@xn–aypal-uye.com</code>，但由于编码后会显示为<a href="mailto:`admin@paypal.com" target="_blank" rel="noopener">`admin@paypal.com</a><code>，若不进行警告，用户很容易被欺骗
+如今的浏览器针对IDN同形异义词攻击实施了一些防御措施，例如当域标签包含多种语言的字符时不解析IDN，但电子邮件系统中几乎没有类似的防御措施。实现中有10中电子邮件服务支持IDN，且仅有Coremail通过在</code>Unicode`字符前后添加空格使用户可以区分</p>
+<h4 id="UI显示缺失攻击-A13"><a href="#UI显示缺失攻击-A13" class="headerlink" title="UI显示缺失攻击(A13)"></a>UI显示缺失攻击(A13)</h4><p>在UI显示时，有些字符能够截断邮件地址，还有些不可见字符<code>U+0000-U+001F,U+FF00-U+FFFF</code>以及语义字符<code>@ : ; &quot;</code>不予显示。例如<code>admin@gm@ail.com</code>会显示为<a href="mailto:`admin@gmail.com" target="_blank" rel="noopener">`admin@gmail.com</a>`<br>实验中有12种邮件服务会受到这种攻击，其它服务拒绝或放入垃圾箱种</p>
+<h4 id="RTRO-Right-to-left-Overrid-攻击-A14"><a href="#RTRO-Right-to-left-Overrid-攻击-A14" class="headerlink" title="RTRO(Right-to-left Overrid)攻击(A14)"></a>RTRO(Right-to-left Overrid)攻击(A14)</h4><p>有一些字符可以控制字符串的显示顺序，RTRO字符就是其中一种，<code>U+202E</code>可以控制字符串从右向左显示，其用于阿拉伯语或希伯来语文本。而攻击者可以构造字符串<code>\u202emoc.a@\u202dalice</code>，其显示为<a href="mailto:`Alice@a.com" target="_blank" rel="noopener">`Alice@a.com</a>`<br>由于带有RTL字符的邮件可能会被认为是垃圾邮件，可以使用有效的payload（如UTF-8编码）。实验中有11个邮件服务容易受到攻击，10个无法正确显示，其它则选择拒绝该类邮件</p>
+<h2 id="组合攻击"><a href="#组合攻击" class="headerlink" title="组合攻击"></a>组合攻击</h2><p>根据电子邮件传递的四个认证阶段，攻击被分为四类，但这些攻击都有局限性。比如A2、A3能够欺骗接收方，但无法绕过所有欺骗保护。而单独的A3能绕过SPF，但绕过不了DMARC。单独的攻击在许多邮件服务上都很难起效，因此需要将这些攻击进行结合形成组合攻击，绕过三种邮件安全协议以及UI界面保护验证</p>
+<h3 id="相同攻击模型下的组合攻击"><a href="#相同攻击模型下的组合攻击" class="headerlink" title="相同攻击模型下的组合攻击"></a>相同攻击模型下的组合攻击</h3><p><img src="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/35ddc7836a865abc84bda8df479c1155.jpg" alt=""></p>
+<p>上图显示了共享MTA攻击模型下的攻击示例，Yahoo会对<code>Mail From</code>和<code>From</code>的一致性进行检测，此时利用A4设置两个<code>From</code>字段，Yahoo取第一个<code>From</code>字段与<code>Mail From</code>，记过成功通过。而利用A2使第二个<code>From</code>字段与<code>Mail From</code>字段不同伪装成<a href="mailto:`Admin@paypal.com" target="_blank" rel="noopener">`Admin@paypal.com</a><code>。当iCloud接收到邮件时，会使用第一个</code>From<code>字段进行DMARC验证，结果自然成功通过。但在UI界面显示的却是第二个</code>From`，使得该组合攻击成功</p>
+<h3 id="不同攻击模型下的组合攻击"><a href="#不同攻击模型下的组合攻击" class="headerlink" title="不同攻击模型下的组合攻击"></a>不同攻击模型下的组合攻击</h3><p>邮件系统是一个具有多方信任链的复制生态系统，依赖于多方部署和实施的安全措施。在不同的攻击模型下，各个参与方可能具有不同的漏洞。比如，若发送方MTA在发送时对身份进行了严格的检查，则难以通过共享MTA进行攻击，但若在其它阶段无法获得正确且完整的安全防御方案，就可能使攻击者利用其它两种模型绕过</p>
+<p><img src="http://shifeng-kaze.cn/blog/sec21_shen_kaiwen/32a3996767844460b5759b98891b857c.jpg" alt=""></p>
+<p>如上图所示，通过组合直接和转发MTA攻击模型成功实现了欺骗。攻击者首先构造一个<code>Mail From</code>为空，<code>To</code>为<a href="mailto:`victim@gmail.com" target="_blank" rel="noopener">`victim@gmail.com</a><code>的邮件，通过在aliyun的MTA上已注册的账号</code><a href="mailto:Oscar@aliyun.com" target="_blank" rel="noopener">Oscar@aliyun.com</a><code>转发给另一个自己的邮箱</code><a href="mailto:Oscar@attack.com" target="_blank" rel="noopener">Oscar@attack.com</a><code>。在转发的过程中，Aliyun的MTA会为邮件添加DKIM签名。接着攻击者再将收到的邮件直接发送给受害者的邮箱。对于此邮件，SPF验证的是</code>Mail From<code>中的域，而DKIM和DMARC验证则是对</code>aliyun.com<code>域进行验证。最终成功进入受害者的邮箱并显示为</code><a href="mailto:admin@aliyun.com" target="_blank" rel="noopener">admin@aliyun.com</a>`</p>
+<h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>首先是SMTP可以通过多个字段包含发送者的身份信息，使得攻击者可以利用这些字段的不一致构造邮件进行攻击<br>其次是由于虽然有SPF、DKIM和DMARC这类的安全协议，但需要所有协议的验证无误才能保证攻击被拒绝。而在实际中由于协议间的关联性并不是很强，导致攻击者可以以某个协议为突破口，通过邮件的身份验证链的验证<br>再者是身份验证链上的四个角色很多时候会忽略其中一个或多个角色的安全风险，而也没有规范对四个角色进行明确的职责规定<br>最后是各个邮箱服务商对邮箱服务的不同实现方式，以及对安全风险的重视程度，导致就算一家服务商安全等级较高也会由于其它服务商的疏忽被攻击</p>
+<h2 id="缓解方法"><a href="#缓解方法" class="headerlink" title="缓解方法"></a>缓解方法</h2><p>对各个协议进行更加精准的定义，比如对DKIM何时将签名添加到转发邮件中进行标准规范<br>还可以通过各个邮件厂商在UI界面上显示那些有可能存在风险的字段以提醒用户</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/安全/" rel="tag"># 安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/31/hgame2021-web-wp/" rel="next" title="hgame2021 web 复现">
+                <i class="fa fa-chevron-left"></i> hgame2021 web 复现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/01/28/hgame2022-web-wp/" rel="prev" title="hgame2021 web 复现">
+                hgame2021 web 复现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://shifeng-kaze.cn/blog/head/kotori.jpg" alt="k0t0r1">
+            
+              <p class="site-author-name" itemprop="name">k0t0r1</p>
+              <p class="site-description motion-element" itemprop="description">～いらっしゃいません～</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://shifeng-kaze.cn/" title="shifeng-kaze" target="_blank">shifeng-kaze</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io" title="Aluvion" target="_blank">Aluvion</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#序言"><span class="nav-number">1.</span> <span class="nav-text">序言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#邮件的传输与验证"><span class="nav-number">2.</span> <span class="nav-text">邮件的传输与验证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#邮件发送认证"><span class="nav-number">2.1.</span> <span class="nav-text">邮件发送认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#邮件接收验证"><span class="nav-number">2.2.</span> <span class="nav-text">邮件接收验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#邮件转发验证"><span class="nav-number">2.3.</span> <span class="nav-text">邮件转发验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#邮件UI渲染"><span class="nav-number">2.4.</span> <span class="nav-text">邮件UI渲染</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#邮件保护措施"><span class="nav-number">3.</span> <span class="nav-text">邮件保护措施</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SPF"><span class="nav-number">3.1.</span> <span class="nav-text">SPF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DKIM"><span class="nav-number">3.2.</span> <span class="nav-text">DKIM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DMARC"><span class="nav-number">3.3.</span> <span class="nav-text">DMARC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARC"><span class="nav-number">3.4.</span> <span class="nav-text">ARC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SIC"><span class="nav-number">3.5.</span> <span class="nav-text">SIC</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#攻击模型"><span class="nav-number">4.</span> <span class="nav-text">攻击模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#共享MTA攻击"><span class="nav-number">4.1.</span> <span class="nav-text">共享MTA攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接MTA攻击"><span class="nav-number">4.2.</span> <span class="nav-text">直接MTA攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转发MTA攻击"><span class="nav-number">4.3.</span> <span class="nav-text">转发MTA攻击</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验设计"><span class="nav-number">5.</span> <span class="nav-text">实验设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实验目标"><span class="nav-number">5.1.</span> <span class="nav-text">实验目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析方法"><span class="nav-number">5.2.</span> <span class="nav-text">分析方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成功标准"><span class="nav-number">5.3.</span> <span class="nav-text">成功标准</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测量偏差最小化"><span class="nav-number">5.4.</span> <span class="nav-text">测量偏差最小化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发件人欺骗攻击"><span class="nav-number">6.</span> <span class="nav-text">发件人欺骗攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#攻击邮件发送认证"><span class="nav-number">6.1.</span> <span class="nav-text">攻击邮件发送认证</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#头字段Auth-username和Mail-From的不一致-A1"><span class="nav-number">6.1.1.</span> <span class="nav-text">头字段Auth username和Mail From的不一致(A1)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#头字段Mail-From和From的不一致-A2"><span class="nav-number">6.1.2.</span> <span class="nav-text">头字段Mail From和From的不一致(A2)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#攻击邮件接收验证"><span class="nav-number">6.2.</span> <span class="nav-text">攻击邮件接收验证</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#空Mail-From攻击-A3"><span class="nav-number">6.2.1.</span> <span class="nav-text">空Mail From攻击(A3)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多个From字段-A4"><span class="nav-number">6.2.2.</span> <span class="nav-text">多个From字段(A4)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多邮件地址-A5"><span class="nav-number">6.2.3.</span> <span class="nav-text">多邮件地址(A5)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析不一致攻击-A6"><span class="nav-number">6.2.4.</span> <span class="nav-text">解析不一致攻击(A6)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于编码的攻击-A7"><span class="nav-number">6.2.5.</span> <span class="nav-text">基于编码的攻击(A7)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子域名攻击-A8"><span class="nav-number">6.2.6.</span> <span class="nav-text">子域名攻击(A8)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#攻击邮件转发验证"><span class="nav-number">6.3.</span> <span class="nav-text">攻击邮件转发验证</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#未授权转发攻击-A9"><span class="nav-number">6.3.1.</span> <span class="nav-text">未授权转发攻击(A9)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DKIM签名欺骗攻击-A10"><span class="nav-number">6.3.2.</span> <span class="nav-text">DKIM签名欺骗攻击(A10)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ARC问题-A11"><span class="nav-number">6.3.3.</span> <span class="nav-text">ARC问题(A11)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#攻击邮件UI界面"><span class="nav-number">6.4.</span> <span class="nav-text">攻击邮件UI界面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#IDN同形异义词攻击-A12"><span class="nav-number">6.4.1.</span> <span class="nav-text">IDN同形异义词攻击(A12)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UI显示缺失攻击-A13"><span class="nav-number">6.4.2.</span> <span class="nav-text">UI显示缺失攻击(A13)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RTRO-Right-to-left-Overrid-攻击-A14"><span class="nav-number">6.4.3.</span> <span class="nav-text">RTRO(Right-to-left Overrid)攻击(A14)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合攻击"><span class="nav-number">7.</span> <span class="nav-text">组合攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相同攻击模型下的组合攻击"><span class="nav-number">7.1.</span> <span class="nav-text">相同攻击模型下的组合攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不同攻击模型下的组合攻击"><span class="nav-number">7.2.</span> <span class="nav-text">不同攻击模型下的组合攻击</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原因分析"><span class="nav-number">8.</span> <span class="nav-text">原因分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓解方法"><span class="nav-number">9.</span> <span class="nav-text">缓解方法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">k0t0r1</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+</body>
+</html>

